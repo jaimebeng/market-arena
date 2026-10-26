@@ -1,0 +1,11 @@
+# First live test: two LLM makers (Muse Spark via Meta API, Muse Spark Open via Baseten)
+# against the GLFT benchmark maker.
+name: makers_smoke
+seed: 2
+steps_per_epoch: 2000
+n_epochs: 4
+glft_gamma: 0.05
+agents:
+  - {id: glft, kind: glft}
+  - {id: spark, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+  - {id: spark_open, kind: llm_maker, model: "baseten:meta-models/muse-spark-open-1026"}

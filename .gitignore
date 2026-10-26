@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+runs/*
+!runs/demo/
+node_modules/
+
+# private planning notes (not for the public repo)
+APPLICATION.md
+HACKATHON.md

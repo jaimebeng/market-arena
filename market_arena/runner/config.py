@@ -1,0 +1,52 @@
+"""Run configuration."""
+
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Literal
+
+import yaml
+from pydantic import BaseModel, Field
+
+from ..sim.background import IndexFlowParams, InformedParams, ZIParams
+from ..sim.exchange import Rules
+
+
+class AssetCfg(BaseModel):
+    price: float = 10_000.0  # price units (cents)
+    sigma: float = 1e-4  # idiosyncratic log-vol per step
+    beta: float = 1.0
+
+
+class AgentCfg(BaseModel):
+    id: str
+    kind: Literal["glft", "static_maker", "llm_maker", "llm_taker", "textbook_taker"]
+    model: str | None = None  # e.g. "meta:muse-spark-1.3-contributor", "baseten:meta-models/..."
+    assets: list[str] | None = None  # default: all assets
+    params: dict = Field(default_factory=dict)
+
+
+class ArenaConfig(BaseModel):
+    name: str
+    seed: int = 0
+    steps_per_epoch: int = 2000
+    n_epochs: int = 10
+    components: dict[str, AssetCfg] = Field(default_factory=lambda: {"A": AssetCfg()})
+    factor_sigma: float = 0.0
+    index: dict | None = None  # {"name": "IDX", "price": 10000}
+    rules: Rules = Field(default_factory=Rules)
+    zi: ZIParams = Field(default_factory=ZIParams)
+    informed: InformedParams = Field(default_factory=InformedParams)
+    index_flow: IndexFlowParams | None = None
+    calibration_steps: int = 20_000
+    glft_gamma: float = 0.01
+    snapshot_every: int = 10
+    holdout: int = 500  # steps hidden from takers' research tools, used for the OOS gate
+    agents: list[AgentCfg] = Field(default_factory=list)
+    out_dir: str = "runs"
+
+    @classmethod
+    def load(cls, path: str | Path, **overrides) -> ArenaConfig:
+        data = yaml.safe_load(Path(path).read_text())
+        data.update(overrides)
+        return cls(**data)

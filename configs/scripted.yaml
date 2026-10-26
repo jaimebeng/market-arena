@@ -1,0 +1,9 @@
+# Scripted-only arena: benchmarks the simulator and the GLFT maker without any LLM calls.
+name: scripted
+seed: 1
+steps_per_epoch: 2000
+n_epochs: 5
+agents:
+  - {id: glft, kind: glft}
+  - {id: tight, kind: static_maker, params: {half_spread: 2, skew: 0}}
+  - {id: wide, kind: static_maker, params: {half_spread: 8, skew: 0.3}}
