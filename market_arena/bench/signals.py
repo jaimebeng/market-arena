@@ -49,12 +49,11 @@ def signal(obs):
     idx = obs.meta.get("index")
     if not idx:
         return {}
+    # trade the index back toward the value of its basket; ignore small gaps (costs)
     fair = sum(s * obs.last(c, "mid") for c, s in idx["shares"].items())
     gap_bps = (obs.last(idx["name"], "mid") / fair - 1) * 1e4
-    t = float(np.clip(-gap_bps / 10, -1, 1))  # sell the index when rich, buy the basket
-    out = {idx["name"]: t}
-    for c in idx["shares"]:
-        out[c] = -t / len(idx["shares"])
-    return out
+    if abs(gap_bps) < 8:
+        return {idx["name"]: 0.0}
+    return {idx["name"]: float(np.clip(-gap_bps / 20, -1, 1))}
 ''',
 }

@@ -12,6 +12,7 @@ import numpy as np
 
 from ..agents.maker import Maker, MakerPolicy
 from ..analysis.metrics import agent_metrics, market_metrics
+from ..analysis.stylized import stylized_facts
 from ..agents.taker import StrategyTaker
 from ..bench.game import GameParams, collusion_index, solve_nash, solve_pareto
 from ..bench.glft import Calibration, calibrate, glft_policy
@@ -80,7 +81,7 @@ def calibrate_market(cfg: ArenaConfig) -> dict[str, Calibration]:
             else:
                 down[a][t] = max(down[a][t], d)
         m.ex.end_step()
-    return {a: calibrate(mids[a], up[a], down[a]) for a in m.assets}
+    return {a: calibrate(mids[a], up[a], down[a], tick=cfg.rules.tick) for a in m.assets}
 
 
 class Arena:
@@ -222,6 +223,11 @@ class Arena:
             if epoch < cfg.n_epochs - 1:
                 reviewers = [ag for ag in self.agents if hasattr(ag, "review")]
                 await asyncio.gather(*(ag.review(self, epoch, m) for ag in reviewers))
+        meta["stylized"] = {
+            a: {"market": stylized_facts(self.hist.get(a, "mid")),
+                "fair_value": stylized_facts(self.hist.get(a, "value"))}
+            for a in self.assets
+        }  # fmt: skip
         meta["finished"] = time.time()
         meta["llm_cost_usd"] = round(self.cost, 4)
         (self.out / "meta.json").write_text(json.dumps(meta, indent=1, default=str))

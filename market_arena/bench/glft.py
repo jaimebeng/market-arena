@@ -30,13 +30,15 @@ class Calibration:
 
 
 def calibrate(
-    mids: np.ndarray, sweeps_up: np.ndarray, sweeps_down: np.ndarray, max_delta: int = 30
+    mids: np.ndarray, sweeps_up: np.ndarray, sweeps_down: np.ndarray, max_delta: int = 30,
+    tick: int = 1,
 ) -> Calibration:
     """mids: mid at the start of each step. sweeps_up/down: furthest distance from that mid
     reached by aggressive buys/sells in the step (0 if none)."""
     lag = 10
     sigma = float(np.std(mids[lag:] - mids[:-lag]) / math.sqrt(lag))
-    deltas = np.arange(1, max_delta + 1, dtype=float)
+    # on a coarse tick grid, fill rates only change at tick multiples
+    deltas = np.arange(tick, max(max_delta, 6 * tick) + 1, tick, dtype=float)
     n = len(sweeps_up)
     rates = np.array(
         [((sweeps_up >= d).sum() + (sweeps_down >= d).sum()) / (2 * n) for d in deltas]
@@ -50,4 +52,6 @@ def glft_policy(cal: Calibration, gamma: float, size: int = 2, **kw) -> MakerPol
     A, k, s = cal.A, cal.k, cal.sigma
     c = math.log1p(gamma / k) / gamma
     w = math.sqrt(s * s * gamma / (2 * k * A) * (1 + gamma / k) ** (1 + k / gamma))
-    return MakerPolicy(half_spread=max(0.5, c + w / 2), skew=w / size, size=size, **kw)
+    return MakerPolicy(
+        half_spread=min(100.0, max(0.5, c + w / 2)), skew=min(20.0, w / size), size=size, **kw
+    )

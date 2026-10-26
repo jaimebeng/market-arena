@@ -21,7 +21,7 @@ from .exchange import Exchange
 class ZIParams(BaseModel):
     limit_rate: float = 1.2  # limit orders per step
     market_rate: float = 0.35  # market orders per step
-    offset_min: int = 3  # ticks from mid
+    offset_min: int = 3  # price units (cents) from the reference; rounded to the tick
     offset_max: int = 25
     lifetime_mean: float = 60.0  # steps
     size_mean: float = 3.0  # lots (geometric)
@@ -74,10 +74,9 @@ class ZeroIntelligenceFlow:
         mid = ex.mid(self.asset)
         if lagged_value is not None:
             mid += p.anchor_kappa * (lagged_value - mid)
-        tick = ex.rules.tick
         for _ in range(rng.poisson(p.limit_rate)):
             side = BUY if rng.random() < 0.5 else SELL
-            off = rng.integers(p.offset_min, p.offset_max + 1) * tick
+            off = rng.integers(p.offset_min, p.offset_max + 1)
             self._place(side, mid - side * off)
         for _ in range(rng.poisson(p.market_rate)):
             side = BUY if rng.random() < 0.5 else SELL

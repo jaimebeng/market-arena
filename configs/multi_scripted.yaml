@@ -1,0 +1,18 @@
+# Multi-asset market (3 components + index) with scripted agents only.
+name: multi_scripted
+seed: 11
+steps_per_epoch: 2000
+n_epochs: 3
+holdout: 1000
+components:
+  A: {price: 10000, sigma: 0.00006, beta: 1.0}
+  B: {price: 5000, sigma: 0.00008, beta: 1.2}
+  C: {price: 20000, sigma: 0.00005, beta: 0.8}
+factor_sigma: 0.00006
+index: {name: IDX, price: 10000}
+index_flow: {burst_rate: 0.002, burst_len: 60, size: 3}
+agents:
+  - {id: glft, kind: glft}
+  - {id: wide, kind: static_maker, params: {half_spread: 4, skew: 0.5}}
+  - {id: arb, kind: textbook_taker, params: {signal: index_arbitrage, max_position: 10, max_order: 1}}
+  - {id: mom, kind: textbook_taker, params: {signal: momentum, max_position: 10, max_order: 1}}
