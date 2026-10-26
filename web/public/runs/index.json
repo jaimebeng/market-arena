@@ -71,6 +71,39 @@
    "bytes": 343629
   },
   {
+   "name": "zz_stress_4asset",
+   "file": "zz_stress_4asset.json",
+   "assets": [
+    "A",
+    "B",
+    "C",
+    "IDX"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "spark",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "spark_open",
+     "role": "maker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    }
+   ],
+   "epochs": 32,
+   "steps": 63990,
+   "decisions": 48,
+   "llm_cost_usd": 0.0022,
+   "finished": 1793055385.8349698,
+   "bytes": 3248876
+  },
+  {
    "name": "scripted",
    "file": "scripted.json",
    "assets": [
@@ -101,5 +134,5 @@
    "bytes": 323641
   }
  ],
- "generated": 1793055632.9979136
+ "generated": 1793056495.2691498
 }

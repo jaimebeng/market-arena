@@ -203,3 +203,6 @@ export function useFrame(fn: FrameFn) {
   ref.current = fn;
   useEffect(() => playback.onFrame((pb, dirty) => ref.current(pb, dirty)), []);
 }
+
+// Dev/recording hook: lets scripts drive the replay (e.g. window.__arena.seek(4000)).
+if (typeof window !== "undefined") (window as unknown as { __arena: Playback }).__arena = playback;

@@ -70,18 +70,23 @@ def calibrate_market(cfg: ArenaConfig) -> dict[str, Calibration]:
     mids = {a: np.zeros(n) for a in m.assets}
     up = {a: np.zeros(n) for a in m.assets}
     down = {a: np.zeros(n) for a in m.assets}
+    sv = {a: np.zeros(n) for a in m.assets}
     for t in range(n):
         for a in m.assets:
             mids[a][t] = m.ex.mid(a)
         m.background_step()
         for a, f in m.ex.step_trades:
             d = (f.price - mids[a][t]) * f.aggressor_side
+            sv[a][t] += f.qty * f.aggressor_side
             if f.aggressor_side == BUY:
                 up[a][t] = max(up[a][t], d)
             else:
                 down[a][t] = max(down[a][t], d)
         m.ex.end_step()
-    return {a: calibrate(mids[a], up[a], down[a], tick=cfg.rules.tick) for a in m.assets}
+    return {
+        a: calibrate(mids[a], up[a], down[a], tick=cfg.rules.tick, signed_volume=sv[a])
+        for a in m.assets
+    }
 
 
 class Arena:
@@ -241,14 +246,17 @@ def compute_benchmarks(cfg: ArenaConfig, cal: dict[str, Calibration]) -> dict:
     n_makers = sum(a.kind in ("glft", "static_maker", "llm_maker") for a in cfg.agents)
     out = {}
     for asset, c in cal.items():
-        b = {"glft_hs": round(glft_policy(c, cfg.glft_gamma).half_spread, 3), "n_makers": n_makers}
+        b = {"glft_hs": round(glft_policy(c, cfg.glft_gamma).half_spread, 3), "n_makers": n_makers,
+             "adverse_selection": round(c.alpha, 3)}  # fmt: skip
         if n_makers >= 2:
-            gp = GameParams(A=c.A, k=c.k, sigma=c.sigma, gamma=cfg.glft_gamma, n_makers=n_makers,
-                            eta=cfg.competition_eta, Q=10)  # fmt: skip
+            # adverse selection enters as A' = A exp(-k alpha) and a quote shift of alpha
+            gp = GameParams(A=c.A_eff, k=c.k, sigma=c.sigma, gamma=cfg.glft_gamma,
+                            n_makers=n_makers, eta=cfg.competition_eta, Q=10)  # fmt: skip
             nash, pareto = solve_nash(gp), solve_pareto(gp)
             b.update(
-                nash_hs=round(nash["avg_half_spread"], 3), nash_skew=round(nash["affine"].skew, 3),
-                pareto_hs=round(pareto["avg_half_spread"], 3),
+                nash_hs=round(nash["avg_half_spread"] + c.alpha, 3),
+                nash_skew=round(nash["affine"].skew, 3),
+                pareto_hs=round(pareto["avg_half_spread"] + c.alpha, 3),
                 pareto_skew=round(pareto["affine"].skew, 3),
             )  # fmt: skip
         out[asset] = b

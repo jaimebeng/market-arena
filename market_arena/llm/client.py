@@ -83,13 +83,17 @@ async def run_tools(
     t0 = time.time()
     in_price, out_price = PRICES.get(model_id, (0.0, 0.0))
     extra = {"reasoning_effort": reasoning_effort} if reasoning_effort else {}
+    final_tools = [t for t in tools if t["function"]["name"] == terminal]
     for turn in range(max_turns):
-        if turn == max_turns - 2:  # endpoints only support tool_choice="auto", so ask in words
-            msgs.append({"role": "user", "content": f"Time is almost up: call {terminal} now."})
+        # endpoints only support tool_choice="auto": near the end, offer only the terminal tool
+        closing = turn >= max_turns - 2
+        if turn == max_turns - 2:
+            msgs.append({"role": "user", "content": f"Time is up: call {terminal} now."})
         try:
             r = await client.chat.completions.create(
-                model=model_id, messages=msgs, tools=tools, tool_choice="auto", **extra
-            )
+                model=model_id, messages=msgs, tools=final_tools if closing else tools,
+                tool_choice="auto", **extra,
+            )  # fmt: skip
         except Exception as e:  # network/API failure: give up this review, keep the old policy
             tr.error = f"{type(e).__name__}: {e}"
             break

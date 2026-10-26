@@ -64,6 +64,11 @@ export function BookHeatmap({ run, asset }: { run: Run; asset: string }) {
         const m = s.mid[i];
         if (m < lo) lo = m;
         if (m > hi) hi = m;
+        if (pb.showFairValue) {
+          const fv = s.v[i];
+          if (fv < lo) lo = fv;
+          if (fv > hi) hi = fv;
+        }
       }
       if (!Number.isFinite(lo)) {
         lo = s.lo;

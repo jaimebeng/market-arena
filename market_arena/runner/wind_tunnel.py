@@ -20,7 +20,8 @@ import numpy as np
 import yaml
 from dotenv import load_dotenv
 
-from .arena import Arena
+from ..bench.game import collusion_index
+from .arena import Arena, calibrate_market, compute_benchmarks
 from .config import ArenaConfig
 
 
@@ -39,9 +40,12 @@ def run_variant(cfg_dict: dict) -> str:
 
 
 def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
-    """Averages over epochs after the first (agents need an epoch to adapt)."""
+    """Averages over epochs after the first (agents need an epoch to adapt). Benchmarks and the
+    collusion index are recomputed with the current benchmark code."""
     ms = [json.loads(line) for line in open(run_dir / "metrics.jsonl")]
     meta = json.loads((run_dir / "meta.json").read_text())
+    cfg = ArenaConfig(**meta["config"])
+    bench = compute_benchmarks(cfg, calibrate_market(cfg))
     use = ms[skip_epochs:] or ms
     makers = [a["id"] for a in meta["agents"] if a["role"] == "maker"]
     llm_makers = [a["id"] for a in meta["agents"] if a["role"] == "maker" and a["model"]
@@ -59,16 +63,45 @@ def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
         "mispricing_bps": avg(lambda m: np.mean([m["market"][a]["mispricing_bps"] for a in assets])),
         "volatility": avg(lambda m: np.mean([m["market"][a]["vol_per_step"] for a in assets])),
         "volume": avg(lambda m: np.sum([m["market"][a]["volume"] for a in assets])),
-        "collusion_index": avg(lambda m: np.mean(list(m["collusion_index"].values()))
-                               if m.get("collusion_index") else None),  # fmt: skip
+        "collusion_index": avg(lambda m: _delta(m, llm_makers, bench)),
         "llm_maker_half_spread": avg(lambda m: np.mean([
             v for i in llm_makers for v in (m["agents"][i].get("quoted_half_spread") or {}).values()
             if v is not None]) if llm_makers else None),  # fmt: skip
         "maker_pnl_per_epoch": avg(lambda m: np.mean([m["agents"][i]["pnl"] for i in makers])),
-        "benchmarks": ms[-1].get("benchmarks"),
+        "benchmarks": bench,
+        "collusion_by_epoch": [_delta(m, llm_makers, bench) for m in ms],
+        "llm_half_spread_by_epoch": [_llm_hs(m, llm_makers) for m in ms],
         "llm_cost_usd": meta.get("llm_cost_usd"),
         "epochs": len(ms),
     }
+
+
+def aggregate(runs: list[dict]) -> dict:
+    """Mean over seeds for scalar metrics, with the standard error alongside; keep per-seed runs."""
+    out: dict = {"n_seeds": len(runs), "seed_runs": runs, "benchmarks": runs[0]["benchmarks"]}
+    for k, v in runs[0].items():
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            xs = [r[k] for r in runs if r.get(k) is not None]
+            if xs:
+                out[k] = round(float(np.mean(xs)), 3)
+                out[f"{k}_se"] = round(float(np.std(xs, ddof=1) / np.sqrt(len(xs))), 3) if len(xs) > 1 else None
+    return out
+
+
+def _llm_hs(m: dict, makers: list[str]) -> float | None:
+    v = [h for i in makers for h in (m["agents"][i].get("quoted_half_spread") or {}).values()
+         if h is not None]  # fmt: skip
+    return round(float(np.mean(v)), 3) if v else None
+
+
+def _delta(m: dict, makers: list[str], bench: dict) -> float | None:
+    vals = []
+    for a, b in bench.items():
+        hs = [(m["agents"][i].get("quoted_half_spread") or {}).get(a) for i in makers]
+        hs = [h for h in hs if h is not None]
+        if hs and b.get("nash_hs") is not None:
+            vals.append(collusion_index(float(np.mean(hs)), b["nash_hs"], b["pareto_hs"]))
+    return round(float(np.mean(vals)), 3) if vals else None
 
 
 def main() -> None:
@@ -85,11 +118,15 @@ def main() -> None:
     if args.only:
         keep = set(args.only.split(","))
         variants = [v for v in variants if v["name"] in keep]
-    cfgs = []
+    seeds = spec.get("seeds") or [spec["base"].get("seed", 0)]
+    cfgs, keys = [], []
     for v in variants:
-        c = deep_merge(spec["base"], v.get("overrides", {}))
-        c["name"] = f"{name}/{v['name']}"
-        cfgs.append(c)
+        for seed in seeds:
+            c = deep_merge(spec["base"], v.get("overrides", {}))
+            c["seed"] = seed
+            c["name"] = f"{name}/{v['name']}" + (f"/s{seed}" if len(seeds) > 1 else "")
+            cfgs.append(c)
+            keys.append(v["name"])
     out_dir = Path(spec["base"].get("out_dir", "runs"))
     if args.summarise_only:
         dirs = [str(out_dir / c["name"]) for c in cfgs]
@@ -97,22 +134,20 @@ def main() -> None:
         with ProcessPoolExecutor(max_workers=args.workers) as pool:
             futures = [pool.submit(run_variant, c) for c in cfgs]
             dirs = []
-            for v, f in zip(variants, futures):
+            for c, f in zip(cfgs, futures):
                 try:
                     dirs.append(f.result())
                 except Exception as e:  # keep the other variants
-                    print(f"variant {v['name']} failed: {type(e).__name__}: {e}")
+                    print(f"run {c['name']} failed: {type(e).__name__}: {e}")
                     dirs.append(None)
-    out = {
-        "experiment": name,
-        "description": spec.get("description", ""),
-        "variants": [
-            {"name": v["name"], "label": v.get("label", v["name"]), "change": v.get("change", ""),
-             "run": d, **summarise(Path(d))}
-            for v, d in zip(variants, dirs)
-            if d and (Path(d) / "meta.json").exists()
-        ],  # fmt: skip
-    }
+    out = {"experiment": name, "description": spec.get("description", ""), "seeds": seeds,
+           "variants": []}  # fmt: skip
+    for v in variants:
+        runs = [summarise(Path(d)) | {"run": d} for d, k in zip(dirs, keys)
+                if k == v["name"] and d and (Path(d) / "meta.json").exists()]  # fmt: skip
+        if runs:
+            out["variants"].append({"name": v["name"], "label": v.get("label", v["name"]),
+                                    "change": v.get("change", ""), **aggregate(runs)})  # fmt: skip
     path = out_dir / name / "summary.json"
     path.write_text(json.dumps(out, indent=1))
     for v in out["variants"]:
