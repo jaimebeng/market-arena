@@ -1,6 +1,6 @@
 # Wind tunnel: how do market rules change what AI market makers do?
 # Every variant runs on the same seeds, so background flow and news are identical across rules.
-name: wind_tunnel_v2
+name: wind_tunnel_v3
 seeds: [31, 32, 33]
 description: >-
   Three LLM market makers (two Muse Spark, one Muse Spark Open) compete alongside the GLFT

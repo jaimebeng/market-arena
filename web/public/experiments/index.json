@@ -1,8 +1,8 @@
 {
  "experiments": [
   {
-   "name": "wind_tunnel_v2",
-   "file": "wind_tunnel_v2.json",
+   "name": "wind_tunnel_v3",
+   "file": "wind_tunnel_v3.json",
    "variants": [
     "baseline",
     "tick_x5",
@@ -17,21 +17,7 @@
     33
    ],
    "provisional": false
-  },
-  {
-   "name": "wind_tunnel",
-   "file": "wind_tunnel.json",
-   "variants": [
-    "baseline",
-    "tick_x5",
-    "maker_rebate",
-    "speed_bump",
-    "more_makers",
-    "circuit_breaker"
-   ],
-   "seeds": [],
-   "provisional": true
   }
  ],
- "generated": 1793056880.0522997
+ "generated": 1793057495.4399686
 }

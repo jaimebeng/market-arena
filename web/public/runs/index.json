@@ -41,76 +41,6 @@
    "bytes": 544846
   },
   {
-   "name": "makers_smoke",
-   "file": "makers_smoke.json",
-   "assets": [
-    "A"
-   ],
-   "agents": [
-    {
-     "id": "glft",
-     "role": "maker",
-     "model": "GLFT closed form"
-    },
-    {
-     "id": "spark",
-     "role": "maker",
-     "model": "meta:muse-spark-1.3-contributor"
-    },
-    {
-     "id": "spark_open",
-     "role": "maker",
-     "model": "baseten:meta-models/muse-spark-open-1026"
-    }
-   ],
-   "epochs": 4,
-   "steps": 7990,
-   "decisions": 6,
-   "llm_cost_usd": 0.0022,
-   "finished": 1793055385.8349698,
-   "bytes": 334707
-  },
-  {
-   "name": "makers_smoke_fixture",
-   "file": "makers_smoke_fixture.json",
-   "assets": [
-    "A"
-   ],
-   "agents": [
-    {
-     "id": "glft",
-     "role": "maker",
-     "model": "GLFT closed form"
-    },
-    {
-     "id": "spark",
-     "role": "maker",
-     "model": "meta:muse-spark-1.3-contributor"
-    },
-    {
-     "id": "spark_open",
-     "role": "maker",
-     "model": "baseten:meta-models/muse-spark-open-1026"
-    },
-    {
-     "id": "quant_a",
-     "role": "taker",
-     "model": "meta:muse-spark-1.3-contributor"
-    },
-    {
-     "id": "quant_b",
-     "role": "taker",
-     "model": "baseten:meta-models/muse-spark-open-1026"
-    }
-   ],
-   "epochs": 4,
-   "steps": 7990,
-   "decisions": 10,
-   "llm_cost_usd": 0.0022,
-   "finished": 1793055385.8349698,
-   "bytes": 343645
-  },
-  {
    "name": "showcase_multi",
    "file": "showcase_multi.json",
    "assets": [
@@ -151,12 +81,12 @@
      "model": "baseten:meta-models/muse-spark-open-1026"
     }
    ],
-   "epochs": 2,
-   "steps": 3990,
-   "decisions": 8,
-   "llm_cost_usd": 0.0198,
+   "epochs": 6,
+   "steps": 11990,
+   "decisions": 27,
+   "llm_cost_usd": 0.0867,
    "finished": null,
-   "bytes": 901090
+   "bytes": 2657984
   },
   {
    "name": "showcase_single",
@@ -196,70 +126,12 @@
      "model": "baseten:meta-models/muse-spark-open-1026"
     }
    ],
-   "epochs": 3,
-   "steps": 5990,
-   "decisions": 12,
-   "llm_cost_usd": 0.0372,
+   "epochs": 7,
+   "steps": 13990,
+   "decisions": 28,
+   "llm_cost_usd": 0.0928,
    "finished": null,
-   "bytes": 580383
-  },
-  {
-   "name": "tick_check",
-   "file": "tick_check.json",
-   "assets": [
-    "A"
-   ],
-   "agents": [
-    {
-     "id": "glft",
-     "role": "maker",
-     "model": "GLFT closed form"
-    }
-   ],
-   "epochs": 1,
-   "steps": 1990,
-   "decisions": 0,
-   "llm_cost_usd": 0.0,
-   "finished": 1793056399.698723,
-   "bytes": 57785
-  },
-  {
-   "name": "multi_check",
-   "file": "multi_check.json",
-   "assets": [
-    "A",
-    "B",
-    "C",
-    "IDX"
-   ],
-   "agents": [
-    {
-     "id": "glft",
-     "role": "maker",
-     "model": "GLFT closed form"
-    },
-    {
-     "id": "wide",
-     "role": "maker",
-     "model": null
-    },
-    {
-     "id": "arb",
-     "role": "taker",
-     "model": "textbook: index_arbitrage"
-    },
-    {
-     "id": "mom",
-     "role": "taker",
-     "model": "textbook: momentum"
-    }
-   ],
-   "epochs": 3,
-   "steps": 5990,
-   "decisions": 0,
-   "llm_cost_usd": 0.0,
-   "finished": 1793056301.0411315,
-   "bytes": 826628
+   "bytes": 1389293
   },
   {
    "name": "multi_scripted",
@@ -300,51 +172,6 @@
    "bytes": 879543
   },
   {
-   "name": "textbook",
-   "file": "textbook.json",
-   "assets": [
-    "A"
-   ],
-   "agents": [
-    {
-     "id": "glft",
-     "role": "maker",
-     "model": "GLFT closed form"
-    },
-    {
-     "id": "wide",
-     "role": "maker",
-     "model": null
-    },
-    {
-     "id": "obi",
-     "role": "taker",
-     "model": "textbook: order_book_imbalance"
-    },
-    {
-     "id": "flow",
-     "role": "taker",
-     "model": "textbook: trade_flow"
-    },
-    {
-     "id": "mom",
-     "role": "taker",
-     "model": "textbook: momentum"
-    },
-    {
-     "id": "rev",
-     "role": "taker",
-     "model": "textbook: mean_reversion"
-    }
-   ],
-   "epochs": 4,
-   "steps": 7990,
-   "decisions": 0,
-   "llm_cost_usd": 0.0,
-   "finished": 1793055632.1025987,
-   "bytes": 561262
-  },
-  {
    "name": "scripted",
    "file": "scripted.json",
    "assets": [
@@ -375,5 +202,5 @@
    "bytes": 323657
   }
  ],
- "generated": 1793056954.889996
+ "generated": 1793057495.4137964
 }

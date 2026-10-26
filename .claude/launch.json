@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "wsl",
+      "runtimeArgs": ["-d", "ubuntu", "--", "bash", "-lc", "cd ~/Documents/metahackathon/web && npm run dev -- --host --port 5173"],
+      "port": 5173
+    }
+  ]
+}
