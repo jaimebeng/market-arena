@@ -25,12 +25,16 @@ class ZIParams(BaseModel):
     offset_max: int = 25
     lifetime_mean: float = 60.0  # steps
     size_mean: float = 3.0  # lots (geometric)
+    # information diffusion: new limit orders centre on mid + kappa * (lagged value - mid)
+    anchor_kappa: float = 0.3
+    anchor_lag: int = 150  # steps; the crowd learns the fair value with this delay
 
 
 class InformedParams(BaseModel):
-    rate: float = 0.08  # chance per step of acting
-    threshold_bps: float = 4.0  # mispricing needed to trade
-    size: int = 4
+    rate: float = 0.03  # chance per step of acting
+    threshold_bps: float = 8.0  # mispricing needed to trade
+    size: int = 2  # lots per threshold of mispricing
+    max_size: int = 12
     noise_bps: float = 1.0  # error in its read of fair value
 
 
@@ -62,12 +66,14 @@ class ZeroIntelligenceFlow:
             life = int(self.rng.exponential(self.p.lifetime_mean)) + 1
             heapq.heappush(self._expiry, (self.ex.t + life, oid))
 
-    def step(self) -> None:
+    def step(self, lagged_value: float | None = None) -> None:
         ex, p, rng = self.ex, self.p, self.rng
         while self._expiry and self._expiry[0][0] <= ex.t:
             _, oid = heapq.heappop(self._expiry)
             ex.cancel(self.asset, oid)
         mid = ex.mid(self.asset)
+        if lagged_value is not None:
+            mid += p.anchor_kappa * (lagged_value - mid)
         tick = ex.rules.tick
         for _ in range(rng.poisson(p.limit_rate)):
             side = BUY if rng.random() < 0.5 else SELL
@@ -93,10 +99,9 @@ class InformedTrader:
                 continue
             seen = values[asset] * (1 + self.rng.normal() * self.p.noise_bps * 1e-4)
             gap_bps = (seen / mid - 1) * 1e4
-            if gap_bps > self.p.threshold_bps:
-                self.ex.market(self.owner, asset, BUY, self.p.size)
-            elif gap_bps < -self.p.threshold_bps:
-                self.ex.market(self.owner, asset, SELL, self.p.size)
+            if abs(gap_bps) > self.p.threshold_bps:
+                size = min(self.p.max_size, int(self.p.size * abs(gap_bps) / self.p.threshold_bps))
+                self.ex.market(self.owner, asset, BUY if gap_bps > 0 else SELL, size)
 
 
 class IndexFlow:

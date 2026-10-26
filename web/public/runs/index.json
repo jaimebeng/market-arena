@@ -1,0 +1,105 @@
+{
+ "runs": [
+  {
+   "name": "makers_smoke",
+   "file": "makers_smoke.json",
+   "assets": [
+    "A"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "spark",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "spark_open",
+     "role": "maker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    }
+   ],
+   "epochs": 4,
+   "steps": 7990,
+   "decisions": 6,
+   "llm_cost_usd": 0.0022,
+   "finished": 1793055385.8349698,
+   "bytes": 334691
+  },
+  {
+   "name": "makers_smoke_fixture",
+   "file": "makers_smoke_fixture.json",
+   "assets": [
+    "A"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "spark",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "spark_open",
+     "role": "maker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    },
+    {
+     "id": "quant_a",
+     "role": "taker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "quant_b",
+     "role": "taker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    }
+   ],
+   "epochs": 4,
+   "steps": 7990,
+   "decisions": 10,
+   "llm_cost_usd": 0.0022,
+   "finished": 1793055385.8349698,
+   "bytes": 343629
+  },
+  {
+   "name": "scripted",
+   "file": "scripted.json",
+   "assets": [
+    "A"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "tight",
+     "role": "maker",
+     "model": null
+    },
+    {
+     "id": "wide",
+     "role": "maker",
+     "model": null
+    }
+   ],
+   "epochs": 5,
+   "steps": 9990,
+   "decisions": 0,
+   "llm_cost_usd": 0.0,
+   "finished": 1793055205.1223214,
+   "bytes": 323641
+  }
+ ],
+ "generated": 1793055632.9979136
+}

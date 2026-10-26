@@ -33,15 +33,18 @@ class ArenaConfig(BaseModel):
     n_epochs: int = 10
     components: dict[str, AssetCfg] = Field(default_factory=lambda: {"A": AssetCfg()})
     factor_sigma: float = 0.0
+    jump_rate: float = 0.002  # news jumps per step per asset
+    jump_bps: float = 60.0  # news jump size (std, bps)
     index: dict | None = None  # {"name": "IDX", "price": 10000}
     rules: Rules = Field(default_factory=Rules)
     zi: ZIParams = Field(default_factory=ZIParams)
     informed: InformedParams = Field(default_factory=InformedParams)
     index_flow: IndexFlowParams | None = None
     calibration_steps: int = 20_000
-    glft_gamma: float = 0.01
+    glft_gamma: float = 0.05
+    competition_eta: float = 0.5  # how strongly the tighter quote wins flow, for the game benchmark
     snapshot_every: int = 10
-    holdout: int = 500  # steps hidden from takers' research tools, used for the OOS gate
+    holdout: int = 1000  # steps hidden from takers' research tools, used for the OOS gate
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 

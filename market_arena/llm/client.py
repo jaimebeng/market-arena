@@ -84,14 +84,11 @@ async def run_tools(
     in_price, out_price = PRICES.get(model_id, (0.0, 0.0))
     extra = {"reasoning_effort": reasoning_effort} if reasoning_effort else {}
     for turn in range(max_turns):
-        last = turn == max_turns - 1
+        if turn == max_turns - 2:  # endpoints only support tool_choice="auto", so ask in words
+            msgs.append({"role": "user", "content": f"Time is almost up: call {terminal} now."})
         try:
             r = await client.chat.completions.create(
-                model=model_id,
-                messages=msgs,
-                tools=tools,
-                tool_choice={"type": "function", "function": {"name": terminal}} if last else "auto",
-                **extra,
+                model=model_id, messages=msgs, tools=tools, tool_choice="auto", **extra
             )
         except Exception as e:  # network/API failure: give up this review, keep the old policy
             tr.error = f"{type(e).__name__}: {e}"

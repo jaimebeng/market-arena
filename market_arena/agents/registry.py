@@ -14,5 +14,5 @@ def build_llm_agent(acfg, arena):
     if acfg.kind == "llm_taker":
         from .llm_taker import LLMTaker
 
-        return LLMTaker(acfg.id, assets, acfg.model, acfg.params)
+        return LLMTaker(acfg.id, assets, acfg.model, arena, acfg.params)
     raise ValueError(f"unknown agent kind {acfg.kind}")

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from collections import deque
 import json
 import time
 from pathlib import Path
@@ -11,7 +12,10 @@ import numpy as np
 
 from ..agents.maker import Maker, MakerPolicy
 from ..analysis.metrics import agent_metrics, market_metrics
+from ..agents.taker import StrategyTaker
+from ..bench.game import GameParams, collusion_index, solve_nash, solve_pareto
 from ..bench.glft import Calibration, calibrate, glft_policy
+from ..bench.signals import TEXTBOOK
 from ..sim.background import IndexFlow, InformedTrader, ZeroIntelligenceFlow
 from ..sim.book import BUY
 from ..sim.exchange import Exchange
@@ -27,7 +31,7 @@ class Market:
 
     def __init__(self, cfg: ArenaConfig, rng: np.random.Generator) -> None:
         comps = {n: c.model_dump() for n, c in cfg.components.items()}
-        self.fund = Fundamentals(comps, cfg.factor_sigma, rng, cfg.index)
+        self.fund = Fundamentals(comps, cfg.factor_sigma, rng, cfg.index, cfg.jump_rate, cfg.jump_bps)
         self.assets = self.fund.assets
         self.ex = Exchange(self.assets, cfg.rules)
         v0 = self.fund.values()
@@ -38,6 +42,7 @@ class Market:
             self.ex.last_px[a] = v0[a]
             self.zi.append(z)
         self.informed = InformedTrader(self.ex, cfg.informed, rng)
+        self._values: deque = deque(maxlen=cfg.zi.anchor_lag + 1)
         self.index_flow = (
             IndexFlow(self.ex, cfg.index["name"], cfg.index_flow, rng)
             if cfg.index and cfg.index_flow
@@ -47,8 +52,10 @@ class Market:
     def background_step(self) -> dict[str, float]:
         self.fund.step()
         values = self.fund.values()
+        self._values.append(values)
+        lagged = self._values[0]
         for z in self.zi:
-            z.step()
+            z.step(lagged[z.asset])
         self.informed.step(values)
         if self.index_flow:
             self.index_flow.step()
@@ -85,6 +92,17 @@ class Arena:
         self.assets = self.market.assets
         self.hist = MarketHistory(self.assets, cfg.steps_per_epoch * cfg.n_epochs)
         self.calibration = calibrate_market(cfg)
+        fund = self.market.fund
+        self.public_meta = {
+            "assets": self.assets,
+            "tick": cfg.rules.tick,
+            "index": (
+                {"name": fund.index_name,
+                 "shares": dict(zip(fund.names, map(float, fund.index_shares)))}
+                if fund.index_name else None
+            ),
+        }  # fmt: skip
+        self.benchmarks = compute_benchmarks(cfg, self.calibration)
         self.agents = [(agent_factory or build_agent)(a, self) for a in cfg.agents]
         self.out = Path(cfg.out_dir) / cfg.name
         self.out.mkdir(parents=True, exist_ok=True)
@@ -138,6 +156,17 @@ class Arena:
         self._files["decisions"].flush()
 
     # ---- main loop -----------------------------------------------------------------------
+    def _collusion(self, m: dict) -> dict:
+        """Collusion index of the LLM makers' average quoted half-spread, per asset."""
+        out = {}
+        llm = [ag.id for ag in self.agents if ag.role == "maker" and hasattr(ag, "review")]
+        for a, b in self.benchmarks.items():
+            hs = [m["agents"][i]["quoted_half_spread"][a] for i in llm]
+            hs = [h for h in hs if h is not None]
+            if hs and b.get("nash_hs") is not None:
+                out[a] = round(collusion_index(float(np.mean(hs)), b["nash_hs"], b["pareto_hs"]), 3)
+        return out
+
     async def run(self) -> dict:
         cfg, ex = self.cfg, self.ex
         meta = {
@@ -174,6 +203,8 @@ class Arena:
                     ag.id: {a: p.model_dump() for a, p in ag.policies.items()}
                     for ag in self.agents if ag.role == "maker"
                 },
+                "taker_strategy": {ag.id: ag.name for ag in self.agents if ag.role == "taker"},
+                "benchmarks": self.benchmarks,
             }  # fmt: skip
             for ag in self.agents:
                 equity0[ag.id] = m["agents"][ag.id]["equity"]
@@ -183,6 +214,7 @@ class Arena:
                         for a in self.assets
                     }
             self._qhs.clear()
+            m["collusion_index"] = self._collusion(m)
             self.metrics_log.append(m)
             self._write("metrics", m)
             for f in self._files.values():
@@ -198,6 +230,25 @@ class Arena:
         return meta
 
 
+def compute_benchmarks(cfg: ArenaConfig, cal: dict[str, Calibration]) -> dict:
+    """GLFT, Nash and Pareto half-spreads per asset for the configured number of makers."""
+    n_makers = sum(a.kind in ("glft", "static_maker", "llm_maker") for a in cfg.agents)
+    out = {}
+    for asset, c in cal.items():
+        b = {"glft_hs": round(glft_policy(c, cfg.glft_gamma).half_spread, 3), "n_makers": n_makers}
+        if n_makers >= 2:
+            gp = GameParams(A=c.A, k=c.k, sigma=c.sigma, gamma=cfg.glft_gamma, n_makers=n_makers,
+                            eta=cfg.competition_eta, Q=10)  # fmt: skip
+            nash, pareto = solve_nash(gp), solve_pareto(gp)
+            b.update(
+                nash_hs=round(nash["avg_half_spread"], 3), nash_skew=round(nash["affine"].skew, 3),
+                pareto_hs=round(pareto["avg_half_spread"], 3),
+                pareto_skew=round(pareto["affine"].skew, 3),
+            )  # fmt: skip
+        out[asset] = b
+    return out
+
+
 def build_agent(acfg, arena: Arena):
     assets = acfg.assets or arena.assets
     if acfg.kind == "glft":
@@ -209,6 +260,13 @@ def build_agent(acfg, arena: Arena):
         return mk
     if acfg.kind == "static_maker":
         return Maker(acfg.id, assets, MakerPolicy(**acfg.params))
+    if acfg.kind == "textbook_taker":
+        params = dict(acfg.params)
+        sig = params.pop("signal")
+        tk = StrategyTaker(acfg.id, assets, arena, params)
+        tk.install(TEXTBOOK[sig], sig)
+        tk.model = f"textbook: {sig}"
+        return tk
     from ..agents.registry import build_llm_agent  # LLM agents live in their own module
 
     return build_llm_agent(acfg, arena)

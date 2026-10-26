@@ -1,0 +1,13 @@
+# Scripted benchmark: does the planted market structure reward the textbook signals?
+name: textbook
+seed: 3
+steps_per_epoch: 2000
+n_epochs: 4
+holdout: 1000
+agents:
+  - {id: glft, kind: glft}
+  - {id: wide, kind: static_maker, params: {half_spread: 4, skew: 0.5}}
+  - {id: obi, kind: textbook_taker, params: {signal: order_book_imbalance}}
+  - {id: flow, kind: textbook_taker, params: {signal: trade_flow}}
+  - {id: mom, kind: textbook_taker, params: {signal: momentum}}
+  - {id: rev, kind: textbook_taker, params: {signal: mean_reversion}}

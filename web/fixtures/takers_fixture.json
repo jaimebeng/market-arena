@@ -1,0 +1,137 @@
+{
+ "_comment": "FAKE data for UI testing only: taker strategy decisions + optional benchmark fields. Merged by scripts/export_run.py --fixture.",
+ "agents": [
+  {"id": "quant_a", "role": "taker", "model": "meta:muse-spark-1.3-contributor"},
+  {"id": "quant_b", "role": "taker", "model": "baseten:meta-models/muse-spark-open-1026"}
+ ],
+ "metrics_patch": {
+  "0": {
+   "benchmarks": {"A": {"glft_hs": 2.63, "nash_hs": 3.1, "pareto_hs": 6.4}},
+   "collusion_index": {"A": 0.42},
+   "stylized": {"A": {"kurtosis": 5.8, "acf_abs_ret_lag1": 0.21, "acf_ret_lag1": -0.08, "hill_tail": 3.4}},
+   "agents": {
+    "quant_a": {"pnl": -120.0, "equity": -120.0, "fills": 38, "volume": 64, "edge_per_lot": -1.9, "markout_10": -0.4, "markout_50": -0.2, "markout_200": 0.1, "inventory": {"A": 3}},
+    "quant_b": {"pnl": -60.0, "equity": -60.0, "fills": 22, "volume": 40, "edge_per_lot": -1.5, "markout_10": -0.2, "markout_50": 0.0, "markout_200": 0.3, "inventory": {"A": -2}}
+   }
+  },
+  "1": {
+   "benchmarks": {"A": {"glft_hs": 2.63, "nash_hs": 3.1, "pareto_hs": 6.4}},
+   "collusion_index": {"A": 0.15},
+   "agents": {
+    "quant_a": {"pnl": 210.0, "equity": 90.0, "fills": 71, "volume": 120, "edge_per_lot": 1.75, "markout_10": 1.1, "markout_50": 1.6, "markout_200": 1.9, "inventory": {"A": -4}},
+    "quant_b": {"pnl": -35.0, "equity": -95.0, "fills": 30, "volume": 51, "edge_per_lot": -0.7, "markout_10": -0.1, "markout_50": 0.2, "markout_200": 0.2, "inventory": {"A": 1}}
+   }
+  },
+  "2": {
+   "benchmarks": {"A": {"glft_hs": 2.63, "nash_hs": 3.1, "pareto_hs": 6.4}},
+   "collusion_index": {"A": 0.31},
+   "agents": {
+    "quant_a": {"pnl": 340.0, "equity": 430.0, "fills": 88, "volume": 150, "edge_per_lot": 2.27, "markout_10": 1.4, "markout_50": 2.1, "markout_200": 2.4, "inventory": {"A": 6}},
+    "quant_b": {"pnl": 95.0, "equity": 0.0, "fills": 41, "volume": 70, "edge_per_lot": 1.36, "markout_10": 0.6, "markout_50": 0.9, "markout_200": 1.0, "inventory": {"A": 0}}
+   }
+  },
+  "3": {
+   "benchmarks": {"A": {"glft_hs": 2.63, "nash_hs": 3.1, "pareto_hs": 6.4}},
+   "collusion_index": {"A": 0.37},
+   "agents": {
+    "quant_a": {"pnl": 280.0, "equity": 710.0, "fills": 80, "volume": 139, "edge_per_lot": 2.01, "markout_10": 1.2, "markout_50": 1.8, "markout_200": 2.0, "inventory": {"A": -1}},
+    "quant_b": {"pnl": 150.0, "equity": 150.0, "fills": 45, "volume": 77, "edge_per_lot": 1.95, "markout_10": 0.9, "markout_50": 1.2, "markout_200": 1.3, "inventory": {"A": 2}}
+   }
+  }
+ },
+ "decisions": [
+  {
+   "epoch": 0, "t": 2000, "agent": "quant_a", "role": "taker", "model": "meta:muse-spark-1.3-contributor",
+   "name": "trade_flow_momentum",
+   "hypothesis": "Signed trade flow over the last 50 trades predicts the next move: aggressive buying keeps pushing the mid up for a while.",
+   "code": "import numpy as np\n\ndef signal(obs):\n    out = {}\n    for a in obs.mid:\n        tr = obs.trades[a][-50:]\n        if len(tr) < 10:\n            out[a] = 0.0\n            continue\n        flow = sum(q * s for _, q, s in tr)\n        vol = sum(q for _, q, _ in tr) + 1e-9\n        out[a] = float(np.clip(2.0 * flow / vol, -1, 1))\n    return out\n",
+   "gate": {"passed": false, "reason": "holdout Rank-IC 0.004 < 0.03 and net P&L -41.0 <= 0",
+    "insample": {"pnl": 182.0, "sharpe": 1.21, "ic": 0.051, "turnover": 0.62},
+    "holdout": {"pnl": -41.0, "sharpe": -0.38, "ic": 0.004, "turnover": 0.66}},
+   "live": false,
+   "similar_to": {"trade_flow_momentum": 0.88, "order_book_imbalance": 0.34, "short_term_reversal": -0.41},
+   "notes": "Flow momentum overfit in-sample; try book state instead of trades.",
+   "tools": ["describe_book", "query_history", "backtest", "submit_strategy"],
+   "turns": [
+    {"text": "Let me look at the order flow and how it relates to forward returns.", "reasoning": "Start with describe_book to understand the microstructure, then pull history.",
+     "calls": [
+      {"name": "describe_book", "args": {"asset": "A"}, "ok": true, "result": {"avg_spread": 7.1, "top5_depth": 49.9, "imbalance_std": 0.31, "trade_size_mean": 2.1}},
+      {"name": "query_history", "args": {"asset": "A", "fields": ["mid", "trade_flow"], "start": 0, "end": 1500}, "ok": true, "result": {"n": 1500, "corr(trade_flow_50, fwd_ret_20)": 0.06}}
+     ]},
+    {"text": "Flow looks predictive in-sample. Backtesting a momentum signal.", "reasoning": null,
+     "calls": [
+      {"name": "backtest", "args": {"code": "<trade_flow_momentum>", "start": 0, "end": 1500}, "ok": true, "result": {"pnl": 182.0, "sharpe": 1.21, "ic": 0.051, "turnover": 0.62}},
+      {"name": "submit_strategy", "args": {"name": "trade_flow_momentum", "hypothesis": "Signed trade flow predicts the next move."}, "ok": true, "result": {"gate": "FAIL", "holdout_ic": 0.004, "holdout_pnl": -41.0}}
+     ]}
+   ],
+   "tokens": {"in": 5200, "out": 1400, "reasoning": 900}, "cost": 0.0009, "seconds": 18.2, "error": null
+  },
+  {
+   "epoch": 0, "t": 2000, "agent": "quant_b", "role": "taker", "model": "baseten:meta-models/muse-spark-open-1026",
+   "name": "mid_reversal",
+   "hypothesis": "Short-horizon mid moves overshoot: fade the last 20-step return.",
+   "code": "import math\n\ndef signal(obs):\n    out = {}\n    for a in obs.mid:\n        h = obs.hist(a, 'mid', 21)\n        if len(h) < 21:\n            out[a] = 0.0\n            continue\n        r = (h[-1] - h[0]) / h[0]\n        out[a] = max(-1.0, min(1.0, -r * 4000))\n    return out\n",
+   "gate": {"passed": true, "reason": "holdout Rank-IC 0.041 >= 0.03 and net P&L 22.0 > 0",
+    "insample": {"pnl": 96.0, "sharpe": 0.84, "ic": 0.047, "turnover": 0.41},
+    "holdout": {"pnl": 22.0, "sharpe": 0.52, "ic": 0.041, "turnover": 0.44}},
+   "live": true,
+   "similar_to": {"short_term_reversal": 0.79, "trade_flow_momentum": -0.37, "order_book_imbalance": 0.12},
+   "tools": ["query_history", "backtest", "submit_strategy"],
+   "turns": [
+    {"text": null, "reasoning": "Bid-ask bounce should make 20-step returns mean-revert. Test it.",
+     "calls": [
+      {"name": "query_history", "args": {"asset": "A", "fields": ["mid"], "start": 0, "end": 1500}, "ok": true, "result": {"n": 1500, "acf_ret_lag1": -0.11}},
+      {"name": "backtest", "args": {"code": "<mid_reversal>", "start": 0, "end": 1500}, "ok": true, "result": {"pnl": 96.0, "sharpe": 0.84, "ic": 0.047, "turnover": 0.41}},
+      {"name": "submit_strategy", "args": {"name": "mid_reversal"}, "ok": true, "result": {"gate": "PASS"}}
+     ]}
+   ],
+   "tokens": {"in": 3900, "out": 900, "reasoning": 600}, "cost": 0.0006, "seconds": 11.4, "error": null
+  },
+  {
+   "epoch": 1, "t": 4000, "agent": "quant_a", "role": "taker", "model": "meta:muse-spark-1.3-contributor",
+   "name": "book_pressure",
+   "hypothesis": "When resting size on the bid side dominates the top 5 levels, the next mid move is up. Trade only when imbalance is extreme to pay the spread less often.",
+   "code": "import numpy as np\n\ndef signal(obs):\n    out = {}\n    for a in obs.mid:\n        bids, asks = obs.depth[a]\n        b = sum(q for _, q in bids[:5])\n        s = sum(q for _, q in asks[:5])\n        imb = (b - s) / (b + s + 1e-9)\n        # only act on strong pressure\n        if abs(imb) < 0.35:\n            out[a] = obs.position[a] * 0.5\n        else:\n            out[a] = float(np.tanh(3.0 * imb))\n    return out\n",
+   "gate": {"passed": true, "reason": "holdout Rank-IC 0.072 >= 0.03 and net P&L 118.0 > 0",
+    "insample": {"pnl": 241.0, "sharpe": 1.64, "ic": 0.081, "turnover": 0.35},
+    "holdout": {"pnl": 118.0, "sharpe": 1.12, "ic": 0.072, "turnover": 0.37}},
+   "live": true,
+   "similar_to": {"order_book_imbalance": 0.81, "trade_flow_momentum": 0.29, "short_term_reversal": -0.06},
+   "tools": ["get_performance", "describe_book", "backtest", "backtest", "submit_strategy"],
+   "turns": [
+    {"text": "My last strategy failed the holdout. Looking at the book itself rather than trades.", "reasoning": "Flow is noisy; imbalance of resting depth is a cleaner state variable.",
+     "calls": [
+      {"name": "get_performance", "args": {}, "ok": true, "result": {"live_strategy": null, "pnl": -120.0}},
+      {"name": "describe_book", "args": {"asset": "A"}, "ok": true, "result": {"imbalance_std": 0.31, "corr(imb5, fwd_ret_10)": 0.09}}
+     ]},
+    {"text": "Imbalance is predictive; adding a threshold to cut turnover.", "reasoning": null,
+     "calls": [
+      {"name": "backtest", "args": {"code": "<imbalance v1>", "start": 2000, "end": 3500}, "ok": true, "result": {"pnl": 120.0, "sharpe": 0.9, "ic": 0.079, "turnover": 0.71}},
+      {"name": "backtest", "args": {"code": "<book_pressure>", "start": 2000, "end": 3500}, "ok": true, "result": {"pnl": 241.0, "sharpe": 1.64, "ic": 0.081, "turnover": 0.35}},
+      {"name": "submit_strategy", "args": {"name": "book_pressure"}, "ok": true, "result": {"gate": "PASS"}}
+     ]}
+   ],
+   "tokens": {"in": 7100, "out": 2100, "reasoning": 1500}, "cost": 0.0013, "seconds": 24.9, "error": null
+  },
+  {
+   "epoch": 2, "t": 6000, "agent": "quant_b", "role": "taker", "model": "baseten:meta-models/muse-spark-open-1026",
+   "name": "vol_breakout",
+   "hypothesis": "After a quiet stretch, the first large move continues: buy breakouts above the 100-step range.",
+   "code": "def signal(obs):\n    out = {}\n    for a in obs.mid:\n        h = obs.hist(a, 'mid', 100)\n        if len(h) < 100:\n            out[a] = 0.0\n            continue\n        hi, lo = max(h[:-1]), min(h[:-1])\n        m = h[-1]\n        out[a] = 1.0 if m > hi else (-1.0 if m < lo else 0.0)\n    return out\n",
+   "gate": {"passed": false, "reason": "holdout net P&L -63.0 <= 0",
+    "insample": {"pnl": 40.0, "sharpe": 0.31, "ic": 0.033, "turnover": 0.22},
+    "holdout": {"pnl": -63.0, "sharpe": -0.7, "ic": 0.031, "turnover": 0.25}},
+   "live": false,
+   "similar_to": {"trade_flow_momentum": 0.46, "short_term_reversal": -0.52, "order_book_imbalance": 0.08},
+   "tools": ["query_history", "backtest", "submit_strategy"],
+   "turns": [
+    {"text": "Trying a breakout overlay.", "reasoning": null,
+     "calls": [
+      {"name": "backtest", "args": {"code": "<vol_breakout>", "start": 4000, "end": 5500}, "ok": true, "result": {"pnl": 40.0, "sharpe": 0.31}},
+      {"name": "submit_strategy", "args": {"name": "vol_breakout"}, "ok": true, "result": {"gate": "FAIL", "reason": "holdout net P&L -63.0 <= 0"}}
+     ]}
+   ],
+   "tokens": {"in": 4100, "out": 800, "reasoning": 400}, "cost": 0.0005, "seconds": 9.8, "error": null
+  }
+ ]
+}

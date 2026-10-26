@@ -1,7 +1,9 @@
 """Hidden fair values. Agents never see these; the informed trader and the analysis do.
 
-Components follow a one-factor model in log space:
-    d log V_i = beta_i dF + sigma_i dW_i,   dF = sigma_F dW_F
+Components follow a one-factor model in log space, plus news jumps:
+    d log V_i = beta_i dF + sigma_i dW_i + J_i dN_i,   dF = sigma_F dW_F
+News arrives as Poisson jumps (rate `jump_rate` per step, size ~ N(0, jump_bps)); it is only
+priced in gradually, through the informed trader's order flow.
 An index asset's fair value is a fixed-share basket of the components.
 """
 
@@ -17,7 +19,10 @@ class Fundamentals:
         factor_sigma: float,
         rng: np.random.Generator,
         index: dict | None = None,  # {"name": "IDX", "price": float}
+        jump_rate: float = 0.0,
+        jump_bps: float = 0.0,
     ) -> None:
+        self.jump_rate, self.jump_bps = jump_rate, jump_bps
         self.rng = rng
         self.names = list(components)
         self.log_v = np.log([c["price"] for c in components.values()])
@@ -35,6 +40,10 @@ class Fundamentals:
         f = self.rng.normal() * self.factor_sigma
         eps = self.rng.normal(size=len(self.names))
         self.log_v += self.beta * f + self.sigma * eps
+        if self.jump_rate:
+            hit = self.rng.random(len(self.names)) < self.jump_rate
+            if hit.any():
+                self.log_v += hit * self.rng.normal(size=len(self.names)) * self.jump_bps * 1e-4
 
     def values(self) -> dict[str, float]:
         v = np.exp(self.log_v)
