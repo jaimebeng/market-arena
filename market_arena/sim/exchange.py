@@ -42,6 +42,7 @@ class FillRecord:
     price: int
     qty: int
     maker: bool
+    mid_before: float = float("nan")  # mid just before the order that caused the fill
 
 
 class Exchange:
@@ -89,16 +90,18 @@ class Exchange:
             return None
         self._next_id += 1
         oid = self._next_id
+        mid0 = self.mid(asset)
         fills = book.limit(Order(oid, owner, side, p, qty, self.t))
-        self._settle(asset, fills)
+        self._settle(asset, fills, mid0)
         return oid if oid in book.orders else None
 
     def market(self, owner: str, asset: str, side: int, qty: int) -> int:
         """Send a market order; returns the filled quantity."""
         if qty <= 0 or self.halted(asset):
             return 0
+        mid0 = self.mid(asset)
         fills = self.books[asset].market(owner, side, qty)
-        self._settle(asset, fills)
+        self._settle(asset, fills, mid0)
         return sum(f.qty for f in fills)
 
     def cancel(self, asset: str, order_id: int) -> bool:
@@ -119,7 +122,7 @@ class Exchange:
         return ok
 
     # ---- settlement and clock ------------------------------------------------------------
-    def _settle(self, asset: str, fills: list[Fill]) -> None:
+    def _settle(self, asset: str, fills: list[Fill], mid0: float) -> None:
         r = self.rules
         for f in fills:
             notional = f.price * f.qty
@@ -139,9 +142,11 @@ class Exchange:
                 acct.volume += f.qty
                 acct.n_fills += 1
             maker_side = -f.aggressor_side
-            self.fill_log.append(FillRecord(self.t, asset, f.maker, maker_side, f.price, f.qty, True))
             self.fill_log.append(
-                FillRecord(self.t, asset, f.taker, f.aggressor_side, f.price, f.qty, False)
+                FillRecord(self.t, asset, f.maker, maker_side, f.price, f.qty, True, mid0)
+            )
+            self.fill_log.append(
+                FillRecord(self.t, asset, f.taker, f.aggressor_side, f.price, f.qty, False, mid0)
             )
             self.step_trades.append((asset, f))
             self.last_px[asset] = f.price

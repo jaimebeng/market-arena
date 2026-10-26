@@ -70,7 +70,9 @@ class ZeroIntelligenceFlow:
         ex, p, rng = self.ex, self.p, self.rng
         while self._expiry and self._expiry[0][0] <= ex.t:
             _, oid = heapq.heappop(self._expiry)
-            ex.cancel(self.asset, oid)
+            if not ex.cancel(self.asset, oid):  # too young under a speed bump: retry later
+                o = ex.books[self.asset].orders[oid]
+                heapq.heappush(self._expiry, (o.t + ex.rules.min_resting_steps, oid))
         mid = ex.mid(self.asset)
         if lagged_value is not None:
             mid += p.anchor_kappa * (lagged_value - mid)

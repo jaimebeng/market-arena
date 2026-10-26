@@ -2,8 +2,8 @@ import type { AgentInfo, AgentView, ModelKind } from "../types";
 
 // One palette per model family so colour alone says "which model" at a glance.
 const PALETTE: Record<ModelKind, string[]> = {
-  spark: ["#7b8cff", "#b18cff", "#5fb4ff", "#9fa8ff"],
-  spark_open: ["#2dd4bf", "#7ee081", "#38d0f0", "#5eead4"],
+  spark: ["#7b8cff", "#b18cff", "#5fb4ff", "#c4a1ff", "#6f9dff", "#d59cff"],
+  spark_open: ["#2dd4bf", "#7ee081", "#38d0f0", "#a3e635", "#5eead4", "#4ade80"],
   glft: ["#f5b841", "#f59e0b"],
   scripted: ["#f472b6", "#fb923c", "#a3a9b8", "#e879f9"],
   other: ["#e2e8f0", "#fca5a5", "#c4b5fd"],

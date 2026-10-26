@@ -1,10 +1,11 @@
 import type { Benchmarks, Run } from "../../types";
 import { BUY, SELL } from "../../lib/agents";
-import { clamp, fmtNum, fmtSigned } from "../../lib/format";
+import { fmtNum, fmtSigned } from "../../lib/format";
 import { useUi } from "../../lib/playback";
 import { completedMetrics, pnlAt } from "../../lib/query";
 import { ChartLegend, EpochChart, type ChartSeries, type RefLine } from "../charts/EpochChart";
 import { AgentName, ModelBadge } from "../ModelBadge";
+import { CollusionGauge, DELTA_CAPTION } from "../CollusionGauge";
 
 const NASH = "#cbd5e1";
 const PARETO = "#f87171";
@@ -30,58 +31,9 @@ export function collusionSeries(run: Run, asset: string): { values: (number | nu
   return { values, derived };
 }
 
-function CollusionGauge({ value, history, derived }: { value: number | null; history: (number | null)[]; derived: boolean }) {
-  const R = 78;
-  const cx = 100;
-  const cy = 92;
-  const v = value == null ? 0 : clamp(value, -0.1, 1.1);
-  const ang = Math.PI * (1 - clamp(v, 0, 1)); // 180° (Nash) → 0° (Pareto)
-  const arc = (a0: number, a1: number) =>
-    `M ${cx + R * Math.cos(a0)} ${cy - R * Math.sin(a0)} A ${R} ${R} 0 0 1 ${cx + R * Math.cos(a1)} ${cy - R * Math.sin(a1)}`;
-  const label = value == null ? "—" : value < 0.2 ? "competitive" : value < 0.6 ? "drifting" : "collusive";
-  return (
-    <div className="gauge">
-      <svg viewBox="0 0 200 116" width="100%">
-        <defs>
-          <linearGradient id="gauge-grad" x1="0" x2="1">
-            <stop offset="0" stopColor="#2dd4bf" />
-            <stop offset="0.5" stopColor="#f5b841" />
-            <stop offset="1" stopColor="#f87171" />
-          </linearGradient>
-        </defs>
-        <path d={arc(Math.PI, 0)} stroke="#1c2230" strokeWidth="14" fill="none" strokeLinecap="round" />
-        <path d={arc(Math.PI, 0)} stroke="url(#gauge-grad)" strokeWidth="14" fill="none" strokeLinecap="round" opacity={value == null ? 0.25 : 0.9} />
-        {[0, 0.25, 0.5, 0.75, 1].map((f) => {
-          const a = Math.PI * (1 - f);
-          return <line key={f} x1={cx + (R - 12) * Math.cos(a)} y1={cy - (R - 12) * Math.sin(a)} x2={cx + (R - 18) * Math.cos(a)} y2={cy - (R - 18) * Math.sin(a)} stroke="#4b5568" strokeWidth="1.5" />;
-        })}
-        {value != null && (
-          <g className="needle" style={{ transform: `rotate(${(-ang * 180) / Math.PI}deg)`, transformOrigin: `${cx}px ${cy}px` }}>
-            <line x1={cx} y1={cy} x2={cx + R - 22} y2={cy} stroke="#f3f4f6" strokeWidth="2.5" strokeLinecap="round" />
-          </g>
-        )}
-        <circle cx={cx} cy={cy} r="5" fill="#f3f4f6" />
-        <text x={cx - R} y={cy + 18} className="gauge-end" textAnchor="middle">
-          Nash
-        </text>
-        <text x={cx + R} y={cy + 18} className="gauge-end" textAnchor="middle">
-          Pareto
-        </text>
-      </svg>
-      <div className="gauge-value mono">{value == null ? "—" : value.toFixed(2)}</div>
-      <div className={`gauge-label ${label}`}>{label}</div>
-      <div className="gauge-hist">
-        {history.map((h, i) => (
-          <i key={i} title={h == null ? "" : `E${i}: ${h.toFixed(2)}`} style={{ height: `${6 + clamp(h ?? 0, 0, 1) * 22}px`, opacity: h == null ? 0.15 : 1 }} />
-        ))}
-      </div>
-      {derived && <div className="muted small">derived from quoted spreads vs benchmarks</div>}
-    </div>
-  );
-}
-
 function Leaderboard({ run }: { run: Run }) {
-  const pb = useUi();
+  // P&L moves continuously: refresh on a coarse grid of the replay clock (≤ 400 updates per run)
+  const pb = useUi((p) => Math.round(p.t / Math.max(1, run.tEnd / 400)));
   const done = completedMetrics(run, pb.t);
   const rows = run.agents.map((a) => {
     const pnl = pnlAt(run, a.id, pb.t);
@@ -135,7 +87,7 @@ function Leaderboard({ run }: { run: Run }) {
 }
 
 export function CompetitionTab({ run, asset }: { run: Run; asset: string }) {
-  const pb = useUi();
+  const pb = useUi((p) => completedMetrics(run, p.t).length);
   const revealed = completedMetrics(run, pb.t).length;
   const n = Math.max(run.metrics.length, run.epochs.length);
 
@@ -189,7 +141,11 @@ export function CompetitionTab({ run, asset }: { run: Run; asset: string }) {
           Collusion index <span className="muted">· Δ, {asset}</span>
         </div>
         {hasCI ? (
-          <CollusionGauge value={ciNow} history={ci.map((x, i) => (i < revealed ? x : null))} derived={derived} />
+          <CollusionGauge
+            value={ciNow}
+            history={ci.map((x, i) => (i < revealed ? x : null))}
+            note={derived ? "derived from quoted spreads vs benchmarks. " + DELTA_CAPTION : DELTA_CAPTION}
+          />
         ) : (
           <div className="empty small">
             <p>Δ = (spread − Nash) / (Pareto − Nash).</p>

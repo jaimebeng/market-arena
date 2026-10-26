@@ -152,7 +152,7 @@ function DecisionView({ run, d, current }: { run: Run; d: Decision; current: boo
 }
 
 export function TranscriptDrawer({ run, agent, onClose }: { run: Run; agent: AgentView; onClose: () => void }) {
-  const pb = useUi();
+  const pb = useUi((p) => latestDecision(run, agent.id, p.t)?.t ?? -1);
   const ds = run.decisionsByAgent[agent.id] ?? [];
   const cur = latestDecision(run, agent.id, pb.t);
   const body = useRef<HTMLDivElement>(null);

@@ -23,7 +23,10 @@ function staticText(agent: AgentView, run: Run): string {
  * Typing is driven from the rAF loop and written straight to the DOM.
  */
 export function ThoughtBubble({ run, agent }: { run: Run; agent: AgentView }) {
-  const pb = useUi();
+  const pb = useUi((p) => {
+    const dt = latestDecision(run, agent.id, p.t)?.t ?? -1;
+    return `${dt}:${p.holdingAt === dt}`;
+  });
   const d = latestDecision(run, agent.id, pb.t);
   const textRef = useRef<HTMLSpanElement>(null);
   const toolsRef = useRef<HTMLDivElement>(null);

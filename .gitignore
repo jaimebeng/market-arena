@@ -8,3 +8,4 @@ node_modules/
 # private planning notes (not for the public repo)
 APPLICATION.md
 HACKATHON.md
+web/dist/

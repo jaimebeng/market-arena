@@ -3,7 +3,7 @@ import type { AgentView, MakerPolicy, Run } from "../types";
 import { BUY, SELL } from "../lib/agents";
 import { fmtNum, fmtSigned } from "../lib/format";
 import { useFrame, useUi } from "../lib/playback";
-import { epochAt, liveStrategyAt, pnlAt, policyAt, snapIndex } from "../lib/query";
+import { epochAt, latestDecision, liveStrategyAt, pnlAt, policyAt, snapIndex } from "../lib/query";
 import { AgentName, ModelBadge, RoleTag } from "./ModelBadge";
 import { Sparkline } from "./Sparkline";
 import { ThoughtBubble } from "./ThoughtBubble";
@@ -15,7 +15,7 @@ function Delta({ cur, prev }: { cur?: number; prev?: number }) {
 }
 
 function PolicyStats({ run, agent, asset }: { run: Run; agent: AgentView; asset: string }) {
-  const pb = useUi();
+  const pb = useUi((p) => epochAt(run, p.t));
   const e = epochAt(run, pb.t);
   const pol: MakerPolicy | undefined = policyAt(run, agent.id, pb.t)?.[asset];
   const prevT = e > 0 ? run.epochs[e - 1].t0 : -1;
@@ -48,7 +48,7 @@ function PolicyStats({ run, agent, asset }: { run: Run; agent: AgentView; asset:
 }
 
 function TakerStats({ run, agent }: { run: Run; agent: AgentView }) {
-  const pb = useUi();
+  const pb = useUi((p) => latestDecision(run, agent.id, p.t)?.t ?? -1);
   const live = liveStrategyAt(run, agent.id, pb.t);
   const subs = (run.decisionsByAgent[agent.id] ?? []).filter((d) => d.t <= pb.t);
   const passed = subs.filter((d) => d.role === "taker" && d.gate?.passed).length;

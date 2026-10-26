@@ -29,7 +29,7 @@ function AssetChip({ run, asset, active, onClick }: { run: Run; asset: string; a
 }
 
 export function MarketPanel({ run, asset, onAsset }: { run: Run; asset: string; onAsset: (a: string) => void }) {
-  const pb = useUi();
+  const pb = useUi((p) => p.showFairValue);
   return (
     <section className="panel market-panel">
       <div className="panel-head">

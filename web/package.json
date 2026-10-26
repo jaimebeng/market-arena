@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -p . && vite build",
     "preview": "vite preview",
-    "export": "python3 ../scripts/export_run.py --all ../runs public/runs && python3 ../scripts/export_run.py ../runs/makers_smoke public/runs --fixture fixtures/takers_fixture.json --name makers_smoke_fixture"
+    "export": "python3 ../scripts/export_run.py --all ../runs public/runs && python3 ../scripts/export_run.py ../runs/makers_smoke public/runs --fixture fixtures/takers_fixture.json --name makers_smoke_fixture && python3 ../scripts/export_experiment.py --all ../runs public/experiments"
   },
   "dependencies": {
     "react": "^19.3.1",

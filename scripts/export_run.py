@@ -80,10 +80,18 @@ def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = No
     cfg = meta.get("config", {}) or {}
     assets = meta.get("assets") or (list(snaps[0]["assets"].keys()) if snaps else [])
     agents = meta.get("agents")
-    if not agents:  # run still in progress: infer from data
+    if not agents:  # run still in progress (meta.json is written at the end): infer from data
         ids = list(snaps[0]["equity"].keys()) if snaps else []
         makers = set(snaps[0]["quotes"].keys()) if snaps else set()
-        agents = [{"id": i, "role": "maker" if i in makers else "agent", "model": None} for i in ids]
+        seen = {d["agent"]: d for d in decisions}
+        agents = [
+            {
+                "id": i,
+                "role": "maker" if i in makers else seen.get(i, {}).get("role", "taker"),
+                "model": seen.get(i, {}).get("model") or ("GLFT closed form" if i == "glft" else None),
+            }
+            for i in ids
+        ]
     agents = [dict(a) for a in agents]
 
     # ---- snapshots (downsampled) --------------------------------------------------------
@@ -96,9 +104,10 @@ def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = No
     mid = {a: [] for a in assets}
     val = {a: [] for a in assets}
     book = {a: {"L": LEVELS, "base": [], "bp": [], "bq": [], "ap": [], "aq": []} for a in assets}
-    makers = sorted({m for s in snaps_ds for m in s.get("quotes", {})}, key=lambda m: [a["id"] for a in agents].index(m) if m in [a["id"] for a in agents] else 99)
-    quotes = {m: {a: {"b": [], "a": []} for a in assets} for m in makers}
     agent_ids = [a["id"] for a in agents]
+    order = {i: k for k, i in enumerate(agent_ids)}
+    makers = sorted({m for s in snaps_ds for m in s.get("quotes", {})}, key=lambda m: order.get(m, 99))
+    quotes = {m: {a: {"b": [], "a": []} for a in assets} for m in makers}
     inv = {i: {a: [] for a in assets} for i in agent_ids}
     equity = {i: [] for i in agent_ids}
 
@@ -222,6 +231,7 @@ def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = No
         "started": meta.get("started"),
         "finished": meta.get("finished"),
         "complete": meta_path.exists(),
+        "stylized": meta.get("stylized"),
         "snapshot_stride": stride,
         "t": t_arr,
         "mid": mid,

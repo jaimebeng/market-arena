@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { GateStats, Run, TakerDecision } from "../../types";
-import { fmtNum } from "../../lib/format";
+import { fmtNum, upperIndex } from "../../lib/format";
 import { useUi } from "../../lib/playback";
 import { CodeBlock } from "../CodeBlock";
 import { AgentName, ModelBadge } from "../ModelBadge";
@@ -104,7 +104,8 @@ export function StrategyCard({ run, d, fresh }: { run: Run; d: TakerDecision; fr
 }
 
 export function StrategyGallery({ run }: { run: Run }) {
-  const pb = useUi();
+  const half = run.config.steps_per_epoch / 2;
+  const pb = useUi((p) => `${upperIndex(run.reviewTimes, p.t)}:${Math.floor(p.t / half)}`);
   const [showAll, setShowAll] = useState(false);
   const all = run.decisions.filter((d): d is TakerDecision => d.role === "taker");
   if (!all.length) {
@@ -142,7 +143,7 @@ export function StrategyGallery({ run }: { run: Run }) {
       ) : (
         <div className="gallery">
           {shown.map((d) => (
-            <StrategyCard key={`${d.agent}-${d.t}`} run={run} d={d} fresh={!showAll && d.t === latestT && pb.t - d.t < run.config.steps_per_epoch / 2} />
+            <StrategyCard key={`${d.agent}-${d.t}`} run={run} d={d} fresh={!showAll && d.t === latestT && pb.t - d.t < half} />
           ))}
         </div>
       )}

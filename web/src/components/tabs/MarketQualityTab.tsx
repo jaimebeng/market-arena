@@ -4,6 +4,7 @@ import { fmtCompact, fmtNum } from "../../lib/format";
 import { useUi } from "../../lib/playback";
 import { completedMetrics } from "../../lib/query";
 import { ChartLegend, EpochChart, type ChartSeries } from "../charts/EpochChart";
+import { StylizedPanel } from "../StylizedPanel";
 
 const METRICS: { key: string; title: string; unit: string; hint: string }[] = [
   { key: "spread", title: "Quoted spread", unit: "ticks", hint: "average best ask − best bid; lower is better for traders" },
@@ -13,8 +14,10 @@ const METRICS: { key: string; title: string; unit: string; hint: string }[] = [
   { key: "volume", title: "Volume", unit: "lots", hint: "traded volume per epoch" },
 ];
 
-export function MarketQualityTab({ run }: { run: Run }) {
-  const pb = useUi();
+export function MarketQualityTab({ run, asset }: { run: Run; asset: string }) {
+  const styAsset = run.stylized?.[asset] ? asset : Object.keys(run.stylized ?? {})[0];
+  const sty = styAsset ? run.stylized?.[styAsset] : undefined;
+  const pb = useUi((p) => completedMetrics(run, p.t).length);
   const done = completedMetrics(run, pb.t);
   const revealed = done.length;
   const n = Math.max(run.metrics.length, run.epochs.length);
@@ -45,8 +48,12 @@ export function MarketQualityTab({ run }: { run: Run }) {
           );
         })}
         <div className="mq-card">
-          <div className="card-title">Stylised facts</div>
-          {stylized ? (
+          <div className="card-title">
+            Stylised facts <span className="muted">· {sty ? `${styAsset}, whole run` : "per epoch"}</span>
+          </div>
+          {sty ? (
+            <StylizedPanel market={sty.market} fv={sty.fair_value} />
+          ) : stylized ? (
             <table className="stylized">
               <thead>
                 <tr>

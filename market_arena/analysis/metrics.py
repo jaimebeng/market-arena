@@ -44,8 +44,8 @@ def agent_metrics(
     }
     if fills:
         mids = {a: hist.data[a]["mid"] for a in hist.assets}
-        # edge vs mid at fill time (positive = bought below / sold above the mid)
-        out["edge_per_lot"] = sum(f.side * (mids[f.asset][f.t] - f.price) * f.qty for f in fills) / lots
+        # edge vs the mid just before the fill (positive = bought below / sold above the mid)
+        out["edge_per_lot"] = sum(f.side * (f.mid_before - f.price) * f.qty for f in fills) / lots
         for h in MARKOUT_HORIZONS:
             ok = [f for f in fills if f.t + h < hist.n]
             q = sum(f.qty for f in ok)

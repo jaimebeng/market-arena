@@ -153,7 +153,7 @@ class LLMTaker(StrategyTaker):
 
     def _backtest(self, code: str, start: int, end: int) -> dict:
         r = backtest(code, self.arena.hist, start, end, self.p, self.arena.public_meta,
-                     self.arena.cfg.rules.taker_fee_bps)  # fmt: skip
+                     self.arena.cfg.rules.taker_fee_bps, self.assets)  # fmt: skip
         r.pop("signals")
         return r
 
@@ -161,7 +161,7 @@ class LLMTaker(StrategyTaker):
         n, H = self.arena.hist.n, self.arena.cfg.holdout
         ins = self._backtest(code, max(1, n - H - 4000), n - H)
         hold = backtest(code, self.arena.hist, n - H, n, self.p, self.arena.public_meta,
-                        self.arena.cfg.rules.taker_fee_bps)  # fmt: skip
+                        self.arena.cfg.rules.taker_fee_bps, self.assets)  # fmt: skip
         sig = hold.pop("signals")
         skill = hold["ic"] >= GATE_MIN_IC or hold["sharpe"] >= GATE_MIN_SHARPE
         passed = hold["pnl"] > 0 and skill
@@ -177,7 +177,8 @@ class LLMTaker(StrategyTaker):
         for name, code in TEXTBOOK.items():
             if name == "index_arbitrage" and not self.arena.public_meta.get("index"):
                 continue
-            ref = backtest(code, self.arena.hist, start, end, self.p, self.arena.public_meta)["signals"]
+            ref = backtest(code, self.arena.hist, start, end, self.p, self.arena.public_meta,
+                           assets=self.assets)["signals"]  # fmt: skip
             if len(ref) == len(sig) and np.std(ref) > 0 and np.std(sig) > 0:
                 out[name] = round(float(np.corrcoef(sig, ref)[0, 1]), 2)
         return out

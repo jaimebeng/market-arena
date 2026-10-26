@@ -2,6 +2,8 @@ import type {
   AssetSeries,
   Decision,
   EpochSpan,
+  Experiment,
+  ExperimentIndexEntry,
   RawRun,
   RawTradesAsset,
   Run,
@@ -25,7 +27,19 @@ export async function fetchRun(entry: RunIndexEntry): Promise<Run> {
   return buildRun((await r.json()) as RawRun);
 }
 
-const f64 = (a: (number | null)[] | undefined, n: number) => {
+export async function fetchExperiments(): Promise<ExperimentIndexEntry[]> {
+  const r = await fetch(`${BASE}experiments/index.json`, { cache: "no-cache" });
+  if (!r.ok) return [];
+  return ((await r.json()).experiments ?? []) as ExperimentIndexEntry[];
+}
+
+export async function fetchExperiment(entry: ExperimentIndexEntry): Promise<Experiment> {
+  const r = await fetch(`${BASE}experiments/${entry.file}`);
+  if (!r.ok) throw new Error(`${entry.file}: HTTP ${r.status}`);
+  return (await r.json()) as Experiment;
+}
+
+const f64 =(a: (number | null)[] | undefined, n: number) => {
   const out = new Float64Array(n).fill(NaN);
   if (a) for (let i = 0; i < n && i < a.length; i++) out[i] = a[i] ?? NaN;
   return out;
@@ -153,6 +167,7 @@ export function buildRun(raw: RawRun): Run {
     tick,
     llmCost: raw.llm_cost_usd ?? decisions.reduce((s, d) => s + (d.cost ?? 0), 0),
     complete: raw.complete,
+    stylized: raw.stylized ?? null,
     n,
     t,
     tEnd,

@@ -191,9 +191,14 @@ export class Playback {
 
 export const playback = new Playback();
 
-/** Re-render on throttled playback changes (~11Hz while playing, immediately on discrete events). */
-export function useUi(): Playback {
-  useSyncExternalStore(playback.subscribeUi, playback.getVersion);
+type UiKey = string | number | boolean | null;
+
+/**
+ * Re-render on playback changes. With no `key`, on every (throttled, ~11Hz) UI tick; with a
+ * `key` selector, only when the selected primitive changes (e.g. the epoch).
+ */
+export function useUi(key?: (pb: Playback) => UiKey): Playback {
+  useSyncExternalStore(playback.subscribeUi, key ? () => key(playback) : playback.getVersion);
   return playback;
 }
 

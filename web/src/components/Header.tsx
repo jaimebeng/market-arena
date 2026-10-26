@@ -1,6 +1,7 @@
 import type { ModelKind, Run, RunIndexEntry } from "../types";
 import { fmtUsd } from "../lib/format";
-import { SPEEDS, useUi } from "../lib/playback";
+import { useRef } from "react";
+import { SPEEDS, useFrame, useUi } from "../lib/playback";
 import { epochAt } from "../lib/query";
 import { ModelBadge } from "./ModelBadge";
 
@@ -33,8 +34,12 @@ export function Header({
   run: Run | null;
   onPickRun: (name: string) => void;
 }) {
-  const pb = useUi();
+  const pb = useUi((p) => `${p.playing}|${p.speed}|${run ? epochAt(run, p.t) : 0}|${p.holdingAt}|${p.holdOnReviews}`);
   const e = run ? epochAt(run, pb.t) : 0;
+  const clock = useRef<HTMLDivElement>(null);
+  useFrame((p, dirty) => {
+    if (dirty && clock.current) clock.current.textContent = `t ${Math.round(p.t).toLocaleString("en-US")}`;
+  });
   const kinds = run ? ([...new Set(run.agents.map((a) => a.kind))] as ModelKind[]) : [];
   const nLLM = run ? run.decisions.length : 0;
 
@@ -91,7 +96,7 @@ export function Header({
           EPOCH <b>{e}</b>
           <span>/{run ? run.epochs.length - 1 : 0}</span>
         </div>
-        <div className="clock-t mono">t {Math.round(pb.t).toLocaleString("en-US")}</div>
+        <div className="clock-t mono" ref={clock} />
       </div>
 
       <button

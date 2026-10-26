@@ -44,6 +44,8 @@ def validate(code: str) -> ast.Module:
             raise SandboxError("imports are not allowed; np and math are already available")
         if isinstance(node, (ast.Global, ast.Nonlocal)):
             raise SandboxError("global/nonlocal are not allowed; use obs.state")
+        if isinstance(node, ast.Attribute) and isinstance(node.ctx, (ast.Store, ast.Del)):
+            raise SandboxError("assigning to attributes is not allowed; use obs.state")
         if isinstance(node, ast.Attribute) and node.attr.startswith("_"):
             raise SandboxError(f"access to private attribute {node.attr!r} is not allowed")
         if isinstance(node, ast.Name) and (node.id in BANNED_NAMES or node.id.startswith("__")):

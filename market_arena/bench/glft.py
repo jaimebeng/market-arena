@@ -4,10 +4,11 @@ Calibrate from background flow:
     sigma : mid volatility per sqrt(step), estimated at a 10-step lag to wash out bid-ask bounce
     A, k  : fill intensity lambda(delta) = A exp(-k delta) for a quote delta from the mid,
             estimated from how far aggressive flow sweeps from the step's starting mid.
-Closed form, with q in units of the order size:
-    delta_b(q) = c + (2q+1)/2 w,  delta_a(q) = c - (2q-1)/2 w
-    c = (1/gamma) ln(1 + gamma/k),  w = sqrt(sigma^2 gamma / (2kA) (1 + gamma/k)^(1 + k/gamma))
-so half-spread = c + w/2 and the reservation price shifts by w per unit of inventory.
+Closed form for order size D lots, inventory q in lots (Gueant 2017):
+    delta_b(q) = c + (2q + D)/2 s,  delta_a(q) = c - (2q - D)/2 s
+    c = ln(1 + gamma D/k) / (gamma D),  s = sqrt(gamma sigma^2/(2Ak) (1 + gamma D/k)^(1 + k/(gamma D)))
+so half-spread = c + D s/2 and the reservation price shifts by s per lot of inventory.
+A maker fee f (cents per lot; negative = rebate) shifts every quote out by f, like alpha.
 
 Adverse selection: if each fill is followed on average by an adverse mid move alpha (cents per
 lot), the maker's reward per fill is delta - alpha. Substituting delta' = delta - alpha gives the
@@ -65,10 +66,16 @@ def calibrate(
     )
 
 
-def glft_policy(cal: Calibration, gamma: float, size: int = 2, **kw) -> MakerPolicy:
-    A, k, s = cal.A_eff, cal.k, cal.sigma
-    c = cal.alpha + math.log1p(gamma / k) / gamma
-    w = math.sqrt(s * s * gamma / (2 * k * A) * (1 + gamma / k) ** (1 + k / gamma))
-    return MakerPolicy(
-        half_spread=min(100.0, max(0.5, c + w / 2)), skew=min(20.0, w / size), size=size, **kw
-    )
+def glft_quotes(cal: Calibration, gamma: float, size: int = 2, fee: float = 0.0):
+    """(half_spread, skew per lot). fee: maker fee in cents per lot (negative = rebate)."""
+    D, k, sig = size, cal.k, cal.sigma
+    A = cal.A * math.exp(-k * (cal.alpha + fee))
+    g = gamma * D
+    c = cal.alpha + fee + math.log1p(g / k) / g
+    s = math.sqrt(gamma * sig * sig / (2 * A * k) * (1 + g / k) ** (1 + k / g))
+    return c + D * s / 2, s
+
+
+def glft_policy(cal: Calibration, gamma: float, size: int = 2, fee: float = 0.0, **kw) -> MakerPolicy:
+    hs, skew = glft_quotes(cal, gamma, size, fee)
+    return MakerPolicy(half_spread=min(100.0, max(0.5, hs)), skew=min(20.0, skew), size=size, **kw)

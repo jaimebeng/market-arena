@@ -163,6 +163,7 @@ export interface RawRun {
   started: number | null;
   finished: number | null;
   complete: boolean;
+  stylized?: RunStylized | null;
   snapshot_stride: number;
   t: number[];
   mid: Record<string, (number | null)[]>;
@@ -174,6 +175,73 @@ export interface RawRun {
   trades: { ids: string[]; n_total: number; sampled: boolean } & Record<string, unknown>;
   metrics: EpochMetrics[];
   decisions: Decision[];
+}
+
+/** meta.stylized: stylised facts of returns, per asset, for the traded mid and the hidden V. */
+export interface StylizedFacts {
+  horizon_steps?: number;
+  excess_kurtosis?: number;
+  hill_tail_index?: number;
+  acf_returns?: number[];
+  acf_abs_returns?: number[];
+}
+export type RunStylized = Record<string, { market?: StylizedFacts; fair_value?: StylizedFacts }>;
+
+// ---------------------------------------------------------------- wind tunnel ----
+
+export interface VariantBenchmarks extends Benchmarks {
+  nash_skew?: number;
+  pareto_skew?: number;
+  adverse_selection?: number;
+  n_makers?: number;
+}
+
+export interface VariantScalars {
+  spread?: number | null;
+  depth?: number | null;
+  mispricing_bps?: number | null;
+  volatility?: number | null;
+  volume?: number | null;
+  collusion_index?: number | null;
+  llm_maker_half_spread?: number | null;
+  maker_pnl_per_epoch?: number | null;
+  llm_cost_usd?: number | null;
+  epochs?: number | null;
+}
+
+export interface SeedRun extends VariantScalars {
+  run?: string;
+  collusion_by_epoch?: (number | null)[];
+  llm_half_spread_by_epoch?: (number | null)[];
+  complete?: boolean;
+}
+
+export interface Variant extends VariantScalars {
+  name: string;
+  label: string;
+  change: string;
+  n_seeds: number;
+  provisional?: boolean;
+  benchmarks?: Record<string, VariantBenchmarks>;
+  seed_runs: SeedRun[];
+  [k: `${string}_se`]: number | null | undefined;
+}
+
+export interface Experiment {
+  format: 1;
+  experiment: string;
+  description: string;
+  seeds: number[];
+  provisional?: boolean;
+  variants: Variant[];
+}
+
+export interface ExperimentIndexEntry {
+  name: string;
+  file: string;
+  variants: string[];
+  seeds: number[];
+  provisional: boolean;
 }
 
 export interface RunIndexEntry {
@@ -239,6 +307,7 @@ export interface Run {
   tick: number;
   llmCost: number;
   complete: boolean;
+  stylized: RunStylized | null;
   n: number;
   t: Float64Array;
   tEnd: number;

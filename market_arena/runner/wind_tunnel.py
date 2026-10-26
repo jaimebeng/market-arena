@@ -64,7 +64,8 @@ def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
         "volatility": avg(lambda m: np.mean([m["market"][a]["vol_per_step"] for a in assets])),
         "volume": avg(lambda m: np.sum([m["market"][a]["volume"] for a in assets])),
         "collusion_index": avg(lambda m: _delta(m, llm_makers, bench)),
-        "llm_maker_half_spread": avg(lambda m: np.mean([
+        "llm_maker_half_spread": avg(lambda m: _llm_hs(m, llm_makers) if llm_makers else None),
+        "llm_maker_quoted_half_spread": avg(lambda m: np.mean([
             v for i in llm_makers for v in (m["agents"][i].get("quoted_half_spread") or {}).values()
             if v is not None]) if llm_makers else None),  # fmt: skip
         "maker_pnl_per_epoch": avg(lambda m: np.mean([m["agents"][i]["pnl"] for i in makers])),
@@ -89,16 +90,15 @@ def aggregate(runs: list[dict]) -> dict:
 
 
 def _llm_hs(m: dict, makers: list[str]) -> float | None:
-    v = [h for i in makers for h in (m["agents"][i].get("quoted_half_spread") or {}).values()
-         if h is not None]  # fmt: skip
+    """LLM makers' chosen (policy) half-spread, averaged over makers and assets."""
+    v = [p["half_spread"] for i in makers for p in m["policies"][i].values()]
     return round(float(np.mean(v)), 3) if v else None
 
 
 def _delta(m: dict, makers: list[str], bench: dict) -> float | None:
     vals = []
     for a, b in bench.items():
-        hs = [(m["agents"][i].get("quoted_half_spread") or {}).get(a) for i in makers]
-        hs = [h for h in hs if h is not None]
+        hs = [m["policies"][i][a]["half_spread"] for i in makers if a in m["policies"][i]]
         if hs and b.get("nash_hs") is not None:
             vals.append(collusion_index(float(np.mean(hs)), b["nash_hs"], b["pareto_hs"]))
     return round(float(np.mean(vals)), 3) if vals else None

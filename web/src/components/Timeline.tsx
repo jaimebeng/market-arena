@@ -2,10 +2,11 @@ import { useRef } from "react";
 import type { Run } from "../types";
 import { useFrame, useUi } from "../lib/playback";
 import { epochAt } from "../lib/query";
+import { upperIndex } from "../lib/format";
 
 /** Epoch scrubber: segments per epoch, review markers per agent, draggable playhead. */
 export function Timeline({ run }: { run: Run }) {
-  const pb = useUi();
+  const pb = useUi((p) => `${epochAt(run, p.t)}:${upperIndex(run.reviewTimes, p.t)}`);
   const track = useRef<HTMLDivElement>(null);
   const fill = useRef<HTMLDivElement>(null);
   const head = useRef<HTMLDivElement>(null);

@@ -15,7 +15,7 @@ from ..analysis.metrics import agent_metrics, market_metrics
 from ..analysis.stylized import stylized_facts
 from ..agents.taker import StrategyTaker
 from ..bench.game import GameParams, collusion_index, solve_nash, solve_pareto
-from ..bench.glft import Calibration, calibrate, glft_policy
+from ..bench.glft import Calibration, calibrate, glft_policy, glft_quotes
 from ..bench.signals import TEXTBOOK
 from ..sim.background import IndexFlow, InformedTrader, ZeroIntelligenceFlow
 from ..sim.book import BUY
@@ -163,12 +163,12 @@ class Arena:
 
     # ---- main loop -----------------------------------------------------------------------
     def _collusion(self, m: dict) -> dict:
-        """Collusion index of the LLM makers' average quoted half-spread, per asset."""
+        """Collusion index of the LLM makers' chosen policy half-spreads, per asset. Measured on
+        the decision (policy), not on resting prices, so tick rounding does not bias it."""
         out = {}
         llm = [ag.id for ag in self.agents if ag.role == "maker" and hasattr(ag, "review")]
         for a, b in self.benchmarks.items():
-            hs = [m["agents"][i]["quoted_half_spread"][a] for i in llm]
-            hs = [h for h in hs if h is not None]
+            hs = [m["policies"][i][a]["half_spread"] for i in llm if a in m["policies"][i]]
             if hs and b.get("nash_hs") is not None:
                 out[a] = round(collusion_index(float(np.mean(hs)), b["nash_hs"], b["pareto_hs"]), 3)
         return out
@@ -241,23 +241,41 @@ class Arena:
         return meta
 
 
-def compute_benchmarks(cfg: ArenaConfig, cal: dict[str, Calibration]) -> dict:
-    """GLFT, Nash and Pareto half-spreads per asset for the configured number of makers."""
+def asset_prices(cfg: ArenaConfig) -> dict[str, float]:
+    prices = {n: c.price for n, c in cfg.components.items()}
+    if cfg.index:
+        prices[cfg.index["name"]] = cfg.index["price"]
+    return prices
+
+
+def compute_benchmarks(cfg: ArenaConfig, cal: dict[str, Calibration], size: int = 2,
+                       max_inventory: int = 20) -> dict:  # fmt: skip
+    """GLFT, Nash and Pareto half-spreads per asset for the configured number of makers.
+
+    Per-fill costs (adverse selection alpha and the maker fee f, cents per lot) enter exactly as
+    A' = A exp(-k (alpha + f)) and a quote shift of alpha + f. In the game each maker sees the
+    market-wide fill intensity divided by the number of makers when all quote the same price.
+    """
     n_makers = sum(a.kind in ("glft", "static_maker", "llm_maker") for a in cfg.agents)
+    prices = asset_prices(cfg)
     out = {}
     for asset, c in cal.items():
-        b = {"glft_hs": round(glft_policy(c, cfg.glft_gamma).half_spread, 3), "n_makers": n_makers,
-             "adverse_selection": round(c.alpha, 3)}  # fmt: skip
+        fee = cfg.rules.maker_fee_bps * 1e-4 * prices[asset]
+        shift = c.alpha + fee
+        b = {"glft_hs": round(glft_quotes(c, cfg.glft_gamma, size, fee)[0], 3),
+             "n_makers": n_makers, "adverse_selection": round(c.alpha, 3),
+             "maker_fee_cents": round(fee, 3)}  # fmt: skip
         if n_makers >= 2:
-            # adverse selection enters as A' = A exp(-k alpha) and a quote shift of alpha
-            gp = GameParams(A=c.A_eff, k=c.k, sigma=c.sigma, gamma=cfg.glft_gamma,
-                            n_makers=n_makers, eta=cfg.competition_eta, Q=10)  # fmt: skip
+            a_eff = c.A * np.exp(-c.k * shift) / n_makers
+            gp = GameParams(A=a_eff, k=c.k, sigma=c.sigma, gamma=cfg.glft_gamma,
+                            n_makers=n_makers, eta=cfg.competition_eta, lot=size,
+                            Q=max_inventory // size)  # fmt: skip
             nash, pareto = solve_nash(gp), solve_pareto(gp)
             b.update(
-                nash_hs=round(nash["avg_half_spread"] + c.alpha, 3),
-                nash_skew=round(nash["affine"].skew, 3),
-                pareto_hs=round(pareto["avg_half_spread"] + c.alpha, 3),
-                pareto_skew=round(pareto["affine"].skew, 3),
+                nash_hs=round(nash["avg_half_spread"] + shift, 3),
+                nash_skew=round(nash["affine"].skew / size, 3),
+                pareto_hs=round(pareto["avg_half_spread"] + shift, 3),
+                pareto_skew=round(pareto["affine"].skew / size, 3),
             )  # fmt: skip
         out[asset] = b
     return out
@@ -268,8 +286,13 @@ def build_agent(acfg, arena: Arena):
     if acfg.kind == "glft":
         gamma = acfg.params.get("gamma", arena.cfg.glft_gamma)
         size = acfg.params.get("size", 2)
+        prices = asset_prices(arena.cfg)
         mk = Maker(acfg.id, assets)
-        mk.policies = {a: glft_policy(arena.calibration[a], gamma, size) for a in assets}
+        mk.policies = {
+            a: glft_policy(arena.calibration[a], gamma, size,
+                           fee=arena.cfg.rules.maker_fee_bps * 1e-4 * prices[a])
+            for a in assets
+        }  # fmt: skip
         mk.model = "GLFT closed form"
         return mk
     if acfg.kind == "static_maker":

@@ -6,6 +6,7 @@ strategy behaves identically everywhere (up to the live market reacting to its o
 
 from __future__ import annotations
 
+import copy
 import math
 
 import numpy as np
@@ -30,19 +31,19 @@ class TakerParams(BaseModel):
 class Obs:
     """What a strategy sees. History only up to (not including) the current step."""
 
-    FIELDS = PUBLIC_FIELDS
+    FIELDS = PUBLIC_FIELDS  # informational; access is checked against the module constant
 
     def __init__(self, hist: MarketHistory, end: int, position: dict, state: dict, meta: dict):
         self._h, self._end = hist, end
         self.t = end
         self.assets = list(hist.assets)
-        self.position = dict(position)
+        self.position = {a: int(position.get(a, 0)) for a in hist.assets}
         self.state = state
-        self.meta = meta
+        self.meta = copy.deepcopy(meta)  # strategies must not be able to alter shared metadata
 
     def hist(self, asset: str, field: str, n: int) -> np.ndarray:
-        if field not in self.FIELDS:
-            raise KeyError(f"unknown field {field!r}; available: {self.FIELDS}")
+        if field not in PUBLIC_FIELDS:
+            raise KeyError(f"unknown field {field!r}; available: {PUBLIC_FIELDS}")
         arr = self._h.data[asset][field][max(0, self._end - int(n)) : self._end].copy()
         return arr
 
@@ -66,12 +67,12 @@ def call_signal(fn, obs: Obs, ms: float) -> dict[str, float]:
 
 def backtest(
     code: str, hist: MarketHistory, start: int, end: int, p: TakerParams, meta: dict,
-    taker_fee_bps: float = 0.0,
+    taker_fee_bps: float = 0.0, assets: list[str] | None = None,
 ) -> dict:  # fmt: skip
     """Replay a strategy on recorded history [start, end). Executes at the previous step's touch
     (buy at ask, sell at bid), capped at max_order per step; marks at the mid."""
     fn = load_function(code, "signal")
-    assets = hist.assets
+    assets = assets or hist.assets
     d = hist.data
     pos = {a: 0 for a in assets}
     target = {a: 0.0 for a in assets}
@@ -84,8 +85,10 @@ def backtest(
     for i in range(start, end):
         if (i - start) % p.eval_every == 0:
             try:
-                target.update(call_signal(fn, Obs(hist, i, pos, state, meta), p.call_ms))
+                out = call_signal(fn, Obs(hist, i, pos, state, meta), p.call_ms)
+                target.update({a: v for a, v in out.items() if a in target})
             except Exception as e:  # noqa: BLE001 - surface any strategy failure to the agent
+                target = {a: 0.0 for a in assets}  # same as live: go flat on an error
                 errors += 1
                 if errors >= 3:
                     raise SandboxError(f"signal() failed at step {i}: {type(e).__name__}: {e}")

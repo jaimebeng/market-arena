@@ -10,8 +10,9 @@ import { TranscriptDrawer } from "./components/TranscriptDrawer";
 import { CompetitionTab } from "./components/tabs/CompetitionTab";
 import { StrategyGallery } from "./components/tabs/StrategyGallery";
 import { MarketQualityTab } from "./components/tabs/MarketQualityTab";
+import { WindTunnelTab } from "./components/tabs/WindTunnelTab";
 
-type Tab = "competition" | "gallery" | "quality";
+type Tab = "competition" | "gallery" | "quality" | "wind";
 
 const params = new URLSearchParams(window.location.search);
 
@@ -134,6 +135,9 @@ export default function App() {
               <button className={tab === "quality" ? "on" : ""} onClick={() => pickTab("quality")}>
                 Market quality
               </button>
+              <button className={tab === "wind" ? "on" : ""} onClick={() => pickTab("wind")}>
+                Wind Tunnel <span className="count new">policy lab</span>
+              </button>
               <span className="spacer" />
               <span className="muted small kbd-hint">
                 <kbd>Space</kbd> play · <kbd>←</kbd>
@@ -143,7 +147,8 @@ export default function App() {
             <div className="tab-body">
               {tab === "competition" && <CompetitionTab run={run} asset={asset} />}
               {tab === "gallery" && <StrategyGallery run={run} />}
-              {tab === "quality" && <MarketQualityTab run={run} />}
+              {tab === "quality" && <MarketQualityTab run={run} asset={asset} />}
+              {tab === "wind" && <WindTunnelTab />}
             </div>
           </section>
           {drawerAgent && <TranscriptDrawer run={run} agent={drawerAgent} onClose={() => setDrawer(null)} />}
