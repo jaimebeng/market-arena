@@ -1,6 +1,99 @@
 {
  "runs": [
   {
+   "name": "showcase_multi",
+   "file": "showcase_multi.json",
+   "assets": [
+    "A",
+    "B",
+    "C",
+    "IDX"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "spark_mm",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_mm",
+     "role": "maker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    },
+    {
+     "id": "arb_bot",
+     "role": "taker",
+     "model": "textbook: index_arbitrage"
+    },
+    {
+     "id": "spark_quant",
+     "role": "taker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_quant",
+     "role": "taker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    }
+   ],
+   "epochs": 8,
+   "steps": 15990,
+   "decisions": 34,
+   "llm_cost_usd": 0.1191,
+   "finished": 1793057777.5618608,
+   "bytes": 3495342
+  },
+  {
+   "name": "showcase_single",
+   "file": "showcase_single.json",
+   "assets": [
+    "A"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "spark_mm",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_mm",
+     "role": "maker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    },
+    {
+     "id": "momentum_bot",
+     "role": "taker",
+     "model": "textbook: momentum"
+    },
+    {
+     "id": "spark_quant",
+     "role": "taker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_quant",
+     "role": "taker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    }
+   ],
+   "epochs": 8,
+   "steps": 15990,
+   "decisions": 31,
+   "llm_cost_usd": 0.1111,
+   "finished": 1793057658.1510224,
+   "bytes": 1721986
+  },
+  {
    "name": "takers_smoke",
    "file": "takers_smoke.json",
    "assets": [
@@ -39,99 +132,6 @@
    "llm_cost_usd": 0.0295,
    "finished": 1793056163.471772,
    "bytes": 544846
-  },
-  {
-   "name": "showcase_multi",
-   "file": "showcase_multi.json",
-   "assets": [
-    "A",
-    "B",
-    "C",
-    "IDX"
-   ],
-   "agents": [
-    {
-     "id": "glft",
-     "role": "maker",
-     "model": "GLFT closed form"
-    },
-    {
-     "id": "spark_mm",
-     "role": "maker",
-     "model": "meta:muse-spark-1.3-contributor"
-    },
-    {
-     "id": "open_mm",
-     "role": "maker",
-     "model": "baseten:meta-models/muse-spark-open-1026"
-    },
-    {
-     "id": "arb_bot",
-     "role": "taker",
-     "model": null
-    },
-    {
-     "id": "spark_quant",
-     "role": "taker",
-     "model": "meta:muse-spark-1.3-contributor"
-    },
-    {
-     "id": "open_quant",
-     "role": "taker",
-     "model": "baseten:meta-models/muse-spark-open-1026"
-    }
-   ],
-   "epochs": 6,
-   "steps": 11990,
-   "decisions": 27,
-   "llm_cost_usd": 0.0867,
-   "finished": null,
-   "bytes": 2657984
-  },
-  {
-   "name": "showcase_single",
-   "file": "showcase_single.json",
-   "assets": [
-    "A"
-   ],
-   "agents": [
-    {
-     "id": "glft",
-     "role": "maker",
-     "model": "GLFT closed form"
-    },
-    {
-     "id": "spark_mm",
-     "role": "maker",
-     "model": "meta:muse-spark-1.3-contributor"
-    },
-    {
-     "id": "open_mm",
-     "role": "maker",
-     "model": "baseten:meta-models/muse-spark-open-1026"
-    },
-    {
-     "id": "momentum_bot",
-     "role": "taker",
-     "model": null
-    },
-    {
-     "id": "spark_quant",
-     "role": "taker",
-     "model": "meta:muse-spark-1.3-contributor"
-    },
-    {
-     "id": "open_quant",
-     "role": "taker",
-     "model": "baseten:meta-models/muse-spark-open-1026"
-    }
-   ],
-   "epochs": 7,
-   "steps": 13990,
-   "decisions": 28,
-   "llm_cost_usd": 0.0928,
-   "finished": null,
-   "bytes": 1389293
   },
   {
    "name": "multi_scripted",
@@ -202,5 +202,5 @@
    "bytes": 323657
   }
  ],
- "generated": 1793057495.4137964
+ "generated": 1793057784.1091666
 }
