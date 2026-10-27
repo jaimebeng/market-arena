@@ -31,3 +31,20 @@ def test_trials_and_validation_run(tmp_path):
     v = d.validate({"tick": 5})
     assert v["default"] and v["recommended"] and "spread" in v["change_pct"]
     assert v["change_pct"]["spread"] > 0  # a 5-cent tick widens the spread
+
+
+def test_replicated_trials_report_standard_errors(tmp_path):
+    spec = {
+        "name": "designer_rep", "model": "meta:x", "seed": 3, "trial_seeds": [3, 4],
+        "max_trials": 1, "workers": 2,
+        "base": {"steps_per_epoch": 600, "n_epochs": 2, "calibration_steps": 2000,
+                 "out_dir": str(tmp_path),
+                 "agents": [{"id": "glft", "kind": "glft"},
+                            {"id": "mm", "kind": "static_maker", "params": {"half_spread": 4}}]},
+    }  # fmt: skip
+    d = Designer(spec)
+    res = d._run_experiments({"experiments": [{"label": "fee", "rules": {"taker_fee_bps": 2},
+                                               "hypothesis": "fee adds to cost"}]})  # fmt: skip
+    m = res[0]["metrics"]
+    assert m["taker_cost"] > 2 and m["spread_se"] is not None
+    assert d.trials[0]["metrics"]["n_seeds"] == 2

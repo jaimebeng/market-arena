@@ -69,6 +69,29 @@ Experiment `configs/collusion_lab.yaml`: 3 LLM makers, GLFT, an order-book-imbal
 4. **The regulator also put the GLFT benchmark on "tacit collusion" watch.** It is right that GLFT quotes near the cartel level: a single risk-averse optimal maker prices close to the joint-profit spread. Spread data alone cannot tell a cartel from an independent, risk-averse maker. Real regulators face the same identification problem.
 5. Regulator notices sometimes preceded spread cuts. For example, after *"quoted spreads remain persistently near joint-profit levels"*, the market spread went from 8.11 to 7.05. But spreads fell just as much in the same seed's baseline with no regulator, so we **do not** claim the notices caused it.
 
-## 5. Stylised facts
+## 5. An AI market designer, and two lessons from real-world policy-making
+
+`market_arena/runner/designer.py`: Muse Spark acts as the exchange's head of market design. Each round, it chooses up to 3 rulebooks, with a hypothesis for each, from five levers: tick size, maker fee or rebate, taker fee, speed bump and circuit breaker. Each rulebook runs in the wind tunnel with live AI makers. It gets a budget of 9 experiments, then recommends a rulebook. Like the quants' strategies, **the recommendation is validated out of sample**: it is re-run against the default rules on 3 fresh seeds (61–63).
+
+**Round 1: it optimised the metric it was given, and the metric was wrong** (`configs/designer.yaml`). The mandate put "a tight bid-ask spread" first.
+- The designer tested how the size of the rebate changed things, saw that a large rebate added volatility, and tested circuit breakers and speed bumps to contain it.
+- It recommended a **3 bps maker rebate funded by a 3.5 bps taker fee, plus a 0.5% circuit breaker**.
+- Out of sample, quoted spreads fell **33%** (8.50 ± 1.06 → 5.70 ± 0.15¢), so the recommendation held.
+- But an investor who trades pays half the spread *plus* the taker fee. That all-in cost rose from about 4.25¢ to 6.35¢ per lot, **about 49% worse**.
+- The makers pocketed much of the rebate: Δ went from 0.79 to 1.21, and maker P&L rose 83%.
+
+This is the standard criticism of maker-taker pricing on real exchanges: headline spreads narrow while all-in costs do not. The designer reproduced it because it optimised the metric it was given.
+
+**Round 2: it learned the lesson, then overfitted noise** (`configs/designer_v2.yaml`). The mandate now targets the all-in `taker_cost`.
+- The designer tested maker-taker fees, saw all-in cost *rise* (3.67 → 5.0–5.4¢) and dropped them. That was the right call.
+- It then recommended a **1% circuit breaker**, which cut all-in cost by 15% on its single test seed. Its explanation: the breaker "disrupts tacit wide quoting".
+- Out of sample the effect **vanished: +1.7%**.
+- There was a red flag it overlooked: a 2% breaker, which almost never triggers, looked even better on that seed (−23%), which can only be noise.
+
+The out-of-sample validation caught the overfit, just as the holdout gate catches overfitted quant strategies.
+
+**Round 3: replication** (`configs/designer_v3.yaml`) runs every experiment on 3 seeds with standard errors, and explicitly allows "keep the default rules" as an answer. Results are added below when the run completes.
+
+## 6. Stylised facts
 
 Returns in the AI-populated markets show heavy tails, with a Hill tail index of about 2–4 (real markets: ≈ 3), and near-zero autocorrelation of returns beyond the shortest lags. See `meta.json → stylized` in each run and the Market Quality tab of the dashboard.

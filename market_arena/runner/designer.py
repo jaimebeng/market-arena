@@ -44,6 +44,16 @@ than under the default rules.
 3. Deep order books (top-5 depth, lots).
 4. A viable business: exchange fee revenue >= 0 and market makers still profitable."""
 
+REPLICATION = {
+    False: "Experiments run on the same random seed, so background flow and news are identical "
+    "and differences come from the rules and from how the AI makers adapt, but AI behaviour is "
+    "itself noisy: differences under ~5% may be noise.",
+    True: "Each experiment is replicated on the same {n} random seeds (common random numbers "
+    "across experiments): every metric is the mean over seeds, with its standard error in "
+    "<metric>_se. AI behaviour is noisy, so treat a difference smaller than about two standard "
+    "errors as unproven.",
+}
+
 SYSTEM = """You are the head of market design at an electronic stock exchange. Your job: choose \
 the exchange's rulebook. The market is populated by adaptive AI market makers (which set their \
 own quoting policies and adapt to the rules), a momentum trader and scripted background \
@@ -54,9 +64,7 @@ Your mandate, in priority order:
 
 You can test rulebooks in a wind tunnel: each experiment runs the full market with live AI \
 traders for {epochs} epochs of {steps} steps and reports market-quality metrics, averaged over \
-epochs after the first. Experiments run on the same random seed, so background flow and news are \
-identical and differences come from the rules and from how the AI makers adapt, but AI behaviour \
-is itself noisy: differences under ~5% may be noise. You have a budget of {budget} experiments \
+epochs after the first. {replication} You have a budget of {budget} experiments \
 (at most {per_call} per run_experiments call, run in parallel). Think like a scientist: state a \
 hypothesis for each experiment, change few things at a time, and build on what you learn.
 
@@ -164,6 +172,8 @@ class Designer:
         self.workers = spec.get("workers", 6)
         self.trials: list[dict] = []
         self.used = 0  # experiments charged to the budget
+        # each experiment runs on these seeds (common random numbers across experiments)
+        self.seeds = spec.get("trial_seeds") or [spec["seed"]]
 
     def _run(self, jobs: list[tuple[str, dict, int]]) -> list[dict | None]:
         """jobs: (run name, rules, seed). Runs in parallel processes; returns summaries."""
@@ -184,19 +194,27 @@ class Designer:
 
     def _compact(self, t: dict) -> dict:
         m = t["metrics"] or {}
+        out = {k: m.get(k) for k in METRICS}
+        if len(self.seeds) > 1:  # replicated: report the standard error next to each mean
+            out |= {f"{k}_se": m.get(f"{k}_se") for k in METRICS if m.get(f"{k}_se") is not None}
         return {"label": t["label"], "rules": t["rules"], "hypothesis": t["hypothesis"],
-                "metrics": {k: m.get(k) for k in METRICS} if m else "run failed"}  # fmt: skip
+                "metrics": out if m else "run failed"}  # fmt: skip
 
     def run_trials(self, exps: list[dict]) -> list[dict]:
-        seed = self.spec["seed"]
         jobs, metas = [], []
         for e in exps:
             rules = check_rules(e.get("rules"))
-            i = len(self.trials) + len(jobs)
-            jobs.append((f"trial_{i:02d}_{_slug(e['label'])}", rules, seed))
+            i = len(self.trials) + len(metas)
+            name = f"trial_{i:02d}_{_slug(e['label'])}"
+            for s in self.seeds:
+                jobs.append((f"{name}/s{s}" if len(self.seeds) > 1 else name, rules, s))
             metas.append({"label": e["label"], "rules": rules, "hypothesis": e.get("hypothesis", "")})
-        for meta, res in zip(metas, self._run(jobs)):
-            self.trials.append(meta | {"metrics": res})
+        res = self._run(jobs)
+        n = len(self.seeds)
+        for j, meta in enumerate(metas):
+            runs = [r for r in res[j * n:(j + 1) * n] if r]
+            metrics = (runs[0] if n == 1 else aggregate(runs)) if runs else None
+            self.trials.append(meta | {"metrics": metrics})
             print(f"trial {meta['label']}: {self._compact(self.trials[-1])['metrics']}", flush=True)
         return [self._compact(t) for t in self.trials[-len(metas):]]
 
@@ -231,7 +249,9 @@ class Designer:
         b = self.base
         system = SYSTEM.format(epochs=b.get("n_epochs", 4), steps=b.get("steps_per_epoch", 2000),
                                budget=self.budget, per_call=self.per_call,
-                               mandate=self.spec.get("mandate", DEFAULT_MANDATE).strip())  # fmt: skip
+                               mandate=self.spec.get("mandate", DEFAULT_MANDATE).strip(),
+                               replication=REPLICATION[len(self.seeds) > 1].format(
+                                   n=len(self.seeds)))  # fmt: skip
         tools = json.loads(json.dumps(TOOLS).replace("{per_call}", str(self.per_call)))
         user = ("The default-rules baseline has been run for you:\n"
                 f"{json.dumps(self._compact(self.trials[0]))}\n"
@@ -252,6 +272,7 @@ class Designer:
         validation = self.validate(rec["rules"])
         out = {
             "experiment": self.name, "model": self.spec["model"], "seed": self.spec["seed"],
+            "trial_seeds": self.seeds,
             "budget": self.budget, "mandate": self.spec.get("mandate", DEFAULT_MANDATE).strip(),
             "trials": self.trials, "recommendation": rec,
             "validation": validation, "rulebook": self._rulebook(),

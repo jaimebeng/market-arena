@@ -10,6 +10,8 @@ runs/*
 !runs/final_single/
 !runs/final_multi/
 !runs/designer/
+!runs/designer_v2/
+!runs/designer_v3/
 runs/**/snapshots.jsonl
 runs/**/trades.jsonl
 runs/**/*.log
