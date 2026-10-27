@@ -12,8 +12,9 @@ import { StrategyGallery } from "./components/tabs/StrategyGallery";
 import { MarketQualityTab } from "./components/tabs/MarketQualityTab";
 import { WindTunnelTab } from "./components/tabs/WindTunnelTab";
 import { SurveillanceCount, SurveillanceTab } from "./components/tabs/SurveillanceTab";
+import { DesignerTab } from "./components/tabs/DesignerTab";
 
-type Tab = "competition" | "gallery" | "quality" | "surveillance" | "wind";
+type Tab = "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer";
 
 const params = new URLSearchParams(window.location.search);
 
@@ -149,6 +150,9 @@ export default function App() {
               <button className={shownTab === "wind" ? "on" : ""} onClick={() => pickTab("wind")}>
                 Wind Tunnel <span className="count new">policy lab</span>
               </button>
+              <button className={shownTab === "designer" ? "on" : ""} onClick={() => pickTab("designer")}>
+                Designer <span className="count new">AI market design</span>
+              </button>
               <span className="spacer" />
               <span className="muted small kbd-hint">
                 <kbd>Space</kbd> play · <kbd>←</kbd>
@@ -161,6 +165,7 @@ export default function App() {
               {shownTab === "quality" && <MarketQualityTab run={run} asset={asset} />}
               {shownTab === "surveillance" && <SurveillanceTab run={run} onOpenAgent={setDrawer} />}
               {shownTab === "wind" && <WindTunnelTab />}
+              {shownTab === "designer" && <DesignerTab />}
             </div>
           </section>
           {drawerAgent && <TranscriptDrawer run={run} agent={drawerAgent} onClose={() => setDrawer(null)} />}

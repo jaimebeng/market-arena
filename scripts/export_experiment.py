@@ -269,6 +269,17 @@ def export_experiment(exp_dir: Path) -> dict | None:
     }
 
 
+def is_designer(d: Path) -> bool:
+    """AI market-designer rounds (runs/designer*/): trials + recommendation, not variants."""
+    if d.name.startswith("designer"):
+        return True
+    p = d / "summary.json"
+    try:
+        return p.exists() and "trials" in json.loads(p.read_text())
+    except json.JSONDecodeError:
+        return False
+
+
 def has_seed_runs(d: Path) -> bool:
     """An experiment still running (no summary.json yet): <exp>/<variant>/s<seed>/metrics.jsonl."""
     if d.name == "superseded":
@@ -298,8 +309,13 @@ def main(argv=None) -> int:
     args = ap.parse_args(argv)
     args.out_dir.mkdir(parents=True, exist_ok=True)
     if args.all:
-        dirs = [d for d in sorted(args.exp_dir.iterdir()) if d.is_dir() and (
+        dirs = [d for d in sorted(args.exp_dir.iterdir()) if d.is_dir() and not is_designer(d) and (
             (d / "summary.json").exists() or d.name.startswith("wind_tunnel") or has_seed_runs(d))]  # fmt: skip
+        # designer rounds are exported by export_designer.py, not as wind-tunnel experiments
+        for d in sorted(args.exp_dir.iterdir()):
+            stale = args.out_dir / f"{d.name}.json"
+            if d.is_dir() and is_designer(d) and stale.exists():
+                stale.unlink()
     else:
         dirs = [args.exp_dir]
     for d in dirs:

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -p . && vite build",
     "preview": "vite preview",
-    "export": "python3 ../scripts/export_run.py --all ../runs public/runs && python3 ../scripts/export_experiment.py --all ../runs public/experiments"
+    "export": "python3 ../scripts/export_run.py --all ../runs public/runs && python3 ../scripts/export_experiment.py --all ../runs public/experiments && python3 ../scripts/export_designer.py ../runs public/designer"
   },
   "dependencies": {
     "react": "^19.3.1",

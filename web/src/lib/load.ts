@@ -1,6 +1,8 @@
 import type {
   AssetSeries,
   Decision,
+  DesignerIndexEntry,
+  DesignerRound,
   EpochSpan,
   Experiment,
   ExperimentIndexEntry,
@@ -38,6 +40,18 @@ export async function fetchExperiment(entry: ExperimentIndexEntry): Promise<Expe
   const r = await fetch(`${BASE}experiments/${entry.file}`);
   if (!r.ok) throw new Error(`${entry.file}: HTTP ${r.status}`);
   return (await r.json()) as Experiment;
+}
+
+export async function fetchDesignerIndex(): Promise<DesignerIndexEntry[]> {
+  const r = await fetch(`${BASE}designer/index.json`, { cache: "no-cache" });
+  if (!r.ok) return [];
+  return ((await r.json()).rounds ?? []) as DesignerIndexEntry[];
+}
+
+export async function fetchDesignerRound(entry: DesignerIndexEntry): Promise<DesignerRound> {
+  const r = await fetch(`${BASE}designer/${entry.file}`, { cache: "no-cache" });
+  if (!r.ok) throw new Error(`${entry.file}: HTTP ${r.status}`);
+  return (await r.json()) as DesignerRound;
 }
 
 const f64 =(a: (number | null)[] | undefined, n: number) => {

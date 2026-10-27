@@ -1,0 +1,26 @@
+{
+ "rounds": [
+  {
+   "name": "designer",
+   "round": "v1",
+   "file": "designer.json",
+   "pending": false,
+   "trials": 10
+  },
+  {
+   "name": "designer_v2",
+   "round": "v2",
+   "file": "designer_v2.json",
+   "pending": false,
+   "trials": 10
+  },
+  {
+   "name": "designer_v3",
+   "round": "v3",
+   "file": "designer_v3.json",
+   "pending": true,
+   "trials": 9
+  }
+ ],
+ "generated": 1793092894.0156372
+}

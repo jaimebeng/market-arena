@@ -394,3 +394,63 @@ export interface Run {
   spoofers: string[]; // planted ground truth
   hasOrders: boolean;
 }
+
+// ---------------------------------------------------------------- market designer ----
+
+/** Headline metrics of a designer trial / validation arm: means, <metric>_se, n_seeds. */
+export type DesignerMetrics = Record<string, number | null | undefined> & { n_seeds?: number };
+
+export interface DesignerTrial {
+  i: number;
+  label: string;
+  rules: Record<string, number | null>;
+  hypothesis: string;
+  metrics: DesignerMetrics | null;
+}
+
+export interface DesignerBatch {
+  turn: number;
+  text: string | null;
+  labels: string[];
+  trials: number[];
+  error?: string;
+}
+
+export interface DesignerRound {
+  format: 1;
+  name: string;
+  round: string; // v1, v2, v3
+  pending: boolean;
+  trials_done?: number;
+  trial_folders?: number;
+  experiment?: string;
+  model?: string;
+  seed?: number;
+  trial_seeds?: number[];
+  budget?: number;
+  mandate?: string | null;
+  target?: "spread" | "taker_cost" | string;
+  taker_cost_derived?: boolean;
+  trials?: DesignerTrial[];
+  batches?: DesignerBatch[];
+  recommendation?: { rules?: Record<string, number | null>; rationale?: string; expected_effects?: string };
+  rec_trial?: number | null;
+  validation?: {
+    seeds: number[];
+    default: (DesignerMetrics & { seed_runs?: (DesignerMetrics & { seed?: string })[] }) | null;
+    recommended: (DesignerMetrics & { seed_runs?: (DesignerMetrics & { seed?: string })[] }) | null;
+    change_pct: Record<string, number>;
+  };
+  rulebook?: Record<string, { range?: [number, number]; type?: string; default?: number | null; meaning?: string }>;
+  transcript?: Turn[];
+  designer_cost_usd?: number | null;
+  error?: string | null;
+}
+
+export interface DesignerIndexEntry {
+  name: string;
+  round: string;
+  file: string;
+  pending: boolean;
+  trials: number;
+}

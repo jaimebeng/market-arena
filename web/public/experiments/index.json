@@ -33,25 +33,7 @@
     33
    ],
    "provisional": false
-  },
-  {
-   "name": "designer",
-   "file": "designer.json",
-   "variants": [
-    "trial_00_default_rules",
-    "trial_01_rebate_mod",
-    "trial_02_rebate_max",
-    "trial_03_cb_only",
-    "trial_04_maxreb_cb1",
-    "trial_05_maxreb_cb1_notake",
-    "trial_06_highreb_cb1",
-    "trial_07_maxreb_tightcb",
-    "trial_08_maxreb_rest10",
-    "trial_09_maxreb_both"
-   ],
-   "seeds": [],
-   "provisional": true
   }
  ],
- "generated": 1793091798.1046417
+ "generated": 1793092829.5898638
 }

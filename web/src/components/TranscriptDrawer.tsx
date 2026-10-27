@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { AgentView, Decision, MakerPolicy, Run, ToolCall } from "../types";
+import type { AgentView, Decision, MakerPolicy, Run, ToolCall, Turn } from "../types";
 import { fmtCompact, fmtNum, fmtUsd } from "../lib/format";
 import { useUi } from "../lib/playback";
 import { latestDecision, policyAt } from "../lib/query";
@@ -154,28 +154,75 @@ function DecisionView({ run, d, current }: { run: Run; d: Decision; current: boo
       {d.turns && d.turns.length > 0 && (
         <>
           <div className="block-label">transcript · {d.turns.length} turns</div>
-          <ol className="turns">
-            {d.turns.map((turn, i) => (
-              <li key={i} className="turn">
-                <div className="turn-n mono">{i + 1}</div>
-                <div className="turn-body">
-                  {turn.reasoning && (
-                    <details className="reasoning">
-                      <summary>reasoning</summary>
-                      <div>{turn.reasoning.trim()}</div>
-                    </details>
-                  )}
-                  {turn.text && <p className="turn-text">{turn.text}</p>}
-                  {turn.calls.map((c, j) => (
-                    <Call key={j} c={c} />
-                  ))}
-                </div>
-              </li>
-            ))}
-          </ol>
+          <TurnList turns={d.turns} />
         </>
       )}
     </section>
+  );
+}
+
+/** An LLM tool-use transcript: reasoning, text and tool calls per turn. */
+export function TurnList({ turns }: { turns: Turn[] }) {
+  return (
+    <ol className="turns">
+      {turns.map((turn, i) => (
+        <li key={i} className="turn">
+          <div className="turn-n mono">{i + 1}</div>
+          <div className="turn-body">
+            {turn.reasoning && (
+              <details className="reasoning">
+                <summary>reasoning</summary>
+                <div>{turn.reasoning.trim()}</div>
+              </details>
+            )}
+            {turn.text && <p className="turn-text">{turn.text}</p>}
+            {(turn.calls ?? []).map((c, j) => (
+              <Call key={j} c={c} />
+            ))}
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function useEscape(onClose: () => void) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+}
+
+/** Side drawer for a transcript that is not tied to a run agent (e.g. the market designer). */
+export function TranscriptShell({
+  title,
+  sub,
+  color,
+  onClose,
+  children,
+}: {
+  title: React.ReactNode;
+  sub?: React.ReactNode;
+  color?: string;
+  onClose: () => void;
+  children: React.ReactNode;
+}) {
+  useEscape(onClose);
+  return (
+    <div className="drawer-scrim" onClick={onClose}>
+      <aside className="drawer" style={{ ["--agent" as string]: color ?? "#7b8cff" }} onClick={(e) => e.stopPropagation()}>
+        <header className="drawer-head">
+          {title}
+          <span className="spacer" />
+          <button className="icon-btn" onClick={onClose} title="Close (Esc)">
+            ✕
+          </button>
+        </header>
+        {sub && <div className="drawer-sub muted">{sub}</div>}
+        <div className="drawer-body">{children}</div>
+      </aside>
+    </div>
   );
 }
 
@@ -184,12 +231,7 @@ export function TranscriptDrawer({ run, agent, onClose }: { run: Run; agent: Age
   const ds = run.decisionsByAgent[agent.id] ?? [];
   const cur = latestDecision(run, agent.id, pb.t);
   const body = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  useEscape(onClose);
 
   useEffect(() => {
     if (!cur) return;
