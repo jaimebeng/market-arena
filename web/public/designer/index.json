@@ -18,9 +18,9 @@
    "name": "designer_v3",
    "round": "v3",
    "file": "designer_v3.json",
-   "pending": true,
-   "trials": 9
+   "pending": false,
+   "trials": 10
   }
  ],
- "generated": 1793092894.0156372
+ "generated": 1793093136.1505163
 }

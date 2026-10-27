@@ -90,7 +90,20 @@ This is the standard criticism of maker-taker pricing on real exchanges: headlin
 
 The out-of-sample validation caught the overfit, just as the holdout gate catches overfitted quant strategies.
 
-**Round 3: replication** (`configs/designer_v3.yaml`) runs every experiment on 3 seeds with standard errors, and explicitly allows "keep the default rules" as an answer. Results are added below when the run completes.
+**Round 3: replicated evidence, calibrated claims** (`configs/designer_v3.yaml`). Every experiment ran on 3 seeds with standard errors, and "keep the default rules" was explicitly allowed.
+- Testing balanced maker-taker fees, the designer found they raised all-in cost almost one-for-one (3.53 → 4.55¢). Testing circuit breakers, it found they "did nothing".
+- It then mapped a dose-response curve for speed bumps (5, 10, 25 and 50 steps) and saw that long bumps deepen the book but widen spreads.
+- It recommended a **10-step minimum resting time**. Its stated expectation: *"taker_cost neutral to slightly lower (within noise) … volatility lower, consistent across all bump experiments"*.
+- Out of sample, as paired changes against the default rules on seeds 61–63:
+
+| Metric | Designer's claim | Out of sample (mean ± s.e.) |
+|---|---|---|
+| Volatility | lower | **−14.2% ± 4.5%**, lower on every seed (−23%, −9%, −11%) |
+| All-in investor cost | neutral, within noise | −4.5% ± 14.4%, noise as stated |
+| Depth | flat | −0.7% ± 1.4% |
+| Mispricing | flat | +1.1% ± 0.3% (about 0.2 bps; a small side effect) |
+
+**The progression is the result.** The same model, given a corrected metric and then replicated evidence, went from (1) optimising a proxy into a well-known policy trap, to (2) confidently explaining noise, to (3) a modest recommendation whose claimed effects, and stated lack of effect, held out of sample. These are the failure modes of real rule-making: optimising a headline metric, and acting on a single study. The wind tunnel makes them cheap to catch. The three designer rounds cost **$0.015 in designer tokens** plus the traders' tokens.
 
 ## 6. Stylised facts
 
