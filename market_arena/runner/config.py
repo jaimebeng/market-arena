@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 
 from ..sim.background import IndexFlowParams, InformedParams, ZIParams
 from ..sim.exchange import Rules
+from ..sim.news import NewsParams
 from ..sim.participants import PopulationCfg
 
 
@@ -27,7 +28,7 @@ class ChatCfg(BaseModel):
 class AgentCfg(BaseModel):
     id: str
     kind: Literal["glft", "static_maker", "llm_maker", "llm_taker", "textbook_taker",
-                  "spoofer", "llm_surveillance", "llm_red_team"]  # fmt: skip
+                  "spoofer", "llm_surveillance", "llm_red_team", "llm_investor", "llm_finfluencer"]  # fmt: skip
     model: str | None = None  # e.g. "meta:muse-spark-1.3-contributor", "baseten:meta-models/..."
     assets: list[str] | None = None  # default: all assets
     params: dict = Field(default_factory=dict)
@@ -54,6 +55,7 @@ class ArenaConfig(BaseModel):
     holdout: int = 1000  # steps hidden from takers' research tools, used for the OOS gate
     chat: ChatCfg = Field(default_factory=ChatCfg)
     population: PopulationCfg | None = None  # retail, institutional, HFT, leverage (opt-in)
+    news: NewsParams | None = None  # a newswire of headlines and earnings releases (opt-in)
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 

@@ -23,6 +23,7 @@ from ..sim.book import BUY
 from ..sim.exchange import Exchange
 from ..sim.fundamentals import Fundamentals
 from ..sim.history import MarketHistory
+from ..sim.news import NewsWire, news_response
 from ..sim.participants import (IndexFund, InstitutionalFlow, LatencyArb, MarginDesk, RetailFlow,
                                 Router, stream)
 from .config import ArenaConfig
@@ -58,6 +59,7 @@ class Market:
             if cfg.index and cfg.index_flow
             else None
         )
+        self.news = NewsWire(self.fund, cfg.news, stream(cfg.seed if seed is None else seed, 5)) if cfg.news else None
         self.router = Router(self.ex, {a: [a] for a in self.assets})
         self.extra: list = []  # optional participants, stepped after the original flow
         self.retail = self.institutional = self.margin = None
@@ -81,6 +83,8 @@ class Market:
 
     def background_step(self) -> dict[str, float]:
         self.fund.step()
+        if self.news:
+            self.news.step(self.ex.t)
         values = self.fund.values()
         self._values.append(values)
         lagged = self._values[0]
@@ -201,11 +205,13 @@ class Arena:
         self._write("chat", msg)
         self._files["chat"].flush()
 
-    def post_forum(self, epoch: int, agent: str, text: str, stance: float, asset: str | None = None) -> None:
+    def post_forum(self, epoch: int, agent: str, text: str, stance: float, asset: str | None = None,
+                   weight: float = 1.0) -> None:  # fmt: skip
         """A public investor-forum post. `stance` in [-1, 1] (bearish to bullish) is what herding
-        retail investors react to; `text` is what people (and the regulator) read."""
+        retail investors react to, weighted by the author's influence; `text` is what people (and
+        the regulator) read."""
         msg = {"epoch": epoch, "t": self.ex.t, "agent": agent, "asset": asset,
-               "stance": float(np.clip(stance, -1, 1)), "text": text[:500]}  # fmt: skip
+               "stance": float(np.clip(stance, -1, 1)), "weight": weight, "text": text[:500]}  # fmt: skip
         self.forum.append(msg)
         self._write("forum", msg)
         self._files["forum"].flush()
@@ -315,6 +321,11 @@ class Arena:
                 "fair_value": stylized_facts(self.hist.get(a, "value"))}
             for a in self.assets
         }  # fmt: skip
+        if self.market.news:
+            items = self.market.news.items
+            (self.out / "news.jsonl").write_text("".join(json.dumps(n) + "\n" for n in items))
+            meta["news_response"] = news_response(
+                items, None, asset_mid={a: self.hist.get(a, "mid") for a in self.assets})
         meta["finished"] = time.time()
         meta["llm_cost_usd"] = round(self.cost, 4)
         (self.out / "meta.json").write_text(json.dumps(meta, indent=1, default=str))

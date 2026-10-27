@@ -23,4 +23,12 @@ def build_llm_agent(acfg, arena):
         from .red_team import LLMRedTeam
 
         return LLMRedTeam(acfg.id, assets, arena.cfg.seed + 7, acfg.model, acfg.params)
+    if acfg.kind == "llm_investor":
+        from .llm_investor import LLMInvestor
+
+        return LLMInvestor(acfg.id, assets, acfg.model, acfg.params)
+    if acfg.kind == "llm_finfluencer":
+        from .llm_investor import LLMFinfluencer
+
+        return LLMFinfluencer(acfg.id, assets, acfg.model, acfg.params)
     raise ValueError(f"unknown agent kind {acfg.kind}")

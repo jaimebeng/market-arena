@@ -30,6 +30,7 @@ class Fundamentals:
         self.beta = np.array([c.get("beta", 1.0) for c in components.values()])
         self.factor_sigma = factor_sigma
         self.index_name = None
+        self.last_jumps: list[tuple[str, float]] = []
         if index is not None:
             # shares chosen so the basket is worth index["price"] at t=0, equal value-weights
             v0 = np.exp(self.log_v)
@@ -40,10 +41,19 @@ class Fundamentals:
         f = self.rng.normal() * self.factor_sigma
         eps = self.rng.normal(size=len(self.names))
         self.log_v += self.beta * f + self.sigma * eps
+        self.last_jumps: list[tuple[str, float]] = []  # (asset, bps) this step, for the news wire
         if self.jump_rate:
             hit = self.rng.random(len(self.names)) < self.jump_rate
             if hit.any():
-                self.log_v += hit * self.rng.normal(size=len(self.names)) * self.jump_bps * 1e-4
+                z = self.rng.normal(size=len(self.names))
+                self.log_v += hit * z * self.jump_bps * 1e-4
+                self.last_jumps = [(n, float(x * self.jump_bps)) for n, h, x in zip(self.names, hit, z) if h]
+
+    def shock(self, bps: dict[str, float]) -> None:
+        """Move fair values by the given bps per component (earnings, a rate decision)."""
+        for i, n in enumerate(self.names):
+            if n in bps:
+                self.log_v[i] += bps[n] * 1e-4
 
     def values(self) -> dict[str, float]:
         v = np.exp(self.log_v)

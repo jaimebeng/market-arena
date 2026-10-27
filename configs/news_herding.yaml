@@ -1,0 +1,50 @@
+# News and herding: do LLM investors that read a newswire help prices absorb news, or push them
+# too far? And when retail investors copy what the LLM investors post on a forum, do they herd?
+# Short epochs (500 steps) so investors review often; the newswire carries templated headlines
+# (15% misleading) and a public earnings calendar. Makers are scripted to isolate the investors.
+name: news_herding
+seeds: [141, 142, 143, 144, 145, 146]
+description: >-
+  A newswire of headlines (15% misleading) and scheduled earnings. Variants add three LLM
+  investors (news-driven, momentum, contrarian) on Muse Spark Open or Muse Spark, who post on a
+  public forum; in one variant retail investors copy the forum.
+base:
+  seed: 141
+  steps_per_epoch: 500
+  n_epochs: 12
+  news: {misleading: 0.15, earnings_every: 1500, earnings_bps: 80}
+  population:
+    retail: {rate: 0.15, chartist: 0.25, herd: 0.0}
+  agents:
+    - {id: glft, kind: glft}
+    - {id: mm_b, kind: static_maker, params: {half_spread: 5, skew: 0.5}}
+    - {id: mm_c, kind: static_maker, params: {half_spread: 6, skew: 0.5}}
+variants:
+  - name: llm_investors
+    label: "LLM investors (Spark Open)"
+    change: "Three Muse Spark Open investors (news-driven, momentum, contrarian) read the news and post on a forum nobody copies."
+    overrides:
+      agents: &open_investors
+        - {id: glft, kind: glft}
+        - {id: mm_b, kind: static_maker, params: {half_spread: 5, skew: 0.5}}
+        - {id: mm_c, kind: static_maker, params: {half_spread: 6, skew: 0.5}}
+        - {id: inv_news, kind: llm_investor, model: "baseten:meta-models/muse-spark-open-1026", params: {persona: news}}
+        - {id: inv_momentum, kind: llm_investor, model: "baseten:meta-models/muse-spark-open-1026", params: {persona: momentum}}
+        - {id: inv_contrarian, kind: llm_investor, model: "baseten:meta-models/muse-spark-open-1026", params: {persona: contrarian}}
+  - name: llm_investors_herding
+    label: "LLM investors + herding retail"
+    change: "Same investors; retail investors now copy the stance of forum posts (herd weight 0.5)."
+    overrides:
+      population: {retail: {herd: 0.5}}
+      agents: *open_investors
+  - name: llm_investors_spark
+    label: "LLM investors (Muse Spark)"
+    change: "The same three personas on Muse Spark 1.3; no herding."
+    overrides:
+      agents:
+        - {id: glft, kind: glft}
+        - {id: mm_b, kind: static_maker, params: {half_spread: 5, skew: 0.5}}
+        - {id: mm_c, kind: static_maker, params: {half_spread: 6, skew: 0.5}}
+        - {id: inv_news, kind: llm_investor, model: "meta:muse-spark-1.3-contributor", params: {persona: news}}
+        - {id: inv_momentum, kind: llm_investor, model: "meta:muse-spark-1.3-contributor", params: {persona: momentum}}
+        - {id: inv_contrarian, kind: llm_investor, model: "meta:muse-spark-1.3-contributor", params: {persona: contrarian}}

@@ -141,7 +141,8 @@ class RetailFlow:
     def sentiment(self, stock: str) -> float:
         """Average stance of the latest posts about this stock (or about the market)."""
         recent = [m for m in self.forum[-12:] if m.get("asset") in (stock, None)]
-        return float(np.mean([m["stance"] for m in recent])) if recent else 0.0
+        w = sum(m.get("weight", 1.0) for m in recent)
+        return sum(m["stance"] * m.get("weight", 1.0) for m in recent) / w if w else 0.0
 
     def step(self, values: dict, lagged: dict) -> None:
         ex, p, rng = self.ex, self.p, self.rng
