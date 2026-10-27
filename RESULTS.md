@@ -270,3 +270,55 @@ The wholesaler also makes markets on the lit book.
 2. **Taking retail flow off the book hurts the makers who stay, as theory predicts.** Retail orders are the uninformed flow that pays makers. Without them, the AI makers' profits fell 38–92%, and they widened their quotes in 5 or 6 of 6 seeds. In the auction variant, which adds no new maker, the market spread did not fall (+0.37 ± 0.53¢).
 3. **The batch auction gave retail the gain of PFOF without a middleman.** The cost reduction was the same as with the AI wholesaler, and it was the most consistent across seeds (standard error 0.26). The wholesaler variants also cut institutional costs (−1.1 to −1.7 bps), but that is because the wholesaler quotes tightly on the lit book too.
 4. **The AI wholesaler mostly kept the default 0.5¢ improvement.** It doubled it to 1¢ in one seed. Its profit (about 0 ± 720 per epoch, against +1,480 for the scripted wholesaler) came mainly from its lit-book quoting, not from generosity to retail.
+
+## 14. Competing exchanges: does a maker rebate win the flow?
+
+Experiment `configs/venues.yaml`: 6 seeds (201–206). Stock A is listed on its home exchange (A) and an entrant (A.X), with the same fair value and separate order books. Investors' orders go to the venue with the better price; on a tie, they go to the lower taker fee. An HFT arbitrages between the two books. The two AI makers (Muse Spark and Spark Open) and GLFT quote on both venues and set a separate policy for each.
+
+| Fees vs baseline (no fees anywhere) | Entrant's share | Spread on A / A.X (¢) | Best-of-both spread | Retail all-in cost | Makers' P&L | Exchange fee revenue |
+|---|---|---|---|---|---|---|
+| Baseline (level) | 48.9% | 8.39 / 8.76 | 4.91 | 4.55 bps | 2,677 / epoch | 0 |
+| Entrant pays makers 2 bps, charges takers 3 | **+1.3 ± 0.4 pts (6/6)** | **+0.99** / **−0.82** | −0.06 ± 0.19 | **+1.60 ± 0.13** | **+39%** | 20,159 |
+| Entrant charges makers, pays takers (inverted) | +0.3 ± 0.1 pts | +0.38 / **+2.07** | **+0.91 ± 0.35** | +0.32 ± 0.19 | −10% | 19,592 |
+| Both venues pay makers 2, charge takers 3 | −0.0 ± 0.2 pts | −0.37 / −0.32 | −0.20 ± 0.41 | **+2.79 ± 0.18** | **+78%** | 40,277 |
+
+**Findings:**
+1. **The AI makers priced each venue's fees into their quotes.** Under the rebate they quoted 0.8¢ tighter on the venue that paid them and 1.0¢ wider at home (6 of 6 seeds). When the entrant charged makers instead, they quoted 2.1¢ wider there, again in 6 of 6.
+2. **The rebate bought almost no market share.** Tighter quotes on A.X were offset by the 3 bps taker fee that routing takes into account, so the entrant gained only 1.3 points (48.9% → 50.1%). A shorter test run had suggested 56%; the 6-seed experiment did not bear that out.
+3. **A fee war is a transfer from investors to makers and exchanges.** When both venues adopt maker-taker pricing, the quoted spreads barely change. Retail pays 2.8 bps more per trade, the makers' profit rises 78%, and the exchanges collect 40,277 in fees. This is §9's rebate result, now spread across competing exchanges.
+
+## 15. Options and gamma: do hedging dealers move the stock?
+
+Experiment `configs/gamma.yaml`: 6 seeds (221–226). Retail investors trade one-lot call options, 1% out of the money with a 2,000-step expiry, with a dealer who delta-hedges in the stock every 5 steps. About 400 contracts are open at any time. If retail **buys** calls, the dealer is short gamma: it must buy as the price rises and sell as it falls. If retail **writes** calls, the dealer is long gamma and trades against moves. The market makers are two AI makers and GLFT.
+
+| Variant vs no options | 100-step volatility | Max drawdown | Max rise | Mispricing | AI makers' half-spread | Makers' P&L |
+|---|---|---|---|---|---|---|
+| No options (level) | 15.4 bps | 1.9% | 1.7% | 22.1 bps | 4.85¢ | 910 / epoch |
+| Retail buys calls (dealer short gamma) | **+92 ± 37 (×7, 6/6)** | **+12.2 ± 3.6 pts** | **+11.9 ± 3.8 pts** | **+52 ± 20** | +11.1 ± 7.4 | **−5,821 ± 1,900** |
+| Retail writes calls (dealer long gamma) | **−1.2 ± 0.3 (0/6 up)** | +0.0 | −0.0 | +0.6 ± 0.1 | +0.1 ± 0.2 | **+1,055 ± 135** |
+
+**Findings:**
+1. **A short-gamma dealer turned a calm stock into a volatile one.** In 5 of 6 seeds the stock had swings of 6–26% in either direction around an unchanged fair value, and short-horizon volatility rose sevenfold on average. The hedge trades were the cause: each rise made the dealer buy, which pushed the price up further. The AI makers widened their spreads and still lost heavily (−5,821 per epoch). This is the mechanism behind "gamma squeezes" such as the 2021 meme-stock episodes.
+2. **A long-gamma dealer damped the stock slightly, in all 6 seeds,** and the makers earned more. This matches the empirical finding that stocks with large dealer long-gamma positions are less volatile (Ni, Pearson and Poteshman; Barbon and Buraschi).
+3. **Same options, opposite effects.** Both variants traded the same number of contracts and hedged a similar number of lots (about 4,500 per run). Only the sign of the dealer's position differed. Whether options stabilise or destabilise a stock depends on who holds the gamma.
+
+**Caveat:** about 400 open contracts against a top-5 book depth of around 45 lots is a large options market relative to the stock's liquidity. That is why the effect is so big. The direction and the asymmetry are the result.
+
+## 16. An AI central bank
+
+Experiment `configs/central_bank.yaml`: 8 seeds (241–248). A small macroeconomy runs around the market, with one epoch per quarter for 12 quarters. It has three equations (inflation, the output gap and the policy rate), starts with inflation above target, and includes a wealth effect from the stock market. Rate changes move fair values through duration. At step 6,300, in the seventh quarter, a fund is forced to sell into a market with leveraged investors. Rates are set by a Taylor rule (baseline) or by an AI central bank (Muse Spark or Spark Open). The AI bank reads inflation, output, its own past decisions, the Taylor-rule rate, and the stock market, and publishes a statement with each decision. The makers are scripted, so only the central bank differs.
+
+| vs Taylor rule | Inflation gap (rms) | Output gap (rms) | Rate above Taylor (avg) | Crash-quarter drawdown | Margin calls |
+|---|---|---|---|---|---|
+| Taylor rule (level) | 0.69 | 0.72 | 0 | 4.7% | 0.9 |
+| AI central bank: Muse Spark | **+0.07 ± 0.03 (8/8)** | +0.10 ± 0.04 (7/8) | +0.05 ± 0.03 | −1.0 ± 0.4 pts | −0.5 ± 0.3 |
+| AI central bank: Spark Open | **+0.12 ± 0.04 (7/8)** | **+0.20 ± 0.07** | **+0.16 ± 0.07** | −1.0 ± 0.4 pts | −0.4 ± 0.3 |
+
+**Findings:**
+1. **The AI central banks behaved like real ones: they smoothed.** Both cut in steps of 25–75 bps while noting that the Taylor rule was lower, for example *"Taylor rule 3.25% vs current 4.0%"*. Through the middle of the run their rate stayed about 0.3–0.4 points above the Taylor path (for example 2.84% against 2.47% at the sixth decision, averaged over seeds). Real central banks are known for this interest-rate smoothing.
+2. **The smoothing cost them a little against the textbook rule.** Inflation and output were stabilised slightly worse, consistently for Muse Spark (inflation gap rms +0.07, worse in 8 of 8 seeds) and more so for Spark Open.
+3. **No "central bank put".** Of the 32 statements issued after the crash quarter and the next one, 30 never mentioned markets. The other 2 (Spark Open) said financial conditions *"have normalized"*. The rationales were about inflation, slack and the real rate. Neither AI bank cut more than the rule after the crash (+0.06 and +0.19 points above Taylor).
+4. **The market fell less in the crash quarter under the AI banks** (−1.0 ± 0.4 points, in 6 to 7 of 8 seeds), with fewer margin calls. We have not isolated why. One candidate is that smaller, smoother rate changes moved fair values less around the forced sale.
+5. The statements read like real ones: *"The Committee cut the policy rate by 75 basis points to 2.0% to return inflation to 2% and support closing of the negative output gap."*
+
+**Caveat:** the economy is a stylised three-equation model calibrated by hand, not an estimated one. The Taylor rule is optimal for no particular loss function here, so "worse than Taylor" is a description, not a verdict.

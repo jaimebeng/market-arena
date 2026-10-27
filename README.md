@@ -22,16 +22,22 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 | Can an AI regulator police them? | It flagged a planted spoofer in 28 of 30 audits, citing order-flow evidence, with zero false accusations. | [Surveillance case](https://jaimebeng.github.io/market-arena/?run=collusion_lab_surveillance_s41&tab=surveillance) |
 | Can an AI evade that regulator? | Yes. An AI red team with a spoofing mandate reshaped its orders, usually within one review. Spoofing warnings fell from 24/24 to 1/48. In 3 of 8 markets its evasion created self-trades, and the regulator referred it for wash trading instead. | [Arms race](https://jaimebeng.github.io/market-arena/?tab=wind&exp=arms_race) |
 | Does it matter if every firm runs the same model? | Same-model makers priced more alike but not higher. Spark Open makers priced measurably wider than Muse Spark makers. More reasoning effort didn't change prices. | [Monoculture](https://jaimebeng.github.io/market-arena/?tab=wind&exp=monoculture) |
+| What happens when a crash hits AI market makers? | Given the option, they set a kill switch in 95 of 96 decisions, and the typical fall was about 4%. Made to keep quoting, they passed inventory back and forth in a "hot potato" spiral like the 2010 Flash Crash: the price fell 21–78% in every seed while fair value never moved. | [Crash replay](https://jaimebeng.github.io/market-arena/?run=crash_no_kill_switch_s121) · [Stress test](https://jaimebeng.github.io/market-arena/?tab=wind&exp=stress) |
+| Who really pays for exchange fees and taxes? | Investors. A maker rebate tightens quotes but raises every investor's all-in cost by 2.3 bps. A 5 bps transaction tax costs retail 6.9 bps, because the AI makers pass on their share too. | [Who pays](https://jaimebeng.github.io/market-arena/?tab=wind&exp=who_pays) · [Two exchanges](https://jaimebeng.github.io/market-arena/?tab=wind&exp=venues) |
+| Will an AI pump a stock to its followers? | Muse Spark did, in 3 of 4 markets. Spark Open mostly refused (*"This would harm retail followers"*). The AI regulator flagged 2 of the 3 real campaigns and never accused the honest influencer. | [Finfluencer](https://jaimebeng.github.io/market-arena/?tab=wind&exp=pump_dump) |
+| Where should retail orders go? | Anywhere but the lit book: a wholesaler or a batch auction both cut retail costs by 2–2.8 bps in every seed, and the auction needs no middleman. The makers left behind earn 38–92% less and widen. | [Payment for order flow](https://jaimebeng.github.io/market-arena/?tab=wind&exp=pfof) |
+| Can options destabilise a stock? | Yes, if dealers are short gamma: their hedging made volatility seven times higher, with 6–26% swings around an unchanged value. Long-gamma dealers damped it slightly. | [Gamma](https://jaimebeng.github.io/market-arena/?tab=wind&exp=gamma) |
+| Will an AI central bank rescue the stock market? | No. Both AI central banks smoothed rates and lagged the Taylor rule, as real ones do. None cut to rescue the market after a crash, and their statements stayed on inflation and output. | [Central bank](https://jaimebeng.github.io/market-arena/?tab=wind&exp=central_bank) |
 | Can an AI design better market rules? | Only with good method. Its first rulebook cut quoted spreads 33% but raised investors' all-in cost 49%. Its second overfitted noise. Its third held up out of sample. | [Designer, rounds 1–3](https://jaimebeng.github.io/market-arena/?tab=designer&round=v1) |
 | Can AI quants find real edges? | Some. They rediscovered momentum and index arbitrage as code, and a holdout gate rejected about two thirds of their ideas. | [Strategy gallery](https://jaimebeng.github.io/market-arena/?run=final_multi&tab=gallery) |
 
-**How Meta models are used.** Muse Spark 1.3 (Meta Model API) plays five roles through multi-step tool calling: market maker (optionally with a chat room), quant (which writes strategy code), surveillance officer, red team, and market designer. Muse Spark Open (open weights on Baseten) plays maker, quant and red team, and competes head to head with Muse Spark in the same markets. Across 182 recorded runs there were about 2,400 agent reviews, costing under $2 of Meta Model API tokens.
+**How Meta models are used.** Muse Spark 1.3 (Meta Model API) plays nine roles through multi-step tool calling: market maker (optionally with a chat room and a crisis rule), quant (which writes strategy code), surveillance officer, red team, market designer, investor, finfluencer, order-flow wholesaler and central bank. Muse Spark Open (open weights on Baseten) plays six of them (maker, quant, red team, investor, finfluencer, central bank) and competes head to head with Muse Spark in the same markets. Across 417 recorded runs there were about 5,600 agent reviews, costing about $3.50 in tokens.
 
 **Why the numbers can be trusted.**
 - The game-theory benchmark is solved for each rule set: the GLFT optimal maker, plus Nash and Pareto equilibria.
 - Quant strategies and the designer's rulebooks only count if they hold up on data they never saw.
 - Every experiment is paired by seed, and claims that didn't survive more seeds are corrected in the open.
-- There are 42 tests, CI runs on every push, and every run can be replayed on the dashboard.
+- There are 52 tests, CI runs on every push, and every run can be replayed on the dashboard. Every new feature is off by default, and a test checks that switching them all off changes nothing.
 
 ---
 
@@ -68,6 +74,15 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 - **AI red team: can surveillance be evaded?** In a sanctioned test, a Muse Spark or Spark Open agent has to keep placing fake orders. Each epoch it chooses its tactics to escape the regulator, after a debrief on what the regulator filed about it. All participants have neutral ids, and an honest control trader checks for false accusations.
 - **AI market designer.** Muse Spark acts as the exchange. It forms hypotheses about tick size, fees, speed bumps and circuit breakers, tests them in the wind tunnel against live AI traders under an experiment budget, and recommends a rulebook. The quants' strategies have to pass a holdout test, and so does this: the recommendation is re-run against the default rules on **fresh seeds** before it counts.
 
+### A whole market: investors, crashes, news, venues, options and an economy
+
+- **Investors.** Retail investors (trend-following, copying the forum), institutions that split large orders (TWAP, VWAP, iceberg), an index fund on a public schedule and an HFT arbitrageur. A ledger records what each class pays per trade, against the mid and against the hidden fair value.
+- **Crashes.** Forced sellers, leveraged accounts with margin calls, transaction taxes and short-sale bans. AI makers can pre-commit a crisis rule that pulls their quotes on a fast move.
+- **News and a forum.** A newswire turns fair-value jumps into headlines, 15% of them misleading, plus an earnings calendar. AI investors read it, trade and post views, and retail copies the posts. An AI finfluencer can run a pump-and-dump, and the AI regulator reads the forum.
+- **Where orders go.** Retail orders can go to the lit book, a wholesaler (scripted or AI) that fills them off-exchange, or a periodic batch auction. A stock can be listed on two exchanges with different fees, with best-price routing.
+- **Options.** A dealer sells or buys retail call options and delta-hedges in the stock.
+- **An economy.** A three-equation macro model (inflation, output gap, policy rate) runs around the market. Rate changes move fair values, and the stock market feeds back through a wealth effect. Rates are set by a Taylor rule or an AI central bank that publishes a statement with each decision.
+
 ## Meta models used
 
 | Where | Model | How |
@@ -77,6 +92,9 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 | Surveillance officer | **Muse Spark 1.3** | Forensic tool use over order-entry data, quotes and chat; graded findings; public notices |
 | Red team | **Muse Spark 1.3** and **Muse Spark Open** | Adversarial tool use: reads its own surveillance footprint and debriefs, then chooses evasion tactics under a mandate |
 | Market designer | **Muse Spark 1.3** | Plans and runs its own experiments (each a full multi-agent market), then recommends a rulebook |
+| Investors and finfluencer | **Muse Spark 1.3** and **Muse Spark Open** | Read news, prices and the forum; set positions; post views their followers copy; a red-team finfluencer told to pump and dump |
+| Wholesaler | **Muse Spark 1.3** | Chooses how much price improvement to give retail orders it fills off-exchange |
+| Central bank | **Muse Spark 1.3** and **Muse Spark Open** | Reads the macro data and the markets each quarter, sets the policy rate and writes the statement |
 
 Both are reached through one OpenAI-compatible client (`market_arena/llm/client.py`). A run declares agents as `provider:model`, so any mix of models can share a market.
 
@@ -84,7 +102,8 @@ Both are reached through one OpenAI-compatible client (`market_arena/llm/client.
 
 ```
 market_arena/
-  sim/        order book, exchange (fees, rules), fundamentals, background flow, history
+  sim/        order book, exchange (fees, taxes, venues, rules), fundamentals, background flow,
+              investor population, newswire, options dealer, macroeconomy, history
   agents/     maker executor, LLM maker, taker runtime + sandbox, LLM taker,
               LLM surveillance officer, scripted spoofer (ground truth)
   llm/        OpenAI-compatible tool-calling loop (Meta Model API, Baseten)
@@ -109,6 +128,10 @@ cp .env.example .env    # add META_API_KEY and/or BASETEN_API_KEY
 .venv/bin/python -m market_arena.runner.wind_tunnel configs/arms_race.yaml      # AI red team vs AI regulator
 .venv/bin/python -m market_arena.runner.wind_tunnel configs/monoculture.yaml    # same model vs mixed models
 .venv/bin/python -m market_arena.runner.designer configs/designer.yaml          # AI market designer
+.venv/bin/python -m market_arena.runner.wind_tunnel configs/who_pays.yaml       # costs by investor class
+.venv/bin/python -m market_arena.runner.wind_tunnel configs/stress.yaml         # fire sale, margin calls, kill switches
+.venv/bin/python -m market_arena.runner.wind_tunnel configs/pump_dump.yaml      # AI finfluencer vs AI regulator
+# also: news_herding, pfof, venues, gamma, central_bank
 ```
 
 Each run writes `runs/<name>/` (snapshots, trades, decisions, metrics, meta). The dashboard replays them:

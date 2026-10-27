@@ -474,7 +474,7 @@ const HEADLINES: Record<string, { title: string; cols: Headline[] }> = {
     ],
   },
   central_bank: {
-    title: "AI central bank · twelve quarters with a crash in quarter 6",
+    title: "AI central bank · twelve quarters with a forced sale part-way through",
     cols: [
       { key: "inflation_gap_rms", label: "inflation gap (rms)", digits: 2, better: "lower" },
       { key: "output_gap_rms", label: "output gap (rms)", digits: 2, better: "lower" },

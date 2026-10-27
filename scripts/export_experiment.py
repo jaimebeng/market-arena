@@ -298,6 +298,10 @@ def has_seed_runs(d: Path) -> bool:
                for v in d.iterdir() if v.is_dir() for s in v.iterdir())  # fmt: skip
 
 
+STORY = ["wind_tunnel_v3", "collusion_lab", "arms_race", "monoculture", "who_pays", "stress", "news_herding",
+         "pump_dump", "pfof", "venues", "gamma", "central_bank"]
+
+
 def write_index(out_dir: Path) -> list[dict]:
     entries = []
     for p in sorted(out_dir.glob("*.json")):
@@ -306,7 +310,9 @@ def write_index(out_dir: Path) -> list[dict]:
         d = json.loads(p.read_text())
         entries.append({"name": d["experiment"], "file": p.name, "variants": [v["name"] for v in d["variants"]],
                         "seeds": d.get("seeds", []), "provisional": d.get("provisional", False)})  # fmt: skip
-    entries.sort(key=lambda e: (e["provisional"], -len(e["seeds"]), e["name"]))
+    # the order of RESULTS.md; anything else after, most seeds first
+    rank = lambda e: STORY.index(e["name"]) if e["name"] in STORY else len(STORY)  # noqa: E731
+    entries.sort(key=lambda e: (e["provisional"], rank(e), -len(e["seeds"]), e["name"]))
     (out_dir / "index.json").write_text(json.dumps({"experiments": entries, "generated": time.time()}, indent=1))
     return entries
 

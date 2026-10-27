@@ -1,24 +1,23 @@
 {
  "experiments": [
   {
-   "name": "stress",
-   "file": "stress.json",
+   "name": "wind_tunnel_v3",
+   "file": "wind_tunnel_v3.json",
    "variants": [
     "baseline",
-    "circuit_breaker",
-    "short_sale_ban",
-    "no_leverage",
-    "no_crisis_rule"
+    "tick_x5",
+    "maker_rebate",
+    "speed_bump",
+    "more_makers",
+    "circuit_breaker"
    ],
    "seeds": [
-    121,
-    122,
-    123,
-    124,
-    125,
-    126,
-    127,
-    128
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
    ],
    "provisional": false
   },
@@ -42,6 +41,23 @@
    "provisional": false
   },
   {
+   "name": "arms_race",
+   "file": "arms_race.json",
+   "variants": [
+    "baseline",
+    "honest",
+    "red_team_spark",
+    "red_team_open"
+   ],
+   "seeds": [
+    61,
+    62,
+    63,
+    64
+   ],
+   "provisional": false
+  },
+  {
    "name": "monoculture",
    "file": "monoculture.json",
    "variants": [
@@ -58,44 +74,6 @@
     84,
     85,
     86
-   ],
-   "provisional": false
-  },
-  {
-   "name": "news_herding",
-   "file": "news_herding.json",
-   "variants": [
-    "baseline",
-    "llm_investors",
-    "llm_investors_herding",
-    "llm_investors_spark"
-   ],
-   "seeds": [
-    141,
-    142,
-    143,
-    144,
-    145,
-    146
-   ],
-   "provisional": false
-  },
-  {
-   "name": "pfof",
-   "file": "pfof.json",
-   "variants": [
-    "baseline",
-    "wholesaler",
-    "wholesaler_llm",
-    "retail_auction"
-   ],
-   "seeds": [
-    181,
-    182,
-    183,
-    184,
-    185,
-    186
    ],
    "provisional": false
   },
@@ -121,40 +99,43 @@
    "provisional": false
   },
   {
-   "name": "wind_tunnel_v3",
-   "file": "wind_tunnel_v3.json",
+   "name": "stress",
+   "file": "stress.json",
    "variants": [
     "baseline",
-    "tick_x5",
-    "maker_rebate",
-    "speed_bump",
-    "more_makers",
-    "circuit_breaker"
+    "circuit_breaker",
+    "short_sale_ban",
+    "no_leverage",
+    "no_crisis_rule"
    ],
    "seeds": [
-    31,
-    32,
-    33,
-    34,
-    35,
-    36
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128
    ],
    "provisional": false
   },
   {
-   "name": "arms_race",
-   "file": "arms_race.json",
+   "name": "news_herding",
+   "file": "news_herding.json",
    "variants": [
     "baseline",
-    "honest",
-    "red_team_spark",
-    "red_team_open"
+    "llm_investors",
+    "llm_investors_herding",
+    "llm_investors_spark"
    ],
    "seeds": [
-    61,
-    62,
-    63,
-    64
+    141,
+    142,
+    143,
+    144,
+    145,
+    146
    ],
    "provisional": false
   },
@@ -173,7 +154,83 @@
     164
    ],
    "provisional": false
+  },
+  {
+   "name": "pfof",
+   "file": "pfof.json",
+   "variants": [
+    "baseline",
+    "wholesaler",
+    "wholesaler_llm",
+    "retail_auction"
+   ],
+   "seeds": [
+    181,
+    182,
+    183,
+    184,
+    185,
+    186
+   ],
+   "provisional": false
+  },
+  {
+   "name": "venues",
+   "file": "venues.json",
+   "variants": [
+    "baseline",
+    "entrant_rebate",
+    "entrant_inverted",
+    "fee_war"
+   ],
+   "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205,
+    206
+   ],
+   "provisional": false
+  },
+  {
+   "name": "gamma",
+   "file": "gamma.json",
+   "variants": [
+    "baseline",
+    "dealer_short_gamma",
+    "dealer_long_gamma"
+   ],
+   "seeds": [
+    221,
+    222,
+    223,
+    224,
+    225,
+    226
+   ],
+   "provisional": false
+  },
+  {
+   "name": "central_bank",
+   "file": "central_bank.json",
+   "variants": [
+    "baseline",
+    "ai_central_bank_spark",
+    "ai_central_bank_open"
+   ],
+   "seeds": [
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248
+   ],
+   "provisional": false
   }
  ],
- "generated": 1793123675.2904909
+ "generated": 1793125296.5878434
 }
