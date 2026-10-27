@@ -74,6 +74,7 @@ def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
         "llm_half_spread_by_epoch": [_llm_hs(m, llm_makers) for m in ms],
         "llm_cost_usd": meta.get("llm_cost_usd"),
         "epochs": len(ms),
+        "exchange_fee_revenue": ms[-1].get("exchange_fees"),
         **_conduct(run_dir, meta),
     }
 

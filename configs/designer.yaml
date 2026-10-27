@@ -1,0 +1,19 @@
+# AI market designer: Muse Spark acts as the exchange and designs its own rulebook by running
+# wind-tunnel experiments against live AI traders. Its recommendation is then validated against
+# the default rules on fresh seeds.
+name: designer
+model: "meta:muse-spark-1.3-contributor"
+seed: 51
+validation_seeds: [61, 62, 63]
+max_trials: 9
+per_call: 3
+workers: 6
+base:
+  steps_per_epoch: 2000
+  n_epochs: 4
+  agents:
+    - {id: glft, kind: glft}
+    - {id: spark_1, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+    - {id: spark_2, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+    - {id: open_1, kind: llm_maker, model: "baseten:meta-models/muse-spark-open-1026"}
+    - {id: momentum_bot, kind: textbook_taker, params: {signal: momentum, max_position: 10, max_order: 1}}

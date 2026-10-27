@@ -23,13 +23,15 @@ def collect(runs_dir: Path) -> dict:
     rows = defaultdict(lambda: defaultdict(list))
     for meta_path in sorted(runs_dir.glob("**/meta.json")):
         run = meta_path.parent
+        if "superseded" in run.parts:  # runs on code before the review fixes
+            continue
         meta = json.loads(meta_path.read_text())
         metrics = [json.loads(line) for line in open(run / "metrics.jsonl")]
         decisions = [json.loads(line) for line in open(run / "decisions.jsonl")]
         glft = [m["agents"]["glft"]["pnl"] for m in metrics if "glft" in m["agents"]]
         for ag in meta["agents"]:
             label = model_label(ag["model"])
-            if not label:
+            if not label or ag["role"] == "regulator":  # the regulator does not trade
                 continue
             key = (label, ag["role"])
             pnl = [m["agents"][ag["id"]]["pnl"] for m in metrics[1:]]  # skip the default epoch 0

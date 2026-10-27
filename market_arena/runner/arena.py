@@ -222,6 +222,7 @@ class Arena:
                 "taker_strategy": {ag.id: ag.name for ag in self.agents if ag.role == "taker"},
                 "benchmarks": self.benchmarks,
                 "orders": {o: asdict(s) for o, s in ex.order_stats.items()},
+                "exchange_fees": round(sum(a.fees for a in ex.accounts.values()), 1),  # cumulative
             }  # fmt: skip
             ex.order_stats.clear()
             for ag in self.agents:
