@@ -36,10 +36,39 @@ Showcase runs (`configs/showcase_single.yaml`, `configs/showcase_multi.yaml`). T
 - **Order-book imbalance with sticky thresholds** to keep turnover below the cost of the spread (ρ = 0.73 with textbook imbalance).
 - **Edges decay.** Later reviews record signals weakening as other agents trade them (*"A's imbalance signal has decayed and is dropped"*), and about two thirds of all submissions (16 of 25 so far) fail the holdout gate.
 
-## 3. The maths still beats the models at market making
+## 3. AI makers versus the maths: close, and sometimes ahead
 
-The model league (`scripts/league.py`) covers every maker epoch after the first. Muse Spark 1.3 makers are profitable in most epochs and earn more than Muse Spark Open makers. Both earn less than the GLFT closed-form maker trading in the same markets. Run `python scripts/league.py runs` for current numbers.
+The model league (`scripts/league.py`, every maker epoch after the first, all runs on the current code) shows:
+- Muse Spark 1.3 makers are profitable in 86% of epochs.
+- Muse Spark Open makers are profitable in 79%.
+- On average both earn a little less than the GLFT closed-form maker in the same market: about −105 per epoch for Muse Spark and −229 for Spark Open.
 
-## 4. Stylised facts
+The two 10-epoch final demo runs are the upside case. There, the AI makers beat the closed form:
+
+| Run | GLFT | Muse Spark maker | Muse Spark Open maker | AI quants |
+|---|---|---|---|---|
+| `final_single` (1 asset, seed 17) | 2,422 | 7,570 | **8,240** | Spark −53, Open −160 (momentum bot −11,578) |
+| `final_multi` (3 stocks + index, seed 23) | 31,732 | **42,500** | 33,706 | **Spark +5,114**, Open −502 (index-arb bot −6,645) |
+
+In `final_multi` the Spark quant's strategies passed the holdout gate in 6 of its 12 attempts, and it finished as the only profitable taker. The textbook bots lost money in both runs. LLM spend for both runs together was $0.25.
+
+## 4. Collusion lab: talking, warning and policing
+
+Experiment `configs/collusion_lab.yaml`: 3 LLM makers, GLFT, an order-book-imbalance trader and a **planted spoofer**. 6 epochs, seeds 41–43, epoch 0 excluded. Δ varies a lot between seeds, because each seed has its own calibrated benchmarks, so the table reports **paired differences against the baseline on the same seed** (mean ± standard error, n = 3).
+
+| Variant vs baseline | Δ | LLM half-spread (¢) | Chat messages (3 seeds) |
+|---|---|---|---|
+| Chat room | −0.20 ± 0.23 | −0.29 ± 0.33 | 11 |
+| Chat + antitrust warning | **+0.16 ± 0.05** | **+0.27 ± 0.09** | **0** |
+| Chat + AI surveillance officer | −0.08 ± 0.34 | −0.03 ± 0.52 | 13, plus 11 regulator notices |
+
+**Findings:**
+1. **Given a chat room, AI makers did not form a cartel.** No message proposed coordination. They used the room to announce *competition*, e.g. *"quoting wide vs 4.46 leader cost volume, tightening to 4.2 to reprice"*. Δ moved slightly toward competitive, but the change is within noise.
+2. **An antitrust warning silenced the room completely, and spreads did not fall.** Across all 3 seeds, warned makers posted nothing. They quoted about 0.27¢ *wider* than the baseline, a paired difference of about 3 standard errors, though with only 3 seeds. One reading is that the warning made the makers cautious and also removed the competitive signalling seen in open chat. This is suggestive, not established.
+3. **The AI surveillance officer caught the planted spoofer in 15 of 15 audited epochs, with zero false accusations.** Its evidence was quantitative, e.g. 780 lots cancelled against 128 filled, cancelled orders about 12× the size of fills, and 82% fast cancels. It explicitly set this apart from normal maker requoting.
+4. **The regulator also put the GLFT benchmark on "tacit collusion" watch.** It is right that GLFT quotes near the cartel level: a single risk-averse optimal maker prices close to the joint-profit spread. Spread data alone cannot tell a cartel from an independent, risk-averse maker. Real regulators face the same identification problem.
+5. Regulator notices sometimes preceded spread cuts. For example, after *"quoted spreads remain persistently near joint-profit levels"*, the market spread went from 8.11 to 7.05. But spreads fell just as much in the same seed's baseline with no regulator, so we **do not** claim the notices caused it.
+
+## 5. Stylised facts
 
 Returns in the AI-populated markets show heavy tails, with a Hill tail index of about 2–4 (real markets: ≈ 3), and near-zero autocorrelation of returns beyond the shortest lags. See `meta.json → stylized` in each run and the Market Quality tab of the dashboard.

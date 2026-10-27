@@ -1,0 +1,4 @@
+{"epoch":2,"t":6000,"agent":"open_1","kind":"message","text":"tightening to 5.0 to match spread leaders, inventory controlled"}
+{"epoch":3,"t":8000,"agent":"open_1","kind":"message","text":"tightening to 4.7 to match leaders, edge comfortably above markout"}
+{"epoch":3,"t":8000,"agent":"spark_1","kind":"message","text":"tighter to 4.0 held PnL, sizing up modestly"}
+{"epoch":4,"t":10000,"agent":"open_1","kind":"message","text":"quoting wide vs 4.46 leader cost volume, tightening to 4.2 to reprice"}

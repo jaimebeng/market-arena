@@ -3,6 +3,17 @@
 __pycache__/
 runs/*
 !runs/demo/
+# published evidence for RESULTS.md: summaries, metrics, decisions, chat, meta (not the bulky
+# order-book snapshots and trade tapes, which re-running the config regenerates)
+!runs/wind_tunnel_v3/
+!runs/collusion_lab/
+!runs/final_single/
+!runs/final_multi/
+!runs/designer/
+runs/**/snapshots.jsonl
+runs/**/trades.jsonl
+runs/**/*.log
+runs/**/chat_test.jsonl
 node_modules/
 
 # private planning notes (not for the public repo)

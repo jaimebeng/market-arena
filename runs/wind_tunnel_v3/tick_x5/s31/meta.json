@@ -1,0 +1,313 @@
+{
+ "name": "wind_tunnel_v3/tick_x5/s31",
+ "config": {
+  "name": "wind_tunnel_v3/tick_x5/s31",
+  "seed": 31,
+  "steps_per_epoch": 2000,
+  "n_epochs": 6,
+  "components": {
+   "A": {
+    "price": 10000.0,
+    "sigma": 0.0001,
+    "beta": 1.0
+   }
+  },
+  "factor_sigma": 0.0,
+  "jump_rate": 0.002,
+  "jump_bps": 60.0,
+  "index": null,
+  "rules": {
+   "tick": 5,
+   "maker_fee_bps": 0.0,
+   "taker_fee_bps": 0.0,
+   "min_resting_steps": 0,
+   "circuit_breaker_pct": null,
+   "circuit_window": 100,
+   "circuit_halt_steps": 50
+  },
+  "zi": {
+   "limit_rate": 1.2,
+   "market_rate": 0.35,
+   "offset_min": 3,
+   "offset_max": 25,
+   "lifetime_mean": 60.0,
+   "size_mean": 3.0,
+   "anchor_kappa": 0.3,
+   "anchor_lag": 150
+  },
+  "informed": {
+   "rate": 0.03,
+   "threshold_bps": 8.0,
+   "size": 2,
+   "max_size": 12,
+   "noise_bps": 1.0
+  },
+  "index_flow": null,
+  "calibration_steps": 20000,
+  "glft_gamma": 0.05,
+  "competition_eta": 0.5,
+  "snapshot_every": 10,
+  "holdout": 1000,
+  "agents": [
+   {
+    "id": "glft",
+    "kind": "glft",
+    "model": null,
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "spark_1",
+    "kind": "llm_maker",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "spark_2",
+    "kind": "llm_maker",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "open_1",
+    "kind": "llm_maker",
+    "model": "baseten:meta-models/muse-spark-open-1026",
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "momentum_bot",
+    "kind": "textbook_taker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "signal": "momentum",
+     "max_position": 10,
+     "max_order": 1
+    }
+   }
+  ],
+  "out_dir": "runs"
+ },
+ "assets": [
+  "A"
+ ],
+ "agents": [
+  {
+   "id": "glft",
+   "role": "maker",
+   "model": "GLFT closed form"
+  },
+  {
+   "id": "spark_1",
+   "role": "maker",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "spark_2",
+   "role": "maker",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "open_1",
+   "role": "maker",
+   "model": "baseten:meta-models/muse-spark-open-1026"
+  },
+  {
+   "id": "momentum_bot",
+   "role": "taker",
+   "model": "textbook: momentum"
+  }
+ ],
+ "calibration": {
+  "A": {
+   "A": 1.0398246355211413,
+   "k": 0.2769657879266804,
+   "sigma": 1.360256772051251,
+   "deltas": [
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0
+   ],
+   "rates": [
+    0.15615,
+    0.0892,
+    0.024375,
+    0.00485,
+    0.0008,
+    0.000225
+   ],
+   "alpha": 1.2437071486791005
+  }
+ },
+ "started": 1793057136.4678836,
+ "stylized": {
+  "A": {
+   "market": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 2.862,
+    "hill_tail_index": 4.036,
+    "acf_returns": [
+     0.0397,
+     0.0641,
+     0.0968,
+     0.0656,
+     0.0907,
+     0.1223,
+     0.0797,
+     0.0723,
+     0.0684,
+     0.0151,
+     0.0165,
+     0.0361,
+     0.075,
+     0.0138,
+     0.0389,
+     0.0635,
+     -0.0018,
+     0.0222,
+     0.035,
+     0.0102
+    ],
+    "acf_abs_returns": [
+     0.1363,
+     0.0873,
+     0.0432,
+     0.044,
+     0.0799,
+     0.0632,
+     0.0415,
+     0.0252,
+     -0.0004,
+     0.0552,
+     0.0733,
+     0.0596,
+     0.0389,
+     -0.0148,
+     -0.0389,
+     0.033,
+     -0.0531,
+     0.0334,
+     -0.0021,
+     0.0112,
+     0.0056,
+     -0.0098,
+     -0.0231,
+     -0.0046,
+     -0.0276,
+     -0.0064,
+     0.0095,
+     -0.0031,
+     -0.0289,
+     -0.0208,
+     -0.0305,
+     0.0154,
+     0.0114,
+     0.0075,
+     -0.022,
+     -0.0604,
+     -0.0158,
+     -0.0101,
+     0.0898,
+     0.0657,
+     -0.0004,
+     0.0452,
+     -0.0275,
+     0.006,
+     0.0458,
+     0.0381,
+     -0.0214,
+     0.0055,
+     -0.0175,
+     0.036
+    ]
+   },
+   "fair_value": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 82.462,
+    "hill_tail_index": 1.045,
+    "acf_returns": [
+     -0.0128,
+     -0.0157,
+     -0.0038,
+     0.0048,
+     0.0086,
+     -0.0153,
+     -0.0188,
+     0.0132,
+     -0.011,
+     -0.0159,
+     -0.0119,
+     -0.0256,
+     -0.0021,
+     -0.0163,
+     -0.0073,
+     0.0096,
+     -0.0084,
+     -0.0009,
+     -0.017,
+     0.0653
+    ],
+    "acf_abs_returns": [
+     -0.0196,
+     -0.0129,
+     -0.0188,
+     -0.0166,
+     -0.003,
+     -0.0139,
+     0.0276,
+     -0.017,
+     -0.0181,
+     -0.0239,
+     -0.0093,
+     -0.0164,
+     -0.0227,
+     -0.0095,
+     -0.0121,
+     -0.0165,
+     -0.0092,
+     -0.0199,
+     0.0246,
+     0.0782,
+     -0.0061,
+     -0.0214,
+     -0.0202,
+     0.0005,
+     -0.0109,
+     0.0066,
+     -0.026,
+     -0.0189,
+     -0.0048,
+     -0.0218,
+     0.01,
+     0.0468,
+     -0.0219,
+     -0.0055,
+     0.0582,
+     -0.028,
+     -0.024,
+     -0.0063,
+     -0.0093,
+     -0.0232,
+     -0.0109,
+     -0.0158,
+     -0.0039,
+     0.0425,
+     -0.0178,
+     0.021,
+     -0.0152,
+     -0.0291,
+     0.055,
+     0.0182
+    ]
+   }
+  }
+ },
+ "finished": 1793057253.973557,
+ "llm_cost_usd": 0.0081
+}
