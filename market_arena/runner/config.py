@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 
 from ..sim.background import IndexFlowParams, InformedParams, ZIParams
 from ..sim.exchange import Rules
+from ..sim.economy import EconomyParams
 from ..sim.news import NewsParams
 from ..sim.participants import PopulationCfg
 
@@ -29,7 +30,7 @@ class AgentCfg(BaseModel):
     id: str
     kind: Literal["glft", "static_maker", "llm_maker", "llm_taker", "textbook_taker",
                   "spoofer", "llm_surveillance", "llm_red_team", "llm_investor", "llm_finfluencer",
-                  "wholesaler", "llm_wholesaler"]  # fmt: skip
+                  "wholesaler", "llm_wholesaler", "llm_central_bank"]  # fmt: skip
     model: str | None = None  # e.g. "meta:muse-spark-1.3-contributor", "baseten:meta-models/..."
     assets: list[str] | None = None  # default: all assets
     params: dict = Field(default_factory=dict)
@@ -57,6 +58,10 @@ class ArenaConfig(BaseModel):
     chat: ChatCfg = Field(default_factory=ChatCfg)
     population: PopulationCfg | None = None  # retail, institutional, HFT, leverage (opt-in)
     news: NewsParams | None = None  # a newswire of headlines and earnings releases (opt-in)
+    # extra exchanges: stock -> extra listings, e.g. {A: [A.X]} lists A on a second venue A.X with
+    # the same fair value and its own book (fees per venue via rules.venue_fees)
+    listings: dict[str, list[str]] = Field(default_factory=dict)
+    economy: EconomyParams | None = None  # inflation, output, a policy rate; 1 epoch = 1 quarter
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 

@@ -89,6 +89,27 @@ def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
         **_conduct(run_dir, meta),
         **(_population(ms, use) if any("classes" in m for m in ms) else {}),
         **_investors(run_dir, meta, use),
+        **_macro(meta),
+    }
+
+
+def _macro(meta: dict) -> dict:
+    """How well policy hit its mandate, and how it reacted to the market's worst quarter."""
+    h = [r for r in meta.get("economy") or [] if "decision" in r]
+    if not h:
+        return {}
+    pi_t = ArenaConfig(**meta["config"]).economy.pi_target
+    worst = max(h, key=lambda r: r["market_drawdown_pct"])
+    return {
+        "inflation_gap_rms": round(float(np.sqrt(np.mean([(r["inflation"] - pi_t) ** 2 for r in h]))), 3),
+        "output_gap_rms": round(float(np.sqrt(np.mean([r["output_gap"] ** 2 for r in h]))), 3),
+        "rate_mean": round(float(np.mean([r["decision"] for r in h])), 3),
+        "rate_minus_taylor": round(float(np.mean([r["decision"] - r["taylor_rule"] for r in h])), 3),
+        "crash_quarter_drawdown_pct": worst["market_drawdown_pct"],
+        "crash_response_vs_taylor": round(worst["decision"] - worst["taylor_rule"], 2),
+        "rate_path": [r["decision"] for r in h],
+        "inflation_path": [r["inflation"] for r in h],
+        "output_gap_path": [r["output_gap"] for r in h],
     }
 
 
@@ -144,7 +165,17 @@ def _population(ms: list[dict], use: list[dict]) -> dict:
         blocked_short_lots=last.get("blocked_short_lots"),
         quote_pulls=sum(a.get("quote_pulls", 0) for a in ms[-1]["agents"].values()),
         retail_routed=last.get("retail_routed"),
+        options_hedge_lots=(last.get("options") or {}).get("hedge_lots"),
+        options_open_contracts=mean([(e.get("options") or {}).get("open_contracts") for e in ev[1:]]),
+        vol_100_bps=mean([float(np.mean(list(e["vol_100_bps"].values()))) for e in ev[1:] if e.get("vol_100_bps")]),
+        max_rise_pct=max((d["max_rise_pct"] for e in ev for d in e["drawdown"].values()), default=None),
     )
+    venues = [e["venues"] for e in ev[1:] if e.get("venues")]
+    for stock in (venues[0] if venues else {}):
+        out["nbbo_spread"] = mean([v[stock]["nbbo_spread"] for v in venues])
+        for venue in venues[0][stock]["share"]:
+            out[f"share_{venue}"] = mean([v[stock]["share"][venue] for v in venues])
+            out[f"spread_{venue}"] = mean([v[stock]["venue_spread"][venue] for v in venues])
     return {k: v for k, v in out.items() if v is not None}
 
 
@@ -219,7 +250,11 @@ PAIRED = ("collusion_index", "llm_maker_half_spread", "spread", "depth", "mispri
           "quote_pulls", "taker_cost",
           # news and investors
           "news_all_10", "news_all_100", "news_all_500", "news_all_1500", "investor_pnl_per_epoch",
-          "subject_pnl_per_epoch", "dealer_pnl_per_epoch", "informed_cost_bps", "informed_value_bps")
+          "subject_pnl_per_epoch", "dealer_pnl_per_epoch", "informed_cost_bps", "informed_value_bps",
+          # venues and options
+          "nbbo_spread", "share_A.X", "spread_A", "spread_A.X", "max_rise_pct", "options_hedge_lots", "vol_100_bps",
+          # macro
+          "inflation_gap_rms", "output_gap_rms", "rate_mean", "rate_minus_taylor", "crash_response_vs_taylor")
 
 
 def _paired_vs_baseline(variants: list[dict]) -> None:

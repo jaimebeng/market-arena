@@ -23,14 +23,17 @@ from ..sim.book import BUY
 from ..sim.exchange import Exchange
 from ..sim.fundamentals import Fundamentals
 from ..sim.history import MarketHistory
+from ..sim.economy import Economy
 from ..sim.news import NewsWire, news_response
+from ..sim.options import OptionsDealer
 from ..sim.participants import (IndexFund, InstitutionalFlow, LatencyArb, MarginDesk, RetailFlow,
                                 Router, stream)
 from .config import ArenaConfig
 
 BACKGROUND = ("noise", "informed", "index_flow")
 # investor classes whose trading costs the who-pays ledger reports
-CLASSES = BACKGROUND + ("retail", "institutional", "fund_liquidation", "index_fund", "hft")
+CLASSES = BACKGROUND + ("retail", "institutional", "fund_liquidation", "index_fund", "hft",
+                        "options_dealer")
 
 
 class Market:
@@ -43,9 +46,10 @@ class Market:
                  calibration: bool = False) -> None:  # fmt: skip
         comps = {n: c.model_dump() for n, c in cfg.components.items()}
         self.fund = Fundamentals(comps, cfg.factor_sigma, rng, cfg.index, cfg.jump_rate, cfg.jump_bps)
-        self.assets = self.fund.assets
+        self.aliases = {x: stock for stock, xs in cfg.listings.items() for x in xs}  # listing -> stock
+        self.assets = self.fund.assets + list(self.aliases)
         self.ex = Exchange(self.assets, cfg.rules)
-        v0 = self.fund.values()
+        v0 = self.values()
         self.zi = []
         for a in self.assets:
             z = ZeroIntelligenceFlow(self.ex, a, cfg.zi, rng)
@@ -60,9 +64,10 @@ class Market:
             else None
         )
         self.news = NewsWire(self.fund, cfg.news, stream(cfg.seed if seed is None else seed, 5)) if cfg.news else None
-        self.router = Router(self.ex, {a: [a] for a in self.assets})
+        self.economy = Economy(self.fund, cfg.economy, stream(cfg.seed if seed is None else seed, 7)) if cfg.economy else None
+        self.router = Router(self.ex, {a: [a] + cfg.listings.get(a, []) for a in self.fund.assets})
         self.extra: list = []  # optional participants, stepped after the original flow
-        self.retail = self.institutional = self.margin = None
+        self.retail = self.institutional = self.margin = self.options = None
         pop, seed = cfg.population, cfg.seed if seed is None else seed
         if pop:
             if pop.retail:
@@ -80,12 +85,22 @@ class Market:
             if pop.leveraged and not calibration:
                 self.margin = MarginDesk(self.ex, pop.leveraged)
                 self.extra.append(self.margin)
+            if pop.options and not calibration:
+                self.options = OptionsDealer(self.ex, pop.options, stream(seed, 6))
+                self.extra.append(self.options)
+
+    def values(self) -> dict[str, float]:
+        """Fair values per asset, including every extra listing of a stock."""
+        v = self.fund.values()
+        for x, stock in self.aliases.items():
+            v[x] = v[stock]
+        return v
 
     def background_step(self) -> dict[str, float]:
         self.fund.step()
         if self.news:
             self.news.step(self.ex.t)
-        values = self.fund.values()
+        values = self.values()
         self._values.append(values)
         lagged = self._values[0]
         for z in self.zi:
@@ -96,6 +111,24 @@ class Market:
         for f in self.extra:
             f.step(values, lagged)
         return values
+
+
+def venue_stats(hist: MarketHistory, listings: dict[str, list[str]], t0: int, t1: int) -> dict:
+    """Per multi-listed stock: each venue's share of traded volume and the consolidated (best
+    across venues, NBBO) spread next to each venue's own spread."""
+    out = {}
+    for stock, venues in listings.items():
+        if len(venues) < 2:
+            continue
+        vol = {v: float(np.nansum(hist.get(v, "volume", t0, t1))) for v in venues}
+        total = sum(vol.values()) or 1.0
+        bid = np.nanmax(np.vstack([hist.get(v, "bid", t0, t1) for v in venues]), axis=0)
+        ask = np.nanmin(np.vstack([hist.get(v, "ask", t0, t1) for v in venues]), axis=0)
+        out[stock] = {"share": {v: round(x / total, 3) for v, x in vol.items()},
+                      "nbbo_spread": round(float(np.nanmean(ask - bid)), 3),
+                      "venue_spread": {v: round(float(np.nanmean(hist.get(v, "spread", t0, t1))), 3)
+                                       for v in venues}}  # fmt: skip
+    return out
 
 
 def calibrate_market(cfg: ArenaConfig) -> dict[str, Calibration]:
@@ -148,6 +181,8 @@ class Arena:
         self.forum: list[dict] = []  # public investor forum: posts with a numeric stance
         self.agents = [(agent_factory or build_agent)(a, self) for a in cfg.agents]
         self.ex.market_makers = {ag.id for ag in self.agents if ag.role in ("maker", "wholesaler")}
+        if self.market.options:
+            self.ex.market_makers.add(self.market.options.owner)  # a dealer hedging may go short
         if self.market.retail:
             self.market.retail.forum = self.forum
             self.market.retail.wholesaler = next((ag for ag in self.agents if ag.role == "wholesaler"), None)
@@ -222,6 +257,9 @@ class Arena:
         ev = {
             "halts": sum(t0 <= t < t1 for t, _ in ex.halts),
             "drawdown": drawdown(self.hist, t0, t1),
+            # volatility of 100-step returns: feedback such as dealer hedging shows up over minutes
+            "vol_100_bps": {a: round(float(np.std(np.diff(np.log(self.hist.get(a, "mid", t0, t1)[::100]))) * 1e4), 2)
+                            for a in self.assets},
             "tax_revenue": round(ex.tax_revenue, 1),  # cumulative
             "blocked_short_lots": ex.blocked_short_lots,  # cumulative
         }
@@ -233,7 +271,40 @@ class Arena:
                                if (s := mk.institutional.shortfall(t0, t1, o))}  # fmt: skip
         if mk.retail:
             ev["retail_routed"] = dict(mk.retail.routed)  # cumulative lots per route
+        if self.cfg.listings:
+            ev["venues"] = venue_stats(self.hist, mk.router.listings, t0, t1)
+        if mk.options:
+            ev["options"] = mk.options.stats()
         return ev
+
+    def _headline(self, kind: str, text: str, bps: float = 0.0) -> None:
+        if self.market.news:
+            self.market.news.items.append({"t": self.ex.t, "asset": None, "kind": kind,
+                                           "true_bps": round(bps, 1), "headline": text})  # fmt: skip
+
+    def _macro_release(self, epoch: int, t0: int, t1: int) -> dict:
+        """End of a quarter: the economy advances and its data are published."""
+        names = self.market.fund.names
+        dd = max((d["max_drawdown_pct"] for a, d in drawdown(self.hist, t0, t1).items() if a in names), default=0.0)
+        row = self.market.economy.advance(epoch, dd)
+        self._headline("macro", f"Inflation {row['inflation']:.1f}%, output gap {row['output_gap']:+.1f}% "
+                                f"in quarter {epoch}")  # fmt: skip
+        return row
+
+    def _rate_decision(self, epoch: int) -> None:
+        """The AI central bank's decision if there is one (it holds if its review failed), else the
+        Taylor rule. Stocks reprice at once; the decision is published."""
+        econ = self.market.economy
+        if any(ag.role == "central_bank" for ag in self.agents):
+            rate = econ.pending_rate if econ.pending_rate is not None else econ.i
+        else:
+            rate = econ.taylor()
+        old = econ.i
+        shock = econ.set_rate(rate)
+        move = "raises" if econ.i > old else "cuts" if econ.i < old else "holds"
+        text = f"Central bank {move} rates {'at' if move == 'holds' else 'to'} {econ.i:.2f}%"
+        self._headline("macro", text + (f": {econ.statement}" if econ.statement else ""), shock)
+        econ.pending_rate, econ.statement = None, None
 
     def log_decision(self, rec: dict) -> None:
         self.cost += rec.get("cost", 0.0)
@@ -263,7 +334,7 @@ class Arena:
             "started": time.time(),
         }
         equity0 = {ag.id: 0.0 for ag in self.agents}
-        values = self.market.fund.values()
+        values = self.market.values()
         for epoch in range(cfg.n_epochs):
             t0 = ex.t
             wall = time.time()
@@ -309,6 +380,8 @@ class Arena:
                     }
             self._qhs.clear()
             m["collusion_index"] = self._collusion(m)
+            if self.market.economy:
+                m["macro"] = self._macro_release(epoch, t0, t1)
             self.metrics_log.append(m)
             self._write("metrics", m)
             for f in self._files.values():
@@ -316,11 +389,15 @@ class Arena:
             if epoch < cfg.n_epochs - 1:
                 reviewers = [ag for ag in self.agents if hasattr(ag, "review")]
                 await asyncio.gather(*(ag.review(self, epoch, m) for ag in reviewers))
+                if self.market.economy:
+                    self._rate_decision(epoch)
         meta["stylized"] = {
             a: {"market": stylized_facts(self.hist.get(a, "mid")),
                 "fair_value": stylized_facts(self.hist.get(a, "value"))}
             for a in self.assets
         }  # fmt: skip
+        if self.market.economy:
+            meta["economy"] = self.market.economy.history
         if self.market.news:
             items = self.market.news.items
             (self.out / "news.jsonl").write_text("".join(json.dumps(n) + "\n" for n in items))
@@ -338,6 +415,9 @@ def asset_prices(cfg: ArenaConfig) -> dict[str, float]:
     prices = {n: c.price for n, c in cfg.components.items()}
     if cfg.index:
         prices[cfg.index["name"]] = cfg.index["price"]
+    for stock, xs in cfg.listings.items():
+        for x in xs:
+            prices[x] = prices[stock]
     return prices
 
 

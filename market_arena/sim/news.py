@@ -96,7 +96,7 @@ def news_response(items: list[dict], mid: np.ndarray, horizons=(10, 100, 500, 15
         for h in horizons:
             r = []
             for n in items:
-                if abs(n["true_bps"]) < min_bps or not keep(n):
+                if n.get("asset") is None or abs(n["true_bps"]) < min_bps or not keep(n):
                     continue
                 m = (asset_mid or {}).get(n["asset"], mid)
                 t = n["t"]

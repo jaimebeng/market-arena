@@ -25,6 +25,7 @@ from pydantic import BaseModel, Field
 
 from .book import BUY, SELL
 from .exchange import Exchange
+from .options import OptionsParams
 
 
 class RetailParams(BaseModel):
@@ -85,6 +86,7 @@ class PopulationCfg(BaseModel):
     index_fund: IndexFundParams | None = None
     latency_arb: LatencyArbParams | None = None
     leveraged: list[LeveragedAccount] = Field(default_factory=list)
+    options: OptionsParams | None = None  # retail call options, delta-hedged by a dealer
     maker_guards: bool = False  # LLM makers may set crisis rules (pull quotes on a fast move)
 
 
@@ -118,10 +120,13 @@ class Router:
             p = books[v].best_ask() if side == BUY else books[v].best_bid()
             return None if p is None else p
 
-        priced = [(px(v), v) for v in venues if px(v) is not None]
+        r = self.ex.rules
+        fee = lambda v: r.venue_fees.get(v, (r.maker_fee_bps, r.taker_fee_bps))[1]  # noqa: E731
+        # best price first; at equal prices, the venue with the lowest taker fee
+        priced = [(side * px(v), fee(v), v) for v in venues if px(v) is not None]
         if not priced:
             return venues[0]
-        return min(priced)[1] if side == BUY else max(priced)[1]
+        return min(priced)[2]
 
 
 class RetailFlow:

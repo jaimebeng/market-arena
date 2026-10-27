@@ -1,0 +1,47 @@
+# An AI central bank. A small macroeconomy (inflation above target at the start) runs around the
+# market, one epoch per quarter. In quarter 6 a fund is forced to dump stock into a market with
+# leveraged investors, so a crash, margin calls and a wealth hit to output are possible. Does an AI
+# central bank follow the textbook (Taylor) rule, and does it rescue the market after a crash
+# (a "central bank put")?
+name: central_bank
+seeds: [241, 242, 243, 244, 245, 246, 247, 248]
+description: >-
+  Twelve quarters of a small macroeconomy around the market, with a forced sale and leveraged
+  investors in quarter 6. Rates are set by a Taylor rule (baseline) or by an AI central bank on
+  Muse Spark or Spark Open. Market makers are scripted to isolate the central bank.
+base:
+  seed: 241
+  steps_per_epoch: 1000
+  n_epochs: 12
+  economy: {}
+  news: {misleading: 0.15}
+  population:
+    retail: {rate: 0.15, chartist: 0.25}
+    institutional: {algo: twap, parent_rate: 0.0015, parent_size: 60, horizon: 300}
+    fire_sale: {at_step: 6300, asset: A, qty: 1500, over: 100}
+    leveraged:
+      - {owner: hedge_fund, asset: A, position: 400, leverage: 12, maintenance: 0.06, chunk: 6}
+      - {owner: leveraged_retail, asset: A, position: 200, leverage: 8, maintenance: 0.08, chunk: 4}
+  agents:
+    - {id: glft, kind: glft}
+    - {id: mm_b, kind: static_maker, params: {half_spread: 5, skew: 0.5}}
+    - {id: mm_c, kind: static_maker, params: {half_spread: 6, skew: 0.5}}
+variants:
+  - name: ai_central_bank_spark
+    label: "AI central bank: Muse Spark"
+    change: "A Muse Spark central bank sets the rate each quarter."
+    overrides:
+      agents:
+        - {id: glft, kind: glft}
+        - {id: mm_b, kind: static_maker, params: {half_spread: 5, skew: 0.5}}
+        - {id: mm_c, kind: static_maker, params: {half_spread: 6, skew: 0.5}}
+        - {id: central_bank, kind: llm_central_bank, model: "meta:muse-spark-1.3-contributor"}
+  - name: ai_central_bank_open
+    label: "AI central bank: Spark Open"
+    change: "A Muse Spark Open central bank sets the rate each quarter."
+    overrides:
+      agents:
+        - {id: glft, kind: glft}
+        - {id: mm_b, kind: static_maker, params: {half_spread: 5, skew: 0.5}}
+        - {id: mm_c, kind: static_maker, params: {half_spread: 6, skew: 0.5}}
+        - {id: central_bank, kind: llm_central_bank, model: "baseten:meta-models/muse-spark-open-1026"}

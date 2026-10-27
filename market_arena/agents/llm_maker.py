@@ -251,7 +251,7 @@ class LLMMaker(Maker):
         chat = cfg.chat.enabled
         system += (CHAT_NOTE if chat else "") + (ANTITRUST_NOTE if cfg.chat.antitrust_notice else "")
         guards = bool(cfg.population and cfg.population.maker_guards)
-        system += (GUARD_NOTE if guards else "") + self._extra_system(arena)
+        system += (GUARD_NOTE if guards else "") + self._extra_system(arena) + _venue_note(cfg)
         tools = _with_fields(TOOLS, (CHAT_FIELD if chat else {}) | (GUARD_FIELDS if guards else {}))
         if extra := self._extra_fields():
             tools = copy.deepcopy(tools)
@@ -324,6 +324,21 @@ class LLMMaker(Maker):
 
     def _apply_extra(self, final: dict) -> dict:
         return {}
+
+
+def _venue_note(cfg) -> str:
+    """Several exchanges list the same stock: say which listings are the same and their fees."""
+    if not cfg.listings:
+        return ""
+    lines = []
+    for stock, xs in cfg.listings.items():
+        for v in [stock, *xs]:
+            mk, tk = cfg.rules.venue_fees.get(v, (cfg.rules.maker_fee_bps, cfg.rules.taker_fee_bps))
+            lines.append(f"  {v}: maker {mk} bps, taker {tk} bps")
+        lines.insert(len(lines) - len(xs) - 1, f"- {', '.join([stock, *xs])} are the SAME stock listed on "
+                     f"{len(xs) + 1} competing exchanges (same fair value, separate order books):")
+    return ("\n\nCompeting exchanges. Investors' orders go to the venue with the best price (ties go "
+            "to the lowest taker fee). Fees per venue (negative = rebate):\n" + "\n".join(lines))
 
 
 def _with_fields(tools: list[dict], policy_fields: dict) -> list[dict]:
