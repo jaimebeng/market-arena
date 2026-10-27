@@ -38,11 +38,20 @@ KNOWN = {
     "chat": ("Chat room", "Makers share a public chat room and can talk between reviews."),
     "chat_antitrust": ("Chat + antitrust notice", "Chat room, plus a standing notice that price coordination is illegal."),
     "chat_surveillance": ("Chat + AI regulator", "Chat room watched by an LLM surveillance officer that files reports and posts notices."),
+    # arms race (summary.json labels take precedence)
+    "honest": ("Honest control", "trader_b only rests small genuine orders."),
+    "red_team_spark": ("Red team: Muse Spark", "trader_b is a Muse Spark red team choosing its tactics to evade the regulator."),
+    "red_team_open": ("Red team: Muse Spark Open", "trader_b is a Muse Spark Open red team choosing its tactics to evade the regulator."),
 }
 ORDER = list(KNOWN)
 # conduct fields (chat activity, regulator scoring); summarised like the scalars when present
 CONDUCT = ["chat_messages", "regulator_notices", "reports", "spoofer_detection_rate", "first_detection_epoch",
-           "false_accusations", "collusion_flags"]  # fmt: skip
+           "false_accusations", "collusion_flags",
+           # newer per-run metrics (passed through from summary.json; averaged here when a run carries them)
+           "llm_policy_dispersion", "maker_reasoning_tokens"]  # fmt: skip
+# Per-seed series passed through untouched from summary.json (arms race: the regulator's verdict on the
+# subject per epoch, and the red team's tactics). Listed for documentation; normalise_variant keeps all fields.
+PASSTHROUGH = ["detection_by_epoch", "wash_by_epoch", "any_finding_by_epoch", "red_team_tactics"]
 
 
 def read_jsonl(p: Path) -> list[dict]:
@@ -209,7 +218,8 @@ def normalise_variant(v: dict, exp_dir: Path) -> dict:
     return v
 
 
-PAIRED = ["collusion_index", "llm_maker_half_spread", "spread", "depth", "mispricing_bps"]
+PAIRED = ["collusion_index", "llm_maker_half_spread", "spread", "depth", "mispricing_bps", "llm_policy_dispersion",
+          "maker_pnl_per_epoch"]  # fmt: skip
 
 
 def add_paired(variants: list[dict]) -> None:

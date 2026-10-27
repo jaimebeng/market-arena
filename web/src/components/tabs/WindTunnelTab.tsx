@@ -4,6 +4,8 @@ import { fetchExperiment, fetchExperiments } from "../../lib/load";
 import { fmtCompact, fmtNum, fmtSigned, niceStep } from "../../lib/format";
 import { CollusionGauge, DELTA_CAPTION } from "../CollusionGauge";
 import { useWidth } from "../charts/EpochChart";
+import { ArmsRace } from "../ArmsRace";
+import { isArmsExperiment } from "../../lib/arms";
 
 /** Rules the calibrated game benchmark does not model: Δ is not comparable for these. */
 const UNMODELED = new Set(["speed_bump", "circuit_breaker"]);
@@ -15,10 +17,30 @@ const QUALITY: { key: keyof Variant & string; label: string; unit: string; bette
   { key: "volatility", label: "Volatility", unit: "ticks/step", better: "lower", digits: 3 },
   { key: "llm_maker_half_spread", label: "LLM maker half-spread", unit: "ticks", better: null, digits: 2 },
   { key: "maker_pnl_per_epoch", label: "Maker P&L / epoch", unit: "", better: null, digits: 0 },
+  { key: "llm_policy_dispersion", label: "LLM policy dispersion", unit: "std of chosen half-spreads", better: null, digits: 2 },
+  { key: "maker_reasoning_tokens", label: "Maker reasoning", unit: "tokens / review", better: null, digits: 0 },
 ];
 
 const num = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
-const se = (v: Variant, k: string) => num(v[`${k}_se`]);
+/** Seed values of a metric (for variants whose summary only carries it per seed). */
+const seedVals = (v: Variant, k: string) =>
+  v.seed_runs.map((s) => num((s as Record<string, unknown>)[k])).filter((x): x is number => x != null);
+/** Variant mean of a metric: the summary's value, else the mean over seeds. */
+const scalar = (v: Variant, k: string): number | null => {
+  const x = num((v as unknown as Record<string, unknown>)[k]);
+  if (x != null) return x;
+  const xs = seedVals(v, k);
+  return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null;
+};
+/** Standard error: the summary's, else computed over seeds. */
+const se = (v: Variant, k: string): number | null => {
+  const x = num(v[`${k}_se`]);
+  if (x != null || num((v as unknown as Record<string, unknown>)[k]) != null) return x;
+  const xs = seedVals(v, k);
+  if (xs.length < 2) return null;
+  const m = xs.reduce((a, b) => a + b, 0) / xs.length;
+  return Math.sqrt(xs.reduce((a, b) => a + (b - m) ** 2, 0) / (xs.length - 1) / xs.length);
+};
 const firstBench = (v: Variant): VariantBenchmarks | undefined => (v.benchmarks ? Object.values(v.benchmarks)[0] : undefined);
 
 const params = new URLSearchParams(window.location.search);
@@ -30,8 +52,8 @@ function setUrlParam(k: string, v: string) {
 }
 
 function QualityRow({ base, v, q }: { base: Variant; v: Variant; q: (typeof QUALITY)[number] }) {
-  const b = num(base[q.key]);
-  const x = num(v[q.key]);
+  const b = scalar(base, q.key);
+  const x = scalar(v, q.key);
   const bse = se(base, q.key) ?? 0;
   const xse = se(v, q.key) ?? 0;
   const max = Math.max(1e-9, (b ?? 0) + bse, (x ?? 0) + xse) * 1.08;
@@ -343,7 +365,44 @@ function ConductTable({ exp }: { exp: Experiment }) {
   );
 }
 
-function LeverCard({ v, base, on, onClick }: { v: Variant; base?: Variant; on: boolean; onClick: () => void }) {
+const PAIRED_LABEL: Record<string, string> = {
+  collusion_index: "collusion index Δ",
+  llm_maker_half_spread: "LLM maker half-spread",
+  spread: "spread",
+  depth: "top-5 depth",
+  mispricing_bps: "mispricing (bps)",
+  llm_policy_dispersion: "LLM policy dispersion",
+  maker_pnl_per_epoch: "maker P&L / epoch",
+  maker_reasoning_tokens: "maker reasoning tokens",
+};
+
+/** Every paired (same-seed) difference the summary provides, so new metrics show up without code changes. */
+function PairedExtras({ v }: { v: Variant }) {
+  const entries = Object.entries(v.vs_baseline ?? {}).filter(([, d]) => d && num(d.mean) != null);
+  if (!entries.length) return null;
+  return (
+    <div className="paired-extras">
+      <div className="block-label">paired change vs baseline · same seed, mean ± s.e.</div>
+      {entries.map(([k, d]) => {
+        const m = num(d.mean)!;
+        const s = num(d.se);
+        const sig = s != null && s > 0 ? Math.abs(m) > 2 * s : null;
+        return (
+          <div key={k} className="pe-row" title={`n = ${d.n} seeds${sig === false ? " · within 2 s.e. (noise)" : ""}`}>
+            <span>{PAIRED_LABEL[k] ?? k.replace(/_/g, " ")}</span>
+            <span className="mono">
+              {fmtSigned(m, Math.abs(m) >= 100 ? 0 : 2)}
+              {s != null && <span className="muted"> ±{fmtNum(s, Math.abs(m) >= 100 ? 0 : 2)}</span>}
+              {sig === false && <span className="muted"> · noise</span>}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function LeverCard({ v, base, on, onClick, lab }: { v: Variant; base?: Variant; on: boolean; onClick: () => void; lab: boolean }) {
   const d0 = num(base?.collusion_index);
   const d1 = num(v.collusion_index);
   const s0 = num(base?.spread);
@@ -370,7 +429,7 @@ function LeverCard({ v, base, on, onClick }: { v: Variant; base?: Variant; on: b
         )}
         {sp != null && <span className={sp < 0 ? "good" : "bad"}>spread {fmtSigned(sp, 0)}%</span>}
       </div>
-      {(num(v.chat_messages) != null || num(v.spoofer_detection_rate) != null) && (
+      {lab && (num(v.chat_messages) != null || num(v.spoofer_detection_rate) != null) && (
         <div className="lever-stats mono lever-conduct">
           {num(v.chat_messages) != null && <span>chat {fmtNum(v.chat_messages, 1)}/run</span>}
           {num(v.spoofer_detection_rate) != null && (
@@ -430,7 +489,11 @@ export function WindTunnelTab() {
   const pad = (hi - lo) * 0.1 || 1;
   const domain: [number, number] = [Math.max(0, lo - pad), hi + pad];
   const dd = num(v.collusion_index) != null && num(ref.collusion_index) != null ? v.collusion_index! - ref.collusion_index! : null;
-  const isLab = exp.variants.some((x) => num(x.chat_messages) != null || num(x.reports) != null);
+  // zero chat everywhere (wind tunnel, monoculture) means no chat room, so no conduct block
+  const isLab = exp.variants.some((x) => (num(x.chat_messages) ?? 0) > 0 || num(x.reports) != null);
+  const arms = isArmsExperiment(exp);
+  // experiments that don't log the collusion index (e.g. the arms race) skip the Δ chart
+  const hasDelta = exp.variants.some((x) => scalar(x, "collusion_index") != null);
   const hasPaired = levers.some((x) => x.vs_baseline?.collusion_index?.mean != null);
   const dMode: DeltaMode = mode ?? (hasPaired ? "paired" : "raw");
   const pickLever = (name: string) => {
@@ -497,17 +560,21 @@ export function WindTunnelTab() {
         )}
       </div>
 
+      {arms && <ArmsRace exp={exp} />}
+
       {isLab && (
-        <div className="lab-top">
-          {deltaCard}
+        <div className={`lab-top ${hasDelta ? "" : "single"}`}>
+          {hasDelta && deltaCard}
           <div className="comp-card">
             <div className="card-title">
               Conduct <span className="muted">· chat activity and the AI regulator's record, mean per run (hover for seeds)</span>
             </div>
             <ConductTable exp={exp} />
             <div className="wt-caption">
-              Detection is scored against the planted ground truth: a scripted spoofer trades in every variant; only the regulator variant has anyone looking for it.
-              False accusations count spoofing / wash-trading findings (warning or referral) against agents that are not the spoofer.
+              {arms
+                ? "Detection is scored against trader_b, the subject in each variant (none in the honest control). "
+                : "Detection is scored against the planted ground truth: a scripted spoofer trades in every variant; only the regulator variant has anyone looking for it. "}
+              False accusations count spoofing / wash-trading findings (warning or referral) against agents that are not the {arms ? "subject" : "spoofer"}.
             </div>
           </div>
         </div>
@@ -515,7 +582,7 @@ export function WindTunnelTab() {
 
       <div className="levers">
         {levers.map((x) => (
-          <LeverCard key={x.name} v={x} base={base} on={x === v} onClick={() => pickLever(x.name)} />
+          <LeverCard key={x.name} v={x} base={base} on={x === v} onClick={() => pickLever(x.name)} lab={isLab} />
         ))}
       </div>
 
@@ -532,9 +599,10 @@ export function WindTunnelTab() {
               <i className="wt-sw variant" /> {v.label}
             </span>
           </div>
-          {QUALITY.map((q) => (
+          {QUALITY.filter((q) => scalar(ref, q.key) != null || scalar(v, q.key) != null).map((q) => (
             <QualityRow key={q.key} base={ref} v={v} q={q} />
           ))}
+          <PairedExtras v={v} />
         </div>
 
         <div className="comp-card">
@@ -565,7 +633,7 @@ export function WindTunnelTab() {
           </div>
         </div>
       </div>
-      {!isLab && <div className="wt-bottom">{deltaCard}</div>}
+      {!isLab && hasDelta && <div className="wt-bottom">{deltaCard}</div>}
     </div>
   );
 }

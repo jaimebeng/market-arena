@@ -257,6 +257,24 @@ export interface VariantScalars {
   first_detection_epoch?: number | null;
   false_accusations?: number | null;
   collusion_flags?: number | null;
+  // how differently the LLM makers price (std of chosen half-spreads), and their reasoning effort
+  llm_policy_dispersion?: number | null;
+  maker_reasoning_tokens?: number | null;
+}
+
+/** One red-team review: tactics chosen after epoch `epoch`, in force during epoch + 1. */
+export interface RedTeamTactics {
+  epoch: number;
+  spoof_size?: number | null;
+  layers?: number | null;
+  hold?: number | null;
+  cycle?: number | null;
+  bait_size?: number | null;
+  bait_ttl?: number | null;
+  max_position?: number | null;
+  /** fake lots placed during epoch `epoch` */
+  fake_lots?: number | null;
+  rationale?: string | null;
 }
 
 export interface SeedRun extends VariantScalars {
@@ -264,6 +282,11 @@ export interface SeedRun extends VariantScalars {
   collusion_by_epoch?: (number | null)[];
   llm_half_spread_by_epoch?: (number | null)[];
   complete?: boolean;
+  // arms race: the regulator's verdict on the subject (trader_b) per audited epoch, 1/0; null without a subject
+  detection_by_epoch?: (number | null)[] | null;
+  wash_by_epoch?: (number | null)[] | null;
+  any_finding_by_epoch?: (number | null)[] | null;
+  red_team_tactics?: RedTeamTactics[] | null;
 }
 
 export interface PairedDiff {

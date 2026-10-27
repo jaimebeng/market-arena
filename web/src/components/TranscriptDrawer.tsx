@@ -259,7 +259,7 @@ export function TranscriptDrawer({ run, agent, onClose }: { run: Run; agent: Age
           {ds.length === 0 ? (
             <div className="empty small">This agent does not review (no LLM).</div>
           ) : (
-            ds.map((d) => <DecisionView key={d.t} run={run} d={d} current={d === cur} />)
+            ds.map((d, i) => <DecisionView key={`${d.t}-${i}`} run={run} d={d} current={d === cur} />)
           )}
         </div>
       </aside>

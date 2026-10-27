@@ -1,0 +1,399 @@
+{
+ "name": "arms_race/honest/s64",
+ "config": {
+  "name": "arms_race/honest/s64",
+  "seed": 64,
+  "steps_per_epoch": 2000,
+  "n_epochs": 8,
+  "components": {
+   "A": {
+    "price": 10000.0,
+    "sigma": 0.0001,
+    "beta": 1.0
+   }
+  },
+  "factor_sigma": 0.0,
+  "jump_rate": 0.002,
+  "jump_bps": 60.0,
+  "index": null,
+  "rules": {
+   "tick": 1,
+   "maker_fee_bps": 0.0,
+   "taker_fee_bps": 0.0,
+   "min_resting_steps": 0,
+   "circuit_breaker_pct": null,
+   "circuit_window": 100,
+   "circuit_halt_steps": 50
+  },
+  "zi": {
+   "limit_rate": 1.2,
+   "market_rate": 0.35,
+   "offset_min": 3,
+   "offset_max": 25,
+   "lifetime_mean": 60.0,
+   "size_mean": 3.0,
+   "anchor_kappa": 0.3,
+   "anchor_lag": 150
+  },
+  "informed": {
+   "rate": 0.03,
+   "threshold_bps": 8.0,
+   "size": 2,
+   "max_size": 12,
+   "noise_bps": 1.0
+  },
+  "index_flow": null,
+  "calibration_steps": 20000,
+  "glft_gamma": 0.05,
+  "competition_eta": 0.5,
+  "snapshot_every": 10,
+  "holdout": 1000,
+  "chat": {
+   "enabled": false,
+   "antitrust_notice": false
+  },
+  "agents": [
+   {
+    "id": "mm_a",
+    "kind": "glft",
+    "model": null,
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "mm_b",
+    "kind": "static_maker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "half_spread": 5
+    }
+   },
+   {
+    "id": "mm_c",
+    "kind": "static_maker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "half_spread": 6
+    }
+   },
+   {
+    "id": "trader_a",
+    "kind": "textbook_taker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "signal": "order_book_imbalance",
+     "max_position": 10,
+     "max_order": 1
+    }
+   },
+   {
+    "id": "trader_b",
+    "kind": "spoofer",
+    "model": null,
+    "assets": null,
+    "params": {
+     "spoof_size": 0
+    }
+   },
+   {
+    "id": "trader_c",
+    "kind": "textbook_taker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "signal": "momentum",
+     "max_position": 10,
+     "max_order": 1
+    }
+   },
+   {
+    "id": "regulator",
+    "kind": "llm_surveillance",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {}
+   }
+  ],
+  "out_dir": "runs"
+ },
+ "assets": [
+  "A"
+ ],
+ "agents": [
+  {
+   "id": "mm_a",
+   "role": "maker",
+   "model": "GLFT closed form"
+  },
+  {
+   "id": "mm_b",
+   "role": "maker",
+   "model": null
+  },
+  {
+   "id": "mm_c",
+   "role": "maker",
+   "model": null
+  },
+  {
+   "id": "trader_a",
+   "role": "taker",
+   "model": "textbook: order_book_imbalance"
+  },
+  {
+   "id": "trader_b",
+   "role": "taker",
+   "model": "scripted: spoofer"
+  },
+  {
+   "id": "trader_c",
+   "role": "taker",
+   "model": "textbook: momentum"
+  },
+  {
+   "id": "regulator",
+   "role": "regulator",
+   "model": "meta:muse-spark-1.3-contributor"
+  }
+ ],
+ "calibration": {
+  "A": {
+   "A": 0.521477529510813,
+   "k": 0.3078611671983819,
+   "sigma": 1.2346819071331485,
+   "deltas": [
+    1.0,
+    2.0,
+    3.0,
+    4.0,
+    5.0,
+    6.0,
+    7.0,
+    8.0,
+    9.0,
+    10.0,
+    11.0,
+    12.0,
+    13.0,
+    14.0,
+    15.0,
+    16.0,
+    17.0,
+    18.0,
+    19.0,
+    20.0,
+    21.0,
+    22.0,
+    23.0,
+    24.0,
+    25.0,
+    26.0,
+    27.0,
+    28.0,
+    29.0,
+    30.0
+   ],
+   "rates": [
+    0.16405,
+    0.1618,
+    0.158775,
+    0.15225,
+    0.139425,
+    0.11915,
+    0.0957,
+    0.074125,
+    0.0536,
+    0.037775,
+    0.026525,
+    0.01775,
+    0.012925,
+    0.00875,
+    0.005825,
+    0.00375,
+    0.00255,
+    0.001525,
+    0.001075,
+    0.00065,
+    0.00045,
+    0.0003,
+    0.000225,
+    0.000175,
+    0.000175,
+    0.000175,
+    0.00015,
+    0.00015,
+    0.000125,
+    0.0001
+   ],
+   "alpha": 1.39905194930831
+  }
+ },
+ "started": 1793105639.870665,
+ "stylized": {
+  "A": {
+   "market": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 11.203,
+    "hill_tail_index": 3.64,
+    "acf_returns": [
+     0.0708,
+     0.106,
+     0.1525,
+     0.173,
+     0.1355,
+     0.161,
+     0.1376,
+     0.1104,
+     0.1339,
+     0.0725,
+     0.0256,
+     0.0604,
+     0.0635,
+     0.068,
+     0.0558,
+     0.0396,
+     0.0187,
+     0.0057,
+     0.0319,
+     0.0472
+    ],
+    "acf_abs_returns": [
+     0.1875,
+     0.2016,
+     0.136,
+     0.119,
+     0.0861,
+     0.1308,
+     0.0973,
+     0.0337,
+     0.1017,
+     0.0989,
+     0.0531,
+     0.0271,
+     0.0787,
+     0.0455,
+     0.0191,
+     0.0359,
+     0.0097,
+     0.0332,
+     -0.0039,
+     0.0328,
+     0.0138,
+     0.0353,
+     0.0594,
+     0.0109,
+     0.0109,
+     -0.0122,
+     -0.0133,
+     -0.0,
+     -0.0157,
+     0.0015,
+     -0.0304,
+     0.0101,
+     -0.0244,
+     -0.0027,
+     -0.066,
+     -0.0118,
+     -0.0624,
+     -0.0081,
+     -0.0224,
+     0.0023,
+     -0.0033,
+     -0.0522,
+     -0.0189,
+     -0.0632,
+     -0.0532,
+     -0.0222,
+     -0.0368,
+     -0.0465,
+     -0.0222,
+     -0.03
+    ]
+   },
+   "fair_value": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 86.549,
+    "hill_tail_index": 1.434,
+    "acf_returns": [
+     -0.0092,
+     0.0003,
+     -0.0441,
+     -0.0069,
+     0.0578,
+     0.014,
+     0.0,
+     0.0087,
+     0.004,
+     -0.0031,
+     0.0151,
+     0.0337,
+     0.0006,
+     -0.0101,
+     -0.0028,
+     0.0131,
+     -0.0114,
+     -0.0034,
+     -0.0029,
+     -0.0094
+    ],
+    "acf_abs_returns": [
+     -0.0112,
+     -0.0198,
+     0.0086,
+     -0.0129,
+     0.0279,
+     0.0005,
+     -0.0025,
+     -0.0084,
+     -0.0067,
+     -0.0307,
+     -0.0177,
+     0.0249,
+     -0.0193,
+     -0.0135,
+     0.003,
+     -0.0046,
+     -0.0196,
+     -0.013,
+     -0.0124,
+     -0.023,
+     -0.006,
+     -0.0015,
+     -0.013,
+     -0.0158,
+     -0.0066,
+     -0.0216,
+     -0.0024,
+     -0.0203,
+     -0.0201,
+     0.0018,
+     -0.0144,
+     -0.0204,
+     -0.0121,
+     0.0086,
+     -0.0142,
+     -0.0083,
+     -0.0081,
+     -0.02,
+     0.0325,
+     -0.0167,
+     -0.0101,
+     -0.0215,
+     -0.0202,
+     -0.0098,
+     0.0186,
+     -0.0081,
+     -0.0184,
+     0.0434,
+     -0.0173,
+     -0.012
+    ]
+   }
+  }
+ },
+ "finished": 1793105828.559566,
+ "llm_cost_usd": 0.012
+}

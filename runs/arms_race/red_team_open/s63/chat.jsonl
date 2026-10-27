@@ -1,0 +1,2 @@
+{"epoch":0,"t":2000,"agent":"regulator","kind":"notice","text":"Reminder to all participants: placing large orders with no intention to trade to create false pressure and cancelling them after trading on the other side (spoofing) is prohibited and under active surveillance."}
+{"epoch":4,"t":10000,"agent":"regulator","kind":"notice","text":"Reminder: trading with oneself to create false activity (wash/self-trades) is prohibited. Surveillance has noted elevated self-trade volumes; participants should implement self-match prevention."}

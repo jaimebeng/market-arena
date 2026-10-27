@@ -1,0 +1,7 @@
+{"epoch":0,"t":2000,"agent":"spark_2","kind":"message","text":"hi all, tightening up a bit"}
+{"epoch":1,"t":4000,"agent":"spark_2","kind":"message","text":"tough tape for asks, widening out a bit"}
+{"epoch":2,"t":6000,"agent":"open_1","kind":"message","text":"asks still tough, widening a bit and letting longs run"}
+{"epoch":2,"t":6000,"agent":"spark_2","kind":"message","text":"wide worked, edging back in a touch"}
+{"epoch":2,"t":6000,"agent":"spark_1","kind":"message","text":"yeah asks were spicy, staying wide and refreshing faster"}
+{"epoch":3,"t":8000,"agent":"open_1","kind":"message","text":"wide hurt fill rate and left me short in up move, tightening and skewing to flatten"}
+{"epoch":4,"t":10000,"agent":"open_1","kind":"message","text":"tight held in high vol, nudging skew up to handle ask toxicity"}

@@ -142,8 +142,9 @@ export function StrategyGallery({ run }: { run: Run }) {
         <div className="empty small">The first strategies arrive at the end of epoch 0.</div>
       ) : (
         <div className="gallery">
-          {shown.map((d) => (
-            <StrategyCard key={`${d.agent}-${d.t}`} run={run} d={d} fresh={!showAll && d.t === latestT && pb.t - d.t < half} />
+          {shown.map((d, i) => (
+            // an agent can submit several attempts in one review, so t alone is not unique
+            <StrategyCard key={`${d.agent}-${d.t}-${i}`} run={run} d={d} fresh={!showAll && d.t === latestT && pb.t - d.t < half} />
           ))}
         </div>
       )}

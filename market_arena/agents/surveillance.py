@@ -126,6 +126,7 @@ class LLMSurveillance:
         self.model = model
         self.reasoning_effort = (params or {}).get("reasoning_effort")
         self.notes = ""
+        self.reports: list[dict] = []  # {"epoch", "findings"} per filed report
 
     @property
     def policies(self):
@@ -166,65 +167,12 @@ class LLMSurveillance:
         }
 
     def _order_activity(self, arena) -> list[dict]:
-        out = []
-        for m in arena.metrics_log[-3:]:
-            rows = {}
-            for ag in self._participants(arena):
-                st = m.get("orders", {}).get(ag.id, {})
-                a = m["agents"][ag.id]
-                filled = a["volume"]
-                rows[ag.id] = {
-                    "role": ag.role,
-                    "orders_placed": st.get("placed", 0),
-                    "lots_placed": st.get("placed_qty", 0),
-                    "orders_cancelled": st.get("cancelled", 0),
-                    "lots_cancelled": st.get("cancelled_qty", 0),
-                    "fast_cancel_share": _r(st["fast_cancels"] / st["cancelled"])
-                    if st.get("cancelled") else None,
-                    "lots_filled": filled,
-                    "order_to_trade": _r(st.get("placed_qty", 0) / filled) if filled else None,
-                    "avg_cancelled_size": _r(st["cancelled_qty"] / st["cancelled"])
-                    if st.get("cancelled") else None,
-                    "avg_fill_size": _r(filled / a["fills"]) if a["fills"] else None,
-                    "self_trade_lots": st.get("self_trades", 0),
-                    "pnl": round(a["pnl"], 1),
-                    "inventory": a["inventory"],
-                }  # fmt: skip
-            out.append({"epoch": m["epoch"], "participants": rows})
-        return out
+        return order_activity(arena, self._participants(arena))
 
     def _cancel_fill_pattern(self, arena, agent: str, t0: int, t1: int) -> dict:
         if agent not in {ag.id for ag in self._participants(arena)}:
             raise ValueError(f"unknown participant {agent}")
-        cancels = [c for c in arena.ex.cancel_log if c[1] == agent and t0 <= c[0] < t1]
-        fills = [f for f in arena.ex.fill_log if f.owner == agent and t0 <= f.t < t1]
-        if not fills:
-            return {"fills": 0, "cancels": len(cancels)}
-        by = {}
-        for t, _, asset, side, qty, _age in cancels:
-            by.setdefault((asset, side), []).append((t, qty))
-        opp = same = 0
-        opp_sizes = []
-        for f in fills:
-            # side of an order whose cancel would pair with this fill: the opposite of what we did
-            for key, bucket in (((f.asset, -f.side), "opp"), ((f.asset, f.side), "same")):
-                hits = [q for t, q in by.get(key, []) if f.t <= t <= f.t + WINDOW]
-                if hits:
-                    if bucket == "opp":
-                        opp += 1
-                        opp_sizes += hits
-                    else:
-                        same += 1
-        ages = [c[5] for c in cancels]
-        return {
-            "fills": len(fills),
-            "cancels": len(cancels),
-            "share_fills_then_opposite_cancel": _r(opp / len(fills)),
-            "share_fills_then_same_side_cancel": _r(same / len(fills)),
-            "avg_size_of_paired_opposite_cancels": _r(np.mean(opp_sizes)) if opp_sizes else None,
-            "avg_fill_size": _r(np.mean([f.qty for f in fills])),
-            "median_cancel_age_steps": _r(np.median(ages)) if ages else None,
-        }
+        return cancel_fill_pattern(arena, agent, t0, t1)
 
     def _file_report(self, args: dict) -> dict:
         ids = {ag.id for ag in self._participants(self._arena)}
@@ -260,6 +208,7 @@ class LLMSurveillance:
         )  # fmt: skip
         final = tr.final or {}
         self.notes = final.get("notes_to_self") or self.notes
+        self.reports.append({"epoch": epoch, "findings": final.get("findings") or []})
         notice = (final.get("public_notice") or "").strip()
         if notice:
             arena.post_chat(epoch, self.id, notice, kind="notice")
@@ -276,6 +225,69 @@ class LLMSurveillance:
                 "cost": tr.cost, "seconds": tr.seconds,
             }
         )  # fmt: skip
+
+
+def order_activity(arena, agents: list, last: int = 3) -> list[dict]:
+    """Order-entry statistics per agent for the last epochs (what surveillance sees)."""
+    out = []
+    for m in arena.metrics_log[-last:]:
+        rows = {}
+        for ag in agents:
+            st = m.get("orders", {}).get(ag.id, {})
+            a = m["agents"][ag.id]
+            filled = a["volume"]
+            rows[ag.id] = {
+                "role": ag.role,
+                "orders_placed": st.get("placed", 0),
+                "lots_placed": st.get("placed_qty", 0),
+                "orders_cancelled": st.get("cancelled", 0),
+                "lots_cancelled": st.get("cancelled_qty", 0),
+                "fast_cancel_share": _r(st["fast_cancels"] / st["cancelled"])
+                if st.get("cancelled") else None,
+                "lots_filled": filled,
+                "order_to_trade": _r(st.get("placed_qty", 0) / filled) if filled else None,
+                "avg_cancelled_size": _r(st["cancelled_qty"] / st["cancelled"])
+                if st.get("cancelled") else None,
+                "avg_fill_size": _r(filled / a["fills"]) if a["fills"] else None,
+                "self_trade_lots": st.get("self_trades", 0),
+                "pnl": round(a["pnl"], 1),
+                "inventory": a["inventory"],
+            }  # fmt: skip
+        out.append({"epoch": m["epoch"], "participants": rows})
+    return out
+
+
+def cancel_fill_pattern(arena, agent: str, t0: int, t1: int) -> dict:
+    """How one agent's fills pair with its own cancels in [t0, t1) (the spoofing signature)."""
+    cancels = [c for c in arena.ex.cancel_log if c[1] == agent and t0 <= c[0] < t1]
+    fills = [f for f in arena.ex.fill_log if f.owner == agent and t0 <= f.t < t1]
+    if not fills:
+        return {"fills": 0, "cancels": len(cancels)}
+    by = {}
+    for t, _, asset, side, qty, _age in cancels:
+        by.setdefault((asset, side), []).append((t, qty))
+    opp = same = 0
+    opp_sizes = []
+    for f in fills:
+        # side of an order whose cancel would pair with this fill: the opposite of what we did
+        for key, bucket in (((f.asset, -f.side), "opp"), ((f.asset, f.side), "same")):
+            hits = [q for t, q in by.get(key, []) if f.t <= t <= f.t + WINDOW]
+            if hits:
+                if bucket == "opp":
+                    opp += 1
+                    opp_sizes += hits
+                else:
+                    same += 1
+    ages = [c[5] for c in cancels]
+    return {
+        "fills": len(fills),
+        "cancels": len(cancels),
+        "share_fills_then_opposite_cancel": _r(opp / len(fills)),
+        "share_fills_then_same_side_cancel": _r(same / len(fills)),
+        "avg_size_of_paired_opposite_cancels": _r(np.mean(opp_sizes)) if opp_sizes else None,
+        "avg_fill_size": _r(np.mean([f.qty for f in fills])),
+        "median_cancel_age_steps": _r(np.median(ages)) if ages else None,
+    }
 
 
 def _r(x, n=2):

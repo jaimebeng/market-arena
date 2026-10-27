@@ -45,7 +45,7 @@ export function Header({
 
   return (
     <header className="topbar">
-      <div className="brand">
+      <a className="brand" href="./" title="Start here">
         <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden>
           <rect width="32" height="32" rx="8" fill="#151a26" />
           <path d="M6 21 L12 14 L17 18 L26 8" stroke="#7b8cff" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -55,7 +55,7 @@ export function Header({
           <div className="brand-name">MARKET ARENA</div>
           <div className="brand-sub">AI traders on a simulated exchange</div>
         </div>
-      </div>
+      </a>
 
       <label className="run-picker">
         <span>run</span>

@@ -26,7 +26,7 @@ class ChatCfg(BaseModel):
 class AgentCfg(BaseModel):
     id: str
     kind: Literal["glft", "static_maker", "llm_maker", "llm_taker", "textbook_taker",
-                  "spoofer", "llm_surveillance"]  # fmt: skip
+                  "spoofer", "llm_surveillance", "llm_red_team"]  # fmt: skip
     model: str | None = None  # e.g. "meta:muse-spark-1.3-contributor", "baseten:meta-models/..."
     assets: list[str] | None = None  # default: all assets
     params: dict = Field(default_factory=dict)

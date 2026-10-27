@@ -12,6 +12,8 @@ runs/*
 !runs/designer/
 !runs/designer_v2/
 !runs/designer_v3/
+!runs/arms_race/
+!runs/monoculture/
 runs/**/snapshots.jsonl
 runs/**/trades.jsonl
 runs/**/*.log

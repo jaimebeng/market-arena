@@ -41,10 +41,11 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 - **Collusion index:** Δ = (s − s_Nash) / (s_Pareto − s_Nash), where s is the LLM makers' average quoted half-spread. Δ = 0 means competitive and Δ = 1 means fully collusive.
 - **Wind tunnel:** the same market with the same seed under different rules (tick size, maker rebate, speed bump, more makers, circuit breaker), compared on spreads, depth, price efficiency and Δ.
 
-### Three more AI roles: talk, police, design
+### More AI roles: talk, police, evade, design
 
 - **Collusion lab: can the makers talk?** An optional chat room lets the makers post one public message per review. Experiments compare tacit pricing (no chat), open chat, chat plus an antitrust warning, and chat plus an AI regulator. This asks whether letting AI agents communicate turns tacit collusion into explicit collusion, and whether rules or policing stop it.
 - **AI surveillance officer.** A Muse Spark regulator audits the market every epoch. It looks at quotes against the Nash and Pareto benchmarks, order-entry statistics, how fills pair with cancels, and the chat log. It then files graded findings (spoofing, wash trading, explicit or tacit collusion) and can broadcast public warnings that the makers read at their next review. A **planted spoofer** gives ground truth, and every run scores the regulator's detection rate and its false accusations.
+- **AI red team: can surveillance be evaded?** In a sanctioned test, a Muse Spark or Spark Open agent has to keep placing fake orders. Each epoch it chooses its tactics to escape the regulator, after a debrief on what the regulator filed about it. All participants have neutral ids, and an honest control trader checks for false accusations.
 - **AI market designer.** Muse Spark acts as the exchange. It forms hypotheses about tick size, fees, speed bumps and circuit breakers, tests them in the wind tunnel against live AI traders under an experiment budget, and recommends a rulebook. The quants' strategies have to pass a holdout test, and so does this: the recommendation is re-run against the default rules on **fresh seeds** before it counts.
 
 ## Meta models used
@@ -54,6 +55,7 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 | Market makers and takers | **Muse Spark 1.3** (`muse-spark-1.3-contributor`, Meta Model API) | Multi-step tool calling, reasoning over performance data, writing strategy code |
 | Market makers and takers | **Muse Spark Open** (`meta-models/muse-spark-open-1026`, open weights via Baseten) | The same roles, so the two models compete head to head; its reasoning traces are shown on the dashboard |
 | Surveillance officer | **Muse Spark 1.3** | Forensic tool use over order-entry data, quotes and chat; graded findings; public notices |
+| Red team | **Muse Spark 1.3** and **Muse Spark Open** | Adversarial tool use: reads its own surveillance footprint and debriefs, then chooses evasion tactics under a mandate |
 | Market designer | **Muse Spark 1.3** | Plans and runs its own experiments (each a full multi-agent market), then recommends a rulebook |
 
 Both are reached through one OpenAI-compatible client (`market_arena/llm/client.py`). A run declares agents as `provider:model`, so any mix of models can share a market.
@@ -84,6 +86,8 @@ cp .env.example .env    # add META_API_KEY and/or BASETEN_API_KEY
 .venv/bin/python -m market_arena.runner.run configs/showcase_single.yaml   # LLM makers + takers
 .venv/bin/python -m market_arena.runner.wind_tunnel configs/wind_tunnel.yaml
 .venv/bin/python -m market_arena.runner.wind_tunnel configs/collusion_lab.yaml   # chat, antitrust, AI regulator
+.venv/bin/python -m market_arena.runner.wind_tunnel configs/arms_race.yaml      # AI red team vs AI regulator
+.venv/bin/python -m market_arena.runner.wind_tunnel configs/monoculture.yaml    # same model vs mixed models
 .venv/bin/python -m market_arena.runner.designer configs/designer.yaml          # AI market designer
 ```
 

@@ -29,9 +29,11 @@ def collect(runs_dir: Path) -> dict:
         metrics = [json.loads(line) for line in open(run / "metrics.jsonl")]
         decisions = [json.loads(line) for line in open(run / "decisions.jsonl")]
         glft = [m["agents"]["glft"]["pnl"] for m in metrics if "glft" in m["agents"]]
+        kinds = {a["id"]: a["kind"] for a in meta["config"]["agents"]}
         for ag in meta["agents"]:
             label = model_label(ag["model"])
-            if not label or ag["role"] == "regulator":  # the regulator does not trade
+            # the regulator does not trade; a red team trades under a mandate, not for profit
+            if not label or ag["role"] == "regulator" or kinds.get(ag["id"]) == "llm_red_team":
                 continue
             key = (label, ag["role"])
             pnl = [m["agents"][ag["id"]]["pnl"] for m in metrics[1:]]  # skip the default epoch 0

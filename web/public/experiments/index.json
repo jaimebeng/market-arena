@@ -12,7 +12,30 @@
    "seeds": [
     41,
     42,
-    43
+    43,
+    44,
+    45,
+    46
+   ],
+   "provisional": false
+  },
+  {
+   "name": "monoculture",
+   "file": "monoculture.json",
+   "variants": [
+    "baseline",
+    "all_spark",
+    "all_open",
+    "all_spark_low",
+    "all_spark_high"
+   ],
+   "seeds": [
+    81,
+    82,
+    83,
+    84,
+    85,
+    86
    ],
    "provisional": false
   },
@@ -30,10 +53,30 @@
    "seeds": [
     31,
     32,
-    33
+    33,
+    34,
+    35,
+    36
+   ],
+   "provisional": false
+  },
+  {
+   "name": "arms_race",
+   "file": "arms_race.json",
+   "variants": [
+    "baseline",
+    "honest",
+    "red_team_spark",
+    "red_team_open"
+   ],
+   "seeds": [
+    61,
+    62,
+    63,
+    64
    ],
    "provisional": false
   }
  ],
- "generated": 1793104485.4222944
+ "generated": 1793115757.7395391
 }

@@ -1,0 +1,1872 @@
+{
+ "experiment": "monoculture",
+ "description": "Three LLM market makers compete alongside the GLFT benchmark and a momentum trader. The baseline mixes models (two Muse Spark, one Muse Spark Open). Variants give every maker the same model, or the same model with low or high reasoning effort.",
+ "seeds": [
+  81,
+  82,
+  83,
+  84,
+  85,
+  86
+ ],
+ "variants": [
+  {
+   "name": "baseline",
+   "label": "Baseline",
+   "change": "",
+   "n_seeds": 6,
+   "seed_runs": [
+    {
+     "spread": 7.689,
+     "taker_cost": 3.845,
+     "depth": 50.657,
+     "mispricing_bps": 25.481,
+     "volatility": 1.105,
+     "volume": 2748.2,
+     "collusion_index": 0.888,
+     "llm_maker_half_spread": 5.613,
+     "llm_maker_quoted_half_spread": 5.991,
+     "maker_pnl_per_epoch": 409.525,
+     "llm_policy_dispersion": 0.335,
+     "maker_reasoning_tokens": 2321.0,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.428,
+       "n_makers": 4,
+       "adverse_selection": 1.388,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.763,
+       "nash_skew": 0.785,
+       "pareto_hs": 5.846,
+       "pareto_skew": 1.058
+      }
+     },
+     "collusion_by_epoch": [
+      0.594,
+      0.354,
+      1.042,
+      0.994,
+      1.09,
+      0.962
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.5,
+      5.933,
+      5.833,
+      6.033,
+      5.767
+     ],
+     "llm_cost_usd": 0.0082,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/baseline/s81"
+    },
+    {
+     "spread": 8.117,
+     "taker_cost": 4.059,
+     "depth": 47.449,
+     "mispricing_bps": 24.591,
+     "volatility": 1.245,
+     "volume": 2779.0,
+     "collusion_index": 1.748,
+     "llm_maker_half_spread": 6.807,
+     "llm_maker_quoted_half_spread": 7.141,
+     "maker_pnl_per_epoch": 691.75,
+     "llm_policy_dispersion": 0.274,
+     "maker_reasoning_tokens": 2906.7,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.047,
+       "n_makers": 4,
+       "adverse_selection": 1.426,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.64,
+       "nash_skew": 0.709,
+       "pareto_hs": 5.451,
+       "pareto_skew": 0.979
+      }
+     },
+     "collusion_by_epoch": [
+      0.751,
+      1.671,
+      1.303,
+      1.726,
+      1.929,
+      2.113
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.667,
+      6.0,
+      6.767,
+      7.133,
+      7.467
+     ],
+     "llm_cost_usd": 0.0094,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/baseline/s82"
+    },
+    {
+     "spread": 6.575,
+     "taker_cost": 3.288,
+     "depth": 50.386,
+     "mispricing_bps": 20.203,
+     "volatility": 1.099,
+     "volume": 2783.2,
+     "collusion_index": 0.46,
+     "llm_maker_half_spread": 5.333,
+     "llm_maker_quoted_half_spread": 5.683,
+     "maker_pnl_per_epoch": 489.45,
+     "llm_policy_dispersion": 0.854,
+     "maker_reasoning_tokens": 1848.1,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.986,
+       "n_makers": 4,
+       "adverse_selection": 1.967,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.424,
+       "nash_skew": 0.888,
+       "pareto_hs": 6.4,
+       "pareto_skew": 1.199
+      }
+     },
+     "collusion_by_epoch": [
+      0.291,
+      0.798,
+      0.291,
+      0.038,
+      0.629,
+      0.545
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.0,
+      5.0,
+      4.5,
+      5.667,
+      5.5
+     ],
+     "llm_cost_usd": 0.0117,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/baseline/s83"
+    },
+    {
+     "spread": 7.215,
+     "taker_cost": 3.608,
+     "depth": 48.885,
+     "mispricing_bps": 29.93,
+     "volatility": 1.228,
+     "volume": 2845.2,
+     "collusion_index": 0.376,
+     "llm_maker_half_spread": 5.747,
+     "llm_maker_quoted_half_spread": 6.059,
+     "maker_pnl_per_epoch": 398.775,
+     "llm_policy_dispersion": 0.395,
+     "maker_reasoning_tokens": 2136.5,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.766,
+       "n_makers": 4,
+       "adverse_selection": 2.156,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.892,
+       "nash_skew": 1.073,
+       "pareto_hs": 7.165,
+       "pareto_skew": 1.368
+      }
+     },
+     "collusion_by_epoch": [
+      0.048,
+      -0.099,
+      0.487,
+      0.546,
+      0.59,
+      0.355
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.667,
+      6.0,
+      6.133,
+      6.233,
+      5.7
+     ],
+     "llm_cost_usd": 0.0079,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/baseline/s84"
+    },
+    {
+     "spread": 6.414,
+     "taker_cost": 3.207,
+     "depth": 49.511,
+     "mispricing_bps": 24.723,
+     "volatility": 1.037,
+     "volume": 2752.6,
+     "collusion_index": -0.268,
+     "llm_maker_half_spread": 4.7,
+     "llm_maker_quoted_half_spread": 5.021,
+     "maker_pnl_per_epoch": 360.075,
+     "llm_policy_dispersion": 0.598,
+     "maker_reasoning_tokens": 1733.3,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 7.465,
+       "n_makers": 4,
+       "adverse_selection": 2.329,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 5.36,
+       "nash_skew": 1.312,
+       "pareto_hs": 7.819,
+       "pareto_skew": 1.561
+      }
+     },
+     "collusion_by_epoch": [
+      -0.146,
+      0.057,
+      -0.282,
+      -0.553,
+      -0.214,
+      -0.35
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      5.5,
+      4.667,
+      4.0,
+      4.833,
+      4.5
+     ],
+     "llm_cost_usd": 0.0087,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/baseline/s85"
+    },
+    {
+     "spread": 7.354,
+     "taker_cost": 3.677,
+     "depth": 47.482,
+     "mispricing_bps": 29.976,
+     "volatility": 1.223,
+     "volume": 2656.6,
+     "collusion_index": 1.58,
+     "llm_maker_half_spread": 7.0,
+     "llm_maker_quoted_half_spread": 7.289,
+     "maker_pnl_per_epoch": 341.075,
+     "llm_policy_dispersion": 0.923,
+     "maker_reasoning_tokens": 2659.1,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.4,
+       "n_makers": 4,
+       "adverse_selection": 1.366,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.771,
+       "nash_skew": 0.822,
+       "pareto_hs": 5.815,
+       "pareto_skew": 1.133
+      }
+     },
+     "collusion_by_epoch": [
+      0.601,
+      2.232,
+      1.58,
+      1.254,
+      1.498,
+      1.335
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      8.333,
+      7.0,
+      6.333,
+      6.833,
+      6.5
+     ],
+     "llm_cost_usd": 0.0082,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/baseline/s86"
+    }
+   ],
+   "benchmarks": {
+    "A": {
+     "glft_hs": 5.428,
+     "n_makers": 4,
+     "adverse_selection": 1.388,
+     "maker_fee_cents": 0.0,
+     "nash_hs": 3.763,
+     "nash_skew": 0.785,
+     "pareto_hs": 5.846,
+     "pareto_skew": 1.058
+    }
+   },
+   "spread": 7.227,
+   "spread_se": 0.265,
+   "taker_cost": 3.614,
+   "taker_cost_se": 0.133,
+   "depth": 49.062,
+   "depth_se": 0.567,
+   "mispricing_bps": 25.817,
+   "mispricing_bps_se": 1.512,
+   "volatility": 1.156,
+   "volatility_se": 0.035,
+   "volume": 2760.8,
+   "volume_se": 25.193,
+   "collusion_index": 0.797,
+   "collusion_index_se": 0.314,
+   "llm_maker_half_spread": 5.867,
+   "llm_maker_half_spread_se": 0.36,
+   "llm_maker_quoted_half_spread": 6.197,
+   "llm_maker_quoted_half_spread_se": 0.356,
+   "maker_pnl_per_epoch": 448.442,
+   "maker_pnl_per_epoch_se": 52.977,
+   "llm_policy_dispersion": 0.563,
+   "llm_policy_dispersion_se": 0.112,
+   "maker_reasoning_tokens": 2267.45,
+   "maker_reasoning_tokens_se": 186.478,
+   "llm_cost_usd": 0.009,
+   "llm_cost_usd_se": 0.001,
+   "epochs": 6.0,
+   "epochs_se": 0.0,
+   "exchange_fee_revenue": 0.0,
+   "exchange_fee_revenue_se": 0.0,
+   "chat_messages": 0.0,
+   "chat_messages_se": 0.0,
+   "regulator_notices": 0.0,
+   "regulator_notices_se": 0.0
+  },
+  {
+   "name": "all_spark",
+   "label": "All Muse Spark",
+   "change": "Every maker runs Muse Spark 1.3.",
+   "n_seeds": 6,
+   "seed_runs": [
+    {
+     "spread": 5.894,
+     "taker_cost": 2.947,
+     "depth": 46.57,
+     "mispricing_bps": 25.702,
+     "volatility": 1.357,
+     "volume": 2771.2,
+     "collusion_index": 0.636,
+     "llm_maker_half_spread": 5.087,
+     "llm_maker_quoted_half_spread": 5.391,
+     "maker_pnl_per_epoch": 93.275,
+     "llm_policy_dispersion": 0.479,
+     "maker_reasoning_tokens": 2138.5,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.428,
+       "n_makers": 4,
+       "adverse_selection": 1.388,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.763,
+       "nash_skew": 0.785,
+       "pareto_hs": 5.846,
+       "pareto_skew": 1.058
+      }
+     },
+     "collusion_by_epoch": [
+      0.594,
+      0.274,
+      0.514,
+      0.242,
+      0.754,
+      1.394
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.333,
+      4.833,
+      4.267,
+      5.333,
+      6.667
+     ],
+     "llm_cost_usd": 0.0137,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark/s81"
+    },
+    {
+     "spread": 7.904,
+     "taker_cost": 3.952,
+     "depth": 46.282,
+     "mispricing_bps": 24.274,
+     "volatility": 1.281,
+     "volume": 2776.8,
+     "collusion_index": 1.699,
+     "llm_maker_half_spread": 6.716,
+     "llm_maker_quoted_half_spread": 7.011,
+     "maker_pnl_per_epoch": 564.65,
+     "llm_policy_dispersion": 0.44,
+     "maker_reasoning_tokens": 2167.8,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.047,
+       "n_makers": 4,
+       "adverse_selection": 1.426,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.64,
+       "nash_skew": 0.709,
+       "pareto_hs": 5.451,
+       "pareto_skew": 0.979
+      }
+     },
+     "collusion_by_epoch": [
+      0.751,
+      1.763,
+      1.303,
+      1.487,
+      2.315,
+      1.625
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.833,
+      6.0,
+      6.333,
+      7.833,
+      6.583
+     ],
+     "llm_cost_usd": 0.0137,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark/s82"
+    },
+    {
+     "spread": 8.049,
+     "taker_cost": 4.025,
+     "depth": 53.732,
+     "mispricing_bps": 20.183,
+     "volatility": 0.972,
+     "volume": 2739.4,
+     "collusion_index": 0.639,
+     "llm_maker_half_spread": 5.687,
+     "llm_maker_quoted_half_spread": 6.031,
+     "maker_pnl_per_epoch": 716.95,
+     "llm_policy_dispersion": 0.207,
+     "maker_reasoning_tokens": 1822.2,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.986,
+       "n_makers": 4,
+       "adverse_selection": 1.967,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.424,
+       "nash_skew": 0.888,
+       "pareto_hs": 6.4,
+       "pareto_skew": 1.199
+      }
+     },
+     "collusion_by_epoch": [
+      0.291,
+      0.882,
+      0.882,
+      0.713,
+      0.46,
+      0.258
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.167,
+      6.167,
+      5.833,
+      5.333,
+      4.933
+     ],
+     "llm_cost_usd": 0.0128,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark/s83"
+    },
+    {
+     "spread": 7.117,
+     "taker_cost": 3.559,
+     "depth": 51.957,
+     "mispricing_bps": 30.198,
+     "volatility": 1.107,
+     "volume": 2837.0,
+     "collusion_index": 0.209,
+     "llm_maker_half_spread": 5.367,
+     "llm_maker_quoted_half_spread": 5.673,
+     "maker_pnl_per_epoch": 412.675,
+     "llm_policy_dispersion": 0.352,
+     "maker_reasoning_tokens": 1666.5,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.766,
+       "n_makers": 4,
+       "adverse_selection": 2.156,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.892,
+       "nash_skew": 1.073,
+       "pareto_hs": 7.165,
+       "pareto_skew": 1.368
+      }
+     },
+     "collusion_by_epoch": [
+      0.048,
+      -0.172,
+      0.487,
+      0.341,
+      0.194,
+      0.194
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.5,
+      6.0,
+      5.667,
+      5.333,
+      5.333
+     ],
+     "llm_cost_usd": 0.0123,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark/s84"
+    },
+    {
+     "spread": 5.787,
+     "taker_cost": 2.894,
+     "depth": 48.807,
+     "mispricing_bps": 24.973,
+     "volatility": 1.153,
+     "volume": 2778.6,
+     "collusion_index": -0.411,
+     "llm_maker_half_spread": 4.35,
+     "llm_maker_quoted_half_spread": 4.669,
+     "maker_pnl_per_epoch": 258.9,
+     "llm_policy_dispersion": 0.301,
+     "maker_reasoning_tokens": 1596.0,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 7.465,
+       "n_makers": 4,
+       "adverse_selection": 2.329,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 5.36,
+       "nash_skew": 1.312,
+       "pareto_hs": 7.819,
+       "pareto_skew": 1.561
+      }
+     },
+     "collusion_by_epoch": [
+      -0.146,
+      -0.418,
+      -0.689,
+      -0.39,
+      -0.214,
+      -0.343
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.333,
+      3.667,
+      4.4,
+      4.833,
+      4.517
+     ],
+     "llm_cost_usd": 0.0119,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark/s85"
+    },
+    {
+     "spread": 7.714,
+     "taker_cost": 3.857,
+     "depth": 45.086,
+     "mispricing_bps": 30.06,
+     "volatility": 1.149,
+     "volume": 2642.8,
+     "collusion_index": 1.319,
+     "llm_maker_half_spread": 6.467,
+     "llm_maker_quoted_half_spread": 6.743,
+     "maker_pnl_per_epoch": 407.1,
+     "llm_policy_dispersion": 0.305,
+     "maker_reasoning_tokens": 1708.2,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.4,
+       "n_makers": 4,
+       "adverse_selection": 1.366,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.771,
+       "nash_skew": 0.822,
+       "pareto_hs": 5.815,
+       "pareto_skew": 1.133
+      }
+     },
+     "collusion_by_epoch": [
+      0.601,
+      1.906,
+      1.335,
+      1.172,
+      1.091,
+      1.091
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      7.667,
+      6.5,
+      6.167,
+      6.0,
+      6.0
+     ],
+     "llm_cost_usd": 0.0123,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark/s86"
+    }
+   ],
+   "benchmarks": {
+    "A": {
+     "glft_hs": 5.428,
+     "n_makers": 4,
+     "adverse_selection": 1.388,
+     "maker_fee_cents": 0.0,
+     "nash_hs": 3.763,
+     "nash_skew": 0.785,
+     "pareto_hs": 5.846,
+     "pareto_skew": 1.058
+    }
+   },
+   "spread": 7.078,
+   "spread_se": 0.412,
+   "taker_cost": 3.539,
+   "taker_cost_se": 0.206,
+   "depth": 48.739,
+   "depth_se": 1.407,
+   "mispricing_bps": 25.898,
+   "mispricing_bps_se": 1.549,
+   "volatility": 1.17,
+   "volatility_se": 0.055,
+   "volume": 2757.633,
+   "volume_se": 26.337,
+   "collusion_index": 0.682,
+   "collusion_index_se": 0.309,
+   "llm_maker_half_spread": 5.612,
+   "llm_maker_half_spread_se": 0.36,
+   "llm_maker_quoted_half_spread": 5.92,
+   "llm_maker_quoted_half_spread_se": 0.355,
+   "maker_pnl_per_epoch": 408.925,
+   "maker_pnl_per_epoch_se": 89.683,
+   "llm_policy_dispersion": 0.347,
+   "llm_policy_dispersion_se": 0.041,
+   "maker_reasoning_tokens": 1849.867,
+   "maker_reasoning_tokens_se": 100.548,
+   "llm_cost_usd": 0.013,
+   "llm_cost_usd_se": 0.0,
+   "epochs": 6.0,
+   "epochs_se": 0.0,
+   "exchange_fee_revenue": 0.0,
+   "exchange_fee_revenue_se": 0.0,
+   "chat_messages": 0.0,
+   "chat_messages_se": 0.0,
+   "regulator_notices": 0.0,
+   "regulator_notices_se": 0.0,
+   "vs_baseline": {
+    "collusion_index": {
+     "mean": -0.116,
+     "se": 0.067,
+     "n": 6
+    },
+    "llm_maker_half_spread": {
+     "mean": -0.254,
+     "se": 0.138,
+     "n": 6
+    },
+    "spread": {
+     "mean": -0.15,
+     "se": 0.441,
+     "n": 6
+    },
+    "depth": {
+     "mean": -0.323,
+     "se": 1.215,
+     "n": 6
+    },
+    "mispricing_bps": {
+     "mean": 0.081,
+     "se": 0.092,
+     "n": 6
+    },
+    "llm_policy_dispersion": {
+     "mean": -0.216,
+     "se": 0.148,
+     "n": 6
+    },
+    "maker_pnl_per_epoch": {
+     "mean": -39.517,
+     "se": 76.014,
+     "n": 6
+    }
+   }
+  },
+  {
+   "name": "all_open",
+   "label": "All Muse Spark Open",
+   "change": "Every maker runs Muse Spark Open (open weights).",
+   "n_seeds": 6,
+   "seed_runs": [
+    {
+     "spread": 7.3,
+     "taker_cost": 3.65,
+     "depth": 51.435,
+     "mispricing_bps": 25.679,
+     "volatility": 0.996,
+     "volume": 2744.2,
+     "collusion_index": 0.626,
+     "llm_maker_half_spread": 5.067,
+     "llm_maker_quoted_half_spread": 5.507,
+     "maker_pnl_per_epoch": 285.575,
+     "llm_policy_dispersion": 0.454,
+     "maker_reasoning_tokens": 3763.5,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.428,
+       "n_makers": 4,
+       "adverse_selection": 1.388,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.763,
+       "nash_skew": 0.785,
+       "pareto_hs": 5.846,
+       "pareto_skew": 1.058
+      }
+     },
+     "collusion_by_epoch": [
+      0.594,
+      0.674,
+      0.578,
+      0.386,
+      0.786,
+      0.706
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      5.167,
+      4.967,
+      4.567,
+      5.4,
+      5.233
+     ],
+     "llm_cost_usd": 0.0,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_open/s81"
+    },
+    {
+     "spread": 8.287,
+     "taker_cost": 4.144,
+     "depth": 49.061,
+     "mispricing_bps": 24.68,
+     "volatility": 1.173,
+     "volume": 2771.4,
+     "collusion_index": 1.907,
+     "llm_maker_half_spread": 7.093,
+     "llm_maker_quoted_half_spread": 7.709,
+     "maker_pnl_per_epoch": 804.75,
+     "llm_policy_dispersion": 0.261,
+     "maker_reasoning_tokens": 3544.5,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.047,
+       "n_makers": 4,
+       "adverse_selection": 1.426,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.64,
+       "nash_skew": 0.709,
+       "pareto_hs": 5.451,
+       "pareto_skew": 0.979
+      }
+     },
+     "collusion_by_epoch": [
+      0.751,
+      1.855,
+      2.131,
+      1.763,
+      1.911,
+      1.874
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      7.0,
+      7.5,
+      6.833,
+      7.1,
+      7.033
+     ],
+     "llm_cost_usd": 0.0,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_open/s82"
+    },
+    {
+     "spread": 7.783,
+     "taker_cost": 3.891,
+     "depth": 51.918,
+     "mispricing_bps": 20.134,
+     "volatility": 1.158,
+     "volume": 2774.8,
+     "collusion_index": 0.885,
+     "llm_maker_half_spread": 6.173,
+     "llm_maker_quoted_half_spread": 6.553,
+     "maker_pnl_per_epoch": 607.975,
+     "llm_policy_dispersion": 0.354,
+     "maker_reasoning_tokens": 3389.0,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.986,
+       "n_makers": 4,
+       "adverse_selection": 1.967,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.424,
+       "nash_skew": 0.888,
+       "pareto_hs": 6.4,
+       "pareto_skew": 1.199
+      }
+     },
+     "collusion_by_epoch": [
+      0.291,
+      0.966,
+      0.882,
+      0.848,
+      0.848,
+      0.882
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.333,
+      6.167,
+      6.1,
+      6.1,
+      6.167
+     ],
+     "llm_cost_usd": 0.0,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_open/s83"
+    },
+    {
+     "spread": 8.195,
+     "taker_cost": 4.097,
+     "depth": 50.456,
+     "mispricing_bps": 29.986,
+     "volatility": 1.096,
+     "volume": 2798.6,
+     "collusion_index": 0.434,
+     "llm_maker_half_spread": 5.88,
+     "llm_maker_quoted_half_spread": 6.248,
+     "maker_pnl_per_epoch": 545.575,
+     "llm_policy_dispersion": 0.085,
+     "maker_reasoning_tokens": 1801.8,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.766,
+       "n_makers": 4,
+       "adverse_selection": 2.156,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.892,
+       "nash_skew": 1.073,
+       "pareto_hs": 7.165,
+       "pareto_skew": 1.368
+      }
+     },
+     "collusion_by_epoch": [
+      0.048,
+      0.018,
+      0.487,
+      0.605,
+      0.575,
+      0.487
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.933,
+      6.0,
+      6.267,
+      6.2,
+      6.0
+     ],
+     "llm_cost_usd": 0.0,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_open/s84"
+    },
+    {
+     "spread": 5.507,
+     "taker_cost": 2.753,
+     "depth": 56.099,
+     "mispricing_bps": 25.097,
+     "volatility": 1.072,
+     "volume": 2759.2,
+     "collusion_index": -0.412,
+     "llm_maker_half_spread": 4.347,
+     "llm_maker_quoted_half_spread": 4.768,
+     "maker_pnl_per_epoch": 142.95,
+     "llm_policy_dispersion": 0.611,
+     "maker_reasoning_tokens": 2606.2,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 7.465,
+       "n_makers": 4,
+       "adverse_selection": 2.329,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 5.36,
+       "nash_skew": 1.312,
+       "pareto_hs": 7.819,
+       "pareto_skew": 1.561
+      }
+     },
+     "collusion_by_epoch": [
+      -0.146,
+      -0.146,
+      -0.58,
+      -0.675,
+      -0.323,
+      -0.336
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      5.0,
+      3.933,
+      3.7,
+      4.567,
+      4.533
+     ],
+     "llm_cost_usd": 0.0,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_open/s85"
+    },
+    {
+     "spread": 7.217,
+     "taker_cost": 3.609,
+     "depth": 48.87,
+     "mispricing_bps": 29.997,
+     "volatility": 1.181,
+     "volume": 2653.2,
+     "collusion_index": 1.668,
+     "llm_maker_half_spread": 7.18,
+     "llm_maker_quoted_half_spread": 7.529,
+     "maker_pnl_per_epoch": 287.225,
+     "llm_policy_dispersion": 1.126,
+     "maker_reasoning_tokens": 2949.9,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.4,
+       "n_makers": 4,
+       "adverse_selection": 1.366,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.771,
+       "nash_skew": 0.822,
+       "pareto_hs": 5.815,
+       "pareto_skew": 1.133
+      }
+     },
+     "collusion_by_epoch": [
+      0.601,
+      1.906,
+      1.661,
+      1.498,
+      1.547,
+      1.727
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      7.667,
+      7.167,
+      6.833,
+      6.933,
+      7.3
+     ],
+     "llm_cost_usd": 0.0,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_open/s86"
+    }
+   ],
+   "benchmarks": {
+    "A": {
+     "glft_hs": 5.428,
+     "n_makers": 4,
+     "adverse_selection": 1.388,
+     "maker_fee_cents": 0.0,
+     "nash_hs": 3.763,
+     "nash_skew": 0.785,
+     "pareto_hs": 5.846,
+     "pareto_skew": 1.058
+    }
+   },
+   "spread": 7.381,
+   "spread_se": 0.416,
+   "taker_cost": 3.691,
+   "taker_cost_se": 0.208,
+   "depth": 51.306,
+   "depth_se": 1.081,
+   "mispricing_bps": 25.929,
+   "mispricing_bps_se": 1.516,
+   "volatility": 1.113,
+   "volatility_se": 0.029,
+   "volume": 2750.233,
+   "volume_se": 20.755,
+   "collusion_index": 0.851,
+   "collusion_index_se": 0.347,
+   "llm_maker_half_spread": 5.957,
+   "llm_maker_half_spread_se": 0.455,
+   "llm_maker_quoted_half_spread": 6.386,
+   "llm_maker_quoted_half_spread_se": 0.465,
+   "maker_pnl_per_epoch": 445.675,
+   "maker_pnl_per_epoch_se": 101.265,
+   "llm_policy_dispersion": 0.482,
+   "llm_policy_dispersion_se": 0.148,
+   "maker_reasoning_tokens": 3009.15,
+   "maker_reasoning_tokens_se": 295.72,
+   "llm_cost_usd": 0.0,
+   "llm_cost_usd_se": 0.0,
+   "epochs": 6.0,
+   "epochs_se": 0.0,
+   "exchange_fee_revenue": 0.0,
+   "exchange_fee_revenue_se": 0.0,
+   "chat_messages": 0.0,
+   "chat_messages_se": 0.0,
+   "regulator_notices": 0.0,
+   "regulator_notices_se": 0.0,
+   "vs_baseline": {
+    "collusion_index": {
+     "mean": 0.054,
+     "se": 0.098,
+     "n": 6
+    },
+    "llm_maker_half_spread": {
+     "mean": 0.09,
+     "se": 0.201,
+     "n": 6
+    },
+    "spread": {
+     "mean": 0.154,
+     "se": 0.332,
+     "n": 6
+    },
+    "depth": {
+     "mean": 2.245,
+     "se": 0.878,
+     "n": 6
+    },
+    "mispricing_bps": {
+     "mean": 0.112,
+     "se": 0.063,
+     "n": 6
+    },
+    "llm_policy_dispersion": {
+     "mean": -0.081,
+     "se": 0.11,
+     "n": 6
+    },
+    "maker_pnl_per_epoch": {
+     "mean": -2.767,
+     "se": 61.571,
+     "n": 6
+    }
+   }
+  },
+  {
+   "name": "all_spark_low",
+   "label": "All Muse Spark, low effort",
+   "change": "Every maker runs Muse Spark 1.3 with reasoning_effort low.",
+   "n_seeds": 6,
+   "seed_runs": [
+    {
+     "spread": 7.358,
+     "taker_cost": 3.679,
+     "depth": 49.328,
+     "mispricing_bps": 25.539,
+     "volatility": 1.044,
+     "volume": 2739.6,
+     "collusion_index": 0.834,
+     "llm_maker_half_spread": 5.5,
+     "llm_maker_quoted_half_spread": 5.811,
+     "maker_pnl_per_epoch": 342.875,
+     "llm_policy_dispersion": 0.223,
+     "maker_reasoning_tokens": 633.1,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.428,
+       "n_makers": 4,
+       "adverse_selection": 1.388,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.763,
+       "nash_skew": 0.785,
+       "pareto_hs": 5.846,
+       "pareto_skew": 1.058
+      }
+     },
+     "collusion_by_epoch": [
+      0.594,
+      0.354,
+      0.834,
+      0.674,
+      1.154,
+      1.154
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.5,
+      5.5,
+      5.167,
+      6.167,
+      6.167
+     ],
+     "llm_cost_usd": 0.0097,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_low/s81"
+    },
+    {
+     "spread": 7.905,
+     "taker_cost": 3.953,
+     "depth": 49.517,
+     "mispricing_bps": 24.65,
+     "volatility": 1.049,
+     "volume": 2755.8,
+     "collusion_index": 1.423,
+     "llm_maker_half_spread": 6.217,
+     "llm_maker_quoted_half_spread": 6.499,
+     "maker_pnl_per_epoch": 622.2,
+     "llm_policy_dispersion": 0.456,
+     "maker_reasoning_tokens": 727.1,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.047,
+       "n_makers": 4,
+       "adverse_selection": 1.426,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.64,
+       "nash_skew": 0.709,
+       "pareto_hs": 5.451,
+       "pareto_skew": 0.979
+      }
+     },
+     "collusion_by_epoch": [
+      0.751,
+      1.671,
+      1.303,
+      1.441,
+      1.487,
+      1.211
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.667,
+      6.0,
+      6.25,
+      6.333,
+      5.833
+     ],
+     "llm_cost_usd": 0.0094,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_low/s82"
+    },
+    {
+     "spread": 8.78,
+     "taker_cost": 4.39,
+     "depth": 51.933,
+     "mispricing_bps": 20.018,
+     "volatility": 0.868,
+     "volume": 2708.4,
+     "collusion_index": 0.69,
+     "llm_maker_half_spread": 5.787,
+     "llm_maker_quoted_half_spread": 6.167,
+     "maker_pnl_per_epoch": 886.4,
+     "llm_policy_dispersion": 0.247,
+     "maker_reasoning_tokens": 489.0,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.986,
+       "n_makers": 4,
+       "adverse_selection": 1.967,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.424,
+       "nash_skew": 0.888,
+       "pareto_hs": 6.4,
+       "pareto_skew": 1.199
+      }
+     },
+     "collusion_by_epoch": [
+      0.291,
+      0.882,
+      0.713,
+      0.545,
+      0.713,
+      0.595
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.167,
+      5.833,
+      5.5,
+      5.833,
+      5.6
+     ],
+     "llm_cost_usd": 0.0087,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_low/s83"
+    },
+    {
+     "spread": 7.664,
+     "taker_cost": 3.832,
+     "depth": 50.829,
+     "mispricing_bps": 30.245,
+     "volatility": 1.035,
+     "volume": 2811.6,
+     "collusion_index": 0.158,
+     "llm_maker_half_spread": 5.25,
+     "llm_maker_quoted_half_spread": 5.689,
+     "maker_pnl_per_epoch": 523.5,
+     "llm_policy_dispersion": 0.366,
+     "maker_reasoning_tokens": 496.3,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.766,
+       "n_makers": 4,
+       "adverse_selection": 2.156,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.892,
+       "nash_skew": 1.073,
+       "pareto_hs": 7.165,
+       "pareto_skew": 1.368
+      }
+     },
+     "collusion_by_epoch": [
+      0.048,
+      -0.099,
+      0.414,
+      0.231,
+      0.158,
+      0.084
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.667,
+      5.833,
+      5.417,
+      5.25,
+      5.083
+     ],
+     "llm_cost_usd": 0.0086,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_low/s84"
+    },
+    {
+     "spread": 5.531,
+     "taker_cost": 2.765,
+     "depth": 49.81,
+     "mispricing_bps": 25.136,
+     "volatility": 0.96,
+     "volume": 2763.2,
+     "collusion_index": -0.564,
+     "llm_maker_half_spread": 3.973,
+     "llm_maker_quoted_half_spread": 4.297,
+     "maker_pnl_per_epoch": 291.45,
+     "llm_policy_dispersion": 0.383,
+     "maker_reasoning_tokens": 625.4,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 7.465,
+       "n_makers": 4,
+       "adverse_selection": 2.329,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 5.36,
+       "nash_skew": 1.312,
+       "pareto_hs": 7.819,
+       "pareto_skew": 1.561
+      }
+     },
+     "collusion_by_epoch": [
+      -0.146,
+      -0.418,
+      -0.621,
+      -0.485,
+      -0.648,
+      -0.648
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.333,
+      3.833,
+      4.167,
+      3.767,
+      3.767
+     ],
+     "llm_cost_usd": 0.0093,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_low/s85"
+    },
+    {
+     "spread": 7.799,
+     "taker_cost": 3.9,
+     "depth": 47.59,
+     "mispricing_bps": 30.026,
+     "volatility": 1.122,
+     "volume": 2638.6,
+     "collusion_index": 1.661,
+     "llm_maker_half_spread": 7.167,
+     "llm_maker_quoted_half_spread": 7.507,
+     "maker_pnl_per_epoch": 397.625,
+     "llm_policy_dispersion": 0.888,
+     "maker_reasoning_tokens": 583.0,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.4,
+       "n_makers": 4,
+       "adverse_selection": 1.366,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.771,
+       "nash_skew": 0.822,
+       "pareto_hs": 5.815,
+       "pareto_skew": 1.133
+      }
+     },
+     "collusion_by_epoch": [
+      0.601,
+      2.069,
+      2.151,
+      1.661,
+      1.335,
+      1.091
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      8.0,
+      8.167,
+      7.167,
+      6.5,
+      6.0
+     ],
+     "llm_cost_usd": 0.0089,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_low/s86"
+    }
+   ],
+   "benchmarks": {
+    "A": {
+     "glft_hs": 5.428,
+     "n_makers": 4,
+     "adverse_selection": 1.388,
+     "maker_fee_cents": 0.0,
+     "nash_hs": 3.763,
+     "nash_skew": 0.785,
+     "pareto_hs": 5.846,
+     "pareto_skew": 1.058
+    }
+   },
+   "spread": 7.506,
+   "spread_se": 0.44,
+   "taker_cost": 3.753,
+   "taker_cost_se": 0.22,
+   "depth": 49.834,
+   "depth_se": 0.6,
+   "mispricing_bps": 25.936,
+   "mispricing_bps_se": 1.557,
+   "volatility": 1.013,
+   "volatility_se": 0.036,
+   "volume": 2736.2,
+   "volume_se": 23.881,
+   "collusion_index": 0.7,
+   "collusion_index_se": 0.334,
+   "llm_maker_half_spread": 5.649,
+   "llm_maker_half_spread_se": 0.433,
+   "llm_maker_quoted_half_spread": 5.995,
+   "llm_maker_quoted_half_spread_se": 0.431,
+   "maker_pnl_per_epoch": 510.675,
+   "maker_pnl_per_epoch_se": 89.957,
+   "llm_policy_dispersion": 0.427,
+   "llm_policy_dispersion_se": 0.099,
+   "maker_reasoning_tokens": 592.317,
+   "maker_reasoning_tokens_se": 36.925,
+   "llm_cost_usd": 0.009,
+   "llm_cost_usd_se": 0.0,
+   "epochs": 6.0,
+   "epochs_se": 0.0,
+   "exchange_fee_revenue": 0.0,
+   "exchange_fee_revenue_se": 0.0,
+   "chat_messages": 0.0,
+   "chat_messages_se": 0.0,
+   "regulator_notices": 0.0,
+   "regulator_notices_se": 0.0,
+   "vs_baseline": {
+    "collusion_index": {
+     "mean": -0.097,
+     "se": 0.091,
+     "n": 6
+    },
+    "llm_maker_half_spread": {
+     "mean": -0.218,
+     "se": 0.19,
+     "n": 6
+    },
+    "spread": {
+     "mean": 0.279,
+     "se": 0.437,
+     "n": 6
+    },
+    "depth": {
+     "mean": 0.773,
+     "se": 0.54,
+     "n": 6
+    },
+    "mispricing_bps": {
+     "mean": 0.118,
+     "se": 0.087,
+     "n": 6
+    },
+    "llm_policy_dispersion": {
+     "mean": -0.136,
+     "se": 0.108,
+     "n": 6
+    },
+    "maker_pnl_per_epoch": {
+     "mean": 62.233,
+     "se": 74.627,
+     "n": 6
+    }
+   }
+  },
+  {
+   "name": "all_spark_high",
+   "label": "All Muse Spark, high effort",
+   "change": "Every maker runs Muse Spark 1.3 with reasoning_effort high.",
+   "n_seeds": 6,
+   "seed_runs": [
+    {
+     "spread": 7.084,
+     "taker_cost": 3.542,
+     "depth": 49.901,
+     "mispricing_bps": 25.478,
+     "volatility": 1.01,
+     "volume": 2749.6,
+     "collusion_index": 0.706,
+     "llm_maker_half_spread": 5.233,
+     "llm_maker_quoted_half_spread": 5.54,
+     "maker_pnl_per_epoch": 289.6,
+     "llm_policy_dispersion": 0.27,
+     "maker_reasoning_tokens": 1563.9,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.428,
+       "n_makers": 4,
+       "adverse_selection": 1.388,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.763,
+       "nash_skew": 0.785,
+       "pareto_hs": 5.846,
+       "pareto_skew": 1.058
+      }
+     },
+     "collusion_by_epoch": [
+      0.594,
+      0.274,
+      0.994,
+      0.754,
+      0.834,
+      0.674
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.333,
+      5.833,
+      5.333,
+      5.5,
+      5.167
+     ],
+     "llm_cost_usd": 0.0118,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_high/s81"
+    },
+    {
+     "spread": 8.657,
+     "taker_cost": 4.328,
+     "depth": 48.689,
+     "mispricing_bps": 24.59,
+     "volatility": 1.061,
+     "volume": 2754.6,
+     "collusion_index": 1.708,
+     "llm_maker_half_spread": 6.733,
+     "llm_maker_quoted_half_spread": 7.05,
+     "maker_pnl_per_epoch": 797.275,
+     "llm_policy_dispersion": 0.484,
+     "maker_reasoning_tokens": 1925.7,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.047,
+       "n_makers": 4,
+       "adverse_selection": 1.426,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.64,
+       "nash_skew": 0.709,
+       "pareto_hs": 5.451,
+       "pareto_skew": 0.979
+      }
+     },
+     "collusion_by_epoch": [
+      0.751,
+      1.763,
+      1.395,
+      1.625,
+      1.993,
+      1.763
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.833,
+      6.167,
+      6.583,
+      7.25,
+      6.833
+     ],
+     "llm_cost_usd": 0.013,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_high/s82"
+    },
+    {
+     "spread": 8.53,
+     "taker_cost": 4.265,
+     "depth": 54.812,
+     "mispricing_bps": 20.115,
+     "volatility": 0.92,
+     "volume": 2730.2,
+     "collusion_index": 0.848,
+     "llm_maker_half_spread": 6.1,
+     "llm_maker_quoted_half_spread": 6.407,
+     "maker_pnl_per_epoch": 815.1,
+     "llm_policy_dispersion": 0.283,
+     "maker_reasoning_tokens": 1746.5,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.986,
+       "n_makers": 4,
+       "adverse_selection": 1.967,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.424,
+       "nash_skew": 0.888,
+       "pareto_hs": 6.4,
+       "pareto_skew": 1.199
+      }
+     },
+     "collusion_by_epoch": [
+      0.291,
+      0.882,
+      0.882,
+      0.629,
+      0.966,
+      0.882
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.167,
+      6.167,
+      5.667,
+      6.333,
+      6.167
+     ],
+     "llm_cost_usd": 0.0125,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_high/s83"
+    },
+    {
+     "spread": 6.974,
+     "taker_cost": 3.487,
+     "depth": 47.775,
+     "mispricing_bps": 29.93,
+     "volatility": 1.326,
+     "volume": 2847.2,
+     "collusion_index": 0.253,
+     "llm_maker_half_spread": 5.467,
+     "llm_maker_quoted_half_spread": 5.755,
+     "maker_pnl_per_epoch": 386.325,
+     "llm_policy_dispersion": 0.498,
+     "maker_reasoning_tokens": 1612.7,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.766,
+       "n_makers": 4,
+       "adverse_selection": 2.156,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.892,
+       "nash_skew": 1.073,
+       "pareto_hs": 7.165,
+       "pareto_skew": 1.368
+      }
+     },
+     "collusion_by_epoch": [
+      0.048,
+      -0.172,
+      0.341,
+      0.341,
+      0.487,
+      0.267
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.5,
+      5.667,
+      5.667,
+      6.0,
+      5.5
+     ],
+     "llm_cost_usd": 0.012,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_high/s84"
+    },
+    {
+     "spread": 5.11,
+     "taker_cost": 2.555,
+     "depth": 54.469,
+     "mispricing_bps": 25.101,
+     "volatility": 1.13,
+     "volume": 2788.4,
+     "collusion_index": -0.408,
+     "llm_maker_half_spread": 4.357,
+     "llm_maker_quoted_half_spread": 4.739,
+     "maker_pnl_per_epoch": 66.325,
+     "llm_policy_dispersion": 0.217,
+     "maker_reasoning_tokens": 1927.8,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 7.465,
+       "n_makers": 4,
+       "adverse_selection": 2.329,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 5.36,
+       "nash_skew": 1.312,
+       "pareto_hs": 7.819,
+       "pareto_skew": 1.561
+      }
+     },
+     "collusion_by_epoch": [
+      -0.146,
+      -0.418,
+      -0.553,
+      -0.282,
+      -0.384,
+      -0.404
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.333,
+      4.0,
+      4.667,
+      4.417,
+      4.367
+     ],
+     "llm_cost_usd": 0.0129,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_high/s85"
+    },
+    {
+     "spread": 7.545,
+     "taker_cost": 3.772,
+     "depth": 46.652,
+     "mispricing_bps": 30.006,
+     "volatility": 1.134,
+     "volume": 2652.4,
+     "collusion_index": 1.156,
+     "llm_maker_half_spread": 6.133,
+     "llm_maker_quoted_half_spread": 6.469,
+     "maker_pnl_per_epoch": 344.0,
+     "llm_policy_dispersion": 0.125,
+     "maker_reasoning_tokens": 1490.3,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.4,
+       "n_makers": 4,
+       "adverse_selection": 1.366,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.771,
+       "nash_skew": 0.822,
+       "pareto_hs": 5.815,
+       "pareto_skew": 1.133
+      }
+     },
+     "collusion_by_epoch": [
+      0.601,
+      1.661,
+      1.091,
+      0.846,
+      1.091,
+      1.091
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      7.167,
+      6.0,
+      5.5,
+      6.0,
+      6.0
+     ],
+     "llm_cost_usd": 0.0117,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/monoculture/all_spark_high/s86"
+    }
+   ],
+   "benchmarks": {
+    "A": {
+     "glft_hs": 5.428,
+     "n_makers": 4,
+     "adverse_selection": 1.388,
+     "maker_fee_cents": 0.0,
+     "nash_hs": 3.763,
+     "nash_skew": 0.785,
+     "pareto_hs": 5.846,
+     "pareto_skew": 1.058
+    }
+   },
+   "spread": 7.317,
+   "spread_se": 0.528,
+   "taker_cost": 3.658,
+   "taker_cost_se": 0.264,
+   "depth": 50.383,
+   "depth_se": 1.416,
+   "mispricing_bps": 25.87,
+   "mispricing_bps_se": 1.518,
+   "volatility": 1.097,
+   "volatility_se": 0.056,
+   "volume": 2753.733,
+   "volume_se": 26.317,
+   "collusion_index": 0.711,
+   "collusion_index_se": 0.298,
+   "llm_maker_half_spread": 5.67,
+   "llm_maker_half_spread_se": 0.341,
+   "llm_maker_quoted_half_spread": 5.993,
+   "llm_maker_quoted_half_spread_se": 0.334,
+   "maker_pnl_per_epoch": 449.771,
+   "maker_pnl_per_epoch_se": 121.398,
+   "llm_policy_dispersion": 0.313,
+   "llm_policy_dispersion_se": 0.061,
+   "maker_reasoning_tokens": 1711.15,
+   "maker_reasoning_tokens_se": 76.238,
+   "llm_cost_usd": 0.012,
+   "llm_cost_usd_se": 0.0,
+   "epochs": 6.0,
+   "epochs_se": 0.0,
+   "exchange_fee_revenue": 0.0,
+   "exchange_fee_revenue_se": 0.0,
+   "chat_messages": 0.0,
+   "chat_messages_se": 0.0,
+   "regulator_notices": 0.0,
+   "regulator_notices_se": 0.0,
+   "vs_baseline": {
+    "collusion_index": {
+     "mean": -0.087,
+     "se": 0.109,
+     "n": 6
+    },
+    "llm_maker_half_spread": {
+     "mean": -0.196,
+     "se": 0.22,
+     "n": 6
+    },
+    "spread": {
+     "mean": 0.089,
+     "se": 0.456,
+     "n": 6
+    },
+    "depth": {
+     "mean": 1.321,
+     "se": 1.121,
+     "n": 6
+    },
+    "mispricing_bps": {
+     "mean": 0.053,
+     "se": 0.067,
+     "n": 6
+    },
+    "llm_policy_dispersion": {
+     "mean": -0.25,
+     "se": 0.162,
+     "n": 6
+    },
+    "maker_pnl_per_epoch": {
+     "mean": 1.329,
+     "se": 85.246,
+     "n": 6
+    }
+   }
+  }
+ ]
+}

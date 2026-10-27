@@ -13,10 +13,17 @@ import { MarketQualityTab } from "./components/tabs/MarketQualityTab";
 import { WindTunnelTab } from "./components/tabs/WindTunnelTab";
 import { SurveillanceCount, SurveillanceTab } from "./components/tabs/SurveillanceTab";
 import { DesignerTab } from "./components/tabs/DesignerTab";
+import { Landing } from "./components/Landing";
 
 type Tab = "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer";
 
 const params = new URLSearchParams(window.location.search);
+/** No query params at all: show the judge-friendly "Start here" landing. */
+const LANDING = [...params.keys()].length === 0;
+/** A deep link (?tab=...) puts the selected tab first, right under the header. */
+const DEEP = params.has("tab");
+/** Experiment-level tabs do not depend on the replayed run. */
+const EXP_TABS = new Set<Tab>(["wind", "designer"]);
 
 function setParam(k: string, v: string) {
   const p = new URLSearchParams(window.location.search);
@@ -25,6 +32,10 @@ function setParam(k: string, v: string) {
 }
 
 export default function App() {
+  return LANDING ? <Landing /> : <Explorer />;
+}
+
+function Explorer() {
   const [runs, setRuns] = useState<RunIndexEntry[]>([]);
   const [run, setRun] = useState<Run | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -32,8 +43,9 @@ export default function App() {
   const [asset, setAsset] = useState("A");
   const [drawer, setDrawer] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>((params.get("tab") as Tab) || "competition");
+  const [replayOpen, setReplayOpen] = useState(false);
 
-  const loadRun = useCallback(async (entry: RunIndexEntry, autoplay = false) => {
+  const loadRun = useCallback(async (entry: RunIndexEntry, autoplay = false, initial = false) => {
     setLoading(true);
     setError(null);
     try {
@@ -43,8 +55,11 @@ export default function App() {
       setRun(r);
       setAsset((a) => (r.assets.includes(a) ? a : r.assets[0]));
       setDrawer(null);
-      setParam("run", r.name);
+      // keep experiment deep links (?tab=wind&exp=...) clean: only record the run once it matters
+      if (!initial || params.has("run") || !DEEP) setParam("run", r.name);
       if (autoplay) playback.play();
+      // a deep link lands on finished results: start at the end so galleries and reports are complete
+      else if (initial && DEEP) playback.seek(r.tEnd);
     } catch (e) {
       setError(String(e));
     } finally {
@@ -63,7 +78,7 @@ export default function App() {
         if (!idx.length) throw new Error("no runs exported — run scripts/export_run.py");
         const want = params.get("run");
         const entry = idx.find((r) => r.name === want) ?? idx[0];
-        return loadRun(entry, params.get("autoplay") === "1");
+        return loadRun(entry, params.get("autoplay") === "1", true);
       })
       .catch((e) => {
         setError(String(e));
@@ -100,20 +115,15 @@ export default function App() {
   const drawerAgent = run && drawer ? run.agentById[drawer] : null;
   const nStrategies = run ? run.decisions.filter((d) => d.role === "taker").length : 0;
   const hasSurv = !!run && (run.regulators.length > 0 || run.chat.length > 0 || run.hasOrders);
-  const shownTab: Tab = tab === "surveillance" && !hasSurv ? "competition" : tab;
+  const shownTab: Tab = tab === "surveillance" && run && !hasSurv ? "competition" : tab;
+  const expTab = EXP_TABS.has(shownTab);
+  // deep links to experiment tabs hide the (unrelated) replay until asked for
+  const showReplay = !DEEP || !expTab || replayOpen;
 
-  return (
-    <div className="app">
-      <Header runs={runs} run={run} onPickRun={(name) => {
-        const e = runs.find((r) => r.name === name);
-        if (e) loadRun(e);
-      }} />
-      {run && <Timeline run={run} />}
-      {error && <div className="error-banner">{error}</div>}
-      {!run && loading && <div className="loading">loading run…</div>}
-      {run && (
-        <>
-          <main className="main-grid">
+  const replay = run && showReplay && (
+    <>
+      <Timeline run={run} />
+      <main className="main-grid">
             <MarketPanel run={run} asset={asset} onAsset={setAsset} />
             <section className="panel agents-col">
               <div className="panel-head">
@@ -130,8 +140,12 @@ export default function App() {
                 ))}
               </div>
             </section>
-          </main>
-          <section className="panel tabs-panel">
+      </main>
+    </>
+  );
+
+  const tabs = (
+          <section className={`panel tabs-panel ${DEEP ? "deep" : ""}`}>
             <nav className="tabs">
               <button className={shownTab === "competition" ? "on" : ""} onClick={() => pickTab("competition")}>
                 Competition
@@ -142,7 +156,7 @@ export default function App() {
               <button className={shownTab === "quality" ? "on" : ""} onClick={() => pickTab("quality")}>
                 Market quality
               </button>
-              {hasSurv && (
+              {run && hasSurv && (
                 <button className={shownTab === "surveillance" ? "on" : ""} onClick={() => pickTab("surveillance")}>
                   Surveillance <SurveillanceCount run={run} />
                 </button>
@@ -154,24 +168,62 @@ export default function App() {
                 Designer <span className="count new">AI market design</span>
               </button>
               <span className="spacer" />
-              <span className="muted small kbd-hint">
-                <kbd>Space</kbd> play · <kbd>←</kbd>
-                <kbd>→</kbd> epoch · <kbd>1</kbd>–<kbd>6</kbd> speed · <kbd>V</kbd> fair value
-              </span>
+              {DEEP && expTab ? (
+                <button className="toggle replay-toggle" onClick={() => setReplayOpen((o) => !o)}>
+                  {replayOpen ? "hide market replay" : "show market replay ↓"}
+                </button>
+              ) : (
+                <span className="muted small kbd-hint">
+                  <kbd>Space</kbd> play · <kbd>←</kbd>
+                  <kbd>→</kbd> epoch · <kbd>1</kbd>–<kbd>6</kbd> speed · <kbd>V</kbd> fair value
+                </span>
+              )}
             </nav>
             <div className="tab-body">
-              {shownTab === "competition" && <CompetitionTab run={run} asset={asset} />}
-              {shownTab === "gallery" && <StrategyGallery run={run} />}
-              {shownTab === "quality" && <MarketQualityTab run={run} asset={asset} />}
-              {shownTab === "surveillance" && <SurveillanceTab run={run} onOpenAgent={setDrawer} />}
               {shownTab === "wind" && <WindTunnelTab />}
               {shownTab === "designer" && <DesignerTab />}
+              {!expTab && !run && <div className="loading">loading run…</div>}
+              {run && shownTab === "competition" && <CompetitionTab run={run} asset={asset} />}
+              {run && shownTab === "gallery" && <StrategyGallery run={run} />}
+              {run && shownTab === "quality" && <MarketQualityTab run={run} asset={asset} />}
+              {run && shownTab === "surveillance" && <SurveillanceTab run={run} onOpenAgent={setDrawer} />}
             </div>
           </section>
-          {drawerAgent && <TranscriptDrawer run={run} agent={drawerAgent} onClose={() => setDrawer(null)} />}
-          {run.tradesSampled && <div className="foot-note muted small">background trades are sampled in this export</div>}
+  );
+
+  return (
+    <div className="app">
+      <Header
+        runs={runs}
+        run={run}
+        onPickRun={(name) => {
+          const e = runs.find((r) => r.name === name);
+          if (e) loadRun(e);
+        }}
+      />
+      {error && <div className="error-banner">{error}</div>}
+      {DEEP ? (
+        <>
+          <div className="deep-bar">
+            <a href="./">← Start here</a>
+            {!expTab && run && (
+              <span className="muted small">
+                showing the end of <span className="mono">{run.name}</span> · press <kbd>Space</kbd> to replay it from the start
+              </span>
+            )}
+          </div>
+          {tabs}
+          {replay && <div className="deep-replay">{replay}</div>}
+        </>
+      ) : (
+        <>
+          {replay}
+          {!run && loading && <div className="loading">loading run…</div>}
+          {run && tabs}
         </>
       )}
+      {drawerAgent && run && <TranscriptDrawer run={run} agent={drawerAgent} onClose={() => setDrawer(null)} />}
+      {run?.tradesSampled && showReplay && <div className="foot-note muted small">background trades are sampled in this export</div>}
     </div>
   );
 }
