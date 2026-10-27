@@ -26,16 +26,23 @@ PRICES = {
     "muse-spark-1.2-contributor": (0.10, 0.20),
 }
 
-_clients: dict[str, AsyncOpenAI] = {}
+# provider -> (event loop, client). An async client's connection pool belongs to the loop it was
+# first used on, so a process that runs several arenas (each asyncio.run is a new loop, e.g. a
+# reused wind-tunnel worker) must not reuse a client across loops: requests on a stale pool fail
+# with "Event loop is closed".
+_clients: dict[str, tuple[asyncio.AbstractEventLoop, AsyncOpenAI]] = {}
 
 
 def client_for(provider: str) -> AsyncOpenAI:
-    if provider not in _clients:
+    loop = asyncio.get_running_loop()
+    cached = _clients.get(provider)
+    if cached is None or cached[0] is not loop:
         url_env, key_env = PROVIDERS[provider]
-        _clients[provider] = AsyncOpenAI(
+        client = AsyncOpenAI(
             base_url=os.environ[url_env], api_key=os.environ[key_env], timeout=180, max_retries=3
         )
-    return _clients[provider]
+        _clients[provider] = (loop, client)
+    return _clients[provider][1]
 
 
 def short_name(model: str) -> str:
