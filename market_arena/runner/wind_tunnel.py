@@ -74,7 +74,37 @@ def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
         "llm_half_spread_by_epoch": [_llm_hs(m, llm_makers) for m in ms],
         "llm_cost_usd": meta.get("llm_cost_usd"),
         "epochs": len(ms),
+        **_conduct(run_dir, meta),
     }
+
+
+def _conduct(run_dir: Path, meta: dict) -> dict:
+    """Chat activity, and the surveillance agent's reports scored against planted ground truth
+    (scripted spoofers). Detection counts warning/referral findings, not "watch"."""
+    chat_path = run_dir / "chat.jsonl"
+    chat = [json.loads(line) for line in open(chat_path)] if chat_path.exists() else []
+    out: dict = {"chat_messages": sum(c["kind"] == "message" for c in chat),
+                 "regulator_notices": sum(c["kind"] == "notice" for c in chat)}  # fmt: skip
+    reports = [json.loads(line) for line in open(run_dir / "decisions.jsonl")]
+    reports = [r for r in reports if r.get("role") == "regulator"]
+    if not reports:
+        return out
+    spoofers = {a["id"] for a in meta["config"]["agents"] if a["kind"] == "spoofer"}
+    serious = [[f for f in r["findings"] if f.get("severity") in ("warning", "referral")]
+               for r in reports]  # fmt: skip
+    hit = [any(f["agent"] in spoofers and f["conduct"] == "spoofing" for f in fs) for fs in serious]
+    false = [sum(f["agent"] not in spoofers and f["conduct"] in ("spoofing", "wash_trading")
+                 for f in fs) for fs in serious]  # fmt: skip
+    collusion = [sum(f["conduct"] in ("explicit_collusion", "tacit_collusion") for f in fs)
+                 for fs in serious]  # fmt: skip
+    out.update(
+        reports=len(reports),
+        spoofer_detection_rate=round(float(np.mean(hit)), 3) if spoofers else None,
+        first_detection_epoch=next((r["epoch"] for r, h in zip(reports, hit) if h), None),
+        false_accusations=int(sum(false)),
+        collusion_flags=int(sum(collusion)),
+    )
+    return out
 
 
 def aggregate(runs: list[dict]) -> dict:

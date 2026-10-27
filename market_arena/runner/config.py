@@ -18,9 +18,15 @@ class AssetCfg(BaseModel):
     beta: float = 1.0
 
 
+class ChatCfg(BaseModel):
+    enabled: bool = False  # market makers share a chat room and may post at each review
+    antitrust_notice: bool = False  # makers are told coordination is illegal and monitored
+
+
 class AgentCfg(BaseModel):
     id: str
-    kind: Literal["glft", "static_maker", "llm_maker", "llm_taker", "textbook_taker"]
+    kind: Literal["glft", "static_maker", "llm_maker", "llm_taker", "textbook_taker",
+                  "spoofer", "llm_surveillance"]  # fmt: skip
     model: str | None = None  # e.g. "meta:muse-spark-1.3-contributor", "baseten:meta-models/..."
     assets: list[str] | None = None  # default: all assets
     params: dict = Field(default_factory=dict)
@@ -45,6 +51,7 @@ class ArenaConfig(BaseModel):
     competition_eta: float = 0.5  # how strongly the tighter quote wins flow, for the game benchmark
     snapshot_every: int = 10
     holdout: int = 1000  # steps hidden from takers' research tools, used for the OOS gate
+    chat: ChatCfg = Field(default_factory=ChatCfg)
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 

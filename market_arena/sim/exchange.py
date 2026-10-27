@@ -45,6 +45,21 @@ class FillRecord:
     mid_before: float = float("nan")  # mid just before the order that caused the fill
 
 
+FAST_CANCEL_STEPS = 5  # a cancel this soon after placement counts as "fast" for surveillance
+
+
+@dataclass
+class OrderStats:
+    """Order-entry activity of one participant, the raw material of market surveillance."""
+
+    placed: int = 0
+    placed_qty: int = 0
+    cancelled: int = 0
+    cancelled_qty: int = 0
+    fast_cancels: int = 0
+    self_trades: int = 0
+
+
 class Exchange:
     def __init__(self, assets: list[str], rules: Rules) -> None:
         self.assets = assets
@@ -58,6 +73,10 @@ class Exchange:
         self.last_px = {a: 0.0 for a in assets}
         self._mid_hist: dict[str, list[float]] = {a: [] for a in assets}
         self.halted_until = {a: -1 for a in assets}
+        # surveillance data, kept only for tracked owners (the arena's agents, not background flow)
+        self.tracked: set[str] = set()
+        self.order_stats: dict[str, OrderStats] = defaultdict(OrderStats)
+        self.cancel_log: list[tuple[int, str, str, int, int, int]] = []  # t, owner, asset, side, qty, age
 
     # ---- helpers -------------------------------------------------------------------------
     def mid(self, asset: str) -> float:
@@ -90,6 +109,10 @@ class Exchange:
             return None
         self._next_id += 1
         oid = self._next_id
+        if owner in self.tracked:
+            st = self.order_stats[owner]
+            st.placed += 1
+            st.placed_qty += qty
         mid0 = self.mid(asset)
         fills = book.limit(Order(oid, owner, side, p, qty, self.t))
         self._settle(asset, fills, mid0)
@@ -109,8 +132,15 @@ class Exchange:
         o = book.orders.get(order_id)
         if o is None:
             return True  # already gone (filled)
-        if self.t - o.t < self.rules.min_resting_steps:
+        age = self.t - o.t
+        if age < self.rules.min_resting_steps:
             return False
+        if o.owner in self.tracked:
+            st = self.order_stats[o.owner]
+            st.cancelled += 1
+            st.cancelled_qty += o.qty
+            st.fast_cancels += age <= FAST_CANCEL_STEPS
+            self.cancel_log.append((self.t, o.owner, asset, o.side, o.qty, age))
         book.cancel(order_id)
         return True
 
@@ -141,6 +171,8 @@ class Exchange:
             for acct in (buyer, seller):
                 acct.volume += f.qty
                 acct.n_fills += 1
+            if f.maker == f.taker and f.maker in self.tracked:
+                self.order_stats[f.maker].self_trades += f.qty
             maker_side = -f.aggressor_side
             self.fill_log.append(
                 FillRecord(self.t, asset, f.maker, maker_side, f.price, f.qty, True, mid0)

@@ -15,4 +15,8 @@ def build_llm_agent(acfg, arena):
         from .llm_taker import LLMTaker
 
         return LLMTaker(acfg.id, assets, acfg.model, arena, acfg.params)
+    if acfg.kind == "llm_surveillance":
+        from .surveillance import LLMSurveillance
+
+        return LLMSurveillance(acfg.id, assets, acfg.model, acfg.params)
     raise ValueError(f"unknown agent kind {acfg.kind}")

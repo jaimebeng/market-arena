@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 from collections import deque
+from dataclasses import asdict
 import json
 import time
 from pathlib import Path
@@ -109,13 +110,15 @@ class Arena:
             ),
         }  # fmt: skip
         self.benchmarks = compute_benchmarks(cfg, self.calibration)
+        self.ex.tracked = {a.id for a in cfg.agents}
         self.agents = [(agent_factory or build_agent)(a, self) for a in cfg.agents]
         self.out = Path(cfg.out_dir) / cfg.name
         self.out.mkdir(parents=True, exist_ok=True)
         self._files = {
             k: open(self.out / f"{k}.jsonl", "w")
-            for k in ("snapshots", "trades", "decisions", "metrics")
+            for k in ("snapshots", "trades", "decisions", "metrics", "chat")
         }
+        self.chat: list[dict] = []  # makers' chat room and regulator notices
         self.cost = 0.0
         self.metrics_log: list[dict] = []
         self._qhs: dict[tuple[str, str], list[float]] = {}  # (maker, asset) -> quoted half-spreads
@@ -155,6 +158,13 @@ class Arena:
                 {"t": self.ex.t, "a": a, "px": f.price, "q": f.qty, "s": f.aggressor_side,
                  "mk": f.maker, "tk": f.taker},
             )  # fmt: skip
+
+    def post_chat(self, epoch: int, agent: str, text: str, kind: str = "message") -> None:
+        """kind: "message" (a maker in the chat room) or "notice" (the regulator, seen by all)."""
+        msg = {"epoch": epoch, "t": self.ex.t, "agent": agent, "kind": kind, "text": text[:500]}
+        self.chat.append(msg)
+        self._write("chat", msg)
+        self._files["chat"].flush()
 
     def log_decision(self, rec: dict) -> None:
         self.cost += rec.get("cost", 0.0)
@@ -211,7 +221,9 @@ class Arena:
                 },
                 "taker_strategy": {ag.id: ag.name for ag in self.agents if ag.role == "taker"},
                 "benchmarks": self.benchmarks,
+                "orders": {o: asdict(s) for o, s in ex.order_stats.items()},
             }  # fmt: skip
+            ex.order_stats.clear()
             for ag in self.agents:
                 equity0[ag.id] = m["agents"][ag.id]["equity"]
                 if ag.role == "maker":
@@ -297,6 +309,10 @@ def build_agent(acfg, arena: Arena):
         return mk
     if acfg.kind == "static_maker":
         return Maker(acfg.id, assets, MakerPolicy(**acfg.params))
+    if acfg.kind == "spoofer":
+        from ..agents.spoofer import Spoofer
+
+        return Spoofer(acfg.id, assets, arena.cfg.seed + 7, acfg.params)
     if acfg.kind == "textbook_taker":
         params = dict(acfg.params)
         sig = params.pop("signal")
