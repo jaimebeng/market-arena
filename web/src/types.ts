@@ -62,6 +62,7 @@ export interface EpochMetrics {
   benchmarks?: Record<string, Benchmarks>;
   collusion_index?: Record<string, number | null>;
   stylized?: Record<string, Record<string, number>>;
+  orders?: Record<string, OrderActivity>;
 }
 
 export interface ToolCall {
@@ -109,6 +110,27 @@ export interface MakerDecision extends DecisionBase {
   role: "maker";
   policy: Record<string, MakerPolicy>;
   rationale: string;
+  /** public message posted to the makers' chat room (chat runs only) */
+  message?: string | null;
+}
+
+export type Conduct = "explicit_collusion" | "tacit_collusion" | "spoofing" | "wash_trading" | "other" | string;
+export type Severity = "watch" | "warning" | "referral" | string;
+
+export interface Finding {
+  agent: string;
+  conduct: Conduct;
+  severity: Severity;
+  confidence?: number | null;
+  evidence?: string | null;
+}
+
+/** AI surveillance officer's per-epoch report. It does not trade. */
+export interface RegulatorDecision extends DecisionBase {
+  role: "regulator";
+  findings: Finding[];
+  rationale: string; // public summary
+  notice?: string | null;
 }
 
 export interface TakerDecision extends DecisionBase {
@@ -121,7 +143,25 @@ export interface TakerDecision extends DecisionBase {
   similar_to?: Record<string, number>;
 }
 
-export type Decision = MakerDecision | TakerDecision;
+export type Decision = MakerDecision | TakerDecision | RegulatorDecision;
+
+export interface ChatMessage {
+  epoch: number;
+  t: number;
+  agent: string;
+  kind: "message" | "notice" | string;
+  text: string;
+}
+
+/** Per-agent order activity in one epoch (metrics.orders). */
+export interface OrderActivity {
+  placed?: number;
+  placed_qty?: number;
+  cancelled?: number;
+  cancelled_qty?: number;
+  fast_cancels?: number;
+  self_trades?: number;
+}
 
 export interface RawBook {
   L: number;
@@ -175,6 +215,8 @@ export interface RawRun {
   trades: { ids: string[]; n_total: number; sampled: boolean } & Record<string, unknown>;
   metrics: EpochMetrics[];
   decisions: Decision[];
+  chat?: ChatMessage[];
+  ground_truth?: { spoofers?: string[] };
 }
 
 /** meta.stylized: stylised facts of returns, per asset, for the traded mid and the hidden V. */
@@ -207,6 +249,14 @@ export interface VariantScalars {
   maker_pnl_per_epoch?: number | null;
   llm_cost_usd?: number | null;
   epochs?: number | null;
+  // collusion lab: chat activity and the AI regulator's record (absent in other experiments)
+  chat_messages?: number | null;
+  regulator_notices?: number | null;
+  reports?: number | null;
+  spoofer_detection_rate?: number | null;
+  first_detection_epoch?: number | null;
+  false_accusations?: number | null;
+  collusion_flags?: number | null;
 }
 
 export interface SeedRun extends VariantScalars {
@@ -214,6 +264,12 @@ export interface SeedRun extends VariantScalars {
   collusion_by_epoch?: (number | null)[];
   llm_half_spread_by_epoch?: (number | null)[];
   complete?: boolean;
+}
+
+export interface PairedDiff {
+  mean: number | null;
+  se: number | null;
+  n: number;
 }
 
 export interface Variant extends VariantScalars {
@@ -224,6 +280,9 @@ export interface Variant extends VariantScalars {
   provisional?: boolean;
   benchmarks?: Record<string, VariantBenchmarks>;
   seed_runs: SeedRun[];
+  /** paired difference variant − baseline on the same seed (collusion lab) */
+  vs_baseline?: Record<string, PairedDiff>;
+  vs_baseline_derived?: boolean;
   [k: `${string}_se`]: number | null | undefined;
 }
 
@@ -252,6 +311,8 @@ export interface RunIndexEntry {
   epochs: number;
   steps: number;
   decisions: number;
+  chat?: number;
+  regulator?: boolean;
   llm_cost_usd: number | null;
   finished: number | null;
   bytes: number;
@@ -325,4 +386,11 @@ export interface Run {
   reviewTimes: number[]; // unique decision t, ascending
   makers: AgentView[];
   takers: AgentView[];
+  /** agents that trade (everyone but the regulator): P&L views use these */
+  traders: AgentView[];
+  regulators: AgentView[];
+  reports: RegulatorDecision[]; // regulator decisions, sorted by t
+  chat: ChatMessage[]; // sorted by t
+  spoofers: string[]; // planted ground truth
+  hasOrders: boolean;
 }

@@ -23,7 +23,9 @@ Output layout (columnar, so the browser can turn it into typed arrays cheaply):
       "inv": {agent: {asset: [...]}}, "equity": {agent: [...]},
       "trades": {"ids": [...], "n_total": int, "sampled": bool,
                  asset: {"t": [], "px": [], "q": [], "s": [], "mk": [], "tk": []}},  # mk/tk index ids
-      "metrics": [...], "decisions": [...]
+      "metrics": [...], "decisions": [...],   # decisions include the regulator's reports
+      "chat": [{epoch, t, agent, kind: "message"|"notice", text}],  # maker chat room + notices
+      "ground_truth": {"spoofers": [...]}      # planted wrongdoers, for scoring the regulator
     }
 """
 
@@ -38,6 +40,7 @@ import time
 from pathlib import Path
 
 MAX_SNAPSHOTS = 3000
+MAX_BYTES = 15_000_000  # per exported run; snapshots are thinned further above this
 MAX_TRADES = 60000
 LEVELS = 10
 BACKGROUND = {"noise", "informed", "index_flow", "lp", "zi"}
@@ -69,13 +72,16 @@ def rnd(x, nd=2):
     return int(r) if r == int(r) else r
 
 
-def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = None) -> dict:
+def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = None,
+               max_snapshots: int = MAX_SNAPSHOTS) -> dict:
     meta_path = run_dir / "meta.json"
     meta = json.loads(meta_path.read_text()) if meta_path.exists() else {}
     snaps = read_jsonl(run_dir / "snapshots.jsonl")
     trades = read_jsonl(run_dir / "trades.jsonl")
     metrics = read_jsonl(run_dir / "metrics.jsonl")
     decisions = read_jsonl(run_dir / "decisions.jsonl")
+    chat = read_jsonl(run_dir / "chat.jsonl")
+    chat.sort(key=lambda c: (c.get("t", 0), c.get("kind") == "notice"))
 
     cfg = meta.get("config", {}) or {}
     assets = meta.get("assets") or (list(snaps[0]["assets"].keys()) if snaps else [])
@@ -95,7 +101,7 @@ def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = No
     agents = [dict(a) for a in agents]
 
     # ---- snapshots (downsampled) --------------------------------------------------------
-    stride = max(1, math.ceil(len(snaps) / MAX_SNAPSHOTS))
+    stride = max(1, math.ceil(len(snaps) / max_snapshots))
     snaps_ds = snaps[::stride]
     if snaps and snaps_ds[-1] is not snaps[-1]:
         snaps_ds.append(snaps[-1])
@@ -219,10 +225,17 @@ def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = No
     if "steps_per_epoch" not in small_cfg and metrics:
         small_cfg["steps_per_epoch"] = metrics[0]["t1"] - metrics[0]["t0"]
     small_cfg.setdefault("n_epochs", len(metrics))
+    if cfg.get("chat"):
+        small_cfg["chat"] = cfg["chat"]
+
+    # planted ground truth for the surveillance view: scripted spoofers
+    spoofers = [a["id"] for a in cfg.get("agents") or [] if a.get("kind") == "spoofer"]
+    if not spoofers:
+        spoofers = [a["id"] for a in agents if "spoof" in (a.get("model") or "").lower()]
 
     return {
         "format": 1,
-        "name": name or meta.get("name") or run_dir.name,
+        "name": (name or meta.get("name") or run_dir.name).replace("/", "_"),
         "source": run_dir.name,
         "assets": assets,
         "agents": agents,
@@ -243,6 +256,8 @@ def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = No
         "trades": tr_out,
         "metrics": metrics,
         "decisions": decisions,
+        "chat": chat,
+        "ground_truth": {"spoofers": spoofers},
     }
 
 
@@ -265,6 +280,8 @@ def write_index(out_dir: Path) -> list[dict]:
             "epochs": len(d.get("metrics", [])),
             "steps": d["t"][-1] if d.get("t") else 0,
             "decisions": len(d.get("decisions", [])),
+            "chat": sum(c.get("kind") == "message" for c in d.get("chat") or []),
+            "regulator": any(a.get("role") == "regulator" for a in d["agents"]),
             "llm_cost_usd": d.get("llm_cost_usd"),
             "finished": d.get("finished"),
             "bytes": p.stat().st_size,
@@ -297,8 +314,14 @@ def main(argv=None) -> int:
         if not out["t"]:
             print(f"skip {d}: empty run", file=sys.stderr)
             continue
+        text = json.dumps(out, separators=(",", ":"))
+        cap = MAX_SNAPSHOTS
+        while len(text) > MAX_BYTES and cap > 500:  # keep the dashboard light: thin the replay
+            cap //= 2
+            out = export_run(d, None if args.all else args.name, fixture, max_snapshots=cap)
+            text = json.dumps(out, separators=(",", ":"))
         p = args.out_dir / f"{out['name']}.json"
-        p.write_text(json.dumps(out, separators=(",", ":")))
+        p.write_text(text)
         print(f"wrote {p} ({p.stat().st_size / 1e6:.2f} MB, {len(out['t'])} snapshots, "
               f"{sum(len(out['trades'][a]['t']) for a in out['assets'])} trades, "
               f"{len(out['decisions'])} decisions)")

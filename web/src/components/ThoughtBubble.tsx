@@ -11,8 +11,10 @@ export function decisionText(d: Decision): string {
 function staticText(agent: AgentView, run: Run): string {
   if (agent.kind === "glft")
     return "Closed-form optimal quotes (Guéant–Lehalle–Fernandez-Tapia) from the calibrated fill curve. The benchmark every LLM maker is measured against.";
-  if (!agent.isLLM) return "Fixed scripted policy. No LLM, no reviews.";
   const spe = run.config.steps_per_epoch;
+  if (agent.role === "regulator")
+    return `Surveillance officer: watching quotes, order flow and the chat room. First report at the end of epoch 0 (t=${spe.toLocaleString("en-US")}).`;
+  if (!agent.isLLM) return "Fixed scripted policy. No LLM, no reviews.";
   return agent.role === "taker"
     ? `Waiting for the first review: will study the book, write a strategy and face the holdout gate at t=${spe.toLocaleString("en-US")}.`
     : `Trading on its initial policy. First review at the end of epoch 0 (t=${spe.toLocaleString("en-US")}).`;
@@ -91,11 +93,25 @@ export function ThoughtBubble({ run, agent }: { run: Run; agent: AgentView }) {
         <span ref={textRef} />
         <i className="caret" />
       </div>
+      {d?.role === "maker" && d.message && (
+        <div className="bubble-chat" title="posted to the makers' chat room">
+          <span className="bubble-chat-label">chat</span> {d.message}
+        </div>
+      )}
+      {d?.role === "regulator" && d.findings?.length > 0 && (
+        <div className="bubble-findings">
+          {d.findings.map((f, i) => (
+            <span key={i} className={`sev-chip sev-${f.severity}`} title={f.evidence ?? ""}>
+              {f.agent} · {f.conduct.replace(/_/g, " ")}
+            </span>
+          ))}
+        </div>
+      )}
       {d?.error && <div className="bubble-error">error: {d.error}</div>}
       {d && d.tools && d.tools.length > 0 && (
         <div className="tool-chips" ref={toolsRef}>
           {d.tools.map((t, i) => (
-            <span key={i} className={`tool-chip ${t.startsWith("set_") || t.startsWith("submit_") ? "final" : ""}`}>
+            <span key={i} className={`tool-chip ${t.startsWith("set_") || t.startsWith("submit_") || t.startsWith("file_") ? "final" : ""}`}>
               {t}
             </span>
           ))}

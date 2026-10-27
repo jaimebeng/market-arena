@@ -23,12 +23,18 @@ export const BUY_RGB: [number, number, number] = [52, 211, 153];
 export const SELL_RGB: [number, number, number] = [248, 113, 113];
 export const ASSET_COLORS = ["#e5e7eb", "#93c5fd", "#fde68a", "#c4b5fd", "#fca5a5"];
 
+/** The AI surveillance officer gets one fixed colour of its own (it never trades). */
+export const REGULATOR_COLOR = "#fde047";
+
+/** Non-LLM agents described by a "scripted: …" / "textbook: …" model string. */
+const SCRIPTED_MODEL = /^(scripted|textbook)\s*:/i;
+
 export function modelKind(a: AgentInfo): ModelKind {
   const m = (a.model ?? "").toLowerCase();
   if (a.id === "glft" || m.includes("glft")) return "glft";
   if (m.includes("spark-open") || m.includes("spark_open")) return "spark_open";
   if (m.includes("spark")) return "spark";
-  if (!a.model) return "scripted";
+  if (!a.model || SCRIPTED_MODEL.test(a.model)) return "scripted";
   return "other";
 }
 
@@ -36,15 +42,16 @@ export function buildAgentViews(agents: AgentInfo[]): AgentView[] {
   const used: Record<string, number> = {};
   return agents.map((a, index) => {
     const kind = modelKind(a);
+    const regulator = a.role === "regulator";
     const k = used[kind] ?? 0;
-    used[kind] = k + 1;
+    if (!regulator) used[kind] = k + 1;
     const pal = PALETTE[kind];
     return {
       ...a,
       index,
       kind,
-      modelLabel: kind === "other" ? (a.model ?? "Model") : MODEL_LABEL[kind],
-      color: pal[k % pal.length],
+      modelLabel: kind === "other" || (a.model && SCRIPTED_MODEL.test(a.model)) ? (a.model ?? "Model") : MODEL_LABEL[kind],
+      color: regulator ? REGULATOR_COLOR : pal[k % pal.length],
       isLLM: kind === "spark" || kind === "spark_open" || kind === "other",
     };
   });

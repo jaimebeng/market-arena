@@ -21,7 +21,7 @@ import yaml
 from dotenv import load_dotenv
 
 from ..bench.game import collusion_index
-from .arena import Arena, calibrate_market, compute_benchmarks
+from .arena import Arena, asset_prices, calibrate_market, compute_benchmarks
 from .config import ArenaConfig
 
 
@@ -57,8 +57,14 @@ def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
         vals = [v for v in vals if v is not None and np.isfinite(v)]
         return round(float(np.mean(vals)), 3) if vals else None
 
+    prices = asset_prices(cfg)
+    taker_fee = {a: cfg.rules.taker_fee_bps * 1e-4 * prices[a] for a in assets}  # cents per lot
+
     return {
         "spread": avg(lambda m: np.mean([m["market"][a]["spread"] for a in assets])),
+        # what an investor pays to trade one lot immediately: half the spread plus the taker fee
+        "taker_cost": avg(lambda m: np.mean([m["market"][a]["spread"] / 2 + taker_fee[a]
+                                             for a in assets])),  # fmt: skip
         "depth": avg(lambda m: np.mean([m["market"][a]["depth"] for a in assets])),
         "mispricing_bps": avg(lambda m: np.mean([m["market"][a]["mispricing_bps"] for a in assets])),
         "volatility": avg(lambda m: np.mean([m["market"][a]["vol_per_step"] for a in assets])),

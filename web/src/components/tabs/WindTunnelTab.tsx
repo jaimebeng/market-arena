@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Experiment, ExperimentIndexEntry, Variant, VariantBenchmarks } from "../../types";
+import type { Experiment, ExperimentIndexEntry, SeedRun, Variant, VariantBenchmarks, VariantScalars } from "../../types";
 import { fetchExperiment, fetchExperiments } from "../../lib/load";
 import { fmtCompact, fmtNum, fmtSigned, niceStep } from "../../lib/format";
 import { CollusionGauge, DELTA_CAPTION } from "../CollusionGauge";
@@ -22,6 +22,12 @@ const se = (v: Variant, k: string) => num(v[`${k}_se`]);
 const firstBench = (v: Variant): VariantBenchmarks | undefined => (v.benchmarks ? Object.values(v.benchmarks)[0] : undefined);
 
 const params = new URLSearchParams(window.location.search);
+
+function setUrlParam(k: string, v: string) {
+  const p = new URLSearchParams(window.location.search);
+  p.set(k, v);
+  window.history.replaceState(null, "", `${window.location.pathname}?${p}`);
+}
 
 function QualityRow({ base, v, q }: { base: Variant; v: Variant; q: (typeof QUALITY)[number] }) {
   const b = num(base[q.key]);
@@ -141,12 +147,209 @@ function SpreadMultiple({ v, domain, title, accent }: { v: Variant; domain: [num
   );
 }
 
+/** Fixed colour order for non-baseline variants (colour follows the variant, never its rank). */
+const VARIANT_COLORS = ["#7b8cff", "#f472b6", "#fde047", "#2dd4bf", "#fb923c", "#c4a1ff"];
+const BASE_COLOR = "#5b6478";
+
+const seedOf = (run?: string) => (run ?? "").split("/").filter(Boolean).pop() ?? "";
+
+/** Per-seed paired differences variant − baseline for one metric (for the seed dots). */
+function pairedSeeds(v: Variant, base: Variant | undefined, key: keyof SeedRun): { seed: string; d: number }[] {
+  if (!base) return [];
+  const by = new Map(base.seed_runs.map((s) => [seedOf(s.run), num(s[key])]));
+  return v.seed_runs
+    .map((s) => {
+      const b = by.get(seedOf(s.run));
+      const x = num(s[key]);
+      return b != null && x != null ? { seed: seedOf(s.run), d: x - b } : null;
+    })
+    .filter((x): x is { seed: string; d: number } => x != null);
+}
+
+type DeltaMode = "paired" | "raw";
+
+/**
+ * Collusion index Δ per variant with standard-error bars and per-seed dots.
+ * paired: variant − baseline on the same seed (zero line = baseline); raw: mean Δ per variant
+ * against the Nash (0) and Pareto (1) references.
+ */
+function DeltaByVariant({ exp, mode, sel, onPick }: { exp: Experiment; mode: DeltaMode; sel?: string; onPick: (name: string) => void }) {
+  const [ref, width] = useWidth<HTMLDivElement>();
+  const base = exp.variants.find((v) => v.name === "baseline");
+  const others = exp.variants.filter((v) => v.name !== "baseline");
+  const colorOf = (v: Variant) => (v.name === "baseline" ? BASE_COLOR : VARIANT_COLORS[others.indexOf(v) % VARIANT_COLORS.length]);
+  const items = (mode === "paired" ? others : exp.variants).map((v) => {
+    if (mode === "paired") {
+      const p = v.vs_baseline?.collusion_index;
+      return { v, mean: num(p?.mean), se: num(p?.se), n: p?.n ?? 0, dots: pairedSeeds(v, base, "collusion_index").map((x) => ({ seed: x.seed, y: x.d })) };
+    }
+    return {
+      v,
+      mean: num(v.collusion_index),
+      se: se(v, "collusion_index"),
+      n: v.n_seeds,
+      dots: v.seed_runs.map((s) => ({ seed: seedOf(s.run), y: num(s.collusion_index) })).filter((d): d is { seed: string; y: number } => d.y != null),
+    };
+  });
+  const ys = [0, ...(mode === "raw" ? [1] : [])];
+  for (const it of items) {
+    if (it.mean != null) ys.push(it.mean - (it.se ?? 0), it.mean + (it.se ?? 0));
+    for (const d of it.dots) ys.push(d.y);
+  }
+  let lo = Math.min(...ys);
+  let hi = Math.max(...ys);
+  const pad = (hi - lo) * 0.12 || 0.5;
+  lo -= pad;
+  hi += pad;
+  const H = 270;
+  const padL = mode === "paired" ? 60 : 44;
+  const padR = mode === "raw" ? 52 : 16;
+  const padT = 14;
+  const padB = 44;
+  const W = Math.max(260, width);
+  const plotW = W - padL - padR;
+  const plotH = H - padT - padB;
+  const yOf = (y: number) => padT + ((hi - y) / (hi - lo)) * plotH;
+  const slot = plotW / Math.max(1, items.length);
+  const barW = Math.min(64, slot * 0.46);
+  const step = niceStep(hi - lo, 5);
+  const ticks: number[] = [];
+  for (let y = Math.ceil(lo / step) * step; y <= hi + 1e-9; y += step) ticks.push(Math.round(y / step) * step);
+
+  return (
+    <div ref={ref} className="dv">
+      {width > 0 && (
+        <svg width={W} height={H}>
+          {ticks.map((y) => (
+            <g key={y}>
+              <line x1={padL} x2={padL + plotW} y1={yOf(y)} y2={yOf(y)} stroke="rgba(255,255,255,0.05)" />
+              <text x={padL - 6} y={yOf(y)} className="wt-axis" textAnchor="end" dominantBaseline="middle">
+                {mode === "paired" && y === 0 ? "baseline" : `${mode === "paired" && y > 0 ? "+" : ""}${fmtNum(y, step < 0.1 ? 2 : 1)}`}
+              </text>
+            </g>
+          ))}
+          {mode === "paired" ? (
+            <>
+              <line x1={padL} x2={padL + plotW} y1={yOf(0)} y2={yOf(0)} stroke="#cbd5e1" strokeWidth={1.2} />
+            </>
+          ) : (
+            <>
+              <line x1={padL} x2={padL + plotW} y1={yOf(0)} y2={yOf(0)} stroke="#cbd5e1" strokeDasharray="5 4" />
+              <line x1={padL} x2={padL + plotW} y1={yOf(1)} y2={yOf(1)} stroke="#f87171" strokeDasharray="5 4" />
+              <text x={padL + plotW + 5} y={yOf(0)} className="wt-ref" fill="#cbd5e1" dominantBaseline="middle">
+                Nash
+              </text>
+              <text x={padL + plotW + 5} y={yOf(1)} className="wt-ref" fill="#f87171" dominantBaseline="middle">
+                Pareto
+              </text>
+            </>
+          )}
+          {items.map((it, i) => {
+            const cx = padL + slot * (i + 0.5);
+            const c = colorOf(it.v);
+            const m = it.mean;
+            const y0 = yOf(0);
+            const y1 = m != null ? yOf(m) : y0;
+            const top = Math.min(y0, y1);
+            const h = Math.max(1, Math.abs(y1 - y0));
+            const s = it.se ?? 0;
+            const on = it.v.name === sel;
+            const tip =
+              `${it.v.label}: ${mode === "paired" ? "Δ change vs baseline" : "Δ"} ${m != null ? fmtSigned(m, 2) : "—"}` +
+              (it.se != null ? ` ± ${fmtNum(it.se, 2)} s.e.` : "") +
+              ` (n=${it.n})` +
+              (it.dots.length ? `\nper seed: ${it.dots.map((d) => `${d.seed} ${fmtSigned(d.y, 2)}`).join(", ")}` : "");
+            return (
+              <g key={it.v.name} className={`dv-item ${on ? "on" : ""}`} onClick={() => it.v.name !== "baseline" && onPick(it.v.name)}>
+                <title>{tip}</title>
+                <rect x={cx - slot / 2} y={padT} width={slot} height={plotH} fill="transparent" />
+                {m != null && <rect x={cx - barW / 2} y={top} width={barW} height={h} rx={3} fill={c} opacity={on ? 0.95 : 0.7} />}
+                {m != null && s > 0 && (
+                  <g stroke="#e7eaf1" strokeWidth={1.4}>
+                    <line x1={cx} x2={cx} y1={yOf(m - s)} y2={yOf(m + s)} />
+                    <line x1={cx - 7} x2={cx + 7} y1={yOf(m - s)} y2={yOf(m - s)} />
+                    <line x1={cx - 7} x2={cx + 7} y1={yOf(m + s)} y2={yOf(m + s)} />
+                  </g>
+                )}
+                {it.dots.map((d, k) => (
+                  <circle key={k} cx={cx + barW / 2 + 9 + (k % 3) * 6} cy={yOf(d.y)} r={3} fill={c} stroke="#0e1219" strokeWidth={1.5} />
+                ))}
+                {m != null && (
+                  <text x={cx} y={m >= 0 ? yOf(m + s) - 6 : yOf(m - s) + 13} textAnchor="middle" className="dv-val">
+                    {mode === "paired" ? fmtSigned(m, 2) : fmtNum(m, 2)}
+                  </text>
+                )}
+                <text x={cx} y={H - padB + 18} textAnchor="middle" className={`dv-label ${on ? "on" : ""}`}>
+                  {it.v.label}
+                </text>
+                <text x={cx} y={H - padB + 32} textAnchor="middle" className="wt-axis">
+                  n={it.n}
+                  {it.v.provisional ? " · prov." : ""}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      )}
+    </div>
+  );
+}
+
+const pct = (x: number | null) => (x == null ? "—" : `${Math.round(x * 100)}%`);
+
+/** Chat activity and the AI regulator's record per variant (collusion lab). */
+function ConductTable({ exp }: { exp: Experiment }) {
+  const cols: { key: keyof VariantScalars & string; label: string; title: string; fmt: (x: number | null) => string; tone?: (x: number) => string }[] = [
+    { key: "chat_messages", label: "chat msgs", title: "maker chat messages per run", fmt: (x) => fmtNum(x, 1) },
+    { key: "regulator_notices", label: "notices", title: "public notices posted by the regulator per run", fmt: (x) => fmtNum(x, 1) },
+    { key: "reports", label: "reports", title: "surveillance reports filed per run", fmt: (x) => fmtNum(x, 1) },
+    { key: "spoofer_detection_rate", label: "spoofer caught", title: "share of reports that flag the planted spoofer for spoofing (warning or referral)", fmt: pct, tone: (x) => (x >= 0.5 ? "good" : "bad") },
+    { key: "first_detection_epoch", label: "first caught", title: "epoch of the first report that flags the spoofer", fmt: (x) => (x == null ? "—" : `E${fmtNum(x, x % 1 ? 1 : 0)}`) },
+    { key: "false_accusations", label: "false accus.", title: "spoofing / wash-trading findings (warning+) against innocent agents, per run", fmt: (x) => fmtNum(x, 1), tone: (x) => (x > 0 ? "bad" : "good") },
+    { key: "collusion_flags", label: "collusion flags", title: "explicit / tacit collusion findings (warning+) per run", fmt: (x) => fmtNum(x, 1) },
+  ];
+  const used = cols.filter((c) => exp.variants.some((v) => num(v[c.key]) != null));
+  return (
+    <table className="conduct-table">
+      <thead>
+        <tr>
+          <th>variant</th>
+          {used.map((c) => (
+            <th key={c.key} title={c.title}>
+              {c.label}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {exp.variants.map((v) => (
+          <tr key={v.name}>
+            <td>{v.label}</td>
+            {used.map((c) => {
+              const x = num(v[c.key]);
+              const s = se(v, c.key);
+              const seeds = v.seed_runs.map((r) => `${seedOf(r.run)}: ${c.fmt(num(r[c.key]))}`).join(", ");
+              return (
+                <td key={c.key} className={`mono ${x != null && c.tone ? c.tone(x) : ""}`} title={seeds}>
+                  {c.fmt(x)}
+                  {s != null && s > 0 && c.key !== "spoofer_detection_rate" && <span className="muted"> ±{fmtNum(s, 1)}</span>}
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
 function LeverCard({ v, base, on, onClick }: { v: Variant; base?: Variant; on: boolean; onClick: () => void }) {
   const d0 = num(base?.collusion_index);
   const d1 = num(v.collusion_index);
   const s0 = num(base?.spread);
   const s1 = num(v.spread);
   const sp = s0 && s1 != null ? ((s1 - s0) / s0) * 100 : null;
+  const paired = v.vs_baseline?.collusion_index;
   return (
     <button className={`lever ${on ? "on" : ""}`} onClick={onClick}>
       <div className="lever-head">
@@ -155,11 +358,27 @@ function LeverCard({ v, base, on, onClick }: { v: Variant; base?: Variant; on: b
       </div>
       <div className="lever-change">{v.change}</div>
       <div className="lever-stats mono">
-        <span title="collusion index Δ, baseline → variant">
-          Δ {fmtNum(d0, 2)} → <b>{fmtNum(d1, 2)}</b>
-        </span>
+        {paired?.mean != null ? (
+          <span title="paired change in collusion index Δ vs baseline on the same seed, ± s.e.">
+            ΔΔ <b>{fmtSigned(paired.mean, 2)}</b>
+            {paired.se != null && <> ±{fmtNum(paired.se, 2)}</>}
+          </span>
+        ) : (
+          <span title="collusion index Δ, baseline → variant">
+            Δ {fmtNum(d0, 2)} → <b>{fmtNum(d1, 2)}</b>
+          </span>
+        )}
         {sp != null && <span className={sp < 0 ? "good" : "bad"}>spread {fmtSigned(sp, 0)}%</span>}
       </div>
+      {(num(v.chat_messages) != null || num(v.spoofer_detection_rate) != null) && (
+        <div className="lever-stats mono lever-conduct">
+          {num(v.chat_messages) != null && <span>chat {fmtNum(v.chat_messages, 1)}/run</span>}
+          {num(v.spoofer_detection_rate) != null && (
+            <span className={v.spoofer_detection_rate! >= 0.5 ? "good" : "bad"}>spoofer caught {pct(num(v.spoofer_detection_rate))}</span>
+          )}
+          {num(v.false_accusations) != null && <span className={v.false_accusations! > 0 ? "bad" : ""}>false acc. {fmtNum(v.false_accusations, 1)}</span>}
+        </div>
+      )}
     </button>
   );
 }
@@ -169,6 +388,7 @@ export function WindTunnelTab() {
   const [exp, setExp] = useState<Experiment | null>(null);
   const [sel, setSel] = useState<string | null>(params.get("lever"));
   const [err, setErr] = useState<string | null>(null);
+  const [mode, setMode] = useState<DeltaMode | null>((params.get("delta") as DeltaMode) || null);
 
   useEffect(() => {
     fetchExperiments()
@@ -210,6 +430,42 @@ export function WindTunnelTab() {
   const pad = (hi - lo) * 0.1 || 1;
   const domain: [number, number] = [Math.max(0, lo - pad), hi + pad];
   const dd = num(v.collusion_index) != null && num(ref.collusion_index) != null ? v.collusion_index! - ref.collusion_index! : null;
+  const isLab = exp.variants.some((x) => num(x.chat_messages) != null || num(x.reports) != null);
+  const hasPaired = levers.some((x) => x.vs_baseline?.collusion_index?.mean != null);
+  const dMode: DeltaMode = mode ?? (hasPaired ? "paired" : "raw");
+  const pickLever = (name: string) => {
+    setSel(name);
+    setUrlParam("lever", name);
+  };
+  const deltaCard = (
+    <div className="comp-card dv-card">
+      <div className="card-title">
+        Collusion index Δ by variant{" "}
+        <span className="muted">
+          {dMode === "paired"
+            ? "· change vs baseline on the same seed, mean ± s.e.; dots = seeds"
+            : "· LLM makers, mean ± s.e. over seeds; dots = seeds"}
+        </span>
+        <span className="spacer" />
+        <span className="seg">
+          <button className={dMode === "paired" ? "on" : ""} disabled={!hasPaired} onClick={() => setMode("paired")} title="variant − baseline, paired by seed">
+            paired vs baseline
+          </button>
+          <button className={dMode === "raw" ? "on" : ""} onClick={() => setMode("raw")} title="raw Δ per variant">
+            raw Δ
+          </button>
+        </span>
+      </div>
+      <DeltaByVariant exp={exp} mode={dMode} sel={v.name} onPick={pickLever} />
+      <div className="wt-caption">
+        {dMode === "paired"
+          ? "Bars above zero: the variant pushed makers toward the joint-profit (Pareto) spread relative to the same seed's baseline; below zero: toward competition. "
+          : "0 = competitive Nash quoting, 1 = tacit collusion at the joint-profit (Pareto) spread. "}
+        {exp.variants.some((x) => UNMODELED.has(x.name)) && "Speed bump / circuit breaker are not modelled by the benchmark: compare spreads, not Δ. "}
+        Click a bar to compare that variant below.
+      </div>
+    </div>
+  );
 
   return (
     <div className="wt">
@@ -219,7 +475,10 @@ export function WindTunnelTab() {
           value={exp.experiment}
           onChange={(e) => {
             const entry = index.find((x) => x.name === e.target.value);
-            if (entry) fetchExperiment(entry).then(setExp);
+            if (entry) {
+              setUrlParam("exp", entry.name);
+              fetchExperiment(entry).then(setExp);
+            }
           }}
         >
           {index.map((x) => (
@@ -238,9 +497,25 @@ export function WindTunnelTab() {
         )}
       </div>
 
+      {isLab && (
+        <div className="lab-top">
+          {deltaCard}
+          <div className="comp-card">
+            <div className="card-title">
+              Conduct <span className="muted">· chat activity and the AI regulator's record, mean per run (hover for seeds)</span>
+            </div>
+            <ConductTable exp={exp} />
+            <div className="wt-caption">
+              Detection is scored against the planted ground truth: a scripted spoofer trades in every variant; only the regulator variant has anyone looking for it.
+              False accusations count spoofing / wash-trading findings (warning or referral) against agents that are not the spoofer.
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="levers">
         {levers.map((x) => (
-          <LeverCard key={x.name} v={x} base={base} on={x === v} onClick={() => setSel(x.name)} />
+          <LeverCard key={x.name} v={x} base={base} on={x === v} onClick={() => pickLever(x.name)} />
         ))}
       </div>
 
@@ -290,6 +565,7 @@ export function WindTunnelTab() {
           </div>
         </div>
       </div>
+      {!isLab && <div className="wt-bottom">{deltaCard}</div>}
     </div>
   );
 }

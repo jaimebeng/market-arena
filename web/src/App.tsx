@@ -11,8 +11,9 @@ import { CompetitionTab } from "./components/tabs/CompetitionTab";
 import { StrategyGallery } from "./components/tabs/StrategyGallery";
 import { MarketQualityTab } from "./components/tabs/MarketQualityTab";
 import { WindTunnelTab } from "./components/tabs/WindTunnelTab";
+import { SurveillanceCount, SurveillanceTab } from "./components/tabs/SurveillanceTab";
 
-type Tab = "competition" | "gallery" | "quality" | "wind";
+type Tab = "competition" | "gallery" | "quality" | "surveillance" | "wind";
 
 const params = new URLSearchParams(window.location.search);
 
@@ -97,6 +98,8 @@ export default function App() {
   };
   const drawerAgent = run && drawer ? run.agentById[drawer] : null;
   const nStrategies = run ? run.decisions.filter((d) => d.role === "taker").length : 0;
+  const hasSurv = !!run && (run.regulators.length > 0 || run.chat.length > 0 || run.hasOrders);
+  const shownTab: Tab = tab === "surveillance" && !hasSurv ? "competition" : tab;
 
   return (
     <div className="app">
@@ -114,7 +117,10 @@ export default function App() {
             <section className="panel agents-col">
               <div className="panel-head">
                 <div className="panel-title">
-                  Agents <span className="panel-sub">{run.agents.length} traders · click for transcripts</span>
+                  Agents{" "}
+                  <span className="panel-sub">
+                    {run.traders.length} traders{run.regulators.length ? ` · ${run.regulators.length} regulator` : ""} · click for transcripts
+                  </span>
                 </div>
               </div>
               <div className="agents-scroll">
@@ -126,16 +132,21 @@ export default function App() {
           </main>
           <section className="panel tabs-panel">
             <nav className="tabs">
-              <button className={tab === "competition" ? "on" : ""} onClick={() => pickTab("competition")}>
+              <button className={shownTab === "competition" ? "on" : ""} onClick={() => pickTab("competition")}>
                 Competition
               </button>
-              <button className={tab === "gallery" ? "on" : ""} onClick={() => pickTab("gallery")}>
+              <button className={shownTab === "gallery" ? "on" : ""} onClick={() => pickTab("gallery")}>
                 Strategy Gallery {nStrategies > 0 && <span className="count">{nStrategies}</span>}
               </button>
-              <button className={tab === "quality" ? "on" : ""} onClick={() => pickTab("quality")}>
+              <button className={shownTab === "quality" ? "on" : ""} onClick={() => pickTab("quality")}>
                 Market quality
               </button>
-              <button className={tab === "wind" ? "on" : ""} onClick={() => pickTab("wind")}>
+              {hasSurv && (
+                <button className={shownTab === "surveillance" ? "on" : ""} onClick={() => pickTab("surveillance")}>
+                  Surveillance <SurveillanceCount run={run} />
+                </button>
+              )}
+              <button className={shownTab === "wind" ? "on" : ""} onClick={() => pickTab("wind")}>
                 Wind Tunnel <span className="count new">policy lab</span>
               </button>
               <span className="spacer" />
@@ -145,10 +156,11 @@ export default function App() {
               </span>
             </nav>
             <div className="tab-body">
-              {tab === "competition" && <CompetitionTab run={run} asset={asset} />}
-              {tab === "gallery" && <StrategyGallery run={run} />}
-              {tab === "quality" && <MarketQualityTab run={run} asset={asset} />}
-              {tab === "wind" && <WindTunnelTab />}
+              {shownTab === "competition" && <CompetitionTab run={run} asset={asset} />}
+              {shownTab === "gallery" && <StrategyGallery run={run} />}
+              {shownTab === "quality" && <MarketQualityTab run={run} asset={asset} />}
+              {shownTab === "surveillance" && <SurveillanceTab run={run} onOpenAgent={setDrawer} />}
+              {shownTab === "wind" && <WindTunnelTab />}
             </div>
           </section>
           {drawerAgent && <TranscriptDrawer run={run} agent={drawerAgent} onClose={() => setDrawer(null)} />}

@@ -6,6 +6,7 @@ import { latestDecision, policyAt } from "../lib/query";
 import { AgentName, ModelBadge, RoleTag } from "./ModelBadge";
 import { CodeBlock } from "./CodeBlock";
 import { GateBars, rediscovered } from "./tabs/StrategyGallery";
+import { FindingCard } from "./Surveillance";
 
 function Json({ value }: { value: unknown }) {
   const s = typeof value === "string" ? value : JSON.stringify(value, null, 2);
@@ -94,10 +95,37 @@ function DecisionView({ run, d, current }: { run: Run; d: Decision; current: boo
       </header>
       {d.error && <div className="bubble-error">error: {d.error}</div>}
 
-      {d.role === "maker" ? (
+      {d.role === "regulator" ? (
+        <>
+          <div className="block-label">public summary</div>
+          <blockquote className="rationale">{d.rationale}</blockquote>
+          <div className="block-label">findings · {d.findings?.length ?? 0}</div>
+          {d.findings?.length ? (
+            <div className="findings">
+              {d.findings.map((f, i) => (
+                <FindingCard key={i} run={run} f={f} />
+              ))}
+            </div>
+          ) : (
+            <div className="muted small">No findings this epoch.</div>
+          )}
+          {d.notice && (
+            <>
+              <div className="block-label">public notice posted to the chat room</div>
+              <div className="notice-box">{d.notice}</div>
+            </>
+          )}
+        </>
+      ) : d.role === "maker" ? (
         <>
           <div className="block-label">rationale (public)</div>
           <blockquote className="rationale">{d.rationale}</blockquote>
+          {d.message && (
+            <>
+              <div className="block-label">chat message (to the other makers)</div>
+              <div className="chat-quote">{d.message}</div>
+            </>
+          )}
           <div className="block-label">new policy · applies from epoch {d.epoch + 1}</div>
           <PolicyDiff before={policyAt(run, d.agent, d.t - 1)} after={d.policy} />
         </>
@@ -183,7 +211,7 @@ export function TranscriptDrawer({ run, agent, onClose }: { run: Run; agent: Age
           </button>
         </header>
         <div className="drawer-sub muted">
-          {agent.model ?? "no model"} · {ds.length} reviews · {fmtUsd(cost)}
+          {agent.model ?? "no model"} · {ds.length} {agent.role === "regulator" ? "surveillance reports" : "reviews"} · {fmtUsd(cost)}
         </div>
         <div className="drawer-body" ref={body}>
           {ds.length === 0 ? (

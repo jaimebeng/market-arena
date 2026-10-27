@@ -32,8 +32,17 @@ LEVERS = {
     "circuit_breaker_pct": (float, 0.2, 3.0, "halt 50 steps after this % move within 100 steps; "
                                              "null = no circuit breaker"),
 }  # fmt: skip
-METRICS = ("spread", "depth", "mispricing_bps", "volatility", "volume", "collusion_index",
-           "llm_maker_half_spread", "maker_pnl_per_epoch", "exchange_fee_revenue")  # fmt: skip
+METRICS = ("spread", "taker_cost", "depth", "mispricing_bps", "volatility", "volume",
+           "collusion_index", "llm_maker_half_spread", "maker_pnl_per_epoch",
+           "exchange_fee_revenue")  # fmt: skip
+
+# v1 mandate: judged on the quoted spread (configs/designer.yaml). It turned out to reward
+# maker-taker fee schedules that raise investors' all-in cost; designer_v2.yaml uses taker_cost.
+DEFAULT_MANDATE = """1. Low trading costs for investors: a tight average bid-ask spread (cents).
+2. Accurate, stable prices: low mispricing vs fundamental value (bps) and volatility no higher \
+than under the default rules.
+3. Deep order books (top-5 depth, lots).
+4. A viable business: exchange fee revenue >= 0 and market makers still profitable."""
 
 SYSTEM = """You are the head of market design at an electronic stock exchange. Your job: choose \
 the exchange's rulebook. The market is populated by adaptive AI market makers (which set their \
@@ -41,11 +50,7 @@ own quoting policies and adapt to the rules), a momentum trader and scripted bac
 investors (noise traders, an informed trader and index flows).
 
 Your mandate, in priority order:
-1. Low trading costs for investors: a tight average bid-ask spread (cents).
-2. Accurate, stable prices: low mispricing vs fundamental value (bps) and volatility no higher \
-than under the default rules.
-3. Deep order books (top-5 depth, lots).
-4. A viable business: exchange fee revenue >= 0 and market makers still profitable.
+{mandate}
 
 You can test rulebooks in a wind tunnel: each experiment runs the full market with live AI \
 traders for {epochs} epochs of {steps} steps and reports market-quality metrics, averaged over \
@@ -225,7 +230,8 @@ class Designer:
                           "hypothesis": "reference point"}])  # fmt: skip
         b = self.base
         system = SYSTEM.format(epochs=b.get("n_epochs", 4), steps=b.get("steps_per_epoch", 2000),
-                               budget=self.budget, per_call=self.per_call)  # fmt: skip
+                               budget=self.budget, per_call=self.per_call,
+                               mandate=self.spec.get("mandate", DEFAULT_MANDATE).strip())  # fmt: skip
         tools = json.loads(json.dumps(TOOLS).replace("{per_call}", str(self.per_call)))
         user = ("The default-rules baseline has been run for you:\n"
                 f"{json.dumps(self._compact(self.trials[0]))}\n"
@@ -246,7 +252,8 @@ class Designer:
         validation = self.validate(rec["rules"])
         out = {
             "experiment": self.name, "model": self.spec["model"], "seed": self.spec["seed"],
-            "budget": self.budget, "trials": self.trials, "recommendation": rec,
+            "budget": self.budget, "mandate": self.spec.get("mandate", DEFAULT_MANDATE).strip(),
+            "trials": self.trials, "recommendation": rec,
             "validation": validation, "rulebook": self._rulebook(),
             "transcript": tr.turns, "error": tr.error,
             "designer_cost_usd": round(tr.cost, 4),

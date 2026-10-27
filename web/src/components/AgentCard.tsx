@@ -72,6 +72,43 @@ function TakerStats({ run, agent }: { run: Run; agent: AgentView }) {
   );
 }
 
+/** Regulator card: case counts so far instead of P&L (it does not trade). */
+function RegulatorStats({ run, agent }: { run: Run; agent: AgentView }) {
+  const pb = useUi((p) => latestDecision(run, agent.id, p.t)?.t ?? -1);
+  const filed = run.reports.filter((r) => r.agent === agent.id && r.t <= pb.t);
+  const findings = filed.flatMap((r) => r.findings ?? []);
+  const serious = findings.filter((f) => f.severity === "warning" || f.severity === "referral");
+  const caught = run.spoofers.some((s) => serious.some((f) => f.agent === s && f.conduct === "spoofing"));
+  const notices = run.chat.filter((c) => c.kind === "notice" && c.agent === agent.id && c.t <= pb.t).length;
+  return (
+    <>
+      <div className="stat">
+        <label>reports</label>
+        <span className="mono">
+          {filed.length}/{run.reports.filter((r) => r.agent === agent.id).length}
+        </span>
+      </div>
+      <div className="stat">
+        <label>findings</label>
+        <span className="mono">
+          {findings.length}
+          {serious.length > 0 && <span className="muted"> · {serious.length} serious</span>}
+        </span>
+      </div>
+      <div className="stat">
+        <label>notices</label>
+        <span className="mono">{notices}</span>
+      </div>
+      {run.spoofers.length > 0 && (
+        <div className="stat wide">
+          <label>planted spoofer</label>
+          <span className={`mono ${caught ? "pass-c" : "muted"}`}>{caught ? "flagged ✓" : "not flagged yet"}</span>
+        </div>
+      )}
+    </>
+  );
+}
+
 /** Live P&L + inventory gauges, written to the DOM from the rAF loop. */
 function LiveNumbers({ run, agent, maxInv }: { run: Run; agent: AgentView; maxInv: number }) {
   const pnl = useRef<HTMLSpanElement>(null);
@@ -165,15 +202,23 @@ export function AgentCard({
         <span className="spacer" />
         <ModelBadge agent={agent} compact />
       </header>
-      <div className="card-body">
-        <LiveNumbers run={run} agent={agent} maxInv={maxInv} />
-        <Sparkline run={run} agent={agent} />
-      </div>
+      {agent.role !== "regulator" && (
+        <div className="card-body">
+          <LiveNumbers run={run} agent={agent} maxInv={maxInv} />
+          <Sparkline run={run} agent={agent} />
+        </div>
+      )}
       <div className="card-stats">
-        {agent.role === "taker" ? <TakerStats run={run} agent={agent} /> : <PolicyStats run={run} agent={agent} asset={asset} />}
+        {agent.role === "regulator" ? (
+          <RegulatorStats run={run} agent={agent} />
+        ) : agent.role === "taker" ? (
+          <TakerStats run={run} agent={agent} />
+        ) : (
+          <PolicyStats run={run} agent={agent} asset={asset} />
+        )}
       </div>
       <ThoughtBubble run={run} agent={agent} />
-      {nReviews > 0 && <div className="card-foot">{nReviews} reviews · open transcript ›</div>}
+      {nReviews > 0 && <div className="card-foot">{nReviews} {agent.role === "regulator" ? "reports" : "reviews"} · open transcript ›</div>}
     </article>
   );
 }

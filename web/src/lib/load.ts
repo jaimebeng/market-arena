@@ -6,6 +6,7 @@ import type {
   ExperimentIndexEntry,
   RawRun,
   RawTradesAsset,
+  RegulatorDecision,
   Run,
   RunIndexEntry,
   TradeSeries,
@@ -158,6 +159,12 @@ export function buildRun(raw: RawRun): Run {
     }
   }
 
+  const chat = [...(raw.chat ?? [])].sort((x, y) => x.t - y.t || Number(x.kind === "notice") - Number(y.kind === "notice"));
+  const reports = decisions.filter((d): d is RegulatorDecision => d.role === "regulator");
+  const spoofers = raw.ground_truth?.spoofers?.length
+    ? raw.ground_truth.spoofers
+    : agents.filter((a) => /spoof/i.test(a.model ?? "")).map((a) => a.id);
+
   return {
     name: raw.name,
     assets: raw.assets,
@@ -185,5 +192,11 @@ export function buildRun(raw: RawRun): Run {
     reviewTimes,
     makers: agents.filter((a) => a.role === "maker"),
     takers: agents.filter((a) => a.role === "taker"),
+    traders: agents.filter((a) => a.role !== "regulator"),
+    regulators: agents.filter((a) => a.role === "regulator"),
+    reports,
+    chat,
+    spoofers,
+    hasOrders: raw.metrics.some((m) => m.orders && Object.keys(m.orders).length > 0),
   };
 }

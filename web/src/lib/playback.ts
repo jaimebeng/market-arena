@@ -111,7 +111,7 @@ export class Playback {
     const ds = run.decisions.filter((d) => d.t === rt);
     const longest = Math.max(
       0,
-      ...ds.map((d) => (d.role === "maker" ? d.rationale?.length ?? 0 : d.hypothesis?.length ?? 0)),
+      ...ds.map((d) => (d.role === "taker" ? d.hypothesis?.length ?? 0 : d.rationale?.length ?? 0)),
     );
     // enough time to type the longest rationale, then a beat to read it
     return Math.min(9000, Math.max(2500, (longest / TYPE_CHARS_PER_SEC) * 1000 + 1800));

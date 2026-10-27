@@ -1,6 +1,202 @@
 {
  "runs": [
   {
+   "name": "collusion_lab_surveillance_s41",
+   "file": "collusion_lab_surveillance_s41.json",
+   "assets": [
+    "A"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "spark_1",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "spark_2",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_1",
+     "role": "maker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    },
+    {
+     "id": "imbalance_bot",
+     "role": "taker",
+     "model": "textbook: order_book_imbalance"
+    },
+    {
+     "id": "spoofer",
+     "role": "taker",
+     "model": "scripted: spoofer"
+    },
+    {
+     "id": "regulator",
+     "role": "regulator",
+     "model": "meta:muse-spark-1.3-contributor"
+    }
+   ],
+   "epochs": 6,
+   "steps": 11990,
+   "decisions": 20,
+   "chat": 5,
+   "regulator": true,
+   "llm_cost_usd": 0.0179,
+   "finished": 1793091198.3977199,
+   "bytes": 708669
+  },
+  {
+   "name": "surveillance_smoke",
+   "file": "surveillance_smoke.json",
+   "assets": [
+    "A"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "spark_1",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_1",
+     "role": "maker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    },
+    {
+     "id": "imbalance_bot",
+     "role": "taker",
+     "model": "textbook: order_book_imbalance"
+    },
+    {
+     "id": "spoofer",
+     "role": "taker",
+     "model": "scripted: spoofer"
+    },
+    {
+     "id": "regulator",
+     "role": "regulator",
+     "model": "meta:muse-spark-1.3-contributor"
+    }
+   ],
+   "epochs": 3,
+   "steps": 2990,
+   "decisions": 6,
+   "chat": 1,
+   "regulator": true,
+   "llm_cost_usd": 0.0041,
+   "finished": 1793090897.1430233,
+   "bytes": 168083
+  },
+  {
+   "name": "final_single",
+   "file": "final_single.json",
+   "assets": [
+    "A"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "spark_mm",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_mm",
+     "role": "maker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    },
+    {
+     "id": "momentum_bot",
+     "role": "taker",
+     "model": "textbook: momentum"
+    },
+    {
+     "id": "spark_quant",
+     "role": "taker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_quant",
+     "role": "taker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    }
+   ],
+   "epochs": 10,
+   "steps": 19990,
+   "decisions": 45,
+   "chat": 0,
+   "regulator": false,
+   "llm_cost_usd": 0.1377,
+   "finished": 1793059595.1952038,
+   "bytes": 2577798
+  },
+  {
+   "name": "final_multi",
+   "file": "final_multi.json",
+   "assets": [
+    "A",
+    "B",
+    "C",
+    "IDX"
+   ],
+   "agents": [
+    {
+     "id": "glft",
+     "role": "maker",
+     "model": "GLFT closed form"
+    },
+    {
+     "id": "spark_mm",
+     "role": "maker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_mm",
+     "role": "maker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    },
+    {
+     "id": "arb_bot",
+     "role": "taker",
+     "model": "textbook: index_arbitrage"
+    },
+    {
+     "id": "spark_quant",
+     "role": "taker",
+     "model": "meta:muse-spark-1.3-contributor"
+    },
+    {
+     "id": "open_quant",
+     "role": "taker",
+     "model": "baseten:meta-models/muse-spark-open-1026"
+    }
+   ],
+   "epochs": 10,
+   "steps": 19990,
+   "decisions": 42,
+   "chat": 0,
+   "regulator": false,
+   "llm_cost_usd": 0.1074,
+   "finished": 1793059100.036314,
+   "bytes": 4349239
+  },
+  {
    "name": "showcase_multi",
    "file": "showcase_multi.json",
    "assets": [
@@ -44,9 +240,11 @@
    "epochs": 8,
    "steps": 15990,
    "decisions": 34,
+   "chat": 0,
+   "regulator": false,
    "llm_cost_usd": 0.1191,
    "finished": 1793057777.5618608,
-   "bytes": 3495342
+   "bytes": 3495383
   },
   {
    "name": "showcase_single",
@@ -89,9 +287,11 @@
    "epochs": 8,
    "steps": 15990,
    "decisions": 31,
+   "chat": 0,
+   "regulator": false,
    "llm_cost_usd": 0.1111,
    "finished": 1793057658.1510224,
-   "bytes": 1721986
+   "bytes": 1722027
   },
   {
    "name": "takers_smoke",
@@ -129,9 +329,11 @@
    "epochs": 4,
    "steps": 7990,
    "decisions": 6,
+   "chat": 0,
+   "regulator": false,
    "llm_cost_usd": 0.0295,
    "finished": 1793056163.471772,
-   "bytes": 544846
+   "bytes": 544887
   },
   {
    "name": "multi_scripted",
@@ -167,9 +369,11 @@
    "epochs": 3,
    "steps": 5990,
    "decisions": 0,
+   "chat": 0,
+   "regulator": false,
    "llm_cost_usd": 0.0,
    "finished": 1793056239.5015266,
-   "bytes": 879543
+   "bytes": 879584
   },
   {
    "name": "scripted",
@@ -197,10 +401,12 @@
    "epochs": 5,
    "steps": 9990,
    "decisions": 0,
+   "chat": 0,
+   "regulator": false,
    "llm_cost_usd": 0.0,
    "finished": 1793055205.1223214,
-   "bytes": 323657
+   "bytes": 323698
   }
  ],
- "generated": 1793057784.1091666
+ "generated": 1793091798.068591
 }

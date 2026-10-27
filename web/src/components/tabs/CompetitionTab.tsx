@@ -6,6 +6,7 @@ import { completedMetrics, pnlAt } from "../../lib/query";
 import { ChartLegend, EpochChart, type ChartSeries, type RefLine } from "../charts/EpochChart";
 import { AgentName, ModelBadge } from "../ModelBadge";
 import { CollusionGauge, DELTA_CAPTION } from "../CollusionGauge";
+import { ChatRoom } from "../Surveillance";
 
 const NASH = "#cbd5e1";
 const PARETO = "#f87171";
@@ -35,7 +36,7 @@ function Leaderboard({ run }: { run: Run }) {
   // P&L moves continuously: refresh on a coarse grid of the replay clock (≤ 400 updates per run)
   const pb = useUi((p) => Math.round(p.t / Math.max(1, run.tEnd / 400)));
   const done = completedMetrics(run, pb.t);
-  const rows = run.agents.map((a) => {
+  const rows = run.traders.map((a) => {
     const pnl = pnlAt(run, a.id, pb.t);
     let fills = 0;
     for (const m of done) fills += m.agents[a.id]?.fills ?? 0;
@@ -114,6 +115,7 @@ export function CompetitionTab({ run, asset }: { run: Run; asset: string }) {
   if (bench?.nash_hs != null) refLines.push({ label: "Nash", value: bench.nash_hs, color: NASH });
   if (bench?.pareto_hs != null) refLines.push({ label: "Pareto", value: bench.pareto_hs, color: PARETO });
 
+  const hasChat = run.chat.length > 0 || !!(run.config.chat as { enabled?: boolean } | undefined)?.enabled;
   const { values: ci, derived } = collusionSeries(run, asset);
   const hasCI = ci.some((x) => x != null);
   const ciNow = (() => {
@@ -153,12 +155,20 @@ export function CompetitionTab({ run, asset }: { run: Run; asset: string }) {
           </div>
         )}
       </div>
-      <div className="comp-card span3">
+      <div className={`comp-card ${hasChat ? "span2" : "span3"}`}>
         <div className="card-title">
-          Leaderboard <span className="muted">· live P&amp;L at the playhead</span>
+          Leaderboard{" "}
+          <span className="muted">
+            · live P&amp;L at the playhead{run.regulators.length ? " · the regulator does not trade and is not ranked" : ""}
+          </span>
         </div>
         <Leaderboard run={run} />
       </div>
+      {hasChat && (
+        <div className="comp-card">
+          <ChatRoom run={run} maxHeight={Math.max(200, run.traders.length * 44 + 20)} />
+        </div>
+      )}
     </div>
   );
 }
