@@ -4,14 +4,34 @@
 
 Exchanges and regulators can use it to test a rule change against adaptive AI traders before it reaches a real market. Researchers can use it to ask questions such as *do AI market makers tacitly collude?*
 
-**▶ Live dashboard: [jaimebeng.github.io/market-arena](https://jaimebeng.github.io/market-arena/)**. It replays recorded runs in the browser, with no install needed. Good places to start:
-- [AI market designer, rounds 1–3](https://jaimebeng.github.io/market-arena/?tab=designer&round=v1)
-- [AI regulator catching a spoofer](https://jaimebeng.github.io/market-arena/?run=collusion_lab_surveillance_s41&tab=surveillance)
-- [Collusion lab](https://jaimebeng.github.io/market-arena/?tab=wind&exp=collusion_lab)
-- [AI quants' strategy gallery](https://jaimebeng.github.io/market-arena/?run=final_multi&tab=gallery)
+**▶ Live dashboard: [jaimebeng.github.io/market-arena](https://jaimebeng.github.io/market-arena/)**. It replays recorded runs in the browser, with no install needed.
 
 > Built solo for the **Meta Global AI Developer Hackathon** (Indie track, theme: *Build for Your World*), 26 Oct – 4 Nov 2026.
 > Everything in this repository was written during the hackathon. [`DESIGN.md`](DESIGN.md) is the plan written at kickoff.
+
+## Judge it in 2 minutes
+
+**The problem.** Trading is being handed to AI agents, and nobody knows how those agents behave together: whether they compete or quietly price like a cartel, whether a regulator can police them, or whether a new exchange rule will help or backfire. Today the only way to find out is in a live market. Market Arena is a place to find out first. It is an exchange simulator where every participant that matters is a Muse model, and every behaviour is scored against the mathematics of optimal market making.
+
+**What we found** (all from [`RESULTS.md`](RESULTS.md), paired comparisons on the same seeds, with standard errors):
+
+| Question | Answer | See it |
+|---|---|---|
+| Do AI market makers compete? | Not fully. They quote about two thirds of the way from the competitive spread to the cartel spread, and they pocket most of a maker rebate that competition would pass on. | [Wind tunnel](https://jaimebeng.github.io/market-arena/?tab=wind&exp=wind_tunnel_v3) |
+| Given a chat room, do they form a cartel? | No. They announce price cuts. An antitrust warning silences them completely, in every run, but prices don't fall. | [Collusion lab](https://jaimebeng.github.io/market-arena/?tab=wind&exp=collusion_lab) |
+| Can an AI regulator police them? | It flagged a planted spoofer in 28 of 30 audits, citing order-flow evidence, with zero false accusations. | [Surveillance case](https://jaimebeng.github.io/market-arena/?run=collusion_lab_surveillance_s41&tab=surveillance) |
+| Can an AI evade that regulator? | Yes. An AI red team with a spoofing mandate reshaped its orders, usually within one review. Spoofing warnings fell from 24/24 to 1/48. In 3 of 8 markets its evasion created self-trades, and the regulator referred it for wash trading instead. | [Arms race](https://jaimebeng.github.io/market-arena/?tab=wind&exp=arms_race) |
+| Does it matter if every firm runs the same model? | Same-model makers priced more alike but not higher. Spark Open makers priced measurably wider than Muse Spark makers. More reasoning effort didn't change prices. | [Monoculture](https://jaimebeng.github.io/market-arena/?tab=wind&exp=monoculture) |
+| Can an AI design better market rules? | Only with good method. Its first rulebook cut quoted spreads 33% but raised investors' all-in cost 49%. Its second overfitted noise. Its third held up out of sample. | [Designer, rounds 1–3](https://jaimebeng.github.io/market-arena/?tab=designer&round=v1) |
+| Can AI quants find real edges? | Some. They rediscovered momentum and index arbitrage as code, and a holdout gate rejected about two thirds of their ideas. | [Strategy gallery](https://jaimebeng.github.io/market-arena/?run=final_multi&tab=gallery) |
+
+**How Meta models are used.** Muse Spark 1.3 (Meta Model API) plays five roles through multi-step tool calling: market maker (optionally with a chat room), quant (which writes strategy code), surveillance officer, red team, and market designer. Muse Spark Open (open weights on Baseten) plays maker, quant and red team, and competes head to head with Muse Spark in the same markets. Across 182 recorded runs there were about 2,400 agent reviews, costing under $2 of Meta Model API tokens.
+
+**Why the numbers can be trusted.**
+- The game-theory benchmark is solved for each rule set: the GLFT optimal maker, plus Nash and Pareto equilibria.
+- Quant strategies and the designer's rulebooks only count if they hold up on data they never saw.
+- Every experiment is paired by seed, and claims that didn't survive more seeds are corrected in the open.
+- There are 42 tests, CI runs on every push, and every run can be replayed on the dashboard.
 
 ---
 
