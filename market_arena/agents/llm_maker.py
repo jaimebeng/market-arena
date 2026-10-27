@@ -202,6 +202,14 @@ class LLMMaker(Maker):
     def _set_policy(self, args: dict) -> dict:
         new = {}
         for p in args.get("policies") or []:
+            if isinstance(p, str):  # some models send each policy as a JSON string
+                try:
+                    p = json.loads(p)
+                except json.JSONDecodeError:
+                    raise ValueError("each policy must be an object with asset, half_spread, skew") from None
+            if not isinstance(p, dict):
+                raise ValueError("each policy must be an object with asset, half_spread, skew")
+            p = dict(p)
             asset = p.pop("asset", None)
             if asset not in self.assets:
                 raise ValueError(f"unknown asset {asset}; yours: {self.assets}")

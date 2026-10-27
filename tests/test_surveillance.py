@@ -61,6 +61,16 @@ def test_chat_field_only_when_enabled():
     assert "message" not in orig["function"]["parameters"]["properties"]
 
 
+def test_set_policy_accepts_json_string_items_and_rejects_junk():
+    from market_arena.agents.llm_maker import LLMMaker
+
+    mk = LLMMaker("m", ["A"], "meta:x")
+    mk._set_policy({"policies": ['{"asset": "A", "half_spread": 6, "skew": 1}']})
+    assert mk._pending["A"].half_spread == 6
+    with pytest.raises(ValueError):
+        mk._set_policy({"policies": ["widen a bit"]})
+
+
 def test_post_chat_records(arena):
     arena._files["chat"] = open(arena.out / "chat_test.jsonl", "w")
     arena.post_chat(0, "reg", "Reminder: coordination is illegal.", kind="notice")

@@ -123,8 +123,8 @@ async def run_tools(
                     raise ValueError(f"unknown tool {name}")
                 result = handlers[name](args)
                 ok = True
-            except (ValueError, TypeError, KeyError, json.JSONDecodeError) as e:
-                result, ok = {"error": str(e)}, False
+            except Exception as e:  # noqa: BLE001 - malformed model output must not crash a run
+                result, ok = {"error": f"{type(e).__name__}: {e}"}, False
             entry["calls"].append({"name": name, "args": args, "ok": ok, "result": _clip(result)})
             msgs.append(
                 {"role": "tool", "tool_call_id": tc.id, "content": json.dumps(result, default=str)}

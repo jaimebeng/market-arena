@@ -120,6 +120,31 @@ def aggregate(runs: list[dict]) -> dict:
     return out
 
 
+PAIRED = ("collusion_index", "llm_maker_half_spread", "spread", "depth", "mispricing_bps")
+
+
+def _paired_vs_baseline(variants: list[dict]) -> None:
+    """Per variant, the mean and standard error of (variant - baseline) on the same seed. Seeds
+    differ a lot in their benchmarks and flow, so paired differences are the fair comparison."""
+    base = next((v for v in variants if v["name"] == "baseline"), None)
+    if not base:
+        return
+    by_seed = {r["run"].rsplit("/", 1)[-1]: r for r in base["seed_runs"]}
+    for v in variants:
+        if v is base:
+            continue
+        out = {}
+        for k in PAIRED:
+            d = [r[k] - b[k] for r in v["seed_runs"]
+                 if (b := by_seed.get(r["run"].rsplit("/", 1)[-1])) is not None
+                 and r.get(k) is not None and b.get(k) is not None]  # fmt: skip
+            if d:
+                se = float(np.std(d, ddof=1) / np.sqrt(len(d))) if len(d) > 1 else None
+                out[k] = {"mean": round(float(np.mean(d)), 3), "se": round(se, 3) if se else None,
+                          "n": len(d)}  # fmt: skip
+        v["vs_baseline"] = out
+
+
 def _llm_hs(m: dict, makers: list[str]) -> float | None:
     """LLM makers' chosen (policy) half-spread, averaged over makers and assets."""
     v = [p["half_spread"] for i in makers for p in m["policies"][i].values()]
@@ -142,6 +167,7 @@ def main() -> None:
     ap.add_argument("--only", help="comma-separated variant names")
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--summarise-only", action="store_true", help="re-summarise existing runs")
+    ap.add_argument("--missing", action="store_true", help="run only variants/seeds with no result")
     args = ap.parse_args()
     spec = yaml.safe_load(Path(args.experiment).read_text())
     name = spec["name"]
@@ -162,10 +188,14 @@ def main() -> None:
     if args.summarise_only:
         dirs = [str(out_dir / c["name"]) for c in cfgs]
     else:
+        done = {c["name"] for c in cfgs if args.missing and (out_dir / c["name"] / "meta.json").exists()}
         with ProcessPoolExecutor(max_workers=args.workers) as pool:
-            futures = [pool.submit(run_variant, c) for c in cfgs]
+            futures = [None if c["name"] in done else pool.submit(run_variant, c) for c in cfgs]
             dirs = []
             for c, f in zip(cfgs, futures):
+                if f is None:
+                    dirs.append(str(out_dir / c["name"]))
+                    continue
                 try:
                     dirs.append(f.result())
                 except Exception as e:  # keep the other variants
@@ -179,6 +209,7 @@ def main() -> None:
         if runs:
             out["variants"].append({"name": v["name"], "label": v.get("label", v["name"]),
                                     "change": v.get("change", ""), **aggregate(runs)})  # fmt: skip
+    _paired_vs_baseline(out["variants"])
     path = out_dir / name / "summary.json"
     path.write_text(json.dumps(out, indent=1))
     for v in out["variants"]:
