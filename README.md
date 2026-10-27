@@ -4,6 +4,12 @@
 
 Exchanges and regulators can use it to test a rule change against adaptive AI traders before it reaches a real market. Researchers can use it to ask questions such as *do AI market makers tacitly collude?*
 
+**▶ Live dashboard: [jaimebeng.github.io/market-arena](https://jaimebeng.github.io/market-arena/)**. It replays recorded runs in the browser, with no install needed. Good places to start:
+- [AI market designer, rounds 1–3](https://jaimebeng.github.io/market-arena/?tab=designer&round=v1)
+- [AI regulator catching a spoofer](https://jaimebeng.github.io/market-arena/?run=collusion_lab_surveillance_s41&tab=surveillance)
+- [Collusion lab](https://jaimebeng.github.io/market-arena/?tab=wind&exp=collusion_lab)
+- [AI quants' strategy gallery](https://jaimebeng.github.io/market-arena/?run=final_multi&tab=gallery)
+
 > Built solo for the **Meta Global AI Developer Hackathon** (Indie track, theme: *Build for Your World*), 26 Oct – 4 Nov 2026.
 > Everything in this repository was written during the hackathon. [`DESIGN.md`](DESIGN.md) is the plan written at kickoff.
 
