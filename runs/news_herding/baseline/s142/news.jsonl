@@ -1,0 +1,14 @@
+{"t": 750, "asset": "A", "kind": "earnings", "true_bps": 89.3, "headline": "Aurora Systems comfortably beats earnings estimates"}
+{"t": 1286, "asset": "A", "kind": "news", "true_bps": 69.5, "misleading": true, "headline": "Aurora Systems loses its biggest customer"}
+{"t": 1507, "asset": "A", "kind": "news", "true_bps": 70.3, "misleading": true, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 1930, "asset": "A", "kind": "news", "true_bps": 65.7, "misleading": false, "headline": "Aurora Systems lands its largest-ever contract"}
+{"t": 2161, "asset": "A", "kind": "news", "true_bps": 19.2, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 2250, "asset": "A", "kind": "earnings", "true_bps": -18.0, "headline": "Aurora Systems narrowly misses earnings estimates"}
+{"t": 2519, "asset": "A", "kind": "news", "true_bps": 63.9, "misleading": false, "headline": "Regulator clears Aurora Systems's flagship product ahead of schedule"}
+{"t": 3250, "asset": "A", "kind": "news", "true_bps": -92.0, "misleading": false, "headline": "Aurora Systems loses its biggest customer"}
+{"t": 3750, "asset": "A", "kind": "earnings", "true_bps": 44.5, "headline": "Aurora Systems narrowly beats earnings estimates"}
+{"t": 3773, "asset": "A", "kind": "news", "true_bps": 120.7, "misleading": false, "headline": "Aurora Systems lands its largest-ever contract"}
+{"t": 3891, "asset": "A", "kind": "news", "true_bps": 38.9, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 5250, "asset": "A", "kind": "earnings", "true_bps": 75.6, "headline": "Aurora Systems narrowly beats earnings estimates"}
+{"t": 5281, "asset": "A", "kind": "news", "true_bps": 58.7, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 5617, "asset": "A", "kind": "news", "true_bps": 76.4, "misleading": false, "headline": "Aurora Systems raises full-year guidance"}

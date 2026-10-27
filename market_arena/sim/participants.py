@@ -26,6 +26,7 @@ from pydantic import BaseModel, Field
 from .book import BUY, SELL
 from .exchange import Exchange
 from .options import OptionsParams
+from .perps import LiquidationParams
 
 
 class RetailParams(BaseModel):
@@ -87,6 +88,7 @@ class PopulationCfg(BaseModel):
     latency_arb: LatencyArbParams | None = None
     leveraged: list[LeveragedAccount] = Field(default_factory=list)
     options: OptionsParams | None = None  # retail call options, delta-hedged by a dealer
+    liquidations: LiquidationParams | None = None  # crypto-style leverage ladder, insurance fund, ADL
     maker_guards: bool = False  # LLM makers may set crisis rules (pull quotes on a fast move)
 
 
@@ -204,6 +206,7 @@ class InstitutionalFlow:
                  fire: FireSaleParams | None, rng: np.random.Generator):  # fmt: skip
         self.ex, self.router, self.p, self.fire, self.rng = ex, router, p, fire, rng
         self.active: list[dict] = []
+        self.activity = 1.0  # share of daytime parent-order arrivals (thinned overnight)
         self.done: list[dict] = []  # finished parents with arrival price and cost, for shortfall
         self._cursor = len(ex.fill_log)
         self._venue_stock = {v: s for s, vs in router.listings.items() for v in vs}
@@ -246,7 +249,7 @@ class InstitutionalFlow:
         self._scan()
         if self.p:
             for stock in self.router.stocks():
-                if rng.random() < self.p.parent_rate:
+                if rng.random() < self.p.parent_rate * self.activity:
                     side = BUY if rng.random() < 0.5 else SELL
                     size = max(4, int(rng.exponential(self.p.parent_size)))
                     self._start(stock, side, size, self.p.horizon, self.p.algo, self.owner)

@@ -187,6 +187,7 @@ export function buildRun(raw: RawRun): Run {
     config: raw.config,
     tick,
     llmCost: raw.llm_cost_usd ?? decisions.reduce((s, d) => s + (d.cost ?? 0), 0),
+    audit: raw.audit ?? null,
     complete: raw.complete,
     stylized: raw.stylized ?? null,
     n,

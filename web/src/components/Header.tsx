@@ -123,6 +123,14 @@ export function Header({
           <ModelBadge key={k} kind={k} />
         ))}
       </div>
+      {run?.audit?.verified && (
+        <div
+          className="audit-badge"
+          title={`Re-executed from its log with no model calls: ${run.audit.tool_calls_replayed} logged tool calls replayed, all ${run.audit.n_trades.toLocaleString()} trades and every order-book snapshot byte-identical. Decision hash chain: ${run.audit.chain}. Check it yourself: python -m market_arena.runner.verify <run dir>`}
+        >
+          ✓ replay-verified
+        </div>
+      )}
       <div className="cost" title={`${nLLM} LLM reviews in this run`}>
         <label>LLM cost</label>
         <span className="mono">{fmtUsd(run?.llmCost)}</span>

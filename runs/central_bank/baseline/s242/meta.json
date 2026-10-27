@@ -1,0 +1,551 @@
+{
+ "name": "central_bank/baseline/s242",
+ "config": {
+  "name": "central_bank/baseline/s242",
+  "seed": 242,
+  "steps_per_epoch": 1000,
+  "n_epochs": 12,
+  "components": {
+   "A": {
+    "price": 10000.0,
+    "sigma": 0.0001,
+    "beta": 1.0
+   }
+  },
+  "factor_sigma": 0.0,
+  "jump_rate": 0.002,
+  "jump_bps": 60.0,
+  "index": null,
+  "rules": {
+   "tick": 1,
+   "maker_fee_bps": 0.0,
+   "taker_fee_bps": 0.0,
+   "min_resting_steps": 0,
+   "circuit_breaker_pct": null,
+   "circuit_window": 100,
+   "circuit_halt_steps": 50,
+   "transaction_tax_bps": 0.0,
+   "short_sale_ban": false,
+   "short_ban_exempt": [
+    "noise"
+   ],
+   "venue_fees": {}
+  },
+  "zi": {
+   "limit_rate": 1.2,
+   "market_rate": 0.35,
+   "offset_min": 3,
+   "offset_max": 25,
+   "lifetime_mean": 60.0,
+   "size_mean": 3.0,
+   "anchor_kappa": 0.3,
+   "anchor_lag": 150
+  },
+  "informed": {
+   "rate": 0.03,
+   "threshold_bps": 8.0,
+   "size": 2,
+   "max_size": 12,
+   "noise_bps": 1.0
+  },
+  "index_flow": null,
+  "calibration_steps": 20000,
+  "glft_gamma": 0.05,
+  "competition_eta": 0.5,
+  "snapshot_every": 10,
+  "holdout": 1000,
+  "chat": {
+   "enabled": false,
+   "antitrust_notice": false
+  },
+  "population": {
+   "retail": {
+    "rate": 0.15,
+    "size_mean": 2.0,
+    "chartist": 0.25,
+    "lookback": 200,
+    "herd": 0.0,
+    "routing": "lit",
+    "auction_every": 50,
+    "holdings": 2000
+   },
+   "institutional": {
+    "parent_rate": 0.0015,
+    "parent_size": 60,
+    "horizon": 300,
+    "algo": "twap",
+    "participation": 0.15,
+    "display": 2,
+    "holdings": 2000
+   },
+   "fire_sale": {
+    "at_step": 6300,
+    "asset": "A",
+    "qty": 1500,
+    "over": 100,
+    "side": -1
+   },
+   "index_fund": null,
+   "latency_arb": null,
+   "leveraged": [
+    {
+     "owner": "hedge_fund",
+     "asset": "A",
+     "position": 400,
+     "leverage": 12.0,
+     "maintenance": 0.06,
+     "chunk": 6
+    },
+    {
+     "owner": "leveraged_retail",
+     "asset": "A",
+     "position": 200,
+     "leverage": 8.0,
+     "maintenance": 0.08,
+     "chunk": 4
+    }
+   ],
+   "options": null,
+   "maker_guards": false
+  },
+  "news": {
+   "misleading": 0.15,
+   "large_bps": 60.0,
+   "earnings_every": null,
+   "earnings_bps": 80.0
+  },
+  "listings": {},
+  "economy": {
+   "r_star": 1.0,
+   "pi_target": 2.0,
+   "pi0": 3.5,
+   "y0": 0.5,
+   "i0": 4.0,
+   "rho_y": 0.75,
+   "rho_pi": 0.7,
+   "a": 0.35,
+   "b": 0.25,
+   "wealth": 0.15,
+   "sd_y": 0.35,
+   "sd_pi": 0.25,
+   "duration_bps": 400.0,
+   "earnings_tilt_bps": 30.0,
+   "taylor_pi": 0.5,
+   "taylor_y": 0.5,
+   "smoothing": 0.5
+  },
+  "agents": [
+   {
+    "id": "glft",
+    "kind": "glft",
+    "model": null,
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "mm_b",
+    "kind": "static_maker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "half_spread": 5,
+     "skew": 0.5
+    }
+   },
+   {
+    "id": "mm_c",
+    "kind": "static_maker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "half_spread": 6,
+     "skew": 0.5
+    }
+   }
+  ],
+  "out_dir": "runs"
+ },
+ "assets": [
+  "A"
+ ],
+ "agents": [
+  {
+   "id": "glft",
+   "role": "maker",
+   "model": "GLFT closed form"
+  },
+  {
+   "id": "mm_b",
+   "role": "maker",
+   "model": null
+  },
+  {
+   "id": "mm_c",
+   "role": "maker",
+   "model": null
+  }
+ ],
+ "calibration": {
+  "A": {
+   "A": 0.8013815417385671,
+   "k": 0.24054457053838676,
+   "sigma": 1.651284929223907,
+   "deltas": [
+    1.0,
+    2.0,
+    3.0,
+    4.0,
+    5.0,
+    6.0,
+    7.0,
+    8.0,
+    9.0,
+    10.0,
+    11.0,
+    12.0,
+    13.0,
+    14.0,
+    15.0,
+    16.0,
+    17.0,
+    18.0,
+    19.0,
+    20.0,
+    21.0,
+    22.0,
+    23.0,
+    24.0,
+    25.0,
+    26.0,
+    27.0,
+    28.0,
+    29.0,
+    30.0
+   ],
+   "rates": [
+    0.2696,
+    0.266925,
+    0.2629,
+    0.2561,
+    0.24435,
+    0.223625,
+    0.196675,
+    0.1675,
+    0.135775,
+    0.108875,
+    0.086175,
+    0.065975,
+    0.04905,
+    0.037475,
+    0.027525,
+    0.020675,
+    0.014175,
+    0.009975,
+    0.007775,
+    0.0058,
+    0.004275,
+    0.00315,
+    0.002525,
+    0.002275,
+    0.001775,
+    0.001425,
+    0.000925,
+    0.0008,
+    0.00075,
+    0.00065
+   ],
+   "alpha": 1.833251389886918
+  }
+ },
+ "started": 1793124247.5424893,
+ "stylized": {
+  "A": {
+   "market": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 58.344,
+    "hill_tail_index": 1.585,
+    "acf_returns": [
+     -0.0988,
+     -0.033,
+     0.1546,
+     0.0218,
+     -0.0319,
+     0.0363,
+     0.0491,
+     0.0592,
+     -0.0465,
+     0.2116,
+     -0.0667,
+     -0.029,
+     0.0078,
+     0.0372,
+     0.0453,
+     -0.1199,
+     -0.0665,
+     0.0729,
+     0.0145,
+     0.0355
+    ],
+    "acf_abs_returns": [
+     0.4952,
+     0.4412,
+     0.4603,
+     0.4392,
+     0.4343,
+     0.4279,
+     0.4271,
+     0.4371,
+     0.4185,
+     0.5031,
+     0.3992,
+     0.3753,
+     0.4673,
+     0.4295,
+     0.4405,
+     0.3362,
+     0.356,
+     0.3404,
+     0.3377,
+     0.3535,
+     0.315,
+     0.2977,
+     0.3852,
+     0.2741,
+     0.366,
+     0.3447,
+     0.3039,
+     0.2858,
+     0.3515,
+     0.315,
+     0.2565,
+     0.2389,
+     0.3484,
+     0.3065,
+     0.2724,
+     0.3068,
+     0.2582,
+     0.279,
+     0.2299,
+     0.2793,
+     0.1859,
+     0.2162,
+     0.3077,
+     0.2598,
+     0.1914,
+     0.2257,
+     0.2015,
+     0.2033,
+     0.1652,
+     0.1568
+    ]
+   },
+   "fair_value": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 95.886,
+    "hill_tail_index": 1.003,
+    "acf_returns": [
+     0.0155,
+     0.0581,
+     0.0054,
+     0.0138,
+     -0.0193,
+     0.0325,
+     0.0046,
+     -0.0144,
+     -0.0048,
+     -0.0014,
+     0.0106,
+     -0.0077,
+     -0.0241,
+     -0.1151,
+     -0.0231,
+     -0.0347,
+     -0.0045,
+     0.0223,
+     -0.0104,
+     -0.02
+    ],
+    "acf_abs_returns": [
+     -0.0124,
+     0.0144,
+     -0.0006,
+     -0.0152,
+     -0.0161,
+     0.0281,
+     0.0002,
+     -0.0167,
+     -0.0228,
+     -0.0082,
+     0.0002,
+     -0.0143,
+     -0.0119,
+     0.0865,
+     0.0064,
+     0.0814,
+     -0.0173,
+     0.0038,
+     -0.028,
+     -0.0063,
+     -0.0121,
+     -0.0127,
+     -0.0115,
+     -0.0155,
+     -0.0163,
+     -0.0115,
+     -0.0163,
+     -0.0115,
+     0.0094,
+     -0.0164,
+     0.0021,
+     -0.0061,
+     -0.017,
+     -0.0072,
+     -0.013,
+     -0.014,
+     -0.0178,
+     -0.002,
+     0.0062,
+     0.01,
+     -0.0101,
+     -0.0115,
+     0.0206,
+     -0.0078,
+     -0.0069,
+     -0.028,
+     -0.0292,
+     -0.0212,
+     -0.0116,
+     0.0327
+    ]
+   }
+  }
+ },
+ "economy": [
+  {
+   "quarter": 0,
+   "inflation": 2.65,
+   "output_gap": -0.01,
+   "rate": 4.0,
+   "taylor_rule": 4.0,
+   "market_drawdown_pct": 0.66,
+   "decision": 4.0
+  },
+  {
+   "quarter": 1,
+   "inflation": 2.03,
+   "output_gap": -0.33,
+   "rate": 4.0,
+   "taylor_rule": 3.5,
+   "market_drawdown_pct": 0.19,
+   "decision": 3.5
+  },
+  {
+   "quarter": 2,
+   "inflation": 1.98,
+   "output_gap": 0.47,
+   "rate": 3.5,
+   "taylor_rule": 3.25,
+   "market_drawdown_pct": 0.11,
+   "decision": 3.25
+  },
+  {
+   "quarter": 3,
+   "inflation": 2.47,
+   "output_gap": 0.38,
+   "rate": 3.25,
+   "taylor_rule": 3.5,
+   "market_drawdown_pct": 0.25,
+   "decision": 3.5
+  },
+  {
+   "quarter": 4,
+   "inflation": 1.9,
+   "output_gap": 0.17,
+   "rate": 3.5,
+   "taylor_rule": 3.25,
+   "market_drawdown_pct": 0.94,
+   "decision": 3.25
+  },
+  {
+   "quarter": 5,
+   "inflation": 1.98,
+   "output_gap": -0.26,
+   "rate": 3.25,
+   "taylor_rule": 3.0,
+   "market_drawdown_pct": 0.41,
+   "decision": 3.0
+  },
+  {
+   "quarter": 6,
+   "inflation": 1.78,
+   "output_gap": -1.19,
+   "rate": 3.0,
+   "taylor_rule": 2.5,
+   "market_drawdown_pct": 3.96,
+   "decision": 2.5
+  },
+  {
+   "quarter": 7,
+   "inflation": 1.61,
+   "output_gap": -1.07,
+   "rate": 2.5,
+   "taylor_rule": 2.25,
+   "market_drawdown_pct": 0.59,
+   "decision": 2.25
+  },
+  {
+   "quarter": 8,
+   "inflation": 1.43,
+   "output_gap": -0.57,
+   "rate": 2.25,
+   "taylor_rule": 2.0,
+   "market_drawdown_pct": 0.15,
+   "decision": 2.0
+  },
+  {
+   "quarter": 9,
+   "inflation": 1.42,
+   "output_gap": -0.18,
+   "rate": 2.0,
+   "taylor_rule": 2.0,
+   "market_drawdown_pct": 0.33,
+   "decision": 2.0
+  },
+  {
+   "quarter": 10,
+   "inflation": 1.5,
+   "output_gap": -0.35,
+   "rate": 2.0,
+   "taylor_rule": 2.0,
+   "market_drawdown_pct": 0.25,
+   "decision": 2.0
+  },
+  {
+   "quarter": 11,
+   "inflation": 1.92,
+   "output_gap": 0.1,
+   "rate": 2.0,
+   "taylor_rule": 2.5,
+   "market_drawdown_pct": 0.23
+  }
+ ],
+ "news_response": {
+  "all_10": 0.012,
+  "all_n": 14,
+  "all_100": 0.005,
+  "all_500": 1.364,
+  "all_1500": 0.241,
+  "misleading_10": 0.0,
+  "misleading_n": 5,
+  "misleading_100": 0.045,
+  "misleading_500": 1.532,
+  "misleading_1500": 2.439
+ },
+ "finished": 1793124248.3067293,
+ "llm_cost_usd": 0.0,
+ "audit": {
+  "trades_sha256": "c3be70726f7b51134dbab2a827ede1b5736cd17d1c4e03ae5d19bbf8fc936378",
+  "snapshots_sha256": "e186a501428a1cb9c2b65a440254e146bb09ffdf36002c6d22bbd379d84f388c",
+  "sealed_after_recording": true
+ }
+}

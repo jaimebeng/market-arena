@@ -5,6 +5,10 @@ from __future__ import annotations
 
 def build_llm_agent(acfg, arena):
     assets = acfg.assets or arena.assets
+    if acfg.kind == "rule_investor":
+        from .rule_investor import RuleInvestor
+
+        return RuleInvestor(acfg.id, assets, acfg.params, arena.cfg.seed)
     if not acfg.model:
         raise ValueError(f"agent {acfg.id}: LLM agents need a model")
     if acfg.kind == "llm_maker":

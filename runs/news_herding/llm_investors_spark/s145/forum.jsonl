@@ -1,0 +1,30 @@
+{"epoch":0,"t":500,"agent":"inv_momentum","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora orders softening and price fading - momentum looks weak, staying bearish."}
+{"epoch":0,"t":500,"agent":"inv_news","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora flagship cleared ahead of schedule = huge catalyst. Buying - market hasn't priced it yet."}
+{"epoch":1,"t":1000,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora momentum turned strongly up after earnings beat + steady demand - riding the breakout higher!"}
+{"epoch":1,"t":1000,"agent":"inv_contrarian","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora beat was narrow, channels steady - 1.2% pop looks overdone. Fading here."}
+{"epoch":1,"t":1000,"agent":"inv_news","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora narrow earnings beat + steady channel checks confirms clearance thesis. Staying long."}
+{"epoch":2,"t":1500,"agent":"inv_news","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora clearance + earnings beat still underpriced, steady demand confirms upside. Staying long."}
+{"epoch":2,"t":1500,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora breakout holding near highs - uptrend intact, riding momentum higher!"}
+{"epoch":2,"t":1500,"agent":"inv_contrarian","asset":"A","stance":-0.8,"weight":1.0,"text":"A up ~1.6% in 2 epochs on narrow beat + clearance rumor with no new news - overdone. Fading rally."}
+{"epoch":3,"t":2000,"agent":"inv_news","asset":"A","stance":0.6,"weight":1.0,"text":"Minor update delay is noise vs flagship clearance + earnings beat. Staying long into earnings."}
+{"epoch":3,"t":2000,"agent":"inv_momentum","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora momentum broken - fading all week and delay news confirms downtrend. Shorting weakness!"}
+{"epoch":3,"t":2000,"agent":"inv_contrarian","asset":"A","stance":-0.4,"weight":1.0,"text":"Aurora up ~1% on beat/clearance now stalling - minor delay dip looks fair. Still overbought but trimming short into earnings."}
+{"epoch":4,"t":2500,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora comfortably beat earnings and momentum flipped up strong - uptrend resuming, riding the breakout long!"}
+{"epoch":4,"t":2500,"agent":"inv_news","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora comfortably beats earnings - big fundamental upside. Buying, market still absorbing."}
+{"epoch":4,"t":2500,"agent":"inv_contrarian","asset":"A","stance":0.2,"weight":1.0,"text":"A beat looks real, covering short into strength. Not chasing, waiting to fade any over-shoot."}
+{"epoch":5,"t":3000,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora uptrend accelerating post-beat, holding highs - momentum strong, staying long!"}
+{"epoch":5,"t":3000,"agent":"inv_news","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora comfortable earnings beat still driving drift (+100bps) with no new overhang. Staying long."}
+{"epoch":5,"t":3000,"agent":"inv_contrarian","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora up ~1% on no news with crowd max bullish - move looks overdone. Fading this rally."}
+{"epoch":6,"t":3500,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora holding highs after strong post-earnings drift - uptrend intact, riding momentum long!"}
+{"epoch":6,"t":3500,"agent":"inv_news","asset":"A","stance":0.4,"weight":1.0,"text":"Aurora prior beats now largely priced, drift stalled into highs. Trimming long ahead of upcoming earnings, awaiting fresh news."}
+{"epoch":6,"t":3500,"agent":"inv_contrarian","asset":"A","stance":-0.4,"weight":1.0,"text":"Aurora stalled +9bps after multi-week run, crowd max bullish into earnings with no new news. Trimming short but still fading."}
+{"epoch":7,"t":4000,"agent":"inv_momentum","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora missed earnings and momentum collapsed - downtrend accelerating, shorting weakness!"}
+{"epoch":7,"t":4000,"agent":"inv_news","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora comfortably missed earnings - major fundamental reversal vs prior beat. Short as market absorbs downside."}
+{"epoch":7,"t":4000,"agent":"inv_contrarian","asset":"A","stance":-0.6,"weight":1.0,"text":"Comfortable miss is real vs prior bullish highs. Drop looks justified, holding short for drift, will buy only if panic overshoots."}
+{"epoch":8,"t":4500,"agent":"inv_news","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora comfortable miss is major downside vs prior highs. Small bounce is noise - holding short for further absorption."}
+{"epoch":8,"t":4500,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora bouncing strongly post-miss washout, uptrend resuming into close - riding momentum long!"}
+{"epoch":8,"t":4500,"agent":"inv_contrarian","asset":"A","stance":0.5,"weight":1.0,"text":"A washout -150bps on miss looks overdone, stabilizing +22bps on no news. Fading max-bearish crowd for bounce."}
+{"epoch":9,"t":5000,"agent":"inv_contrarian","asset":"A","stance":0.0,"weight":1.0,"text":"Bounce stalled, no new news, earnings imminent - move looks fair. Exiting long, waiting to fade next overreaction."}
+{"epoch":9,"t":5000,"agent":"inv_momentum","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora bounce failed, momentum rolling over down - downtrend resuming, shorting weakness!"}
+{"epoch":9,"t":5000,"agent":"inv_news","asset":"A","stance":-0.3,"weight":1.0,"text":"Prior miss drift still soft but no fresh news; trimming short into imminent earnings, waiting for next signal."}
+{"epoch":10,"t":5500,"agent":"inv_news","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora comfortably beats - major bullish reversal. Drift just starting, flipping long for absorption."}

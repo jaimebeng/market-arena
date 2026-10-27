@@ -6,13 +6,14 @@ from pathlib import Path
 from typing import Literal
 
 import yaml
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from ..sim.background import IndexFlowParams, InformedParams, ZIParams
 from ..sim.exchange import Rules
 from ..sim.economy import EconomyParams
 from ..sim.news import NewsParams
 from ..sim.participants import PopulationCfg
+from ..sim.schedule import SessionParams, Shock
 
 
 class AssetCfg(BaseModel):
@@ -30,9 +31,19 @@ class AgentCfg(BaseModel):
     id: str
     kind: Literal["glft", "static_maker", "llm_maker", "llm_taker", "textbook_taker",
                   "spoofer", "llm_surveillance", "llm_red_team", "llm_investor", "llm_finfluencer",
-                  "wholesaler", "llm_wholesaler", "llm_central_bank"]  # fmt: skip
+                  "wholesaler", "llm_wholesaler", "llm_central_bank", "rule_investor"]  # fmt: skip
     model: str | None = None  # e.g. "meta:muse-spark-1.3-contributor", "baseten:meta-models/..."
     assets: list[str] | None = None  # default: all assets
+    params: dict = Field(default_factory=dict)
+
+
+class SwarmCfg(BaseModel):
+    """Shorthand for many investors: n agents with ids inv_01.., cycling through models and personas."""
+
+    n: int = 12
+    kind: Literal["llm_investor", "rule_investor"] = "llm_investor"
+    models: list[str] = Field(default_factory=list)  # cycled; empty for rule investors
+    personas: list[str] = Field(default_factory=lambda: ["generalist"])  # cycled
     params: dict = Field(default_factory=dict)
 
 
@@ -62,8 +73,21 @@ class ArenaConfig(BaseModel):
     # the same fair value and its own book (fees per venue via rules.venue_fees)
     listings: dict[str, list[str]] = Field(default_factory=dict)
     economy: EconomyParams | None = None  # inflation, output, a policy rate; 1 epoch = 1 quarter
+    shocks: list[Shock] = Field(default_factory=list)  # scheduled fair-value jumps with headlines
+    session: SessionParams | None = None  # alternating day / overnight sessions (one per epoch)
+    swarm: SwarmCfg | None = None  # many investors, appended to agents
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
+
+    @model_validator(mode="after")
+    def _expand_swarm(self) -> ArenaConfig:
+        s = self.swarm
+        if s and not any(a.id == "inv_01" for a in self.agents):
+            for i in range(s.n):
+                model = s.models[i % len(s.models)] if s.models else None
+                self.agents.append(AgentCfg(id=f"inv_{i + 1:02d}", kind=s.kind, model=model,
+                                            params={**s.params, "persona": s.personas[i % len(s.personas)]}))
+        return self
 
     @classmethod
     def load(cls, path: str | Path, **overrides) -> ArenaConfig:

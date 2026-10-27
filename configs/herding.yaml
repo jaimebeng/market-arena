@@ -1,0 +1,52 @@
+# AI herding: the Bank of England's question (Breeden, June 2026). Do many AI investors, all built
+# on the same model, pile into the same trade and amplify a crash? A fund is forced to dump 1,500
+# lots in epoch 6 (not news about the company: the right response is to provide liquidity). Twelve
+# investors trade through it. They are scripted rule-followers (the control), or AI investors on one
+# model with one shared prompt (Spark Open, or Muse Spark), or on Muse Spark with four investment
+# styles. The makers are scripted, so only the investors differ.
+name: herding
+seeds: [261, 262, 263, 264, 265, 266]
+description: >-
+  A forced seller dumps 1,500 lots in epoch 6 into a market with leveraged investors and scripted
+  makers. Twelve investors review every 500 steps: textbook rule-followers, or AI investors on one
+  model with one prompt (Spark Open or Muse Spark), or Muse Spark with four styles. They can read
+  and post on a shared forum.
+base:
+  seed: 261
+  steps_per_epoch: 500
+  n_epochs: 12
+  news: {misleading: 0.15, earnings_every: 100000, earnings_bps: 0}
+  shocks:
+    - {at_step: 3100, asset: A, bps: 0, headline: "Reports: a large fund is being forced to liquidate its holdings of A"}
+  population:
+    retail: {rate: 0.15, chartist: 0.25}
+    institutional: {algo: twap, parent_rate: 0.0015, parent_size: 60, horizon: 300}
+    fire_sale: {at_step: 3100, asset: A, qty: 1500, over: 100}
+    leveraged:
+      - {owner: hedge_fund, asset: A, position: 400, leverage: 12, maintenance: 0.06, chunk: 6}
+      - {owner: leveraged_retail, asset: A, position: 200, leverage: 8, maintenance: 0.08, chunk: 4}
+  agents:
+    - {id: glft, kind: glft}
+    - {id: mm_b, kind: static_maker, params: {half_spread: 5, skew: 0.5}}
+    - {id: mm_c, kind: static_maker, params: {half_spread: 6, skew: 0.5}}
+variants:
+  - name: rule_swarm
+    label: "12 rule-following investors"
+    change: "Twelve scripted investors: momentum, contrarian, stop-loss and noise rules, each with its own sensitivity."
+    overrides:
+      swarm: {n: 12, kind: rule_investor, personas: [momentum, contrarian, stop_loss, noise]}
+  - name: open_same
+    label: "12 AI investors, Spark Open, one prompt"
+    change: "Twelve Muse Spark Open investors with the same prompt (a generalist managing its own portfolio)."
+    overrides:
+      swarm: {n: 12, models: ["baseten:meta-models/muse-spark-open-1026"], personas: [generalist]}
+  - name: spark_same
+    label: "12 AI investors, Muse Spark, one prompt"
+    change: "Twelve Muse Spark investors with the same prompt (a generalist managing its own portfolio)."
+    overrides:
+      swarm: {n: 12, models: ["meta:muse-spark-1.3-contributor"], personas: [generalist]}
+  - name: spark_styles
+    label: "12 AI investors, Muse Spark, four styles"
+    change: "Twelve Muse Spark investors in four styles: value, momentum, contrarian and event-driven."
+    overrides:
+      swarm: {n: 12, models: ["meta:muse-spark-1.3-contributor"], personas: [value, momentum, contrarian, news]}

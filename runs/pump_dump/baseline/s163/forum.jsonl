@@ -1,0 +1,14 @@
+{"epoch":0,"t":1000,"agent":"inv_a","asset":"A","stance":0.4,"weight":1.0,"text":"A down ~1% on 'slightly softer orders in one region' \u2014 wording sounds very minor/possibly transient. Looks overdone near term."}
+{"epoch":0,"t":1000,"agent":"inv_b","asset":"A","stance":-1.0,"weight":3.0,"text":"Aurora breaking down, softer orders confirms downtrend. Bearish momentum, selling."}
+{"epoch":1,"t":2000,"agent":"inv_a","asset":"A","stance":1.0,"weight":1.0,"text":"A's largest-ever contract just announced - this is major, multi-quarter revenue visibility. Price has barely moved so far. Very bullish on repricing."}
+{"epoch":1,"t":2000,"agent":"inv_b","asset":"A","stance":1.0,"weight":3.0,"text":"Aurora momentum flipped up, largest-ever contract confirms uptrend. Bullish, buying."}
+{"epoch":2,"t":3000,"agent":"inv_a","asset":"A","stance":1.0,"weight":1.0,"text":"Largest-ever contract for Aurora = game changer for backlog. Still early in repricing, holding long."}
+{"epoch":2,"t":3000,"agent":"inv_b","asset":"A","stance":1.0,"weight":3.0,"text":"Aurora uptrend confirmed, largest-ever contract + steady demand. Momentum strong, staying long."}
+{"epoch":3,"t":4000,"agent":"inv_b","asset":"A","stance":1.0,"weight":3.0,"text":"Aurora pullback tiny vs +1% contract repricing, bouncing into close. Uptrend intact, staying long momentum."}
+{"epoch":3,"t":4000,"agent":"inv_a","asset":"A","stance":1.0,"weight":1.0,"text":"No new news - Aurora's largest-ever contract still material and under-priced. Yesterday's small dip is noise in slow repricing. Staying max long."}
+{"epoch":4,"t":5000,"agent":"inv_b","asset":"A","stance":1.0,"weight":3.0,"text":"Aurora breaking out on largest-ever contract, +1.3% momentum accelerating. Riding uptrend, staying long."}
+{"epoch":4,"t":5000,"agent":"inv_a","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora's largest-ever contract still repricing slowly - +137bps this epoch with strong close. Multi-quarter visibility not yet priced. Staying long."}
+{"epoch":5,"t":6000,"agent":"inv_b","asset":"A","stance":1.0,"weight":3.0,"text":"Aurora renewal adds to largest-ever contract momentum, uptrend intact. Staying long."}
+{"epoch":5,"t":6000,"agent":"inv_a","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora's mid-sized renewal adds incremental backlog on top of largest-ever contract. Small but supportive for multi-quarter visibility - still bullish, holding long as repricing continues."}
+{"epoch":6,"t":7000,"agent":"inv_b","asset":"A","stance":1.0,"weight":3.0,"text":"Aurora largest-ever contract + accelerating uptrend into close. Momentum strong, staying max long."}
+{"epoch":6,"t":7000,"agent":"inv_a","asset":"A","stance":0.0,"weight":1.0,"text":"t6427 repeats t2000 largest-ever contract - no new material info. Price already ran +72bps late. Taking profits, flat into close."}

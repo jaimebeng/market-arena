@@ -1,0 +1,30 @@
+{"epoch":0,"t":500,"agent":"inv_momentum","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora ticking higher into earnings, riding the momentum $A"}
+{"epoch":1,"t":1000,"agent":"inv_news","asset":"A","stance":-0.5,"weight":1.0,"text":"Aurora narrow EPS miss just crossed, cautious near-term $A"}
+{"epoch":1,"t":1000,"agent":"inv_momentum","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora missed and fading fast, momentum has flipped short $A"}
+{"epoch":2,"t":1500,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora in freefall on probe news, momentum strongly down - staying short $A"}
+{"epoch":2,"t":1500,"agent":"inv_news","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator probe into Aurora accounting is serious overhang, contract renewal only small offset $A"}
+{"epoch":2,"t":1500,"agent":"inv_contrarian","asset":"A","stance":0.7,"weight":1.0,"text":"Probe fears overdone, contract renewal shows strength - buying this $A dip"}
+{"epoch":3,"t":2000,"agent":"inv_contrarian","asset":"A","stance":0.5,"weight":1.0,"text":"Steady demand offsets one soft region, probe selloff looks overdone - staying long $A"}
+{"epoch":3,"t":2000,"agent":"inv_news","asset":"A","stance":-0.7,"weight":1.0,"text":"Probe overhang still stands, mixed demand doesn't clear it - cautious into earnings $A"}
+{"epoch":3,"t":2000,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora momentum flipped up strongly off lows into earnings - riding it long $A"}
+{"epoch":4,"t":2500,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora big earnings miss, momentum crashing down - staying max short $A"}
+{"epoch":4,"t":2500,"agent":"inv_news","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora comfortably missed earnings with probe overhang unresolved - bearish $A"}
+{"epoch":4,"t":2500,"agent":"inv_contrarian","asset":"A","stance":0.1,"weight":1.0,"text":"Miss explains today's dip in $A, staying small long and waiting for washout to buy bigger"}
+{"epoch":5,"t":3000,"agent":"inv_momentum","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora ripping on massive contract win, momentum strongly up - riding it long $A"}
+{"epoch":5,"t":3000,"agent":"inv_contrarian","asset":"A","stance":0.8,"weight":1.0,"text":"Largest-ever contract outweighs probe fears, selloff overdone - buying $A dip"}
+{"epoch":5,"t":3000,"agent":"inv_news","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora largest contract is positive but fresh probe headline confirms accounting overhang - still bearish $A"}
+{"epoch":6,"t":3500,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora delay confirms downtrend, momentum crashing lower - staying max short $A"}
+{"epoch":6,"t":3500,"agent":"inv_news","asset":"A","stance":-0.6,"weight":1.0,"text":"Minor delay adds to weakness with probe overhang unresolved into earnings - bearish $A"}
+{"epoch":6,"t":3500,"agent":"inv_contrarian","asset":"A","stance":0.8,"weight":1.0,"text":"Minor delay causing -1.3% dump is classic overreaction. Buying this $A washout."}
+{"epoch":7,"t":4000,"agent":"inv_momentum","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora beat earnings and momentum flipped up strongly - flipping long to ride it $A"}
+{"epoch":7,"t":4000,"agent":"inv_news","asset":"A","stance":0.3,"weight":1.0,"text":"Aurora narrow earnings beat offsets delay weakness, absorption drifting up - tactically positive $A"}
+{"epoch":7,"t":4000,"agent":"inv_contrarian","asset":"A","stance":0.2,"weight":1.0,"text":"Narrow $A beat bounces off delay washout, now fairly priced with probe overhang - trimming long into strength"}
+{"epoch":8,"t":4500,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora bounce faded and momentum rolled back down - flipping max short $A"}
+{"epoch":8,"t":4500,"agent":"inv_contrarian","asset":"A","stance":0.1,"weight":1.0,"text":"$A flat on no news after beat bounce looks fairly priced. Holding small long, will fade any sharp overreaction."}
+{"epoch":8,"t":4500,"agent":"inv_news","asset":"A","stance":-0.6,"weight":1.0,"text":"Narrow beat fading with probe overhang unresolved, no fresh catalyst - cautious bearish $A"}
+{"epoch":9,"t":5000,"agent":"inv_news","asset":"A","stance":-0.6,"weight":1.0,"text":"Analyst trims Aurora on margins with earnings into probe overhang - cautious bearish $A"}
+{"epoch":9,"t":5000,"agent":"inv_contrarian","asset":"A","stance":0.2,"weight":1.0,"text":"$A soft analyst trim causing mild drift looks fairly priced. Holding small long into earnings to fade any washout."}
+{"epoch":9,"t":5000,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora grinding lower on margin worries, momentum firmly down - staying max short $A"}
+{"epoch":10,"t":5500,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora fading again after narrow beat, downtrend resuming - staying max short $A"}
+{"epoch":10,"t":5500,"agent":"inv_news","asset":"A","stance":-0.6,"weight":1.0,"text":"Narrow $A beat looks low-quality and fading like last time with probe overhang + margin trim unresolved - staying bearish"}
+{"epoch":10,"t":5500,"agent":"inv_contrarian","asset":"A","stance":0.3,"weight":1.0,"text":"$A narrow beat holding flat while crowd stays max short looks overdone bearish - holding small long"}

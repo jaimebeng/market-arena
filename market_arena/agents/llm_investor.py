@@ -29,6 +29,7 @@ PERSONAS = {
                   "rallies and buy after sharp falls when the news does not justify the move.",
     "news": "You are an event-driven investor. You trade on company news and earnings, sizing "
             "positions by how material the news is.",
+    "generalist": "You manage your own portfolio. Use your judgement about how to trade.",
 }
 
 SYSTEM = """You are {id}, an investor trading stocks on an electronic exchange. {persona}
@@ -201,7 +202,8 @@ class LLMInvestor:
     async def review(self, arena, epoch: int, m: dict) -> None:
         user = (f"Epoch {epoch} just ended ({epoch + 1} of {arena.cfg.n_epochs} done). Assets: {self.assets}. "
                 f"Current targets: {json.dumps(self.targets)}. Last epoch P&L: {m['agents'][self.id]['pnl']:.1f}.\n"
-                f"Your notes from last review: {self.notes or '(none)'}\nInvestigate, then call set_targets.")  # fmt: skip
+                f"Your notes from last review: {self.notes or '(none)'}\n{arena.session_note(epoch + 1)}\n"
+                f"Investigate, then call set_targets.")  # fmt: skip
         self._pending = None
         tr = await run_tools(self.model, self._system(arena), user, self._tools(), self._handlers(arena),
                              "set_targets", reasoning_effort=self.reasoning_effort)  # fmt: skip

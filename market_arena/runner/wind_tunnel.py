@@ -13,6 +13,7 @@ import argparse
 import asyncio
 import copy
 import json
+import math
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
@@ -90,7 +91,64 @@ def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
         **(_population(ms, use) if any("classes" in m for m in ms) else {}),
         **_investors(run_dir, meta, use),
         **_macro(meta),
+        **_sessions(use, llm_makers),
+        **_liquidations(ms),
+        **_herding(run_dir),
     }
+
+
+def _sessions(use: list[dict], llm_makers: list[str]) -> dict:
+    """Regular vs overnight session (23-hour trading): costs, spreads and the AI makers' quotes."""
+    out: dict = {}
+    for kind in ("day", "night"):
+        ms = [m for m in use if m.get("session") == kind]
+        if not ms:
+            continue
+        vals = {
+            "retail_cost_bps": [m["classes"]["retail"]["all_in_bps"] for m in ms
+                                if m.get("classes", {}).get("retail", {}).get("lots")],
+            "spread": [np.nanmean([m["market"][a]["spread"] for a in m["market"]]) for m in ms],
+            "mispricing_bps": [np.mean([m["market"][a]["mispricing_bps"] for a in m["market"]]) for m in ms],
+            "volume": [sum(m["market"][a]["volume"] for a in m["market"]) for m in ms],
+            "llm_maker_half_spread": [_llm_hs(m, llm_makers) for m in ms] if llm_makers else [],
+        }  # fmt: skip
+        for k, xs in vals.items():
+            xs = [x for x in xs if x is not None and np.isfinite(x)]
+            if xs:
+                out[f"{kind}_{k}"] = round(float(np.mean(xs)), 3)
+    return out
+
+
+def _liquidations(ms: list[dict]) -> dict:
+    """Liquidation engine totals (crypto-style cascade)."""
+    liq = (ms[-1].get("events") or {}).get("liquidations")
+    if not liq:
+        return {}
+    return {f"perp_{k}": liq[k] for k in ("liquidations", "liquidated_lots", "adl_lots", "insurance_paid")}
+
+
+def _herding(run_dir: Path) -> dict:
+    """How much a swarm of investors (ids inv_..) moves together: per review, the share on the
+    majority side of the target changes, and the Lakonishok-Shleifer-Vishny herding measure."""
+    rounds: dict[int, list[bool]] = {}
+    for line in open(run_dir / "decisions.jsonl"):
+        d = json.loads(line)
+        if d["agent"].startswith("inv_") and d.get("targets") and d.get("previous"):
+            ch = sum(d["targets"].values()) - sum(d["previous"].values())
+            if ch:
+                rounds.setdefault(d["epoch"], []).append(ch > 0)
+    rounds = {e: x for e, x in rounds.items() if len(x) >= 3}
+    if not rounds:
+        return {}
+    pbar = sum(sum(x) for x in rounds.values()) / sum(len(x) for x in rounds.values())
+
+    def adj(n):  # E|B/n - pbar| for B ~ Binomial(n, pbar)
+        return sum(math.comb(n, k) * pbar**k * (1 - pbar) ** (n - k) * abs(k / n - pbar) for k in range(n + 1))
+
+    h = [abs(sum(x) / len(x) - pbar) - adj(len(x)) for x in rounds.values()]
+    side = [max(sum(x), len(x) - sum(x)) / len(x) for x in rounds.values()]
+    return {"herding_lsv": round(float(np.mean(h)), 3), "herding_majority_share": round(float(np.mean(side)), 3),
+            "herding_rounds": len(rounds)}  # fmt: skip
 
 
 def _macro(meta: dict) -> dict:

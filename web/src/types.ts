@@ -192,6 +192,14 @@ export interface RunConfig {
   [k: string]: unknown;
 }
 
+/** Result of re-executing the run from its log with no model calls (scripts/verify_all.py). */
+export interface RunAudit {
+  verified: boolean;
+  chain: string;
+  n_trades: number;
+  tool_calls_replayed: number;
+}
+
 export interface RawRun {
   format: 1;
   name: string;
@@ -200,6 +208,7 @@ export interface RawRun {
   agents: AgentInfo[];
   config: RunConfig;
   llm_cost_usd: number | null;
+  audit?: RunAudit | null;
   started: number | null;
   finished: number | null;
   complete: boolean;
@@ -390,6 +399,7 @@ export interface Run {
   config: RunConfig;
   tick: number;
   llmCost: number;
+  audit: RunAudit | null;
   complete: boolean;
   stylized: RunStylized | null;
   n: number;

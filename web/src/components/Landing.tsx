@@ -21,6 +21,45 @@ interface Story {
 
 const STORIES: Story[] = [
   {
+    id: "lab",
+    kicker: "Try it",
+    title: "Test a market rule before it reaches a real market",
+    body: "Type or say a rule change. Muse Voice Transcribe hears it, Muse Spark compiles it into exchange levers, AI market makers trade under it on paired markets, and Muse Spark writes the impact memo.",
+    href: "?tab=lab",
+    cta: "Open the Rule Lab",
+    accent: "#7b8cff",
+    stats: [
+      { value: "+2.1 bps", label: "retail cost of a maker rebate, measured live; spreads looked 1.9¢ tighter" },
+      { value: "~4 min", label: "per proposal, about a cent of tokens" },
+    ],
+  },
+  {
+    id: "crash",
+    kicker: "Flash crash",
+    title: "AI market makers cause a crash nobody programmed",
+    body: "A fund is forced to sell. Made to keep quoting, AI makers pass the stock back and forth, each pricing off the last, while its true value never moves.",
+    href: "?run=crash_no_kill_switch_s121&speed=25",
+    cta: "Watch the crash replay",
+    accent: "#f87171",
+    stats: [
+      { value: "21–78%", label: "falls in every market when makers could not step aside" },
+      { value: "95/96", label: "decisions set a kill switch when they could; the fall was about 4%" },
+    ],
+  },
+  {
+    id: "herding",
+    kicker: "Financial stability",
+    title: "Do AI investors on the same model herd?",
+    body: "The Bank of England's worry, tested: twelve AI investors trade through a forced sale, against twelve rule-following investors.",
+    href: "?tab=wind&exp=herding",
+    cta: "Open the herding experiment",
+    accent: "#f5b841",
+    stats: [
+      { value: "91%", label: "of decisions on the same side for one model with one prompt (rule-followers: 61%)" },
+      { value: "3×", label: "the volatility; four investing styles on the same model halved the herding" },
+    ],
+  },
+  {
     id: "quants",
     kicker: "Strategy discovery",
     title: "AI quants write and test their own strategies",
@@ -70,6 +109,19 @@ const STORIES: Story[] = [
     stats: [
       { value: "Every audit", label: "scripted spoofer flagged for spoofing at warning or referral" },
       { value: "Rarely", label: "red teams flagged for spoofing once they chose their own tactics" },
+    ],
+  },
+  {
+    id: "paper",
+    kicker: "The Arena Times",
+    title: "Every finding, on a front page",
+    body: "Muse Spark writes each headline result from the measured numbers only, Muse Image draws the photograph, and the quote beside it is the agent's own logged words.",
+    href: "?tab=paper",
+    cta: "Read the front pages",
+    accent: "#c9bfae",
+    stats: [
+      { value: "451/477", label: "recorded runs replay byte-identically with no model calls" },
+      { value: "4 Meta models", label: "Muse Spark (text and vision), Spark Open, Voice Transcribe and Muse Image" },
     ],
   },
 ];

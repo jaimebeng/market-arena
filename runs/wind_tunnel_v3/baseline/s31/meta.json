@@ -357,5 +357,10 @@
   }
  },
  "finished": 1793057262.5581598,
- "llm_cost_usd": 0.0081
+ "llm_cost_usd": 0.0081,
+ "audit": {
+  "trades_sha256": "061852b59fae253ba71c339178c707c050484d2dd7fdf6d1eb0a0d5843b883b0",
+  "snapshots_sha256": "0456d78b27ea34ffa5af46fbecfdb7dbb95a7912414582eaac89981ddd5ab1ee",
+  "sealed_after_recording": true
+ }
 }

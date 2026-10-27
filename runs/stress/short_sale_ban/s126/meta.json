@@ -1,0 +1,410 @@
+{
+ "name": "stress/short_sale_ban/s126",
+ "config": {
+  "name": "stress/short_sale_ban/s126",
+  "seed": 126,
+  "steps_per_epoch": 2000,
+  "n_epochs": 6,
+  "components": {
+   "A": {
+    "price": 10000.0,
+    "sigma": 0.0001,
+    "beta": 1.0
+   }
+  },
+  "factor_sigma": 0.0,
+  "jump_rate": 0.002,
+  "jump_bps": 60.0,
+  "index": null,
+  "rules": {
+   "tick": 1,
+   "maker_fee_bps": 0.0,
+   "taker_fee_bps": 0.0,
+   "min_resting_steps": 0,
+   "circuit_breaker_pct": null,
+   "circuit_window": 100,
+   "circuit_halt_steps": 50,
+   "transaction_tax_bps": 0.0,
+   "short_sale_ban": true,
+   "short_ban_exempt": [
+    "noise"
+   ],
+   "venue_fees": {}
+  },
+  "zi": {
+   "limit_rate": 1.2,
+   "market_rate": 0.35,
+   "offset_min": 3,
+   "offset_max": 25,
+   "lifetime_mean": 60.0,
+   "size_mean": 3.0,
+   "anchor_kappa": 0.3,
+   "anchor_lag": 150
+  },
+  "informed": {
+   "rate": 0.03,
+   "threshold_bps": 8.0,
+   "size": 2,
+   "max_size": 12,
+   "noise_bps": 1.0
+  },
+  "index_flow": null,
+  "calibration_steps": 20000,
+  "glft_gamma": 0.05,
+  "competition_eta": 0.5,
+  "snapshot_every": 10,
+  "holdout": 1000,
+  "chat": {
+   "enabled": false,
+   "antitrust_notice": false
+  },
+  "population": {
+   "retail": {
+    "rate": 0.15,
+    "size_mean": 2.0,
+    "chartist": 0.25,
+    "lookback": 200,
+    "herd": 0.0,
+    "routing": "lit",
+    "auction_every": 50,
+    "holdings": 2000
+   },
+   "institutional": {
+    "parent_rate": 0.0015,
+    "parent_size": 60,
+    "horizon": 300,
+    "algo": "twap",
+    "participation": 0.15,
+    "display": 2,
+    "holdings": 2000
+   },
+   "fire_sale": {
+    "at_step": 6300,
+    "asset": "A",
+    "qty": 1500,
+    "over": 100,
+    "side": -1
+   },
+   "index_fund": null,
+   "latency_arb": null,
+   "leveraged": [
+    {
+     "owner": "hedge_fund",
+     "asset": "A",
+     "position": 400,
+     "leverage": 12.0,
+     "maintenance": 0.06,
+     "chunk": 6
+    },
+    {
+     "owner": "leveraged_retail",
+     "asset": "A",
+     "position": 200,
+     "leverage": 8.0,
+     "maintenance": 0.08,
+     "chunk": 4
+    }
+   ],
+   "maker_guards": true
+  },
+  "news": null,
+  "agents": [
+   {
+    "id": "glft",
+    "kind": "glft",
+    "model": null,
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "maker_1",
+    "kind": "llm_maker",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "maker_2",
+    "kind": "llm_maker",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "maker_3",
+    "kind": "llm_maker",
+    "model": "baseten:meta-models/muse-spark-open-1026",
+    "assets": null,
+    "params": {}
+   }
+  ],
+  "out_dir": "runs"
+ },
+ "assets": [
+  "A"
+ ],
+ "agents": [
+  {
+   "id": "glft",
+   "role": "maker",
+   "model": "GLFT closed form"
+  },
+  {
+   "id": "maker_1",
+   "role": "maker",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "maker_2",
+   "role": "maker",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "maker_3",
+   "role": "maker",
+   "model": "baseten:meta-models/muse-spark-open-1026"
+  }
+ ],
+ "calibration": {
+  "A": {
+   "A": 0.8215920380417412,
+   "k": 0.25615166007079937,
+   "sigma": 1.673149801392671,
+   "deltas": [
+    1.0,
+    2.0,
+    3.0,
+    4.0,
+    5.0,
+    6.0,
+    7.0,
+    8.0,
+    9.0,
+    10.0,
+    11.0,
+    12.0,
+    13.0,
+    14.0,
+    15.0,
+    16.0,
+    17.0,
+    18.0,
+    19.0,
+    20.0,
+    21.0,
+    22.0,
+    23.0,
+    24.0,
+    25.0,
+    26.0,
+    27.0,
+    28.0,
+    29.0,
+    30.0
+   ],
+   "rates": [
+    0.259925,
+    0.257075,
+    0.2534,
+    0.245125,
+    0.232025,
+    0.21055,
+    0.184375,
+    0.156425,
+    0.126825,
+    0.09995,
+    0.0761,
+    0.057375,
+    0.041825,
+    0.030725,
+    0.022075,
+    0.016075,
+    0.01155,
+    0.008275,
+    0.00585,
+    0.00445,
+    0.003025,
+    0.00235,
+    0.001675,
+    0.00135,
+    0.00105,
+    0.000875,
+    0.000725,
+    0.00055,
+    0.0005,
+    0.000475
+   ],
+   "alpha": 1.0431846248842236
+  }
+ },
+ "started": 1793118756.4047513,
+ "stylized": {
+  "A": {
+   "market": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 24.613,
+    "hill_tail_index": 1.307,
+    "acf_returns": [
+     0.0556,
+     0.0053,
+     -0.014,
+     -0.0842,
+     0.1586,
+     -0.0278,
+     0.0225,
+     0.0119,
+     0.0218,
+     0.0677,
+     0.1543,
+     0.0584,
+     -0.1018,
+     0.0764,
+     0.073,
+     0.0621,
+     0.0415,
+     -0.1373,
+     -0.1081,
+     0.0558
+    ],
+    "acf_abs_returns": [
+     0.491,
+     0.4417,
+     0.4166,
+     0.3992,
+     0.3985,
+     0.4256,
+     0.3193,
+     0.3022,
+     0.3512,
+     0.36,
+     0.4058,
+     0.3475,
+     0.3319,
+     0.3565,
+     0.4101,
+     0.3582,
+     0.3981,
+     0.3008,
+     0.3881,
+     0.3769,
+     0.3988,
+     0.3555,
+     0.3139,
+     0.2626,
+     0.3123,
+     0.2692,
+     0.2859,
+     0.2467,
+     0.1561,
+     0.1571,
+     0.2239,
+     0.2106,
+     0.185,
+     0.2205,
+     0.1881,
+     0.2367,
+     0.1862,
+     0.222,
+     0.2064,
+     0.2069,
+     0.1964,
+     0.2375,
+     0.174,
+     0.1299,
+     0.1314,
+     0.1046,
+     0.1127,
+     0.0978,
+     0.0425,
+     0.0752
+    ]
+   },
+   "fair_value": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 109.331,
+    "hill_tail_index": 1.129,
+    "acf_returns": [
+     0.0051,
+     0.0203,
+     0.0051,
+     -0.0127,
+     -0.0093,
+     0.003,
+     0.0199,
+     -0.0113,
+     0.019,
+     -0.005,
+     0.012,
+     -0.0247,
+     0.0764,
+     0.0034,
+     -0.0142,
+     0.0096,
+     -0.0384,
+     -0.0168,
+     -0.0024,
+     -0.0256
+    ],
+    "acf_abs_returns": [
+     -0.0043,
+     -0.01,
+     -0.0211,
+     -0.0078,
+     -0.0249,
+     -0.0201,
+     -0.0042,
+     -0.021,
+     -0.0119,
+     -0.0131,
+     -0.0209,
+     0.0112,
+     0.0764,
+     0.0088,
+     0.0009,
+     -0.0177,
+     0.0209,
+     -0.0089,
+     0.0112,
+     0.028,
+     -0.0167,
+     0.0089,
+     0.0022,
+     0.1013,
+     -0.0237,
+     0.0726,
+     0.003,
+     -0.0029,
+     -0.0144,
+     -0.0161,
+     -0.0158,
+     -0.0245,
+     -0.0176,
+     0.0018,
+     -0.0092,
+     -0.0128,
+     0.0115,
+     -0.005,
+     0.0115,
+     -0.0151,
+     -0.0139,
+     0.0455,
+     -0.0079,
+     0.041,
+     -0.0246,
+     0.0816,
+     -0.005,
+     -0.0129,
+     -0.0031,
+     -0.0072
+    ]
+   }
+  }
+ },
+ "finished": 1793118853.086309,
+ "llm_cost_usd": 0.0081,
+ "audit": {
+  "trades_sha256": "d2ce988b022734decd353b1709928c29a381f1462b22763338254323bef7aef3",
+  "snapshots_sha256": "07435a491fc8741f912298b3f9e30ff37794bf7197a58f98710566879cc5f216",
+  "sealed_after_recording": true
+ }
+}

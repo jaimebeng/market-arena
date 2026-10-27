@@ -1,0 +1,1134 @@
+{
+ "experiment": "vision",
+ "description": "Muse Spark and Muse Spark Open makers compete with GLFT and a momentum bot. Baseline: data tools only. Variants add a chart of each maker's last epoch to its review, or replace the data tools with the chart.",
+ "seeds": [
+  321,
+  322,
+  323,
+  324,
+  325,
+  326
+ ],
+ "variants": [
+  {
+   "name": "baseline",
+   "label": "Baseline",
+   "change": "",
+   "n_seeds": 6,
+   "seed_runs": [
+    {
+     "spread": 9.068,
+     "taker_cost": 4.534,
+     "depth": 48.775,
+     "mispricing_bps": 18.139,
+     "volatility": 1.365,
+     "volume": 2732.4,
+     "collusion_index": 1.276,
+     "llm_maker_half_spread": 7.62,
+     "llm_maker_quoted_half_spread": 7.907,
+     "maker_pnl_per_epoch": 806.633,
+     "llm_policy_dispersion": 1.12,
+     "maker_reasoning_tokens": 3917.6,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.848,
+       "n_makers": 3,
+       "adverse_selection": 2.112,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.913,
+       "nash_skew": 0.999,
+       "pareto_hs": 7.035,
+       "pareto_skew": 1.201
+      }
+     },
+     "collusion_by_epoch": [
+      0.041,
+      1.337,
+      1.455,
+      1.101,
+      1.219,
+      1.266
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      7.75,
+      8.0,
+      7.25,
+      7.5,
+      7.6
+     ],
+     "llm_cost_usd": 0.004,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/baseline/s321"
+    },
+    {
+     "spread": 8.33,
+     "taker_cost": 4.165,
+     "depth": 49.456,
+     "mispricing_bps": 20.013,
+     "volatility": 1.202,
+     "volume": 2837.2,
+     "collusion_index": 1.255,
+     "llm_maker_half_spread": 6.23,
+     "llm_maker_quoted_half_spread": 6.518,
+     "maker_pnl_per_epoch": 884.833,
+     "llm_policy_dispersion": 0.63,
+     "maker_reasoning_tokens": 2254.0,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.552,
+       "n_makers": 3,
+       "adverse_selection": 1.802,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.096,
+       "nash_skew": 0.676,
+       "pareto_hs": 5.796,
+       "pareto_skew": 0.874
+      }
+     },
+     "collusion_by_epoch": [
+      0.532,
+      1.12,
+      1.267,
+      1.267,
+      1.355,
+      1.267
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.0,
+      6.25,
+      6.25,
+      6.4,
+      6.25
+     ],
+     "llm_cost_usd": 0.004,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/baseline/s322"
+    },
+    {
+     "spread": 6.911,
+     "taker_cost": 3.456,
+     "depth": 50.229,
+     "mispricing_bps": 27.822,
+     "volatility": 1.184,
+     "volume": 2664.0,
+     "collusion_index": 0.187,
+     "llm_maker_half_spread": 5.03,
+     "llm_maker_quoted_half_spread": 5.426,
+     "maker_pnl_per_epoch": 373.467,
+     "llm_policy_dispersion": 0.25,
+     "maker_reasoning_tokens": 2164.8,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.55,
+       "n_makers": 3,
+       "adverse_selection": 1.84,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.64,
+       "nash_skew": 1.005,
+       "pareto_hs": 6.729,
+       "pareto_skew": 1.242
+      }
+     },
+     "collusion_by_epoch": [
+      0.172,
+      0.053,
+      0.053,
+      0.124,
+      0.364,
+      0.34
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.75,
+      4.75,
+      4.9,
+      5.4,
+      5.35
+     ],
+     "llm_cost_usd": 0.0042,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/baseline/s323"
+    },
+    {
+     "spread": 7.293,
+     "taker_cost": 3.647,
+     "depth": 45.061,
+     "mispricing_bps": 19.626,
+     "volatility": 1.645,
+     "volume": 2717.8,
+     "collusion_index": 1.723,
+     "llm_maker_half_spread": 6.85,
+     "llm_maker_quoted_half_spread": 7.167,
+     "maker_pnl_per_epoch": 310.4,
+     "llm_policy_dispersion": 0.75,
+     "maker_reasoning_tokens": 3281.1,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.251,
+       "n_makers": 3,
+       "adverse_selection": 1.258,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.631,
+       "nash_skew": 0.695,
+       "pareto_hs": 5.499,
+       "pareto_skew": 0.889
+      }
+     },
+     "collusion_by_epoch": [
+      0.733,
+      2.74,
+      1.804,
+      1.201,
+      1.402,
+      1.469
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      8.75,
+      7.0,
+      5.875,
+      6.25,
+      6.375
+     ],
+     "llm_cost_usd": 0.0044,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/baseline/s324"
+    },
+    {
+     "spread": 7.15,
+     "taker_cost": 3.575,
+     "depth": 45.408,
+     "mispricing_bps": 15.256,
+     "volatility": 0.999,
+     "volume": 2751.0,
+     "collusion_index": -0.51,
+     "llm_maker_half_spread": 4.31,
+     "llm_maker_quoted_half_spread": 4.651,
+     "maker_pnl_per_epoch": 918.067,
+     "llm_policy_dispersion": 0.51,
+     "maker_reasoning_tokens": 2988.1,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.676,
+       "n_makers": 3,
+       "adverse_selection": 2.632,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 5.184,
+       "nash_skew": 0.9,
+       "pareto_hs": 6.898,
+       "pareto_skew": 1.15
+      }
+     },
+     "collusion_by_epoch": [
+      -0.107,
+      -0.399,
+      -0.837,
+      -0.253,
+      -0.487,
+      -0.574
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.5,
+      3.75,
+      4.75,
+      4.35,
+      4.2
+     ],
+     "llm_cost_usd": 0.0034,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/baseline/s325"
+    },
+    {
+     "spread": 7.314,
+     "taker_cost": 3.657,
+     "depth": 47.907,
+     "mispricing_bps": 28.224,
+     "volatility": 1.268,
+     "volume": 2741.4,
+     "collusion_index": 0.547,
+     "llm_maker_half_spread": 5.3,
+     "llm_maker_quoted_half_spread": 5.611,
+     "maker_pnl_per_epoch": 604.967,
+     "llm_policy_dispersion": 0.25,
+     "maker_reasoning_tokens": 2402.3,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.924,
+       "n_makers": 3,
+       "adverse_selection": 1.761,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.268,
+       "nash_skew": 0.806,
+       "pareto_hs": 6.153,
+       "pareto_skew": 1.016
+      }
+     },
+     "collusion_by_epoch": [
+      0.388,
+      0.388,
+      0.654,
+      0.72,
+      0.587,
+      0.388
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      5.0,
+      5.5,
+      5.625,
+      5.375,
+      5.0
+     ],
+     "llm_cost_usd": 0.0044,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/baseline/s326"
+    }
+   ],
+   "benchmarks": {
+    "A": {
+     "glft_hs": 6.848,
+     "n_makers": 3,
+     "adverse_selection": 2.112,
+     "maker_fee_cents": 0.0,
+     "nash_hs": 4.913,
+     "nash_skew": 0.999,
+     "pareto_hs": 7.035,
+     "pareto_skew": 1.201
+    }
+   },
+   "spread": 7.678,
+   "spread_se": 0.342,
+   "taker_cost": 3.839,
+   "taker_cost_se": 0.171,
+   "depth": 47.806,
+   "depth_se": 0.872,
+   "mispricing_bps": 21.513,
+   "mispricing_bps_se": 2.169,
+   "volatility": 1.277,
+   "volatility_se": 0.088,
+   "volume": 2740.633,
+   "volume_se": 23.018,
+   "collusion_index": 0.746,
+   "collusion_index_se": 0.338,
+   "llm_maker_half_spread": 5.89,
+   "llm_maker_half_spread_se": 0.504,
+   "llm_maker_quoted_half_spread": 6.213,
+   "llm_maker_quoted_half_spread_se": 0.493,
+   "maker_pnl_per_epoch": 649.728,
+   "maker_pnl_per_epoch_se": 107.295,
+   "llm_policy_dispersion": 0.585,
+   "llm_policy_dispersion_se": 0.135,
+   "maker_reasoning_tokens": 2834.65,
+   "maker_reasoning_tokens_se": 280.976,
+   "llm_cost_usd": 0.004,
+   "llm_cost_usd_se": 0.0,
+   "epochs": 6.0,
+   "epochs_se": 0.0,
+   "exchange_fee_revenue": 0.0,
+   "exchange_fee_revenue_se": 0.0,
+   "chat_messages": 0.0,
+   "chat_messages_se": 0.0,
+   "regulator_notices": 0.0,
+   "regulator_notices_se": 0.0
+  },
+  {
+   "name": "with_chart",
+   "label": "Tools + chart",
+   "change": "Each AI maker also sees a chart of its last epoch.",
+   "n_seeds": 6,
+   "seed_runs": [
+    {
+     "spread": 8.549,
+     "taker_cost": 4.275,
+     "depth": 49.427,
+     "mispricing_bps": 18.356,
+     "volatility": 1.211,
+     "volume": 2765.0,
+     "collusion_index": 1.172,
+     "llm_maker_half_spread": 7.4,
+     "llm_maker_quoted_half_spread": 7.704,
+     "maker_pnl_per_epoch": 683.367,
+     "llm_policy_dispersion": 0.4,
+     "maker_reasoning_tokens": 1453.8,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.848,
+       "n_makers": 3,
+       "adverse_selection": 2.112,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.913,
+       "nash_skew": 0.999,
+       "pareto_hs": 7.035,
+       "pareto_skew": 1.201
+      }
+     },
+     "collusion_by_epoch": [
+      0.041,
+      1.69,
+      1.101,
+      0.984,
+      0.984,
+      1.101
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      8.5,
+      7.25,
+      7.0,
+      7.0,
+      7.25
+     ],
+     "llm_cost_usd": 0.0041,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/with_chart/s321"
+    },
+    {
+     "spread": 9.393,
+     "taker_cost": 4.696,
+     "depth": 48.429,
+     "mispricing_bps": 19.86,
+     "volatility": 1.025,
+     "volume": 2820.6,
+     "collusion_index": 1.267,
+     "llm_maker_half_spread": 6.25,
+     "llm_maker_quoted_half_spread": 6.594,
+     "maker_pnl_per_epoch": 1073.5,
+     "llm_policy_dispersion": 0.25,
+     "maker_reasoning_tokens": 1979.7,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.552,
+       "n_makers": 3,
+       "adverse_selection": 1.802,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.096,
+       "nash_skew": 0.676,
+       "pareto_hs": 5.796,
+       "pareto_skew": 0.874
+      }
+     },
+     "collusion_by_epoch": [
+      0.532,
+      1.561,
+      1.267,
+      1.12,
+      1.208,
+      1.179
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      6.75,
+      6.25,
+      6.0,
+      6.15,
+      6.1
+     ],
+     "llm_cost_usd": 0.0047,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/with_chart/s322"
+    },
+    {
+     "spread": 7.077,
+     "taker_cost": 3.538,
+     "depth": 46.695,
+     "mispricing_bps": 27.876,
+     "volatility": 1.174,
+     "volume": 2676.2,
+     "collusion_index": 0.043,
+     "llm_maker_half_spread": 4.73,
+     "llm_maker_quoted_half_spread": 5.158,
+     "maker_pnl_per_epoch": 440.733,
+     "llm_policy_dispersion": 0.13,
+     "maker_reasoning_tokens": 2860.1,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.55,
+       "n_makers": 3,
+       "adverse_selection": 1.84,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.64,
+       "nash_skew": 1.005,
+       "pareto_hs": 6.729,
+       "pareto_skew": 1.242
+      }
+     },
+     "collusion_by_epoch": [
+      0.172,
+      0.053,
+      0.053,
+      -0.019,
+      -0.043,
+      0.172
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.75,
+      4.75,
+      4.6,
+      4.55,
+      5.0
+     ],
+     "llm_cost_usd": 0.005,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/with_chart/s323"
+    },
+    {
+     "spread": 8.526,
+     "taker_cost": 4.263,
+     "depth": 44.543,
+     "mispricing_bps": 19.224,
+     "volatility": 1.233,
+     "volume": 2703.8,
+     "collusion_index": 1.777,
+     "llm_maker_half_spread": 6.95,
+     "llm_maker_quoted_half_spread": 7.224,
+     "maker_pnl_per_epoch": 704.333,
+     "llm_policy_dispersion": 0.45,
+     "maker_reasoning_tokens": 1854.7,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.251,
+       "n_makers": 3,
+       "adverse_selection": 1.258,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.631,
+       "nash_skew": 0.695,
+       "pareto_hs": 5.499,
+       "pareto_skew": 0.889
+      }
+     },
+     "collusion_by_epoch": [
+      0.733,
+      2.74,
+      2.071,
+      1.536,
+      1.268,
+      1.268
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      8.75,
+      7.5,
+      6.5,
+      6.0,
+      6.0
+     ],
+     "llm_cost_usd": 0.0043,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/with_chart/s324"
+    },
+    {
+     "spread": 7.012,
+     "taker_cost": 3.506,
+     "depth": 49.653,
+     "mispricing_bps": 15.289,
+     "volatility": 0.969,
+     "volume": 2773.8,
+     "collusion_index": -0.481,
+     "llm_maker_half_spread": 4.36,
+     "llm_maker_quoted_half_spread": 4.77,
+     "maker_pnl_per_epoch": 736.2,
+     "llm_policy_dispersion": 0.34,
+     "maker_reasoning_tokens": 2058.6,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.676,
+       "n_makers": 3,
+       "adverse_selection": 2.632,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 5.184,
+       "nash_skew": 0.9,
+       "pareto_hs": 6.898,
+       "pareto_skew": 1.15
+      }
+     },
+     "collusion_by_epoch": [
+      -0.107,
+      -0.399,
+      -0.691,
+      -0.399,
+      -0.428,
+      -0.487
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.5,
+      4.0,
+      4.5,
+      4.45,
+      4.35
+     ],
+     "llm_cost_usd": 0.0049,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/with_chart/s325"
+    },
+    {
+     "spread": 7.225,
+     "taker_cost": 3.612,
+     "depth": 48.221,
+     "mispricing_bps": 28.233,
+     "volatility": 1.064,
+     "volume": 2724.0,
+     "collusion_index": 0.128,
+     "llm_maker_half_spread": 4.51,
+     "llm_maker_quoted_half_spread": 4.939,
+     "maker_pnl_per_epoch": 647.133,
+     "llm_policy_dispersion": 0.15,
+     "maker_reasoning_tokens": 2162.9,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.924,
+       "n_makers": 3,
+       "adverse_selection": 1.761,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.268,
+       "nash_skew": 0.806,
+       "pareto_hs": 6.153,
+       "pareto_skew": 1.016
+      }
+     },
+     "collusion_by_epoch": [
+      0.388,
+      0.123,
+      -0.01,
+      -0.063,
+      0.256,
+      0.335
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      4.5,
+      4.25,
+      4.15,
+      4.75,
+      4.9
+     ],
+     "llm_cost_usd": 0.0049,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/with_chart/s326"
+    }
+   ],
+   "benchmarks": {
+    "A": {
+     "glft_hs": 6.848,
+     "n_makers": 3,
+     "adverse_selection": 2.112,
+     "maker_fee_cents": 0.0,
+     "nash_hs": 4.913,
+     "nash_skew": 0.999,
+     "pareto_hs": 7.035,
+     "pareto_skew": 1.201
+    }
+   },
+   "spread": 7.964,
+   "spread_se": 0.406,
+   "taker_cost": 3.982,
+   "taker_cost_se": 0.203,
+   "depth": 47.828,
+   "depth_se": 0.785,
+   "mispricing_bps": 21.473,
+   "mispricing_bps_se": 2.178,
+   "volatility": 1.113,
+   "volatility_se": 0.044,
+   "volume": 2743.9,
+   "volume_se": 21.455,
+   "collusion_index": 0.651,
+   "collusion_index_se": 0.358,
+   "llm_maker_half_spread": 5.7,
+   "llm_maker_half_spread_se": 0.545,
+   "llm_maker_quoted_half_spread": 6.065,
+   "llm_maker_quoted_half_spread_se": 0.519,
+   "maker_pnl_per_epoch": 714.211,
+   "maker_pnl_per_epoch_se": 83.648,
+   "llm_policy_dispersion": 0.287,
+   "llm_policy_dispersion_se": 0.054,
+   "maker_reasoning_tokens": 2061.633,
+   "maker_reasoning_tokens_se": 188.574,
+   "llm_cost_usd": 0.005,
+   "llm_cost_usd_se": 0.0,
+   "epochs": 6.0,
+   "epochs_se": 0.0,
+   "exchange_fee_revenue": 0.0,
+   "exchange_fee_revenue_se": 0.0,
+   "chat_messages": 0.0,
+   "chat_messages_se": 0.0,
+   "regulator_notices": 0.0,
+   "regulator_notices_se": 0.0,
+   "vs_baseline": {
+    "collusion_index": {
+     "mean": -0.095,
+     "se": 0.072,
+     "n": 6
+    },
+    "llm_maker_half_spread": {
+     "mean": -0.19,
+     "se": 0.136,
+     "n": 6
+    },
+    "spread": {
+     "mean": 0.286,
+     "se": 0.288,
+     "n": 6
+    },
+    "depth": {
+     "mean": 0.022,
+     "se": 1.038,
+     "n": 6
+    },
+    "mispricing_bps": {
+     "mean": -0.04,
+     "se": 0.087,
+     "n": 6
+    },
+    "llm_policy_dispersion": {
+     "mean": -0.298,
+     "se": 0.095,
+     "n": 6
+    },
+    "maker_pnl_per_epoch": {
+     "mean": 64.483,
+     "se": 85.713,
+     "n": 6
+    },
+    "volatility": {
+     "mean": -0.164,
+     "se": 0.059,
+     "n": 6
+    },
+    "taker_cost": {
+     "mean": 0.143,
+     "se": 0.144,
+     "n": 6
+    }
+   }
+  },
+  {
+   "name": "chart_only",
+   "label": "Chart only",
+   "change": "Each AI maker sees only the chart of its last epoch, with no data tools.",
+   "n_seeds": 6,
+   "seed_runs": [
+    {
+     "spread": 9.158,
+     "taker_cost": 4.579,
+     "depth": 48.556,
+     "mispricing_bps": 18.014,
+     "volatility": 1.385,
+     "volume": 2748.2,
+     "collusion_index": 2.162,
+     "llm_maker_half_spread": 9.5,
+     "llm_maker_quoted_half_spread": 9.826,
+     "maker_pnl_per_epoch": 656.667,
+     "llm_policy_dispersion": 1.9,
+     "maker_reasoning_tokens": 1842.2,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.848,
+       "n_makers": 3,
+       "adverse_selection": 2.112,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.913,
+       "nash_skew": 0.999,
+       "pareto_hs": 7.035,
+       "pareto_skew": 1.201
+      }
+     },
+     "collusion_by_epoch": [
+      0.041,
+      3.811,
+      2.397,
+      1.808,
+      1.455,
+      1.337
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      13.0,
+      10.0,
+      8.75,
+      8.0,
+      7.75
+     ],
+     "llm_cost_usd": 0.0028,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/chart_only/s321"
+    },
+    {
+     "spread": 9.079,
+     "taker_cost": 4.54,
+     "depth": 50.387,
+     "mispricing_bps": 20.064,
+     "volatility": 1.133,
+     "volume": 2852.0,
+     "collusion_index": 2.649,
+     "llm_maker_half_spread": 8.6,
+     "llm_maker_quoted_half_spread": 8.952,
+     "maker_pnl_per_epoch": 983.967,
+     "llm_policy_dispersion": 2.6,
+     "maker_reasoning_tokens": 1814.6,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.552,
+       "n_makers": 3,
+       "adverse_selection": 1.802,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.096,
+       "nash_skew": 0.676,
+       "pareto_hs": 5.796,
+       "pareto_skew": 0.874
+      }
+     },
+     "collusion_by_epoch": [
+      0.532,
+      2.885,
+      2.885,
+      2.885,
+      2.296,
+      2.296
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      9.0,
+      9.0,
+      9.0,
+      8.0,
+      8.0
+     ],
+     "llm_cost_usd": 0.003,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/chart_only/s322"
+    },
+    {
+     "spread": 7.637,
+     "taker_cost": 3.819,
+     "depth": 47.833,
+     "mispricing_bps": 27.525,
+     "volatility": 1.156,
+     "volume": 2658.2,
+     "collusion_index": 0.508,
+     "llm_maker_half_spread": 5.7,
+     "llm_maker_quoted_half_spread": 6.015,
+     "maker_pnl_per_epoch": 534.067,
+     "llm_policy_dispersion": 0.7,
+     "maker_reasoning_tokens": 2298.8,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.55,
+       "n_makers": 3,
+       "adverse_selection": 1.84,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.64,
+       "nash_skew": 1.005,
+       "pareto_hs": 6.729,
+       "pareto_skew": 1.242
+      }
+     },
+     "collusion_by_epoch": [
+      0.172,
+      0.412,
+      0.412,
+      0.412,
+      0.531,
+      0.771
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      5.5,
+      5.5,
+      5.5,
+      5.75,
+      6.25
+     ],
+     "llm_cost_usd": 0.003,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/chart_only/s323"
+    },
+    {
+     "spread": 10.058,
+     "taker_cost": 5.029,
+     "depth": 43.789,
+     "mispricing_bps": 19.354,
+     "volatility": 1.273,
+     "volume": 2668.8,
+     "collusion_index": 5.337,
+     "llm_maker_half_spread": 13.6,
+     "llm_maker_quoted_half_spread": 13.882,
+     "maker_pnl_per_epoch": 810.267,
+     "llm_policy_dispersion": 4.0,
+     "maker_reasoning_tokens": 2778.8,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.251,
+       "n_makers": 3,
+       "adverse_selection": 1.258,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 3.631,
+       "nash_skew": 0.695,
+       "pareto_hs": 5.499,
+       "pareto_skew": 0.889
+      }
+     },
+     "collusion_by_epoch": [
+      0.733,
+      9.298,
+      6.622,
+      3.41,
+      3.677,
+      3.677
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      21.0,
+      16.0,
+      10.0,
+      10.5,
+      10.5
+     ],
+     "llm_cost_usd": 0.0041,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/chart_only/s324"
+    },
+    {
+     "spread": 8.644,
+     "taker_cost": 4.322,
+     "depth": 52.274,
+     "mispricing_bps": 15.176,
+     "volatility": 0.858,
+     "volume": 2725.8,
+     "collusion_index": 0.097,
+     "llm_maker_half_spread": 5.35,
+     "llm_maker_quoted_half_spread": 5.678,
+     "maker_pnl_per_epoch": 1141.867,
+     "llm_policy_dispersion": 0.35,
+     "maker_reasoning_tokens": 1791.9,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 6.676,
+       "n_makers": 3,
+       "adverse_selection": 2.632,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 5.184,
+       "nash_skew": 0.9,
+       "pareto_hs": 6.898,
+       "pareto_skew": 1.15
+      }
+     },
+     "collusion_by_epoch": [
+      -0.107,
+      0.184,
+      0.184,
+      0.039,
+      0.039,
+      0.039
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      5.5,
+      5.5,
+      5.25,
+      5.25,
+      5.25
+     ],
+     "llm_cost_usd": 0.0027,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/chart_only/s325"
+    },
+    {
+     "spread": 7.395,
+     "taker_cost": 3.698,
+     "depth": 50.417,
+     "mispricing_bps": 28.338,
+     "volatility": 1.096,
+     "volume": 2716.6,
+     "collusion_index": 0.415,
+     "llm_maker_half_spread": 5.05,
+     "llm_maker_quoted_half_spread": 5.451,
+     "maker_pnl_per_epoch": 603.0,
+     "llm_policy_dispersion": 0.35,
+     "maker_reasoning_tokens": 2003.6,
+     "benchmarks": {
+      "A": {
+       "glft_hs": 5.924,
+       "n_makers": 3,
+       "adverse_selection": 1.761,
+       "maker_fee_cents": 0.0,
+       "nash_hs": 4.268,
+       "nash_skew": 0.806,
+       "pareto_hs": 6.153,
+       "pareto_skew": 1.016
+      }
+     },
+     "collusion_by_epoch": [
+      0.388,
+      0.521,
+      0.521,
+      0.256,
+      0.256,
+      0.521
+     ],
+     "llm_half_spread_by_epoch": [
+      5.0,
+      5.25,
+      5.25,
+      4.75,
+      4.75,
+      5.25
+     ],
+     "llm_cost_usd": 0.0033,
+     "epochs": 6,
+     "exchange_fee_revenue": 0.0,
+     "chat_messages": 0,
+     "regulator_notices": 0,
+     "run": "runs/vision/chart_only/s326"
+    }
+   ],
+   "benchmarks": {
+    "A": {
+     "glft_hs": 6.848,
+     "n_makers": 3,
+     "adverse_selection": 2.112,
+     "maker_fee_cents": 0.0,
+     "nash_hs": 4.913,
+     "nash_skew": 0.999,
+     "pareto_hs": 7.035,
+     "pareto_skew": 1.201
+    }
+   },
+   "spread": 8.662,
+   "spread_se": 0.409,
+   "taker_cost": 4.331,
+   "taker_cost_se": 0.205,
+   "depth": 48.876,
+   "depth_se": 1.201,
+   "mispricing_bps": 21.412,
+   "mispricing_bps_se": 2.174,
+   "volatility": 1.15,
+   "volatility_se": 0.073,
+   "volume": 2728.267,
+   "volume_se": 28.458,
+   "collusion_index": 1.861,
+   "collusion_index_se": 0.813,
+   "llm_maker_half_spread": 7.967,
+   "llm_maker_half_spread_se": 1.354,
+   "llm_maker_quoted_half_spread": 8.301,
+   "llm_maker_quoted_half_spread_se": 1.343,
+   "maker_pnl_per_epoch": 788.306,
+   "maker_pnl_per_epoch_se": 96.622,
+   "llm_policy_dispersion": 1.65,
+   "llm_policy_dispersion_se": 0.599,
+   "maker_reasoning_tokens": 2088.317,
+   "maker_reasoning_tokens_se": 158.283,
+   "llm_cost_usd": 0.003,
+   "llm_cost_usd_se": 0.0,
+   "epochs": 6.0,
+   "epochs_se": 0.0,
+   "exchange_fee_revenue": 0.0,
+   "exchange_fee_revenue_se": 0.0,
+   "chat_messages": 0.0,
+   "chat_messages_se": 0.0,
+   "regulator_notices": 0.0,
+   "regulator_notices_se": 0.0,
+   "vs_baseline": {
+    "collusion_index": {
+     "mean": 1.115,
+     "se": 0.542,
+     "n": 6
+    },
+    "llm_maker_half_spread": {
+     "mean": 2.077,
+     "se": 1.007,
+     "n": 6
+    },
+    "spread": {
+     "mean": 0.984,
+     "se": 0.415,
+     "n": 6
+    },
+    "depth": {
+     "mean": 1.07,
+     "se": 1.352,
+     "n": 6
+    },
+    "mispricing_bps": {
+     "mean": -0.102,
+     "se": 0.068,
+     "n": 6
+    },
+    "llm_policy_dispersion": {
+     "mean": 1.065,
+     "se": 0.532,
+     "n": 6
+    },
+    "maker_pnl_per_epoch": {
+     "mean": 138.578,
+     "se": 89.971,
+     "n": 6
+    },
+    "volatility": {
+     "mean": -0.127,
+     "se": 0.057,
+     "n": 6
+    },
+    "taker_cost": {
+     "mean": 0.492,
+     "se": 0.207,
+     "n": 6
+    }
+   }
+  }
+ ]
+}

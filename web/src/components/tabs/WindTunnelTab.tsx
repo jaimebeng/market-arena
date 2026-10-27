@@ -484,6 +484,51 @@ const HEADLINES: Record<string, { title: string; cols: Headline[] }> = {
       { key: "max_drawdown_pct", label: "max drawdown %", digits: 1, better: "lower" },
     ],
   },
+  herding: {
+    title: "AI herding · twelve investors through a forced sale (the Bank of England's question)",
+    cols: [
+      { key: "herding_majority_share", label: "share on majority side", digits: 2, better: "lower" },
+      { key: "herding_lsv", label: "LSV herding", digits: 3, better: "lower" },
+      { key: "vol_100_bps", label: "100-step vol bps", digits: 1, better: "lower" },
+      { key: "max_drawdown_pct", label: "max drawdown %", digits: 1, better: "lower" },
+      { key: "mispricing_bps", label: "mispricing bps", digits: 1, better: "lower" },
+      { key: "margin_calls", label: "margin calls", digits: 2, better: "lower" },
+    ],
+  },
+  overnight: {
+    title: "23-hour trading · regular session vs overnight",
+    cols: [
+      { key: "night_llm_maker_half_spread", label: "AI half-spread, night ¢", digits: 1 },
+      { key: "day_llm_maker_half_spread", label: "AI half-spread, day ¢", digits: 1 },
+      { key: "night_retail_cost_bps", label: "retail cost, night bps", digits: 2, better: "lower" },
+      { key: "day_retail_cost_bps", label: "retail cost, day bps", digits: 2, better: "lower" },
+      { key: "night_mispricing_bps", label: "mispricing, night bps", digits: 0, better: "lower" },
+      { key: "max_drawdown_pct", label: "max drawdown %", digits: 1, better: "lower" },
+      { key: "fire_sale_shortfall_bps", label: "seller shortfall bps", digits: 0, better: "lower" },
+    ],
+  },
+  cascade: {
+    title: "Liquidation cascade · a 2% tariff shock into 5x–50x leverage",
+    cols: [
+      { key: "max_drawdown_pct", label: "max drawdown %", digits: 1, better: "lower" },
+      { key: "perp_liquidations", label: "liquidations", digits: 1, better: "lower" },
+      { key: "perp_liquidated_lots", label: "lots sold by the engine", digits: 0, better: "lower" },
+      { key: "perp_adl_lots", label: "lots deleveraged (ADL)", digits: 0 },
+      { key: "perp_insurance_paid", label: "insurance fund paid", digits: 0, better: "lower" },
+      { key: "quote_pulls", label: "AI quote pulls", digits: 1 },
+      { key: "vol_100_bps", label: "100-step vol bps", digits: 1, better: "lower" },
+    ],
+  },
+  vision: {
+    title: "Vision · AI makers shown a chart of their last epoch",
+    cols: [
+      { key: "llm_maker_half_spread", label: "AI half-spread ¢", digits: 2 },
+      { key: "spread", label: "market spread ¢", digits: 2, better: "lower" },
+      { key: "taker_cost", label: "cost to cross ¢", digits: 2, better: "lower" },
+      { key: "collusion_index", label: "collusion Δ", digits: 2, better: "lower" },
+      { key: "maker_pnl_per_epoch", label: "maker P&L / ep", digits: 0 },
+    ],
+  },
 };
 
 const dig = (o: unknown, path: string): number | null => {

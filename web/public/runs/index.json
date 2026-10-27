@@ -45,7 +45,7 @@
    "regulator": false,
    "llm_cost_usd": 0.1377,
    "finished": 1793059595.1952038,
-   "bytes": 2577798
+   "bytes": 2577966
   },
   {
    "name": "final_multi",
@@ -95,7 +95,7 @@
    "regulator": false,
    "llm_cost_usd": 0.1074,
    "finished": 1793059100.036314,
-   "bytes": 4349239
+   "bytes": 4349407
   },
   {
    "name": "crash_no_kill_switch_s121",
@@ -132,7 +132,7 @@
    "regulator": false,
    "llm_cost_usd": 0.0088,
    "finished": 1793119141.1568863,
-   "bytes": 602298
+   "bytes": 602464
   },
   {
    "name": "crash_kill_switch_s121",
@@ -169,7 +169,7 @@
    "regulator": false,
    "llm_cost_usd": 0.0085,
    "finished": 1793118491.4886005,
-   "bytes": 621695
+   "bytes": 621861
   },
   {
    "name": "collusion_lab_surveillance_s41",
@@ -268,7 +268,7 @@
    "regulator": true,
    "llm_cost_usd": 0.0041,
    "finished": 1793090897.1430233,
-   "bytes": 168083
+   "bytes": 168096
   },
   {
    "name": "showcase_multi",
@@ -318,7 +318,7 @@
    "regulator": false,
    "llm_cost_usd": 0.1191,
    "finished": 1793057777.5618608,
-   "bytes": 3495383
+   "bytes": 3495551
   },
   {
    "name": "showcase_single",
@@ -365,7 +365,7 @@
    "regulator": false,
    "llm_cost_usd": 0.1111,
    "finished": 1793057658.1510224,
-   "bytes": 1722027
+   "bytes": 1722195
   },
   {
    "name": "takers_smoke",
@@ -407,7 +407,7 @@
    "regulator": false,
    "llm_cost_usd": 0.0295,
    "finished": 1793056163.471772,
-   "bytes": 544887
+   "bytes": 544900
   },
   {
    "name": "multi_scripted",
@@ -447,7 +447,7 @@
    "regulator": false,
    "llm_cost_usd": 0.0,
    "finished": 1793056239.5015266,
-   "bytes": 879584
+   "bytes": 879750
   },
   {
    "name": "scripted",
@@ -479,8 +479,8 @@
    "regulator": false,
    "llm_cost_usd": 0.0,
    "finished": 1793055205.1223214,
-   "bytes": 323698
+   "bytes": 323863
   }
  ],
- "generated": 1793123718.7682595
+ "generated": 1793145226.0419133
 }

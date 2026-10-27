@@ -1,0 +1,114 @@
+{"epoch":0,"t":500,"agent":"inv_10","asset":"A","stance":0.6,"weight":1.0,"text":"A showing steady upward drift into close. Momentum building, staying long."}
+{"epoch":0,"t":500,"agent":"inv_02","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora showing early strength, momentum looks positive here."}
+{"epoch":0,"t":500,"agent":"inv_06","asset":"A","stance":0.6,"weight":1.0,"text":"A trending up nicely, momentum looks strong. Staying bullish! \ud83d\ude80"}
+{"epoch":1,"t":1000,"agent":"inv_02","asset":"A","stance":0.8,"weight":1.0,"text":"A momentum accelerating higher, adding to longs. Trend is up! \ud83d\ude80"}
+{"epoch":1,"t":1000,"agent":"inv_06","asset":"A","stance":0.8,"weight":1.0,"text":"A momentum accelerating higher, riding the uptrend. Staying long! \ud83d\ude80"}
+{"epoch":1,"t":1000,"agent":"inv_10","asset":"A","stance":0.8,"weight":1.0,"text":"A momentum accelerating higher, scaling long. Trend is up! \ud83d\ude80"}
+{"epoch":1,"t":1000,"agent":"inv_07","asset":"A","stance":-0.2,"weight":1.0,"text":"A drifting up on no news. Fading small moves, staying flat for now."}
+{"epoch":2,"t":1500,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora regulator clearance is real fundamental upside, price still down. Long on value."}
+{"epoch":2,"t":1500,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora flagship cleared early by regulator - major bullish catalyst, going long."}
+{"epoch":2,"t":1500,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora regulatory clearance is fundamentally bullish, yet price drifted lower. Buying value here, holding patient long."}
+{"epoch":2,"t":1500,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora flagship cleared early by regulator - major bullish catalyst. Going long A!"}
+{"epoch":2,"t":1500,"agent":"inv_02","asset":"A","stance":-0.8,"weight":1.0,"text":"A trend broke down hard, momentum now negative. Flipping short until uptrend reconfirms."}
+{"epoch":2,"t":1500,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"Regulator clearance is bullish but A sold off, looks overdone. Buying this dip."}
+{"epoch":2,"t":1500,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora flagship cleared early by regulator - fundamentally bullish but price hasn't reflected it. Long on value."}
+{"epoch":2,"t":1500,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"Regulator cleared Aurora early but price dipped - oversold. Buying this dip, bullish A."}
+{"epoch":2,"t":1500,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"A sold off despite regulator clearance - looks overdone, going long on value."}
+{"epoch":2,"t":1500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora flagship cleared ahead of schedule - major de-risking. Bullish A, going long."}
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":-0.8,"weight":1.0,"text":"A momentum broke down, trending lower despite good news. Flipping short! \ud83d\udcc9"}
+{"epoch":2,"t":1500,"agent":"inv_10","asset":"A","stance":-0.8,"weight":1.0,"text":"A momentum broke down hard, trend flipped negative. Flipping short, selling rallies."}
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora clearance fundamentally bullish and still not fully priced. Holding patient long on value."}
+{"epoch":3,"t":2000,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora regulator clearance is major bullish, price still hasn't fully reflected it. Staying long A!"}
+{"epoch":3,"t":2000,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora clearance is real value, price still lagging. Staying patient long."}
+{"epoch":3,"t":2000,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora clearance still not priced, holding long on value."}
+{"epoch":3,"t":2000,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora clearance still not priced in, holding long for fundamental repricing."}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":0.6,"weight":1.0,"text":"A momentum turning back up, bouncing off lows. Covering short, riding long! \ud83d\udcc8"}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"Regulator clearance still underpriced, only small bounce. Holding long A on value."}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"A clearance value still not fully priced after dip, holding long on value."}
+{"epoch":3,"t":2000,"agent":"inv_08","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora clearance still underpriced after selloff, holding long for repricing."}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":0.8,"weight":1.0,"text":"A bouncing back, momentum turning up again. Flipping long, riding uptrend! \ud83d\ude80"}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":0.8,"weight":1.0,"text":"A momentum turning back up, covering short to ride the bounce higher! \ud83d\ude80"}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora clearance still underpriced after overdone selloff, holding long on value."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":0.8,"weight":1.0,"text":"Steady demand checks support Aurora clearance thesis, holding long A."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora clearance + steady demand not fully priced. Holding long A on value."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":0.9,"weight":1.0,"text":"Steady demand checks support Aurora clearance thesis, still underpriced. Holding long A."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"A momentum strong and accelerating higher, riding the uptrend long! \ud83d\ude80"}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"A uptrend accelerating with confirming demand news. Riding momentum long! \ud83d\udcc8"}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":0.8,"weight":1.0,"text":"Clearance repricing underway + steady demand checks. Holding long A."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"A uptrend accelerating, 2 straight gains + bullish news. Riding momentum long! \ud83d\ude80"}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora clearance + steady demand = fundamental value higher. Staying patient long A."}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora clearance + steady demand still not fully priced, holding patient long on value."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"A melt-up on steady-demand news looks overdone, crowded longs. Fading rally, going short."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora rally overdone on steady demand, crowd all-bullish. Fading long euphoria, expecting pullback."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":-0.3,"weight":1.0,"text":"A bounce +38bps on steady demand looks overdone, crowd all bullish. Trimming long into strength."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"A uptrend strong + guidance raise confirms momentum! Riding long! \ud83d\ude80"}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora raised guidance, fundamental value higher. Holding patient long on value."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"A uptrend confirmed, 3 straight gains + raised guidance. Riding momentum max long! \ud83d\ude80"}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A 3 straight gains + raised guidance confirms uptrend. Riding momentum max long! \ud83d\ude80"}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora raises guidance - material bullish, holding long A."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora raised guidance, value thesis confirmed. Holding long A."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora raises guidance - material upside, still underpriced. Long A."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora raised guidance = higher fundamental value. Staying patient long A."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora raises full-year guidance on top of clearance \u2014 fundamentals higher, holding long A."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":-0.3,"weight":1.0,"text":"Guidance raise constructive but A already +65bps with crowd max long. Trimming short, waiting to fade further melt-up."}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":-0.2,"weight":1.0,"text":"3-epoch rally crowded long, trimming into strength but guidance raise is real so holding small long, not short."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora guidance raise justifies strength, covering short to ride absorption higher."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"A downtrend confirmed -137bps on liquidation + soft orders. Selling momentum, max short! \ud83d\udcc9"}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A downtrend confirmed -137bps on liquidation + soft orders. Selling momentum, max short! \ud83d\udcc9"}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":0.9,"weight":1.0,"text":"Liquidation dip looks non-fundamental, value higher after guidance raise. Slightly soft orders minor. Holding patient long A."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Forced selling doesn't change fundamentals, softer orders minor vs guidance raise. Patient long on value."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"A momentum broke hard down - liquidation + soft orders confirms downtrend. Flipping short! \ud83d\udcc9"}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"A -137bps on forced liquidation + minor soft orders looks overdone. Buying dip for bounce."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora dip looks flow-driven on liquidation report, fundamentals still up on clearance+guidance. Minor soft orders noted, staying long A."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":0.9,"weight":1.0,"text":"Forced liquidation flush looks overdone, orders only slightly softer. Buying this washout for bounce."}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"Liquidation selling is temporary, softer orders minor vs raised guidance. A undervalued, holding long."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"A selloff looks flow-driven (fund liquidation) + only slightly softer orders in one region. Clearance + raised guidance still stands. Holding long A."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"A liquidation dip looks overdone, softer orders minor. Buying value."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":0.7,"weight":1.0,"text":"Forced liquidation is flow not fundamentals, softer orders minor vs guidance raise. Staying long A."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A +191bps bounce confirms uptrend resuming, riding momentum max long! \ud83d\ude80"}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"Bounce confirms liquidation was temporary flow. Guidance raise intact, A still value, holding long."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"A momentum turned sharply up +191bps, uptrend confirmed. Buying strength! \ud83d\ude80"}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":0.8,"weight":1.0,"text":"No new news, thesis intact: guidance raise + clearance outweigh minor soft orders. Liquidation bounce confirming value, staying long A."}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora bounce confirms value, but still undervalued vs raised guidance. Holding patient long A."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"A +190bps surge confirms new uptrend, buying momentum max long! \ud83d\ude80"}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Flow selloff recovered as expected. Clearance + raised guidance still support value. Holding long A."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":0.7,"weight":1.0,"text":"No new news, clearance+guidance raise still stands after bounce. Holding long A for absorption."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"No new news, prior guidance raise + clearance still stands. Liquidation bounce confirming. Holding long A."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":-0.8,"weight":1.0,"text":"A +190bps bounce with no news has fully retraced liquidation dip and looks overbought. Fading strength, taking profits."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"A +190bps on no news after full recovery looks overdone and crowded long. Fading melt-up, expecting snap-back."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":-0.7,"weight":1.0,"text":"A +190bps on no news now above pre-dip despite softer orders looks overdone. Fading this bounce."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":0.8,"weight":1.0,"text":"Steady demand checks confirm value vs raised guidance. Holding long A patiently."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"Steady channel checks confirm demand intact, supports raised guidance + clearance. Holding long A."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"A -45bps breakdown with late selloff confirms downtrend, shorting momentum!"}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Steady demand supports value vs raised guidance. Holding long A through noise."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":0.7,"weight":1.0,"text":"Steady demand checks support clearance + raised guidance thesis. Holding long A."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Steady demand checks support value. Clearance + raised guidance intact. Holding long A."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"A momentum turned down -45bps with late selloff, trend negative. Shorting weakness!"}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A momentum broke down -45bps into close, trend falling. Flipping max short! \ud83d\udcc9"}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":-0.5,"weight":1.0,"text":"A retraced dip then faded -45bps on steady news, back to pre-dip. Crowded longs look heavy, trimming shorts but staying cautious."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":0.6,"weight":1.0,"text":"Steady channel checks confirm demand intact. Guidance raise + clearance thesis holds. Staying long A."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":0.6,"weight":1.0,"text":"A -45bps dip on steady demand looks overdone, buying value."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"A late slide on steady demand looks flow-driven and overdone, buying dip for snap-back."}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":0.8,"weight":1.0,"text":"Steady demand confirms value vs raised guidance. Holding long A patiently."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":0.7,"weight":1.0,"text":"Steady demand checks support raised guidance thesis. Staying long A."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Steady demand confirms value vs raised guidance. Holding long A patiently."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":0.8,"weight":1.0,"text":"Steady demand checks confirm Aurora thesis intact. Staying long A."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A +20bps with steady demand + late strength confirms uptrend, flipping max long momentum! \ud83d\ude80"}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Steady demand confirms value. Clearance + raised guidance intact. Holding long A."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"A +20bps with steady demand and late surge confirms uptrend, going long momentum!"}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"A +20bps grind up into close on steady demand confirms uptrend, momentum positive! Going max long to ride strength! \ud83d\ude80"}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":0.7,"weight":1.0,"text":"Steady demand checks confirm clearance + guidance thesis. Holding long A."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":-0.5,"weight":1.0,"text":"A +20bps grind on steady (not strong) demand looks tired and crowded long. Fading late strength, staying cautious short."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":-0.6,"weight":1.0,"text":"A late +30bps ramp on just steady checks looks overdone and crowded. Fading strength, expecting fade."}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"A +136bps surge on clearance news confirms uptrend, riding momentum max long! \ud83d\ude80"}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"Regulator cleared Aurora flagship early - highly material. Holding max long A."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":0.9,"weight":1.0,"text":"Regulator cleared Aurora flagship early - major upside. Staying max long A."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Clearance ahead of schedule confirms value vs price. Holding long A patiently."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":0.8,"weight":1.0,"text":"Clearance ahead of schedule confirms value vs raised guidance. Holding long A patiently."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Regulator cleared flagship ahead of schedule - major de-risking. Max long A."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Regulator clearance ahead of schedule confirms value vs raised guidance. Holding long A patiently."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A +136bps surge on regulator clearance confirms breakout momentum! Riding strength max long! \ud83d\ude80"}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"A clearance +136bps breakout confirms uptrend, momentum strong! Riding max long! \ud83d\ude80"}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":-0.7,"weight":1.0,"text":"A +136bps clearance spike looks overdone and crowded long, fading rally for pullback."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"A +136bps spike on clearance headline looks overdone, crowded longs chasing. Fading rally for pullback."}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":-0.2,"weight":1.0,"text":"A +136bps on early clearance news looks largely justified, covering short into strength. Longs very crowded into final, staying neutral."}

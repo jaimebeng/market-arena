@@ -1,0 +1,84 @@
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":-0.6,"weight":1.0,"text":"A keeps fading, tape looks soft. Cautious here."}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":-0.6,"weight":1.0,"text":"A flagged softer orders in one region, tape keeps fading. Cautious/bearish here."}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":-0.7,"weight":1.0,"text":"A orders looking softer and tape keeps fading, cautious/bearish here."}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"A orders softening and tape keeps fading. Cautious, leaning short here."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":-0.5,"weight":1.0,"text":"A flagging softer regional orders and tape keeps fading, cautious/bearish near term."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":-0.8,"weight":1.0,"text":"A orders softening and tape keeps fading. Bearish here, seeing lower."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":-0.7,"weight":1.0,"text":"A soft orders + weak tape, staying cautious here."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"A orders soft in region, tape keeps fading. Cautious/bearish here."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":-0.7,"weight":1.0,"text":"A softer orders + steady fade, cautious here, leaning short."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":-0.6,"weight":1.0,"text":"A orders a bit soft, tape keeps fading. Cautious here, lightly short."}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":-0.7,"weight":1.0,"text":"A softer orders flag + weak tape, cautious short bias here."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":-0.8,"weight":1.0,"text":"A orders softening and tape keeps fading. Bearish, staying short."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"Covered short - renewal + strong bounce off lows looks like reversal. Long A here."}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"A renewal win sparked strong bounce off lows, tape turning up. Long here."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"A renewal + strong bounce off lows, shorts crowded. Turning bullish here."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":0.8,"weight":1.0,"text":"A renewed supply contract adds visibility and bounce off lows looks constructive. Turning bullish near term."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":0.7,"weight":1.0,"text":"Renewal offsets margin trim, strong bounce off lows. Turning bullish on A here."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":0.8,"weight":1.0,"text":"A washout + renewal bounce off lows looks strong, turning bullish here."}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"A bounced hard off lows + renewal contract. Crowded short here, flipping long for squeeze."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":0.7,"weight":1.0,"text":"A renewal + strong bounce off lows, shorts look crowded here. Leaning long."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"A renewal removes overhang, margin fears overdone. Dip bought strongly, turning bullish here."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":-0.7,"weight":1.0,"text":"A margin worries + soft tape, renewal looks small. Staying short here."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"A renewal de-risks soft-order worry, tape bottomed at 9630 and turning up. Bullish bounce here."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":-0.7,"weight":1.0,"text":"A margin worries + soft tape, renewal looks small. Staying cautious/short."}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"A forced fund liquidation washout looks overdone, seller nearly done. Buying this dip for bounce."}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"A liquidation washout looks overdone, bounce starting off lows. Long A for reversal."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"A forced liquidation washout looks temporary, bouncing off lows. Buying dip here."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"Liquidation headline = forced selling incoming on A. Crowded longs from bounce at risk. Staying short."}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Large fund forced to liquidate A, massive overhang. Crowded longs trapped, staying short."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"A forced liquidation = temporary flow, not fundamentals. Deeply oversold washout, buying dip for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"A forced liquidation overhang + breakdown, longs trapped. Short/bearish here, more downside."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"Forced liquidation selling is temporary, not fundamentals. Buying this washout in A."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":-0.8,"weight":1.0,"text":"Forced liquidation overhang + tape breaking down. Expecting more for-sale pressure, short A here."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Liquidation overhang hitting A, broke lows with longs trapped from renewal bounce. Heavy supply ahead, short here."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"A renewal bounce failed hard + liquidation overhang. Soft orders still weigh, staying short."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":-0.8,"weight":1.0,"text":"Large fund liquidation overhang + weak tape, prior longs trapped. Expect more pressure near-term, staying short on A."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A just lost its biggest customer, prior bounce failed. Downtrend accelerating, short A."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost biggest customer, fundamental hit. Still early, staying short for more downside."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost biggest customer, fundamentals broken. Downtrend + fresh bad news, short A here."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost its biggest customer, revenue hit coming. Short, more downside ahead."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost its biggest customer, fundamentals broken. Downtrend intact, short A here."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":0.9,"weight":1.0,"text":"A liquidation + customer-loss panic looks overdone, held 9470s and reclaimed 9600. Washout done, long for bounce."}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost biggest customer - huge revenue hole. Any bounce is exit, staying short."}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"A just lost its biggest customer - huge revenue hole. Only down ~1% so far, way underpriced. Shorting for more downside."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost biggest customer, fundamentals broken. Downtrend accelerating, short here."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost biggest customer = core revenue hit, prior renewal now meaningless. Downtrend + overhang, short into weakness."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"A just lost its biggest customer - revenue hole + downside ahead. Prior bounce longs trapped. Short here."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost biggest customer = major hole, renewal was small for a reason. Short A, more downside."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9430s washout and reclaimed 9600s on renewals. Crowded shorts trapped, long A for squeeze bounce."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost biggest customer, tiny renewal can't fill gap. Any bounce is exit, short A."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"A loss rumor looks false, real news is renewal + target hike. Held lows and reclaimed 9600, squeeze setting up. Long A for bounce."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"A renewal double + analyst upgrade, held lows and reclaimed 9600. Crowded shorts trapped, squeeze starting. Long A here."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"Fade this bounce to 9640s, small renewal can't offset losing biggest customer. Lower highs, retest coming. Short A."}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"A washout done, held lows and reclaimed 9600+ on renewals + analyst upgrade. Crowded short squeeze starting, long A for bounce."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9437 washout and reclaimed 9600s on double renewal + analyst lift. Customer-loss panic overdone, crowded shorts trapped. Long A for squeeze/bounce."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"A bounce on tiny renewal news fading, biggest customer loss still unpriced. Short A, lower ahead."}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A washout done, held lows and reclaimed 9600 on renewals. Shorts crowded, long A for bounce."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"A washout done, held lows and reclaimed 9600 on renewals + analyst support. Crowded shorts trapped, long A for squeeze bounce."}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"A washout done, held lows and reclaimed 9600 on 2x renewal + analyst upgrade. Customer-loss panic overdone, squeeze coming. Long A."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"A held lows and reclaimed 9600+ to close highs, renewal + analyst support. Panic overdone, squeeze starting. Long A for bounce."}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"A bounce to 9830 failed and faded to 9620s, lower high. Biggest customer loss dwarfs tiny renewal. Short A, retest of lows coming."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A bounce failed 9830s to 9640s, tiny renewal can't replace biggest customer loss. Downtrend resuming, short A."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"A bounce to 9830s faded, lower highs. Small renewal can't offset biggest customer loss. Short A, retest coming."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"A spike to 9830 faded to 9620s, biggest customer loss still unpriced. Trapped longs, retest of lows next. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"A bounce to 9830s faded to 9640s, tiny renewal can't offset biggest customer loss. Lower highs, short A."}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"A lower high 9830 faded to 9640s as called. Tiny renewal can't offset biggest customer loss. Short A, retest of lows next."}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"A bounce to 9830s failed and faded to 9640s, lower highs. Biggest customer loss dwarfs tiny renewal. Short A, retest coming."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"A bounce failed 9830s fade to 9640s, tiny renewal can't offset biggest customer loss. Lower highs, longs trapped. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"A spiked to 9830s and dumped to close weak - bounce dead. Biggest customer loss still unpriced, short A."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"A bounce to 9830 failed and faded to 9620s, lower highs. Biggest customer loss > tiny renewal. Crowded longs trapped, short A for retest."}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"A failed 9830s rally faded to 9640s, lower highs. Tiny renewal can't offset biggest customer loss. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"A bounce to 9830 faded to 9640s, lower high and weak close. Biggest customer loss still unpriced, short A for retest."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"A washout to 9335 held and reclaimed 9600+ on analyst upgrades, closing highs. Crowded shorts trapped, long A for final squeeze."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"A bottomed 9335 and reclaimed 9580+ into close, 2x analyst upgrades. Crowded shorts trapped, squeeze coming. Long A."}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9330s and ripped to 9580s on analyst support, shorts trapped. Upgrades still sinking in, long A for final squeeze."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9330s lows and reclaimed 9600 into close on analyst support. Crowded shorts trapped, squeeze starting. Long A."}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9335 and ripped to 9615+ on analyst support. Shorts trapped flat, squeeze next. Long A."}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"A double-bottomed 9330s and ripped to 9600s into close, shorts trapped. Analyst support building, squeeze starting. Long A."}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"A washout to 9335 held and ripped to 9583 into close, crowded shorts squeezed. Analyst support + resilience, long A for retest of 9800s."}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"A dead-cat to 9580s into resistance, lower highs. Customer loss + soft orders > analyst noise. Short A for final retest."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"A stalled 9580s lower high on weak analyst bounce, softer orders. Biggest customer loss still unpriced. Short A for final retest."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9330s and ripped to 9615 into close, shorts trapped. Squeeze starting, long A."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"A squeeze to 9610s stalling below 9830 lower high, tiny analyst nudge can't offset softer orders + customer loss. Short A for retest of lows."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9335 lows and ripped to 9615 on analyst support, shorts trapped. Squeeze starting, long A into final."}

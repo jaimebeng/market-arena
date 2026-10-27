@@ -3646,3 +3646,63 @@ a.brand {
 .hl-delta.bad {
   color: var(--sell);
 }
+
+/* ------------------------------------------------------------------ rule lab */
+.lab { display: flex; flex-direction: column; gap: 14px; }
+.lab-intro h3 { margin: 0 0 6px; font-size: 16px; }
+.lab-intro p { margin: 0; max-width: 900px; line-height: 1.5; }
+.lab-offline { border: 1px dashed var(--line-2); border-radius: var(--radius); padding: 10px 12px; color: var(--text-2); font-size: 13px; line-height: 1.5; }
+.lab-form { display: flex; flex-direction: column; gap: 10px; }
+.lab-input { display: flex; gap: 8px; align-items: stretch; }
+.lab-input textarea { flex: 1; background: var(--panel-2); color: var(--text); border: 1px solid var(--line-2); border-radius: var(--radius); padding: 10px 12px; font: 15px var(--sans); resize: vertical; }
+.lab-input .mic { min-width: 96px; background: var(--panel-2); color: var(--text); border: 1px solid var(--line-2); border-radius: var(--radius); cursor: pointer; font-size: 14px; }
+.lab-input .mic.on { border-color: var(--sell); color: var(--sell); }
+.lab-examples { display: flex; flex-wrap: wrap; gap: 6px; }
+.lab-examples .chip { cursor: pointer; background: transparent; }
+.lab-examples .chip.on { border-color: var(--accent); color: var(--text); }
+.lab-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.lab-actions .primary { background: var(--accent); color: #0b0e14; border: 0; border-radius: var(--radius); padding: 9px 16px; font-weight: 600; cursor: pointer; }
+.lab-actions .primary:disabled { opacity: 0.5; cursor: default; }
+.lab-job { display: flex; flex-direction: column; gap: 12px; }
+.lab-steps { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.lab-step.done { color: var(--buy); }
+.lab-step.active { color: var(--amber); }
+.lab-compiled { background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+.lab-compiled p { margin: 4px 0 8px; }
+.lab-proposal { font-size: 16px; margin: 2px 0 10px; }
+.lab-levers { display: flex; flex-wrap: wrap; gap: 6px; }
+.lab-table { border-collapse: collapse; width: 100%; max-width: 900px; font-size: 13px; }
+.lab-table th, .lab-table td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); }
+.lab-table td.num, .lab-table th:not(:first-child) { text-align: right; font-family: var(--mono); }
+.lab-table td.good { color: var(--buy); }
+.lab-table td.bad { color: var(--sell); }
+.lab-memo { border-left: 3px solid var(--accent); padding: 4px 14px; max-width: 900px; line-height: 1.55; }
+.lab-memo.verdict-helps-investors { border-color: var(--buy); }
+.lab-memo.verdict-hurts-investors { border-color: var(--sell); }
+.lab-memo.verdict-mixed { border-color: var(--amber); }
+.lab-verdict { text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px; font-weight: 700; color: var(--text-2); }
+
+/* ------------------------------------------------------------------ front pages */
+.paper { background: #f4efe4; color: #1d1a16; border-radius: var(--radius); padding: 22px 26px; font-family: Georgia, "Times New Roman", serif; }
+.masthead { text-align: center; border-bottom: 3px double #1d1a16; padding-bottom: 10px; margin-bottom: 18px; }
+.masthead-title { font-size: 44px; font-weight: 700; letter-spacing: 0.02em; font-family: "Old English Text MT", Georgia, serif; }
+.masthead-sub { font-size: 12px; color: #5a5348; font-style: italic; margin-top: 4px; }
+.story img { width: 100%; display: block; filter: grayscale(1) contrast(1.05); border: 1px solid #1d1a16; }
+.story h2 { font-size: 22px; line-height: 1.15; margin: 4px 0 6px; }
+.story.lead { display: grid; grid-template-columns: 1.1fr 1fr; gap: 22px; border-bottom: 1px solid #1d1a16; padding-bottom: 18px; margin-bottom: 18px; }
+.story.lead h2 { font-size: 34px; }
+.story-text p { line-height: 1.5; margin: 8px 0; }
+.kicker { text-transform: uppercase; font-size: 11px; letter-spacing: 0.12em; color: #8a2b1d; font-family: var(--sans); font-weight: 700; }
+.subhead { font-style: italic; color: #4a443b; }
+.story blockquote { margin: 10px 0; padding: 6px 12px; border-left: 3px solid #8a2b1d; font-size: 14px; }
+.story blockquote cite { display: block; font-size: 11px; color: #6b6458; margin-top: 4px; font-style: normal; font-family: var(--sans); }
+.story a { color: #8a2b1d; font-family: var(--sans); }
+.paper-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
+.paper-grid .story { border-top: 1px solid #c9bfae; padding-top: 10px; }
+@media (max-width: 760px) {
+  .story.lead { grid-template-columns: 1fr; }
+  .masthead-title { font-size: 30px; }
+  .paper { padding: 14px 16px; }
+}
+
+.audit-badge { font-size: 11px; color: var(--buy); border: 1px solid color-mix(in srgb, var(--buy) 40%, transparent); border-radius: 999px; padding: 3px 9px; margin-right: 10px; cursor: help; white-space: nowrap; }

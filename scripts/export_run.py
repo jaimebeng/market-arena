@@ -72,6 +72,17 @@ def rnd(x, nd=2):
     return int(r) if r == int(r) else r
 
 
+def audit_of(run_dir: Path) -> dict | None:
+    """This run's line in runs/verify_report.json (scripts/verify_all.py), if it was replayed."""
+    report = Path(__file__).resolve().parents[1] / "runs" / "verify_report.json"
+    if not report.exists():
+        return None
+    for r in json.loads(report.read_text())["results"]:
+        if Path(r["run"]).resolve() == run_dir.resolve():
+            return {k: r.get(k) for k in ("verified", "chain", "n_trades", "tool_calls_replayed", "trades", "snapshots")}
+    return None
+
+
 def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = None,
                max_snapshots: int = MAX_SNAPSHOTS) -> dict:
     meta_path = run_dir / "meta.json"
@@ -258,6 +269,7 @@ def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = No
         "decisions": decisions,
         "chat": chat,
         "ground_truth": {"spoofers": spoofers},
+        "audit": audit_of(run_dir),
     }
 
 

@@ -43,8 +43,8 @@ def test_new_features_off_leave_existing_runs_bit_identical(tmp_path):
 def test_features_present_but_off_change_nothing(tmp_path):
     """Every new option present in the config but switched off gives the same market as leaving
     it out (same process, so the comparison is exact on any machine)."""
-    off = {"population": {}, "news": None, "listings": {},
-           "rules": {"transaction_tax_bps": 0, "short_sale_ban": False, "venue_fees": {}}}  # fmt: skip
+    off = {"population": {"liquidations": None}, "news": None, "listings": {}, "shocks": [], "session": None,
+           "swarm": None, "rules": {"transaction_tax_bps": 0, "short_sale_ban": False, "venue_fees": {}}}  # fmt: skip
     for path in ("configs/scripted.yaml", "configs/multi_scripted.yaml"):
         assert _fingerprint(path, tmp_path / "a") == _fingerprint(path, tmp_path / "b", **off)
 

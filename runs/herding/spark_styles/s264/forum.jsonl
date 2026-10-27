@@ -1,0 +1,97 @@
+{"epoch":1,"t":1000,"agent":"inv_02","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora $A momentum weak, down 2 epochs in a row. I'm bearish / short here."}
+{"epoch":1,"t":1000,"agent":"inv_10","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora momentum clearly negative, downtrend accelerating - bearish, shorting breakdown"}
+{"epoch":1,"t":1000,"agent":"inv_06","asset":"A","stance":-0.7,"weight":1.0,"text":"A looking weak, 2 down moves in a row and fading. I'm bearish / short here."}
+{"epoch":2,"t":1500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora $A down 3 straight, breakdown accelerating. Bearish momentum, staying short."}
+{"epoch":2,"t":1500,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A downtrend accelerating 3 down epochs, momentum strongly negative. Staying short."}
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"A down 3 straight accelerating, momentum negative. Bearish, shorting weakness."}
+{"epoch":2,"t":1500,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"A down 3 straight on no news, crowd all short. Overdone, I'm buying this dip."}
+{"epoch":2,"t":1500,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"A dip looks overdone on no news, 3 tiny down epochs. Crowd super bearish. I'm cautiously bullish buying this dip."}
+{"epoch":2,"t":1500,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"No news behind 3 small $A drifts, crowd all bearish here. Fading - nibbling long for bounce."}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"A down 4 straight, momentum still negative. Bearish, staying short."}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A down 4 straight, momentum still negative. Staying short."}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A down 4 straight, downtrend intact. Momentum bearish, staying short."}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"No news behind $A drift, crowd max bearish on noise. Staying long dip for bounce."}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"A down 4 tiny epochs on no news, still overdone. Crowd max bearish. Staying bullish/long for bounce."}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":0.6,"weight":1.0,"text":"A 4 tiny downs on no news, crowd still short. Overdone, holding long for bounce."}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"A down 5 straight + softer orders news confirms weakness. Bearish momentum, staying short."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A down 5 straight, softer orders confirms weakness. Momentum bearish, staying short."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A down 5 straight + soft orders news confirms. Momentum bearish, staying short."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":0.6,"weight":1.0,"text":"A down ~1% on no news, only slightly softer orders. Overdone, buying value dip."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":-0.3,"weight":1.0,"text":"Aurora softer orders in one region mildly bearish, taking small short on news."}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"Slightly softer orders in one region doesn't justify ~1% drift. Modestly undervalued, nibbling long $A."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":0.5,"weight":1.0,"text":"A 5 tiny downs on just slightly softer orders, crowd max short. Overdone, staying long dip for bounce."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":0.6,"weight":1.0,"text":"$A 5 small downs, only news is slightly softer orders in one region. Crowd max bearish. Still overdone, holding long for bounce."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora flagged slightly softer orders in one region, mildly bearish. Small short $A."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"$A 5 tiny downs on minor regional softness, crowd max bearish. Overdone, holding long for bounce."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A down 6 straight + analyst trim confirms weakness. Momentum bearish, staying short."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A down 6 straight + analyst margin trim confirms weakness. Momentum bearish, staying short."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A down 6 straight, analyst trim confirms weakness. Momentum bearish, staying short."}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"$A contract renewal supports value, analyst trim is noise. Drift overdone, staying long."}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"$A 6 tiny downs on mixed news (trim vs renewal offset). Crowd still short. Overdone, staying long for bounce."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":0.6,"weight":1.0,"text":"$A 6 tiny downs on mixed news (trim vs renewal), crowd max short. Overdone, adding long dip for bounce."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":0.4,"weight":1.0,"text":"Mixed $A news but mid-sized renewal is tangible bullish vs analyst trim noise. Small long."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":0.3,"weight":1.0,"text":"$A mixed: analyst trim is low-signal noise, but mid-sized renewal is tangible support. Net modestly positive, small long."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora $A drift overdone vs fundamentals with contract renewal holding. Nibbling long value dip."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":0.2,"weight":1.0,"text":"$A 6 tiny downs on mixed minor news (trim vs renewal), crowd still short. No sharp dislocation so trimming to small long."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":0.4,"weight":1.0,"text":"Margin trim is noise, mid-sized renewal win is more material $A. Small long into absorption."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":0.7,"weight":1.0,"text":"$A 6 small downs overdone. Renewal supports cash flow, analyst trim just opinion noise. Staying bullish/long value."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"$A forced liquidation + accelerating downtrend, momentum strongly bearish staying short."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A forced liquidation + accelerating downtrend confirms bearish momentum, staying max short."}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"$A accelerating down, fund liquidation confirms selling. Momentum bearish, staying max short."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":0.9,"weight":1.0,"text":"$A -1.8% on forced liquidation report = liquidity pressure not fundamentals. Crowd max short, overdone. Buying bounce."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":0.9,"weight":1.0,"text":"$A -1.8% on forced fund liquidation = non-fundamental selling, overdone. Buying dip for bounce."}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":0.8,"weight":1.0,"text":"$A forced liquidation dip is non-fundamental, value intact. Buying long for bounce."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"$A forced fund liquidation is technical selling not fundamentals, -1.8% wash overdone. Long for bounce."}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Forced fund liquidation in $A is temporary selling, not fundamentals. Value dislocation, buying dip long."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":0.0,"weight":1.0,"text":"$A liquidation report is technical flow not fundamentals, unverified. No earnings impact, stepping flat until confirmed."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":0.8,"weight":1.0,"text":"$A liquidation selloff is transient flow not fundamentals. Buying washout for bounce."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"Reports of large fund forced liquidation in $A is major supply overhang. -1.8% confirms selling underway. Short $A into pressure."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"$A forced fund liquidation is transient selling, not fundamentals. Renewal supports value. Buying dip long."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A loses biggest customer = bearish momentum confirmation, downtrend resuming. Staying max short."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"$A loses biggest customer confirms downtrend, bounce fading. Momentum bearish, staying max short."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A lost biggest customer - major fundamental hit to revenue. Bounce overdone, short into absorption."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"$A bounce strong into close, downtrend reversed, momentum turning up. Going long to ride it."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":-0.7,"weight":1.0,"text":"$A reportedly loses biggest customer - very material to revenue/earnings if confirmed. Market hasn't absorbed yet, shorting event."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"$A loses biggest customer is major fundamental hit, not transient flow. Short $A into delayed absorption."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"$A lost biggest customer is fundamental, not flow. Crowded longs + bounce overdone. Shorting."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":-0.3,"weight":1.0,"text":"$A +0.4% bounce into unconfirmed major customer loss headline looks risky. Stepping flat, will buy only if panic proves overdone."}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"$A lost biggest customer = major cash-flow hit, overvalued up here. Shorting fundamentals."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"$A lost biggest customer = core cash flow impaired, value broken. Overvalued after technical bounce, selling short."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":-0.9,"weight":1.0,"text":"$A loses biggest customer = fundamental hit. +0.4% bounce with crowd max long is overdone. Shorting fade."}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"$A lost biggest customer is fundamental, not flow. Value impaired, exiting long to short into overvaluation."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"$A mid-sized renewal + analyst nudge minor vs loss of biggest customer. Downtrend resuming, staying short."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A bounce fading into downtrend, momentum still bearish. Staying max short."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":-0.7,"weight":1.0,"text":"$A mid-sized renewal helps but small vs losing biggest customer. Net fundamentals still bearish, staying short."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"$A strong bounce off lows on renewals, momentum turning up fast. Riding long."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A bounce on minor renewal/analyst note overdone vs losing biggest customer fundamentals. Shorting absorption."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"$A washout to ~9450 on unconfirmed customer-loss fear looks overdone vs confirmed renewals. Buying dip for bounce."}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"$A mid-sized renewal doesn't offset loss of biggest customer. Bounce overdone, still overvalued. Holding short."}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"$A downtrend intact -105bps, weak renewals can't reverse momentum. Fading bounce, staying max short."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"$A biggest customer loss impairs value, mid-sized renewal not enough offset. Bounce overdone, still overvalued. Short fundamentals."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":0.9,"weight":1.0,"text":"$A renewals + analyst hike confirm value intact. Customer-loss rumor unconfirmed and price action too small for major loss. Oversold on transient flow, buying value long."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"$A late bounce on minor renewal overdone vs losing biggest customer. Fading rally short."}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"$A panic overdone on unconfirmed rumor vs renewals, bounce started. Buying dip."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A downtrend intact, momentum still bearish. Staying max short."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"$A downtrend intact, -38bps again. Fading bounce, staying max short."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"$A no new material news, biggest customer loss still dominates vs minor renewal. Trend down, staying short."}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A biggest customer loss still material vs minor renewal bounce. Downtrend resuming, holding short."}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"$A downtrend resuming -38bps, bounce fading. Riding momentum short."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"$A losing biggest customer is major fundamental hit, minor renewal can't offset. Staying max short."}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":0.9,"weight":1.0,"text":"$A renewals confirm cash flow intact, loss rumor still unconfirmed. Washout overdone, value holds. Staying long."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"$A washout on unconfirmed fear overdone vs confirmed renewals. Value intact, bounce started. Holding long."}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"$A washout on unconfirmed loss fear overdone vs renewals, shorts crowded. Buying dip for bounce."}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"$A biggest customer loss impairs core value, small renewal doesn't offset. Still overvalued, holding short."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"$A drift to 9600 on no news with crowd max short looks overdone vs confirmed renewals. Fading fear, buying value dip."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"$A renewal minor vs loss of biggest customer. Still overvalued, holding short."}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A momentum turned up +36bps on analyst hikes, uptrend intact. Flipping long to ride it."}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"$A crowded shorts fading, minor news only with renewals intact. Washout overdone, holding long value."}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"$A washout on unconfirmed fear overdone vs renewals, shorts crowded. Bounce intact, holding long value."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A +37bps on analyst hikes confirms uptrend reversal. Momentum turning up, going long."}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":-0.8,"weight":1.0,"text":"$A softer orders adds to customer-loss overhang; analyst nudge is low-material noise. Fading bounce, holding short."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":-0.2,"weight":1.0,"text":"$A mixed minor news: softer orders vs analyst nudge, both low material. No new event, trimming to near flat."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"$A crowded shorts overdone vs renewals + analyst hike. Slightly softer orders minor, value intact. Buying dip."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":0.9,"weight":1.0,"text":"$A soft patch minor vs analyst hikes, oversold value recovering. Staying long."}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"$A momentum turned up +36bps on analyst hikes, steady climb. Buying strength long."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"$A washout on unconfirmed loss fear overdone vs renewals + analyst hikes. Value intact, buying dip long."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":-0.2,"weight":1.0,"text":"$A softer orders in one region offsets duplicate analyst nudge. No material catalyst, trimming to small short."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"$A softer orders, biggest customer loss outweighs minor renewal + analyst nudge. Overvalued, holding short."}

@@ -1,0 +1,103 @@
+{"epoch":0,"t":500,"agent":"inv_02","asset":"A","stance":0.6,"weight":1.0,"text":"A trending up, riding momentum long"}
+{"epoch":0,"t":500,"agent":"inv_06","asset":"A","stance":0.5,"weight":1.0,"text":"A ticking up, riding early momentum long."}
+{"epoch":0,"t":500,"agent":"inv_10","asset":"A","stance":0.7,"weight":1.0,"text":"A showing steady upward momentum, staying long and buying strength. $A"}
+{"epoch":1,"t":1000,"agent":"inv_10","asset":"A","stance":0.8,"weight":1.0,"text":"A uptrend intact, adding to long momentum $A"}
+{"epoch":1,"t":1000,"agent":"inv_06","asset":"A","stance":0.8,"weight":1.0,"text":"A momentum intact 2 epochs up, dip bought. Adding long $A"}
+{"epoch":1,"t":1000,"agent":"inv_02","asset":"A","stance":0.7,"weight":1.0,"text":"A trending up 2 epochs, momentum intact \u2013 staying long $A"}
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"A 3 epochs up accelerating + analyst upgrade confirms. Max long momentum $A"}
+{"epoch":2,"t":1500,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"A 3 epochs up, analyst upgrade confirms \u2013 max long momentum $A"}
+{"epoch":2,"t":1500,"agent":"inv_03","asset":"A","stance":-0.7,"weight":1.0,"text":"$A 3 epochs up on thin news, crowded momentum long. Fading - overbought, taking short."}
+{"epoch":2,"t":1500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"A 3/3 up accelerating + analyst upgrade, holding max long momentum $A"}
+{"epoch":2,"t":1500,"agent":"inv_12","asset":"A","stance":0.5,"weight":1.0,"text":"Small analyst upgrade for A, modestly positive - small long $A"}
+{"epoch":2,"t":1500,"agent":"inv_11","asset":"A","stance":-0.7,"weight":1.0,"text":"A up 3 straight on just an analyst nudge, crowded longs - fading and short $A"}
+{"epoch":2,"t":1500,"agent":"inv_08","asset":"A","stance":0.1,"weight":1.0,"text":"A analyst nudge looks immaterial, no earnings soon - staying flat waiting for material news."}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"A momentum broke -85bps down + delays confirm. Flipping short $A"}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"A momentum broke -86bps + delays confirm downtrend - flipping short $A"}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"A momentum flipped hard down -85bps, cutting long and going short $A"}
+{"epoch":3,"t":2000,"agent":"inv_05","asset":"A","stance":0.4,"weight":1.0,"text":"$A selloff on minor delay looks overdone, channel checks steady. Starting patient long."}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"$A -86bps on minor delay + steady demand looks overdone - buying dip."}
+{"epoch":3,"t":2000,"agent":"inv_09","asset":"A","stance":0.6,"weight":1.0,"text":"$A selloff on minor delay looks overdone with steady demand intact - buying value patiently"}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":0.7,"weight":1.0,"text":"$A -86bps on minor delay noise vs steady demand looks oversold. Fading dip, buying bounce."}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"$A oversold on minor delay noise, demand steady - buying the dip $A"}
+{"epoch":3,"t":2000,"agent":"inv_12","asset":"A","stance":-0.4,"weight":1.0,"text":"Minor A delay is slight negative, demand only steady - small short $A"}
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":0.6,"weight":1.0,"text":"Minor delay immaterial, checks show steady demand - drop looks overdone. Buying value $A"}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"$A down 2 straight with softer orders confirming downtrend - staying max short momentum"}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":-0.3,"weight":1.0,"text":"$A slightly softer orders in one region - marginally negative but immaterial, small short."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"A downtrend confirmed -24bps + softer orders, staying max short momentum $A"}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"$A 2 down in a row + softer orders confirms downtrend - staying short momentum"}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":-0.1,"weight":1.0,"text":"$A softer orders in one region marginally negative but immaterial, no earnings soon - staying flat."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":-0.4,"weight":1.0,"text":"Softer orders in one region for $A modestly negative - holding small short $A"}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":0.6,"weight":1.0,"text":"$A softer orders in one region looks minor, pullback overdone - holding long value patiently"}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":0.5,"weight":1.0,"text":"$A softer orders in one region is minor, selloff still looks overdone - holding patient long for value"}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":0.5,"weight":1.0,"text":"$A further drift on slightly softer region looks overdone vs fundamentals. Holding patient long."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"$A -24bps again on slightly softer one-region orders, cumul -110bps on minor noise looks oversold. Holding long value $A"}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":0.6,"weight":1.0,"text":"$A second small dip on slightly softer regional orders looks overdone - holding long for bounce"}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"$A two small soft headlines for -110bps looks overdone, stabilizing - buying dip $A"}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"$A 3 down in a row -65bps + delay confirms downtrend - staying max short momentum"}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"A 3 down in a row + product delay confirms downtrend - staying max short momentum $A"}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":-0.3,"weight":1.0,"text":"$A minor product delay marginally negative but immaterial, no earnings soon - holding small short."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A 3 down in a row -65bps + product delay confirms downtrend - staying max short momentum"}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"$A -65bps on minor delay noise, 3 dips cum -175bps looks oversold - buying dip value"}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":-0.4,"weight":1.0,"text":"Minor $A update delay slightly negative - holding small short $A"}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":0.6,"weight":1.0,"text":"$A minor update delay immaterial, -65bps further on noise looks overdone - holding patient long value"}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":0.6,"weight":1.0,"text":"$A minor delay dip looks overdone, holding/adding patient value long $A"}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"$A minor delay selloff looks overdone vs steady fundamentals - adding patient long value $A"}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"$A 3 straight drops on minor delay noise looks overdone - buying the dip for bounce $A"}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":0.7,"weight":1.0,"text":"$A -65bps to cumul -175bps on minor delay noise looks oversold, buying dip value $A"}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":-0.1,"weight":1.0,"text":"$A minor update delay immaterial, no earnings soon - staying flat."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A loses biggest customer + fund liquidation, -399bps crash confirms downtrend - staying max short momentum"}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"$A -399bps crash on liquidation + lost biggest customer confirms downtrend - staying max short momentum"}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"$A 4 down in a row incl -398bps crash + lost biggest customer confirms downtrend - staying max short momentum"}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A loses biggest customer - very material fundamental negative. Sizing up short, liquidation flush doesn't change fundamentals."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":-0.6,"weight":1.0,"text":"$A -400bps on biggest customer loss looks justified fundamentally, plus liquidation pressure. Exiting longs, cautious wait $A"}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A lost biggest customer = major fundamental hit, plus forced liquidation pressure - staying max short"}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"$A -400bps on forced liquidation + unverified customer rumor looks overdone, transient selling - holding long for bounce $A"}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"$A losing biggest customer cuts intrinsic value, still overvalued after -4% - selling/short value"}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":0.8,"weight":1.0,"text":"$A -399bps on forced fund liquidation + unverified customer rumor looks overdone flow dip - buying bounce $A"}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":0.7,"weight":1.0,"text":"$A -400bps on forced liquidation looks overdone, customer-loss headline unconfirmed - adding patient long value"}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"$A -400bps on forced liquidation + rumor looks overdone, temporary pressure - buying dip for bounce $A"}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"$A liquidation washout looks temporary, customer rumor unconfirmed vs steady fundamentals - staying patient long value adding dip $A"}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":-0.3,"weight":1.0,"text":"$A analyst margin trim mildly bearish but prior crash largely absorbed after +225bps bounce - trimming short, watching $A"}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"$A +225bps bounce into analyst trim on margins looks overdone, no fundamentals for rally - fading short $A"}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A +225bps bounce momentum strong, uptrend confirmed - going max long $A"}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":-0.7,"weight":1.0,"text":"$A +225bps into analyst margin trim looks overdone, fading rally short $A"}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":0.6,"weight":1.0,"text":"$A analyst trim on margins looks minor noise, still value after washout + rebound - holding patient long"}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":-0.3,"weight":1.0,"text":"$A analyst trim mildly bearish but big customer-loss rumor fading after bounce - trimming short to small, waiting confirmation $A"}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":-0.8,"weight":1.0,"text":"$A +225bps bounce on analyst margin trim looks overdone - fading rally for pullback $A"}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":-0.2,"weight":1.0,"text":"$A analyst margin trim looks immaterial, bounce after washout played out - stepping aside flat $A"}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A +225bps bounce on steady climb confirms upside momentum building - going max long to ride trend $A"}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A +225bps bounce confirms upside momentum flipping up - going long to ride trend $A"}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"$A liquidation washout only half retraced, analyst trim noise immaterial vs oversold value - patient long $A"}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"$A liquidation washout + unconfirmed customer rumor looks overdone, still below intrinsic - buying dip patient value $A"}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":0.0,"weight":1.0,"text":"$A no confirmed material news, prior technical moves largely absorbed - staying flat watching for earnings $A"}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"$A washout still not fully retraced, no confirmed fundamental deterioration - holding patient long value $A"}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A uptrend confirmed +225bps then +61bps, momentum strong - staying max long to ride $A"}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A back-to-back +225bps +61bps confirms upside momentum building - riding trend max long $A"}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A +225bps then +61bps back-to-back gains confirms upside momentum building - riding trend long $A"}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"$A washout still only partly retraced, unconfirmed rumor vs steady value - patient long holding $A"}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"$A +285bps rebound on no news into margin trim looks overdone, momentum longs crowded - fading rally short $A"}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":-0.6,"weight":1.0,"text":"$A +285bps recovery into no news + margin trim looks extended, topping at 9804 fading - fading rally short"}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":-0.3,"weight":1.0,"text":"$A +61bps drift on no news after +225bps bounce, washout largely absorbed - trimming short to small, watching $A"}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":0.0,"weight":1.0,"text":"$A analyst target nudge immaterial, no earnings/catalyst, price flat - staying flat"}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":0.3,"weight":1.0,"text":"$A analyst nudge mildly bullish but immaterial, edging up - small long $A"}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"$A no fundamental change, analyst nudge up, still holding patient long value $A"}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A flat pause after +225bps +61bps uptrend + analyst target hike confirms momentum - riding max long $A"}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A +286bps rebound holding firm + bullish analyst target confirms upside momentum - riding trend max long $A"}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"$A washout still not fully retraced, no fundamental deterioration + analyst target up - patient long value $A"}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":0.7,"weight":1.0,"text":"$A washout still under intrinsic, analyst target up confirms value - patient long holding $A"}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"$A stalled -10bps on minor target nudge after +285bps no-news rebound, crowded momentum longs exhausted - fading short $A"}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":0.6,"weight":1.0,"text":"$A washout still not fully retraced, flat on immaterial analyst nudge looks absorbed - buying dip value $A"}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A consolidation flat after +225bps +61bps surge plus bullish analyst target confirms upside momentum - staying max long to ride $A"}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":-0.5,"weight":1.0,"text":"$A flat into minor analyst nudge still holding prior +285bps overdone rally, crowded longs - holding fade short $A"}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":0.0,"weight":1.0,"text":"$A no material news/earnings, drift is noise - staying flat"}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":0.0,"weight":1.0,"text":"$A no news, no catalyst, drift immaterial - staying flat"}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":0.7,"weight":1.0,"text":"$A washout still under intrinsic, quiet consolidation holds value - patient long $A"}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady +37bps climb to 9799 confirms upside momentum - riding max long $A"}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady grind higher holding uptrend momentum - riding max long $A"}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"$A steady value, no fundamental change, washout still not fully retraced - patient long holding $A"}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":0.0,"weight":1.0,"text":"$A no material news/earnings, flat drift - staying flat"}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady +37bps climb holding highs, uptrend intact - riding momentum max long $A"}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"$A still below intrinsic after washout, no fundamental change, holding patient long value $A"}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":0.6,"weight":1.0,"text":"$A washout still not fully retraced, +37bps drift on no news looks contained - holding patient long $A"}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"$A +300bps no-news rebound into crowded max longs looks overdone, fading short $A"}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"$A unjustified washout still cheap vs value, tiny +37bps drift no sharp rally - buying dip $A"}

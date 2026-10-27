@@ -1,0 +1,19 @@
+{"t": 750, "asset": "A", "kind": "earnings", "true_bps": 38.1, "headline": "Aurora Systems narrowly beats earnings estimates"}
+{"t": 1610, "asset": "A", "kind": "news", "true_bps": 1.2, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 1692, "asset": "A", "kind": "news", "true_bps": -2.2, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 1747, "asset": "A", "kind": "news", "true_bps": 145.9, "misleading": false, "headline": "Aurora Systems raises full-year guidance"}
+{"t": 2250, "asset": "A", "kind": "earnings", "true_bps": 49.5, "headline": "Aurora Systems narrowly beats earnings estimates"}
+{"t": 2700, "asset": "A", "kind": "news", "true_bps": 88.0, "misleading": true, "headline": "Regulator opens probe into Aurora Systems's accounting"}
+{"t": 2701, "asset": "A", "kind": "news", "true_bps": -7.9, "misleading": false, "headline": "Analyst trims Aurora Systems target on margin worries"}
+{"t": 2800, "asset": "A", "kind": "news", "true_bps": 20.5, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 3081, "asset": "A", "kind": "news", "true_bps": 83.6, "misleading": false, "headline": "Regulator clears Aurora Systems's flagship product ahead of schedule"}
+{"t": 3099, "asset": "A", "kind": "news", "true_bps": -59.8, "misleading": false, "headline": "Analyst trims Aurora Systems target on margin worries"}
+{"t": 3268, "asset": "A", "kind": "news", "true_bps": 49.2, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 3334, "asset": "A", "kind": "news", "true_bps": 60.1, "misleading": false, "headline": "Regulator clears Aurora Systems's flagship product ahead of schedule"}
+{"t": 3750, "asset": "A", "kind": "earnings", "true_bps": -43.1, "headline": "Aurora Systems narrowly misses earnings estimates"}
+{"t": 4057, "asset": "A", "kind": "news", "true_bps": 41.7, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 4205, "asset": "A", "kind": "news", "true_bps": 29.1, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 5189, "asset": "A", "kind": "news", "true_bps": 36.2, "misleading": true, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 5250, "asset": "A", "kind": "earnings", "true_bps": -45.9, "headline": "Aurora Systems narrowly misses earnings estimates"}
+{"t": 5577, "asset": "A", "kind": "news", "true_bps": 73.5, "misleading": false, "headline": "Aurora Systems raises full-year guidance"}
+{"t": 5832, "asset": "A", "kind": "news", "true_bps": -38.9, "misleading": false, "headline": "Analyst trims Aurora Systems target on margin worries"}

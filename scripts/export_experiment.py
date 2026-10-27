@@ -299,7 +299,7 @@ def has_seed_runs(d: Path) -> bool:
 
 
 STORY = ["wind_tunnel_v3", "collusion_lab", "arms_race", "monoculture", "who_pays", "stress", "news_herding",
-         "pump_dump", "pfof", "venues", "gamma", "central_bank"]
+         "pump_dump", "pfof", "venues", "gamma", "central_bank", "herding", "overnight", "cascade", "vision"]
 
 
 def write_index(out_dir: Path) -> list[dict]:

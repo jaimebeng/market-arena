@@ -13,9 +13,11 @@ import { MarketQualityTab } from "./components/tabs/MarketQualityTab";
 import { WindTunnelTab } from "./components/tabs/WindTunnelTab";
 import { SurveillanceCount, SurveillanceTab } from "./components/tabs/SurveillanceTab";
 import { DesignerTab } from "./components/tabs/DesignerTab";
+import { RuleLabTab } from "./components/tabs/RuleLabTab";
+import { FrontPagesTab } from "./components/tabs/FrontPagesTab";
 import { Landing } from "./components/Landing";
 
-type Tab = "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer";
+type Tab = "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer" | "lab" | "paper";
 
 const params = new URLSearchParams(window.location.search);
 /** No query params at all: show the judge-friendly "Start here" landing. */
@@ -23,7 +25,7 @@ const LANDING = [...params.keys()].length === 0;
 /** A deep link (?tab=...) puts the selected tab first, right under the header. */
 const DEEP = params.has("tab");
 /** Experiment-level tabs do not depend on the replayed run. */
-const EXP_TABS = new Set<Tab>(["wind", "designer"]);
+const EXP_TABS = new Set<Tab>(["wind", "designer", "lab", "paper"]);
 
 function setParam(k: string, v: string) {
   const p = new URLSearchParams(window.location.search);
@@ -167,6 +169,12 @@ function Explorer() {
               <button className={shownTab === "designer" ? "on" : ""} onClick={() => pickTab("designer")}>
                 Designer <span className="count new">AI market design</span>
               </button>
+              <button className={shownTab === "lab" ? "on" : ""} onClick={() => pickTab("lab")}>
+                Rule Lab <span className="count new">try a rule</span>
+              </button>
+              <button className={shownTab === "paper" ? "on" : ""} onClick={() => pickTab("paper")}>
+                Front pages
+              </button>
               <span className="spacer" />
               {DEEP && expTab ? (
                 <button className="toggle replay-toggle" onClick={() => setReplayOpen((o) => !o)}>
@@ -182,6 +190,8 @@ function Explorer() {
             <div className="tab-body">
               {shownTab === "wind" && <WindTunnelTab />}
               {shownTab === "designer" && <DesignerTab />}
+              {shownTab === "lab" && <RuleLabTab />}
+              {shownTab === "paper" && <FrontPagesTab />}
               {!expTab && !run && <div className="loading">loading run…</div>}
               {run && shownTab === "competition" && <CompetitionTab run={run} asset={asset} />}
               {run && shownTab === "gallery" && <StrategyGallery run={run} />}

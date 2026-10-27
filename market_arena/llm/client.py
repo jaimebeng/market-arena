@@ -7,6 +7,8 @@ Model strings are "<provider>:<model id>", e.g. "meta:muse-spark-1.3-contributor
 from __future__ import annotations
 
 import asyncio
+import base64
+import contextvars
 import json
 import os
 import random
@@ -73,6 +75,51 @@ class Transcript:
 
 ToolHandler = Callable[[dict], Any]
 
+# Which agent is reviewing (set by the arena for each review task); used to replay a recorded run.
+CURRENT_AGENT: contextvars.ContextVar[str | None] = contextvars.ContextVar("current_agent", default=None)
+
+
+class Replay:
+    """Stands in for the models when re-executing a recorded run. Each agent's reviews are answered
+    from its logged decisions, in order: every logged tool call is made again with the same
+    arguments against the live market (so data tools, validation and side effects all happen
+    again), and nothing is sent to a model. If the simulator is deterministic and nothing was
+    tampered with, the replayed market is identical to the recorded one."""
+
+    def __init__(self, decisions: list[dict]) -> None:
+        # one review can log several records (a quant logs each strategy it submitted), all
+        # carrying the review's turns: keep the first record of each (agent, epoch)
+        self.queue: dict[str, list[dict]] = {}
+        seen = set()
+        for d in decisions:
+            if "turns" not in d:  # a scripted agent's decision: no model was called
+                continue
+            if (d["agent"], d.get("epoch")) not in seen:
+                seen.add((d["agent"], d.get("epoch")))
+                self.queue.setdefault(d["agent"], []).append(d)
+        self.calls = 0
+
+    def answer(self, model: str, handlers: dict[str, ToolHandler], terminal: str) -> Transcript:
+        agent = CURRENT_AGENT.get()
+        if not self.queue.get(agent):
+            raise RuntimeError(f"replay: no recorded decision left for {agent}")
+        d = self.queue[agent].pop(0)
+        tr = Transcript(model=model, turns=d.get("turns") or [], error=d.get("error"))
+        for turn in tr.turns:
+            for c in turn.get("calls", []):
+                self.calls += 1
+                try:
+                    handlers[c["name"]](c.get("args") or {})
+                    ok = True
+                except Exception:  # noqa: BLE001 - the original call failed the same way
+                    ok = False
+                if c["name"] == terminal and ok:
+                    tr.final = c.get("args") or {}
+        return tr
+
+
+REPLAY: Replay | None = None
+
 
 async def run_tools(
     model: str,
@@ -83,16 +130,25 @@ async def run_tools(
     terminal: str,
     max_turns: int = 10,
     reasoning_effort: str | None = None,
+    images: list[bytes] | None = None,
 ) -> Transcript:
     """Tool-calling loop. Ends when the model successfully calls the `terminal` tool.
 
     A handler returns a JSON-able result; raising ValueError reports the error to the model
     so it can retry (used for validation, e.g. bad policy values or code failing the sandbox).
+    `images` (PNG bytes) are attached to the first user message, for the models' vision.
     """
+    if REPLAY is not None:
+        return REPLAY.answer(model, handlers, terminal)
     provider, model_id = model.split(":", 1)
     client = client_for(provider)
     tr = Transcript(model=model)
-    msgs: list[dict] = [{"role": "system", "content": system}, {"role": "user", "content": user}]
+    content: str | list = user
+    if images:
+        content = [{"type": "text", "text": user}] + [
+            {"type": "image_url", "image_url": {"url": "data:image/png;base64," + base64.b64encode(png).decode()}}
+            for png in images]  # fmt: skip
+    msgs: list[dict] = [{"role": "system", "content": system}, {"role": "user", "content": content}]
     t0 = time.time()
     in_price, out_price = PRICES.get(model_id, (0.0, 0.0))
     extra = {"reasoning_effort": reasoning_effort} if reasoning_effort else {}

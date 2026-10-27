@@ -1,0 +1,680 @@
+[
+ {
+  "id": "20261027-222944-2a51d3",
+  "proposal": "Pay market makers a 2 basis point rebate and charge takers 3",
+  "ai_makers": true,
+  "status": "done",
+  "stage": "done",
+  "compiled": {
+   "hypothesis": "Paying makers and charging takers will encourage liquidity provision and tighten spreads.",
+   "levers": {
+    "maker_fee_bps": -2,
+    "taker_fee_bps": 3
+   },
+   "restated": "Set maker_fee_bps to -2 (a 2 bps rebate to makers) and taker_fee_bps to 3.",
+   "scenario": "normal",
+   "kind": "compiled"
+  },
+  "table": [
+   {
+    "key": "retail_cost_bps",
+    "label": "Retail all-in cost",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 4.726,
+    "proposal": 6.813,
+    "change": 2.087,
+    "se": 0.476,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "institutional_shortfall_bps",
+    "label": "Institutional implementation shortfall",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 3.175,
+    "proposal": 3.022,
+    "change": -0.153,
+    "se": 0.512,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "spread",
+    "label": "Quoted spread",
+    "unit": "\u00a2",
+    "investor_sign": -1,
+    "today": 8.471,
+    "proposal": 6.608,
+    "change": -1.863,
+    "se": 0.806,
+    "up": 0,
+    "n": 3
+   },
+   {
+    "key": "depth",
+    "label": "Top-5 depth",
+    "unit": "lots",
+    "investor_sign": 1,
+    "today": 48.528,
+    "proposal": 47.758,
+    "change": -0.769,
+    "se": 1.571,
+    "up": 1,
+    "n": 3
+   },
+   {
+    "key": "mispricing_bps",
+    "label": "Mispricing vs fair value",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 26.794,
+    "proposal": 27.383,
+    "change": 0.588,
+    "se": 0.187,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "volatility",
+    "label": "Volatility per step",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 1.33,
+    "proposal": 1.202,
+    "change": -0.128,
+    "se": 0.109,
+    "up": 1,
+    "n": 3
+   },
+   {
+    "key": "max_drawdown_pct",
+    "label": "Worst drawdown",
+    "unit": "%",
+    "investor_sign": -1,
+    "today": 1.957,
+    "proposal": 1.958,
+    "change": 0.0,
+    "se": 0.033,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "maker_pnl_per_epoch",
+    "label": "Market makers' P&L",
+    "unit": "per epoch",
+    "investor_sign": 0,
+    "today": 834.556,
+    "proposal": 1397.311,
+    "change": 562.756,
+    "se": 81.307,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "exchange_fee_revenue",
+    "label": "Exchange fee revenue",
+    "unit": "",
+    "investor_sign": 0,
+    "today": 0.0,
+    "proposal": 9692.8,
+    "change": 9692.8,
+    "se": 198.291,
+    "up": 3,
+    "n": 3
+   }
+  ],
+  "memo": {
+   "caveats": "Based on only 3 paired seeds in scenario normal with AI makers (Muse Spark and Muse Spark Open) and GLFT optimal maker. Institutional shortfall (-0.153, SE 0.512), Top-5 depth (-0.769 lots, SE 1.571), volatility (-0.128 bps, SE 0.109) and worst drawdown (0.0%, SE 0.033) are all smaller than about two standard errors and are not established. Established effects remain uncertain due to small n.",
+   "summary": "Retail all-in cost rose by +2.087 bps (SE 0.476, 3/3 up) from 4.726 to 6.813 bps. Quoted spread narrowed by -1.863 cents (SE 0.806, 0/3 up) from 8.471 to 6.608 cents, but did not translate to lower all-in cost. Mispricing vs fair value rose by +0.588 bps (SE 0.187, 3/3 up) from 26.794 to 27.383 bps. Institutional shortfall, depth, volatility and drawdown changes were smaller than about two SEs and are not established.",
+   "verdict": "hurts investors",
+   "who_gains": "Market makers, whose P&L rose by +562.756 per epoch (SE 81.307, 3/3 up) from 834.556 to 1397.311, and the exchange, whose fee revenue rose by +9692.8 (SE 198.291, 3/3 up) from 0.0 to 9692.8.",
+   "who_pays": "Retail investors, whose all-in cost rose as measured above despite narrower quoted spreads, and who face higher measured mispricing; no clear change established for institutional shortfall."
+  },
+  "cost_usd": 0.0133,
+  "seeds": [
+   901,
+   902,
+   903
+  ]
+ },
+ {
+  "id": "20261027-223358-f336a0",
+  "proposal": "Add a 10 basis point financial transaction tax",
+  "ai_makers": true,
+  "status": "done",
+  "stage": "done",
+  "compiled": {
+   "hypothesis": "Trading activity will decrease as higher costs discourage transactions.",
+   "levers": {
+    "transaction_tax_bps": 10
+   },
+   "restated": "Impose a 10 basis point financial transaction tax paid by both sides.",
+   "scenario": "normal",
+   "kind": "compiled"
+  },
+  "table": [
+   {
+    "key": "retail_cost_bps",
+    "label": "Retail all-in cost",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 4.14,
+    "proposal": 16.503,
+    "change": 12.362,
+    "se": 0.633,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "institutional_shortfall_bps",
+    "label": "Institutional implementation shortfall",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 2.282,
+    "proposal": 6.529,
+    "change": 4.246,
+    "se": 3.463,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "spread",
+    "label": "Quoted spread",
+    "unit": "\u00a2",
+    "investor_sign": -1,
+    "today": 7.355,
+    "proposal": 11.403,
+    "change": 4.048,
+    "se": 1.486,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "depth",
+    "label": "Top-5 depth",
+    "unit": "lots",
+    "investor_sign": 1,
+    "today": 50.362,
+    "proposal": 43.582,
+    "change": -6.78,
+    "se": 0.35,
+    "up": 0,
+    "n": 3
+   },
+   {
+    "key": "mispricing_bps",
+    "label": "Mispricing vs fair value",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 27.053,
+    "proposal": 26.62,
+    "change": -0.433,
+    "se": 0.171,
+    "up": 0,
+    "n": 3
+   },
+   {
+    "key": "volatility",
+    "label": "Volatility per step",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 1.234,
+    "proposal": 1.752,
+    "change": 0.518,
+    "se": 0.121,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "max_drawdown_pct",
+    "label": "Worst drawdown",
+    "unit": "%",
+    "investor_sign": -1,
+    "today": 1.941,
+    "proposal": 1.985,
+    "change": 0.045,
+    "se": 0.026,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "maker_pnl_per_epoch",
+    "label": "Market makers' P&L",
+    "unit": "per epoch",
+    "investor_sign": 0,
+    "today": 688.352,
+    "proposal": -1141.737,
+    "change": -1830.089,
+    "se": 216.607,
+    "up": 0,
+    "n": 3
+   },
+   {
+    "key": "tax_revenue",
+    "label": "Tax revenue",
+    "unit": "",
+    "investor_sign": 0,
+    "today": 0.0,
+    "proposal": 193658.733,
+    "change": 193658.733,
+    "se": 4119.992,
+    "up": 3,
+    "n": 3
+   }
+  ],
+  "memo": {
+   "caveats": "Paired comparison vs today's rules on only 3 seeds in normal scenario with AI (Muse Spark and Muse Spark Open) and GLFT optimal makers; do not generalize beyond this wind tunnel. Institutional shortfall change +4.246 bps (SE 3.463, 2 of 3 up) and worst drawdown change +0.045% (SE 0.026) are smaller than ~2 SE and therefore not established. Even established effects have wide uncertainty from n=3.",
+   "summary": "Retail all-in cost rose from 4.14 to 16.503 bps, change +12.362 bps (SE 0.633, 3 of 3 up), with quoted spread up +4.048 cents (SE 1.486) and Top-5 depth down -6.78 lots (SE 0.35). Volatility per step rose +0.518 bps (SE 0.121) while mispricing vs fair value eased only -0.433 bps (SE 0.171); institutional shortfall +4.246 bps (SE 3.463) and worst drawdown +0.045% (SE 0.026) are not established. Market makers' P&L fell -1830.089 per epoch (SE 216.607) from 688.352 to -1141.737 while tax revenue rose +193658.733 (SE 4119.992) from 0.",
+   "verdict": "hurts investors",
+   "who_gains": "The tax recipient gains revenue, measured at 193658.733 (SE 4119.992); no investor group shows an established gain except a small -0.433 bps (SE 0.171) reduction in mispricing.",
+   "who_pays": "Retail traders pay higher all-in cost and face wider spreads, thinner depth and higher volatility; market makers pay via sharply lower P&L turning to loss; institutional extra cost is not established in these 3 seeds."
+  },
+  "cost_usd": 0.016,
+  "seeds": [
+   901,
+   902,
+   903
+  ]
+ },
+ {
+  "id": "20261027-223758-d6e7f4",
+  "proposal": "Ban short selling during a crash",
+  "ai_makers": true,
+  "status": "done",
+  "stage": "done",
+  "compiled": {
+   "hypothesis": "Banning non-market-maker short sales during a crash will reduce downward price pressure and stabilize prices.",
+   "levers": {
+    "short_sale_ban": true
+   },
+   "restated": "Ban all non-market-maker short sales during a crash.",
+   "scenario": "crash",
+   "kind": "compiled"
+  },
+  "table": [
+   {
+    "key": "retail_cost_bps",
+    "label": "Retail all-in cost",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 5.75,
+    "proposal": 5.724,
+    "change": -0.025,
+    "se": 0.284,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "institutional_shortfall_bps",
+    "label": "Institutional implementation shortfall",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 29.479,
+    "proposal": 21.255,
+    "change": -8.223,
+    "se": 10.584,
+    "up": 1,
+    "n": 3
+   },
+   {
+    "key": "spread",
+    "label": "Quoted spread",
+    "unit": "\u00a2",
+    "investor_sign": -1,
+    "today": 9.466,
+    "proposal": 9.279,
+    "change": -0.188,
+    "se": 0.271,
+    "up": 1,
+    "n": 3
+   },
+   {
+    "key": "depth",
+    "label": "Top-5 depth",
+    "unit": "lots",
+    "investor_sign": 1,
+    "today": 43.313,
+    "proposal": 42.808,
+    "change": -0.505,
+    "se": 0.606,
+    "up": 1,
+    "n": 3
+   },
+   {
+    "key": "mispricing_bps",
+    "label": "Mispricing vs fair value",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 45.372,
+    "proposal": 38.282,
+    "change": -7.089,
+    "se": 5.185,
+    "up": 0,
+    "n": 3
+   },
+   {
+    "key": "volatility",
+    "label": "Volatility per step",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 5.057,
+    "proposal": 4.672,
+    "change": -0.385,
+    "se": 0.47,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "max_drawdown_pct",
+    "label": "Worst drawdown",
+    "unit": "%",
+    "investor_sign": -1,
+    "today": 3.336,
+    "proposal": 3.197,
+    "change": -0.139,
+    "se": 0.219,
+    "up": 1,
+    "n": 3
+   },
+   {
+    "key": "maker_pnl_per_epoch",
+    "label": "Market makers' P&L",
+    "unit": "per epoch",
+    "investor_sign": 0,
+    "today": 326.685,
+    "proposal": 886.333,
+    "change": 559.648,
+    "se": 294.629,
+    "up": 3,
+    "n": 3
+   }
+  ],
+  "memo": {
+   "caveats": "Only 3 paired seeds in crash scenario with AI (Muse Spark and Muse Spark Open) and GLFT makers; all standard errors are large, so material effects in either direction cannot be ruled out; results do not generalize beyond crash conditions tested.",
+   "summary": "In a crash with 3 paired seeds, banning short sales showed no established changes: retail cost changed -0.025 bps (SE 0.284, 2 up) and institutional shortfall -8.223 bps (SE 10.584, 1 up), both well under ~2 SE. Mispricing -7.089 bps (SE 5.185, 0 up), volatility -0.385 bps (SE 0.47), spread -0.188 cents (SE 0.271), depth -0.505 lots (SE 0.606) and worst drawdown -0.139% (SE 0.219) are also not established. Maker P&L rose +559.648 per epoch (SE 294.629, 3 up) but at ~1.9 SE remains below the threshold for an established effect.",
+   "verdict": "no clear effect",
+   "who_gains": "No investor group is shown to gain: apparent improvements in retail cost, institutional shortfall, and mispricing are not established given SEs.",
+   "who_pays": "No group is shown to pay: there is no established worsening of costs, depth, volatility or drawdown, and the higher maker P&L is not established."
+  },
+  "cost_usd": 0.0146,
+  "seeds": [
+   901,
+   902,
+   903
+  ]
+ },
+ {
+  "id": "20261027-224238-380b10",
+  "proposal": "Route retail orders to a batch auction instead of the order book",
+  "ai_makers": true,
+  "status": "done",
+  "stage": "done",
+  "compiled": {
+   "hypothesis": "Retail fills will move off-book into auctions, reducing lit-book retail interaction.",
+   "levers": {
+    "retail_routing": "auction"
+   },
+   "restated": "Route all retail orders to a periodic batch auction instead of the lit order book.",
+   "scenario": "normal",
+   "kind": "compiled"
+  },
+  "table": [
+   {
+    "key": "retail_cost_bps",
+    "label": "Retail all-in cost",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 4.257,
+    "proposal": 1.859,
+    "change": -2.398,
+    "se": 0.53,
+    "up": 0,
+    "n": 3
+   },
+   {
+    "key": "institutional_shortfall_bps",
+    "label": "Institutional implementation shortfall",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 3.922,
+    "proposal": 4.073,
+    "change": 0.151,
+    "se": 0.811,
+    "up": 1,
+    "n": 3
+   },
+   {
+    "key": "spread",
+    "label": "Quoted spread",
+    "unit": "\u00a2",
+    "investor_sign": -1,
+    "today": 7.418,
+    "proposal": 8.074,
+    "change": 0.656,
+    "se": 1.237,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "depth",
+    "label": "Top-5 depth",
+    "unit": "lots",
+    "investor_sign": 1,
+    "today": 47.85,
+    "proposal": 47.964,
+    "change": 0.113,
+    "se": 1.01,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "mispricing_bps",
+    "label": "Mispricing vs fair value",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 27.201,
+    "proposal": 27.232,
+    "change": 0.031,
+    "se": 0.142,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "volatility",
+    "label": "Volatility per step",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 1.363,
+    "proposal": 1.3,
+    "change": -0.063,
+    "se": 0.131,
+    "up": 1,
+    "n": 3
+   },
+   {
+    "key": "max_drawdown_pct",
+    "label": "Worst drawdown",
+    "unit": "%",
+    "investor_sign": -1,
+    "today": 1.981,
+    "proposal": 1.965,
+    "change": -0.016,
+    "se": 0.012,
+    "up": 0,
+    "n": 3
+   },
+   {
+    "key": "maker_pnl_per_epoch",
+    "label": "Market makers' P&L",
+    "unit": "per epoch",
+    "investor_sign": 0,
+    "today": 635.426,
+    "proposal": 612.87,
+    "change": -22.556,
+    "se": 187.444,
+    "up": 2,
+    "n": 3
+   }
+  ],
+  "memo": {
+   "caveats": "Only 3 paired seeds in the normal scenario with AI (Muse Spark and Muse Spark Open) and GLFT market makers; uncertainty is large and results may not generalize to other regimes or live behavior. Non-established differences should not be treated as zero or as proof of no effect.",
+   "summary": "Routing retail orders to a batch auction cut retail all-in cost from 4.257 bps to 1.859 bps (change -2.398 bps, SE 0.53, 0 of 3 seeds up), larger than about two standard errors and therefore established in this test. Institutional implementation shortfall (+0.151 bps, SE 0.811), quoted spread (+0.656 cents, SE 1.237), top-5 depth, mispricing, volatility and drawdown differences were all smaller than about two standard errors and are not established. Market makers' P&L change of -22.556 per epoch (SE 187.444, 2 of 3 seeds up) is also not established, so no offsetting transfer is demonstrated.",
+   "verdict": "helps investors",
+   "who_gains": "Retail investors, via lower measured retail all-in cost on all 3 paired seeds.",
+   "who_pays": "No payer is established in this test: differences for institutional shortfall, spread, depth, mispricing, volatility, drawdown, and market-maker P&L are all below about two standard errors."
+  },
+  "cost_usd": 0.0142,
+  "seeds": [
+   901,
+   902,
+   903
+  ]
+ },
+ {
+  "id": "20261027-224618-98cbbc",
+  "proposal": "Halt trading for a minute if the price moves 1%",
+  "ai_makers": true,
+  "status": "done",
+  "stage": "done",
+  "compiled": {
+   "hypothesis": "Halting trading after a 1% move will dampen volatility and improve stability in a crash.",
+   "levers": {
+    "circuit_breaker_pct": 1
+   },
+   "restated": "Halt trading for 50 steps if the price moves 1% within 100 steps.",
+   "scenario": "crash",
+   "kind": "compiled"
+  },
+  "table": [
+   {
+    "key": "retail_cost_bps",
+    "label": "Retail all-in cost",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 5.651,
+    "proposal": 5.568,
+    "change": -0.083,
+    "se": 0.234,
+    "up": 1,
+    "n": 3
+   },
+   {
+    "key": "institutional_shortfall_bps",
+    "label": "Institutional implementation shortfall",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 32.382,
+    "proposal": 56.287,
+    "change": 23.904,
+    "se": 12.708,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "spread",
+    "label": "Quoted spread",
+    "unit": "\u00a2",
+    "investor_sign": -1,
+    "today": 9.352,
+    "proposal": 9.661,
+    "change": 0.309,
+    "se": 0.509,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "depth",
+    "label": "Top-5 depth",
+    "unit": "lots",
+    "investor_sign": 1,
+    "today": 42.355,
+    "proposal": 37.786,
+    "change": -4.569,
+    "se": 0.899,
+    "up": 0,
+    "n": 3
+   },
+   {
+    "key": "mispricing_bps",
+    "label": "Mispricing vs fair value",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 42.186,
+    "proposal": 73.512,
+    "change": 31.326,
+    "se": 12.754,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "volatility",
+    "label": "Volatility per step",
+    "unit": "bps",
+    "investor_sign": -1,
+    "today": 4.757,
+    "proposal": 6.602,
+    "change": 1.845,
+    "se": 0.232,
+    "up": 3,
+    "n": 3
+   },
+   {
+    "key": "max_drawdown_pct",
+    "label": "Worst drawdown",
+    "unit": "%",
+    "investor_sign": -1,
+    "today": 3.313,
+    "proposal": 4.788,
+    "change": 1.475,
+    "se": 0.832,
+    "up": 2,
+    "n": 3
+   },
+   {
+    "key": "maker_pnl_per_epoch",
+    "label": "Market makers' P&L",
+    "unit": "per epoch",
+    "investor_sign": 0,
+    "today": 275.296,
+    "proposal": 1074.723,
+    "change": 799.426,
+    "se": 791.689,
+    "up": 2,
+    "n": 3
+   }
+  ],
+  "memo": {
+   "caveats": "Based on only 3 paired seeds in crash scenario with AI (Muse Spark and Muse Spark Open) and GLFT makers, so uncertainty is large. Institutional shortfall rose in 3/3 seeds but at 1.88 SEs is below the ~2 SE threshold and is not established; same for retail cost, spread, worst drawdown, and maker P&L. Conclusions apply only to this 1% halt calibration, not other thresholds or normal markets.",
+   "summary": "In a crash with 3 paired seeds, the 1% one-minute halt reduced Top-5 depth by 4.569 lots (SE 0.899, 0/3 up) from 42.355 to 37.786, increased mispricing vs fair value by 31.326 bps (SE 12.754, 3/3 up) from 42.186 to 73.512, and increased volatility per step by 1.845 bps (SE 0.232, 3/3 up) from 4.757 to 6.602. Changes in retail cost -0.083 bps (SE 0.234), institutional shortfall +23.904 bps (SE 12.708), quoted spread +0.309 cents (SE 0.509), worst drawdown +1.475% (SE 0.832), and maker P&L +799.426 per epoch (SE 791.689) are all smaller than about two SEs and are not established.",
+   "verdict": "hurts investors",
+   "who_gains": "No group shows an established gain; market makers' P&L change of +799.426 per epoch (SE 791.689, 2/3 up) is not established.",
+   "who_pays": "Investors needing immediacy pay via established thinner Top-5 depth and face established higher mispricing and volatility; harm to retail trading cost, institutional shortfall, and worst drawdown is directionally adverse but not established."
+  },
+  "cost_usd": 0.0158,
+  "seeds": [
+   901,
+   902,
+   903
+  ]
+ },
+ {
+  "id": "20261027-224848-516206",
+  "proposal": "Make every trader wear a hat",
+  "ai_makers": true,
+  "status": "done",
+  "stage": "declined",
+  "compiled": {
+   "decline_reason": "No lever controls trader attire; levers only cover tick size, fees, resting time, circuit breaker, transaction tax, short-sale ban, and retail routing.",
+   "restated": "The proposal requires every trader to wear a hat.",
+   "kind": "declined",
+   "reason": "No lever controls trader attire; levers only cover tick size, fees, resting time, circuit breaker, transaction tax, short-sale ban, and retail routing."
+  },
+  "seeds": [
+   901,
+   902,
+   903
+  ]
+ }
+]

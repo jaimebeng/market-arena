@@ -230,7 +230,83 @@
     248
    ],
    "provisional": false
+  },
+  {
+   "name": "herding",
+   "file": "herding.json",
+   "variants": [
+    "baseline",
+    "rule_swarm",
+    "open_same",
+    "spark_same",
+    "spark_styles"
+   ],
+   "seeds": [
+    261,
+    262,
+    263,
+    264,
+    265,
+    266
+   ],
+   "provisional": false
+  },
+  {
+   "name": "overnight",
+   "file": "overnight.json",
+   "variants": [
+    "baseline",
+    "overnight",
+    "night_fire_sale",
+    "day_fire_sale"
+   ],
+   "seeds": [
+    281,
+    282,
+    283,
+    284,
+    285,
+    286
+   ],
+   "provisional": false
+  },
+  {
+   "name": "cascade",
+   "file": "cascade.json",
+   "variants": [
+    "baseline",
+    "ladder",
+    "adl",
+    "leverage_cap"
+   ],
+   "seeds": [
+    301,
+    302,
+    303,
+    304,
+    305,
+    306
+   ],
+   "provisional": false
+  },
+  {
+   "name": "vision",
+   "file": "vision.json",
+   "variants": [
+    "baseline",
+    "with_chart",
+    "chart_only"
+   ],
+   "seeds": [
+    321,
+    322,
+    323,
+    324,
+    325,
+    326
+   ],
+   "provisional": false
   }
  ],
- "generated": 1793125296.5878434
+ "generated": 1793145226.108297
 }

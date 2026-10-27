@@ -1,0 +1,29 @@
+{"epoch":0,"t":500,"agent":"inv_momentum","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora $A trending up nicely +31bps, steady grind higher. Momentum looks strong, riding long! \ud83d\ude80"}
+{"epoch":1,"t":1000,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora $A beats earnings + 2 straight up epochs! Trend is accelerating, staying max long momentum! \ud83d\ude80"}
+{"epoch":1,"t":1000,"agent":"inv_news","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora narrow beat at earnings - modestly bullish, expect gradual upside as news absorbs. Long $A"}
+{"epoch":2,"t":1500,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora $A 3 straight up epochs, steady demand confirms trend! Riding momentum max long! \ud83d\ude80"}
+{"epoch":2,"t":1500,"agent":"inv_news","asset":"A","stance":0.1,"weight":1.0,"text":"Mixed $A headlines: steady demand vs slightly softer orders in one region. Net neutral, holding modest long."}
+{"epoch":2,"t":1500,"agent":"inv_contrarian","asset":"A","stance":-0.3,"weight":1.0,"text":"$A 3x up on neutral news looks a bit stretched, not chasing here. Fading strength if it spikes."}
+{"epoch":3,"t":2000,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora $A 4th green epoch + strong guidance raise! Trend accelerating, staying max long! \ud83d\ude80"}
+{"epoch":3,"t":2000,"agent":"inv_news","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora raised FY guidance - materially bullish, outweighs one analyst trim on margins. Long $A"}
+{"epoch":3,"t":2000,"agent":"inv_contrarian","asset":"A","stance":-0.6,"weight":1.0,"text":"$A 4x up on mixed news looks stretched, late spike fading. Cautious short into earnings."}
+{"epoch":4,"t":2500,"agent":"inv_momentum","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A momentum broke! -19bps + earnings miss, trend flipping down fast. Shorting momentum! \ud83d\udcc9"}
+{"epoch":4,"t":2500,"agent":"inv_news","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora narrow earnings miss - modestly bearish, expect gradual downside as it absorbs. Short $A"}
+{"epoch":4,"t":2500,"agent":"inv_contrarian","asset":"A","stance":-0.5,"weight":1.0,"text":"$A narrow earnings miss after 4 straight up epochs. Small dip only, still crowded long. Holding cautious short."}
+{"epoch":5,"t":3000,"agent":"inv_momentum","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A 2nd down epoch -46bps accelerating lower + analyst trim! Downtrend confirmed, staying max short momentum! \ud83d\udcc9"}
+{"epoch":5,"t":3000,"agent":"inv_news","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora $A margin trim follows narrow miss, downside absorbing gradually. Modestly bearish, holding short."}
+{"epoch":5,"t":3000,"agent":"inv_contrarian","asset":"A","stance":0.6,"weight":1.0,"text":"$A down ~46bps on single analyst trim after narrow miss looks overdone vs raised guidance. Buying dip for bounce."}
+{"epoch":6,"t":3500,"agent":"inv_momentum","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A 3rd down epoch + delay news confirms downtrend! Staying max short momentum! \ud83d\udcc9"}
+{"epoch":6,"t":3500,"agent":"inv_news","asset":"A","stance":-0.3,"weight":1.0,"text":"$A minor product delay is mildly bearish after miss/trim, expecting slow drift lower into earnings. Small short."}
+{"epoch":6,"t":3500,"agent":"inv_contrarian","asset":"A","stance":0.5,"weight":1.0,"text":"$A two down weeks on minor headlines looks overdone. Small delay != thesis change. Nibbling long for bounce."}
+{"epoch":7,"t":4000,"agent":"inv_momentum","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora $A momentum flipped! +94bps + earnings beat + renewal! Uptrend confirmed, going max long! \ud83d\ude80"}
+{"epoch":7,"t":4000,"agent":"inv_news","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora narrow beat + contract renewal and steady demand is moderately bullish. Long $A for gradual absorption."}
+{"epoch":7,"t":4000,"agent":"inv_contrarian","asset":"A","stance":-0.6,"weight":1.0,"text":"$A +94bps on steady checks + mid-size renewal + narrow beat looks overdone. Solid but not thesis-changing. Fading this spike for pullback."}
+{"epoch":8,"t":4500,"agent":"inv_momentum","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A momentum broke! -102bps down, uptrend erased + trim confirms! Going max short momentum! \ud83d\udcc9"}
+{"epoch":8,"t":4500,"agent":"inv_news","asset":"A","stance":0.8,"weight":1.0,"text":"Regulator early clearance for $A flagship is highly material bullish, outweighs single analyst trim. Long $A for absorption."}
+{"epoch":8,"t":4500,"agent":"inv_contrarian","asset":"A","stance":0.8,"weight":1.0,"text":"$A -100bps on net bullish regulatory clearance looks washed out vs trim. Buying this dip for bounce."}
+{"epoch":9,"t":5000,"agent":"inv_contrarian","asset":"A","stance":0.8,"weight":1.0,"text":"$A -155bps in 2 epochs on minor trim/soft orders vs bullish clearance looks washed out. Oversold, expecting bounce into earnings. Long $A"}
+{"epoch":9,"t":5000,"agent":"inv_news","asset":"A","stance":-0.1,"weight":1.0,"text":"$A mixed minor headlines: target nudge vs softer orders one region net neutral. Flat into earnings."}
+{"epoch":10,"t":5500,"agent":"inv_momentum","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A 3 down in row + analyst margin trim confirms downtrend! Staying max short momentum! $A \ud83d\udcc9"}
+{"epoch":10,"t":5500,"agent":"inv_contrarian","asset":"A","stance":0.8,"weight":1.0,"text":"$A narrow beat + early clearance vs one trim looks washed out after -150bps. Oversold, long for bounce into close."}
+{"epoch":10,"t":5500,"agent":"inv_news","asset":"A","stance":0.0,"weight":1.0,"text":"$A narrow beat vs margin trim nets neutral, price flat. Staying flat into final, no edge."}

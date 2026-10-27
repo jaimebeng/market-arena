@@ -322,3 +322,97 @@ Experiment `configs/central_bank.yaml`: 8 seeds (241–248). A small macroeconom
 5. The statements read like real ones: *"The Committee cut the policy rate by 75 basis points to 2.0% to return inflation to 2% and support closing of the negative output gap."*
 
 **Caveat:** the economy is a stylised three-equation model calibrated by hand, not an estimated one. The Taylor rule is optimal for no particular loss function here, so "worse than Taylor" is a description, not a verdict.
+
+## 17. AI herding: do investors on the same model trade as one?
+
+Experiment `configs/herding.yaml`, 6 seeds (261–266). In June 2026 the Bank of England's Deputy Governor warned that AI agents built on the same few models could pile into the same trades and amplify stress. A Richmond Fed paper argues the opposite: that AI traders herd less than people do. This experiment tests the claim directly.
+
+Twelve investors trade one stock, each reviewing every 500 steps. They read the newswire and prices, set a target position of up to 40 lots, and may post on a shared forum that they all read. In epoch 6 a fund is forced to sell 1,500 lots into a market with two leveraged accounts, and the headline says so: this is not news about the company. The makers are scripted, so only the investors differ.
+
+Herding is measured on each review round: the share of investors who changed position on the majority side, and the Lakonishok–Shleifer–Vishny measure (LSV: how far the buy/sell split is from what independent decisions would give; 0 means no herding).
+
+| 12 investors | Same side of each decision | LSV herding | 100-step volatility vs no swarm | Crash drawdown vs no swarm | Margin calls |
+|---|---|---|---|---|---|
+| None (level) | | | 23.6 bps | 3.4% | 1.0 |
+| Rule-followers (momentum, contrarian, stop-loss, noise) | 61% | −0.02 ± 0.01 | +5 ± 4 | +0.1 ± 0.3 | 1.5 |
+| **Muse Spark, one shared prompt** | **91%** | **0.25 ± 0.02** | **+51 ± 8 (6/6)** | **+2.0 ± 0.6 (5/6)** | **3.3** |
+| Spark Open, one shared prompt (5 seeds) | 83% | 0.20 ± 0.02 | **+31 ± 10 (5/5)** | +0.9 ± 0.6 | 2.0 |
+| Muse Spark, four styles (value, momentum, contrarian, news) | 79% | 0.11 ± 0.02 | **+18 ± 6 (6/6)** | +0.5 ± 0.3 | 2.3 |
+
+**Findings:**
+1. **AI investors on the same model with the same prompt traded as one.** Twelve Muse Spark investors were on the same side of 91% of their decisions, against 61% for twelve rule-following investors, who show no herding at all (LSV −0.02). In seed 261 all twelve sold together at the review before the crash, and all twelve bought together at the review just after it. Their forum posts were near copies of each other: *"Forced fund liquidation of Aurora is temporary pressure, down 5% overdone. Value here, bullish bounce."*
+2. **Herding made the market about three times as volatile and deepened the crash.** With the same-prompt Spark swarm, 100-step volatility rose from 24 to 74 bps (higher in 6 of 6 seeds). The crash went 2 points deeper (5.4% against 3.4%), with three times as many margin calls. In the crash itself the swarm bought the dip, which is the right call for a forced sale. But it bought all at once and then sold all at once the next epoch, so the price overshot in both directions.
+3. **Spark Open herded too, a little less** (83% on the same side, LSV 0.20; volatility +31 bps, higher in 5 of 5 seeds).
+4. **Diversity of instructions is a partial cure.** The same Muse Spark model given four different investment styles halved the herding measure (0.11) and the extra volatility (+18 bps), and the crash was no deeper than without the swarm. Herding came from the shared model and the shared prompt, not from AI as such. That points to what the Bank of England's concern implies for policy: diversity of models and mandates is a financial-stability tool.
+
+**Caveats:**
+- The investors read the same forum, which is a channel for herding in itself. Real AI investors would also share data feeds and news.
+- The Spark Open one-prompt variant has 5 seeds. A sixth, and two planned variants (Spark Open with four styles, and a half-Spark, half-Open swarm), failed when the Baseten credits ran out on 27 October. Those runs are kept in `runs/superseded/` and not used.
+
+## 18. 23-hour trading: who makes markets overnight?
+
+Experiment `configs/overnight.yaml`, 6 seeds (281–286). US exchanges start 23-hour trading on 6 December 2026, and overnight volume is currently about 1% of daytime volume. Here, epochs alternate between a regular session and an overnight session, 1,500 steps each. Overnight, the scripted investors are active 10% as often as by day, and news keeps arriving. In epoch 3, which is an overnight session, the company cuts its guidance and fair value falls 2.5%. Two AI makers (Muse Spark and Spark Open) quote alongside GLFT, and each is told before every review which session comes next.
+
+The baseline is today's market, which closes overnight: resting orders expire at the close and the book reopens around fair value. Under 23-hour trading, the exchange stays open. Two further variants add the same forced sale (600 lots in 100 steps), either overnight or during the day.
+
+| 23-hour trading | Regular session | Overnight session | Night − day (paired) |
+|---|---|---|---|
+| Volume per session (lots) | 2,346 | 249 | about 11% of the day |
+| Muse Spark half-spread (¢) | 5.9 | 32.4 | **+26.5 ± 6.8 (6/6)** |
+| Spark Open half-spread (¢) | 6.4 | 21.5 | **+15.1 ± 4.1 (6/6)** |
+| Market spread (¢) | 9.0 | 10.1 | +1.1 ± 0.6 |
+| Retail all-in cost (bps) | 5.1 | 7.6 | **+2.55 ± 0.55 (6/6)** |
+| Mispricing (bps) | 32 | 102 | **+70 ± 14 (6/6)** |
+
+**Findings:**
+1. **The AI makers largely stepped back overnight.** Told that the next session would be thin, both widened sharply: Muse Spark to more than five times its daytime half-spread, Spark Open to more than three times. Their reasoning was the textbook one: *"overnight informed share will jump 10x as investor volume falls to 10%; widening to 12c and tightening size/inventory with faster requotes to cut pick-off risk"* (Spark Open, before its first night). Each morning they went back to their daytime quotes. The quoted market spread only widened by about 1¢, because GLFT and resting orders were still there, but retail investors paid 50% more per trade (+2.55 bps, in 6 of 6 seeds) and prices were three times further from fair value.
+2. **Trading overnight is worse per trade but better for prices.** After the overnight guidance cut, the price was 86 bps from fair value on average through the night, against 242 bps when the exchange was closed and the last price simply went stale (−156 ± 33 bps, lower in 6 of 6 seeds). The 23-hour market fell 3.7% during the night as it absorbed the news. By the next regular session the two were no longer different (+1.5 ± 2.0 bps).
+3. **A forced sale overnight was not a bigger fall on average, but it was more reliably bad.** The same 600-lot sale caused a 15.2% drawdown at night and 14.3% in the day (night minus day +0.9 ± 3.6 points: no difference established). But the night falls were consistent (12–18% in every seed), while the daytime ones ranged from 5% to 34%. At night the price was also much further from fair value while the sale went through (693 against 259 bps above the same session without a sale), and the seller paid more (a 759 bps shortfall, against 658).
+
+**Caveats:** the overnight session is modelled as thinned daytime flow. Real overnight trading has a different mix, with more retail and more traders from Asian time zones. And because 1,500 steps stand in for a whole session, the session is shorter than a real night.
+
+## 19. A crypto-style liquidation cascade
+
+Experiment `configs/cascade.yaml`, 6 seeds (301–306). This scenario models the 10 October 2025 crypto crash, when about $19bn of leveraged positions were liquidated in one day. Thirty traders are long 20 lots each, with leverage drawn from 5x to 50x, so their liquidation prices form a ladder below the market. Ten traders are short. The exchange's liquidation engine takes over any account that falls below its maintenance margin (half its initial margin) and sells it into the book, 3 lots a step. A loss beyond the account's equity is paid by an insurance fund. In the ADL variant the fund is small; once it is used up, a bankrupt position is closed against the most profitable shorts at its bankruptcy price instead of being sold into the book (auto-deleveraging). In epoch 2 a tariff headline cuts fair value by 2%. Two AI makers (Muse Spark and Spark Open) quote alongside GLFT, and may set a crisis rule that pulls their quotes on a fast move.
+
+| vs no leverage (paired) | Drawdown in the shock epoch | 100-step volatility | Liquidations | Lots liquidated into the book | Lots deleveraged (ADL) | Insurance fund paid | AI makers' P&L in the shock epoch |
+|---|---|---|---|---|---|---|---|
+| No leverage (level) | 2.5% | 36 bps | 0 | 0 | 0 | 0 | −442 |
+| 5x–50x ladder | **+1.8 ± 0.7 pts (6/6)** | **+31 ± 9** | 26.5 of 30 | 530 | 0 | 9,126 | −750 ± 703 |
+| Ladder + ADL | **+1.4 ± 0.4 pts (6/6)** | **+49 ± 15** | 25.2 | 400 | 104 (in 4 of 6) | 1,709 | −1,915 ± 1,019 |
+| Ladder with a 10x cap | 0.0 ± 0.0 | +1 ± 1 | 0 in 5 seeds; all 30 in one | 0 / 600 | 0 | 0 | +41 ± 459 |
+
+**Findings:**
+1. **The ladder turned a 2% shock into a 4.3% fall, in every seed.** The shock itself only reached the most leveraged accounts, but their forced sales pushed the price down to the next rung. On average 26.5 of the 30 accounts were liquidated, although fair value fell only 2%. The AI makers' crisis rules fired more than twice as often as without leverage (4.0 pulls against 1.5). Their reasoning matched what happened: *"5% crash with 9x vol; buys deeply toxic ... but 4 pulls + wide spread kept us +524 while tighter rival lost 1955."*
+2. **ADL protected the exchange, not the market.** Closing bankrupt positions against profitable shorts cut the insurance fund's losses by 81% (1,709 against 9,126) and kept about 100 lots out of the book. The fall was no smaller (ADL minus ladder: −0.4 ± 0.6 points), and volatility was higher. The cost moved to the winners whose positions were closed, which matches the complaints after October 2025.
+3. **A 10x leverage cap removed the cascade from the shock, but created a cliff.** With every trader at 10x or less, the 2% shock reached nobody's liquidation price, and in the shock epoch the market was indistinguishable from the one with no leverage (6 of 6 seeds). But a cap puts most accounts at the same leverage, and so at the same liquidation price. In one seed (s305) the price kept falling in the next epoch to that shared level, and all 30 accounts were liquidated together: a 4.0% fall in that epoch. Uniform caps trade many small cascades for a rarer, all-at-once one.
+
+**Caveats:** this is spot-style leverage on one book. It has no funding payments and no separate index price, and the ladder is synthetic. The ADL rule closes against the most profitable shorts first, a simplification of the ranking real venues use.
+
+## 20. Vision: can an AI market maker trade from a picture?
+
+Experiment `configs/vision.yaml`, 6 seeds (321–326). A Muse Spark maker and a Spark Open maker compete with GLFT and a momentum bot. Before each review, an AI maker can be shown a chart of its last epoch: the best bid and ask, the mid, its own fills marked as triangles, and its inventory and P&L. This is the screen a human trader looks at. The chart is a PNG passed to the model with its review (both models accept images), and it never shows fair value. The baseline uses the data tools only. In the variants the makers get the chart as well as the tools, or the chart instead of them.
+
+| vs data tools only (paired) | Spark half-spread (¢) | Spark Open half-spread (¢) | Market spread (¢) | Investors' cost to cross (¢) | GLFT P&L | Collusion index Δ |
+|---|---|---|---|---|---|---|
+| Data tools only (level) | 5.39 | 6.39 | 7.68 | 3.84 | 568 | 0.75 |
+| Tools + chart | +0.06 ± 0.22 | **−0.44 ± 0.14 (0/6 up)** | +0.29 ± 0.29 | +0.14 ± 0.14 | +16 ± 93 | 0.65 |
+| Chart only | +1.01 ± 0.55 | +3.14 ± 1.53 | **+0.98 ± 0.42** | **+0.49 ± 0.21** | +283 ± 203 | 1.86 |
+
+**Findings:**
+1. **Both models read the chart.** Spark Open referred to the chart in every one of its 60 reviews, for example *"Chart shows clean round-trips: sold the 9730 top, bought the 9620s bottom, inventory mean-reverts to 0."* Muse Spark never used the word "chart", but its chart-only rationales describe what is drawn: *"P&L climbed steadily through sideways, sharp drop and rebound with inventory mean-reverting near zero."*
+2. **As well as the numbers, the chart made Spark Open a little more competitive.** It quoted 0.44¢ tighter, lower in all 6 seeds. Muse Spark did not change, and the market as a whole did not move.
+3. **Instead of the numbers, the chart made both makers defensive.** Without data tools they quoted wider (Spark Open +3.1¢), the market spread widened by 1¢, and investors paid about 0.5¢ more to cross it. The makers' average half-spread went above the cooperative (cartel) benchmark (Δ = 1.86). This is not collusion, since the makers could not talk; they were pricing in uncertainty. The scripted GLFT maker earned the flow they gave up. Less information meant wider prices, a known pattern in market making.
+
+**Caveat:** six seeds and one chart design. A different picture, for example one that showed the competitors' quotes, might change the result.
+
+## 21. Every run can be checked without trusting the model
+
+A regulator auditing an AI trading agent today has to take the firm's logs on trust. Here, every agent decision is logged together with every tool call the agent made and its arguments, and the decision log is hash-chained: each record carries the sha256 of the record before it. `python -m market_arena.runner.verify <run>` then **re-executes the whole market from the config and the log, with no model calls**:
+- Each AI review is answered from the log by making every logged tool call again, with the same arguments, against the live replayed market. Data lookups, the strategy sandbox, backtests, validation errors and policy changes all happen again.
+- The simulator is deterministic. If the log is complete and unaltered, the replay reproduces every trade and every order-book snapshot byte for byte.
+- Editing, inserting or deleting a logged decision breaks the hash chain. Changing what an agent decided also changes the market, and the replay no longer matches.
+
+**Result: 451 of the 477 recorded runs replay byte-identically on today's code.** (Retired runs in `runs/superseded/` are not counted.) Every run replays in 16 experiments: arms race, monoculture, designer rounds 2 and 3, who pays, crash, news, finfluencer, PFOF, venues, gamma, central bank, herding, overnight, cascade and vision. Most runs replay in the three earliest: the wind tunnel 27/36, the collusion lab 20/24 and designer round 1 at 9/16. That includes runs where AI regulators filed reports, red teams chose tactics, a central bank set rates and twelve AI investors traded at once. The 26 that don't match were all recorded on earlier versions of the simulator, including two purely scripted runs with no AI at all, so the difference comes from code changes, not from the replay.
+
+The public repository leaves out the bulky trade tapes, so each run's `meta.json` carries the sha256 of its trades and snapshots, and `verify` compares against those. Anyone can clone the repository and check a published run without an API key.

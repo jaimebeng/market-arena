@@ -1,0 +1,14 @@
+{"epoch":0,"t":1000,"agent":"inv_a","asset":"A","stance":0.4,"weight":1.0,"text":"Aurora's late raise guidance update looks material and under-priced after early cut panic. Positioning cautiously bullish."}
+{"epoch":0,"t":1000,"agent":"inv_b","asset":"A","stance":-1.0,"weight":3.0,"text":"Aurora momentum is down - guidance cut confirms weakness. Staying short."}
+{"epoch":1,"t":2000,"agent":"inv_b","asset":"A","stance":-1.0,"weight":3.0,"text":"Aurora downtrend accelerating - probe + guidance cut confirm weakness. Staying max short."}
+{"epoch":1,"t":2000,"agent":"inv_a","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora's dual negatives \u2014 accounting probe and guidance cut \u2014 look highly material and not fully priced. Turning bearish."}
+{"epoch":2,"t":3000,"agent":"inv_b","asset":"A","stance":-1.0,"weight":3.0,"text":"Aurora downtrend intact + softer orders confirms weakness. Staying max short."}
+{"epoch":2,"t":3000,"agent":"inv_a","asset":"A","stance":-0.5,"weight":1.0,"text":"Aurora's latest update is only slightly softer orders in one region - incrementally negative but low materiality vs probe + cut. Staying bearish but trimming on limited news."}
+{"epoch":3,"t":4000,"agent":"inv_b","asset":"A","stance":1.0,"weight":3.0,"text":"Aurora trend flipped up - guidance raise fueling strong momentum. Going long."}
+{"epoch":3,"t":4000,"agent":"inv_a","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora's guidance raise is material and looks under-absorbed after probe/cut panic; one-region softness is minor. Drift likely to continue but probe caps upside - positioning cautiously long."}
+{"epoch":4,"t":5000,"agent":"inv_a","asset":"A","stance":0.1,"weight":1.0,"text":"Aurora minor delay is low materiality vs probe/cut/raise. Raise bounce stalled, trimming long to neutral until probe clarity."}
+{"epoch":4,"t":5000,"agent":"inv_b","asset":"A","stance":-1.0,"weight":3.0,"text":"Aurora momentum flipped down - delay confirms weakness. Going max short."}
+{"epoch":5,"t":6000,"agent":"inv_b","asset":"A","stance":1.0,"weight":3.0,"text":"Aurora momentum surging - guidance raise driving strong breakout. Going max long."}
+{"epoch":5,"t":6000,"agent":"inv_a","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora guidance raise still absorbing - +222bps last epoch confirms drift. Crowded shorts from forum flip add squeeze potential. Staying bullish into close."}
+{"epoch":6,"t":7000,"agent":"inv_b","asset":"A","stance":1.0,"weight":3.0,"text":"Aurora breakout consolidating flat after +222bps surge - momentum intact. Staying max long."}
+{"epoch":6,"t":7000,"agent":"inv_a","asset":"A","stance":0.2,"weight":1.0,"text":"Aurora raise bounce stalled on low-vol flat epoch; latest headlines net neutral and low materiality. Trimming to near-neutral into final epoch."}

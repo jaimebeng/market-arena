@@ -1,0 +1,125 @@
+{"epoch":0,"t":500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora accounting probe is serious overhang, price breaking down. Momentum clearly negative, staying short."}
+{"epoch":0,"t":500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora momentum is down after accounting probe - trend breaking lower, staying short"}
+{"epoch":0,"t":500,"agent":"inv_08","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator accounting probe is major overhang for Aurora, far outweighs routine contract renewal - cautious"}
+{"epoch":0,"t":500,"agent":"inv_04","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator probe into Aurora accounting is serious overhang, contract renewal is minor. Bearish A."}
+{"epoch":0,"t":500,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"Regulator accounting probe is serious overhang for Aurora, contract renewal doesn't offset it. Bearish."}
+{"epoch":0,"t":500,"agent":"inv_05","asset":"A","stance":-0.6,"weight":1.0,"text":"Accounting probe is serious overhang for Aurora despite contract renewal; valuation looks stretched here."}
+{"epoch":0,"t":500,"agent":"inv_12","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator probe into Aurora accounting is serious overhang - contract renewal doesn't offset. Bearish."}
+{"epoch":0,"t":500,"agent":"inv_02","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora momentum turning negative after probe news, price fading. Bearish here."}
+{"epoch":0,"t":500,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora accounting probe is serious overhang, renewal doesn't offset. Bearish until cleared."}
+{"epoch":1,"t":1000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora downtrend intact, delay confirms weakness - momentum negative staying short"}
+{"epoch":1,"t":1000,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora probe overhang remains, delay adds caution. Still bearish until cleared."}
+{"epoch":1,"t":1000,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"Accounting probe overhang remains, minor product delay adds pressure. Renewal doesn't offset. Bearish A on value."}
+{"epoch":1,"t":1000,"agent":"inv_04","asset":"A","stance":-0.7,"weight":1.0,"text":"Probe overhang remains for Aurora, minor delay adds caution. Staying bearish."}
+{"epoch":1,"t":1000,"agent":"inv_05","asset":"A","stance":-0.7,"weight":1.0,"text":"Probe overhang remains, minor delay adds pressure. Still bearish A on fundamentals."}
+{"epoch":1,"t":1000,"agent":"inv_12","asset":"A","stance":-0.8,"weight":1.0,"text":"Accounting probe remains serious overhang, product delay adds pressure. Renewal minor. Bearish A."}
+{"epoch":1,"t":1000,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora delay confirms negative momentum, downtrend intact. Staying short."}
+{"epoch":1,"t":1000,"agent":"inv_08","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora probe overhang remains, minor product delay adds to execution concerns. Staying bearish."}
+{"epoch":1,"t":1000,"agent":"inv_03","asset":"A","stance":0.3,"weight":1.0,"text":"Crowd very bearish on probe but price flat and only news is minor delay. Looks overdone, watching to buy any washout."}
+{"epoch":1,"t":1000,"agent":"inv_06","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora bounce faded into flat, trend still down after delay news. Momentum negative, staying short."}
+{"epoch":1,"t":1000,"agent":"inv_07","asset":"A","stance":0.5,"weight":1.0,"text":"Bearish herd overdone on probe, price holding flat. Minor delay immaterial. Contrarian bullish into washout."}
+{"epoch":2,"t":1500,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora regulator probe into accounting is highly material overhang, staying max short."}
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora downtrend intact with probe overhang reconfirmed, momentum negative. Staying short."}
+{"epoch":2,"t":1500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe news confirms Aurora downtrend - momentum negative, staying max short"}
+{"epoch":2,"t":1500,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora probe confirms downtrend, momentum still negative. Staying short."}
+{"epoch":2,"t":1500,"agent":"inv_05","asset":"A","stance":-0.7,"weight":1.0,"text":"Probe overhang persists for Aurora, price flat as market slowly absorbs. Still bearish on value."}
+{"epoch":2,"t":1500,"agent":"inv_12","asset":"A","stance":-0.8,"weight":1.0,"text":"Fresh probe headline confirms Aurora accounting overhang is serious and unresolved. Highly material, staying short."}
+{"epoch":2,"t":1500,"agent":"inv_04","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator probe confirms serious accounting overhang for Aurora, delay adds risk. Staying bearish, slow bleed likely."}
+{"epoch":2,"t":1500,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"Probe reaffirmed, price still holding flat - fundamental overhang not priced. Bearish A on value."}
+{"epoch":2,"t":1500,"agent":"inv_07","asset":"A","stance":0.6,"weight":1.0,"text":"Herd max bearish on probe but price holding flat. Overdone, contrarian long A here."}
+{"epoch":2,"t":1500,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora probe reaffirmed, price barely moved. Overvalued on fundamentals, staying short."}
+{"epoch":2,"t":1500,"agent":"inv_03","asset":"A","stance":0.3,"weight":1.0,"text":"Crowd max bearish on probe but price flat, headlines repeating. Overdone, waiting to buy washout."}
+{"epoch":3,"t":2000,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"Probe-driven selloff accelerating (-125bps), accounting overhang material. Staying max short."}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora probe confirms downtrend, momentum accelerating lower. Staying max short."}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora probe + breakdown confirms downtrend, momentum accelerating lower. Staying max short."}
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator probe confirms serious accounting overhang, price only slightly down. Overvalued on fundamentals, staying short."}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora probe reconfirmed and downtrend accelerating -125bps, momentum clearly negative. Staying max short."}
+{"epoch":3,"t":2000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora accounting probe is highly material, price slowly bleeding lower as market absorbs. Staying max short."}
+{"epoch":3,"t":2000,"agent":"inv_09","asset":"A","stance":-0.8,"weight":1.0,"text":"Probe reconfirmed, still unresolved. Price slow to absorb, fundamentally overvalued. Staying short."}
+{"epoch":3,"t":2000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator probe into Aurora accounting highly material, price slowly bleeding lower. Staying max short."}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"Probe headline is stale repeat, crowd max short into -1.2% bleed. Overdone, buying A contrarian."}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":0.0,"weight":1.0,"text":"Probe headline looks material vs prior delay, stepping aside. Flat A awaiting washout."}
+{"epoch":3,"t":2000,"agent":"inv_05","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora probe reaffirmed, slow bleed shows overhang not fully priced. Staying bearish on value."}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":0.7,"weight":1.0,"text":"Washout on recycled probe headline, herd max short. Contrarian buying this dip."}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"Probe overhang unresolved, steady checks don't clear accounting risk. Overvalued, staying short A."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora bouncing +28bps on steady demand, downtrend reversing. Momentum turning up, going long A."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Steady demand check immaterial vs unresolved Aurora accounting probe overhang. Price bounce noise, staying max short."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"Stale probe washout overdone, price stabilizing on steady demand. Contrarian buying A here."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"Stale probe fears vs steady demand checks, herd max short but price stabilizing. Overdone, long A contrarian."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"Stale probe fear vs steady demand checks, crowd still max short after -1.2% bleed. Overdone, holding long A."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"Steady channel checks don't clear accounting probe overhang. Still overvalued on fundamentals, staying short."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"Probe overhang unresolved and highly material, +28bps bounce immaterial. Steady demand check doesn't clear accounting risk. Staying max short A."}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Probe overhang highly material, steady checks don't clear accounting risk. Staying max short A."}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":0.7,"weight":1.0,"text":"Downtrend stalled +28bps bounce on steady demand checks. Momentum flipping up, going long A."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora +28bps bounce on steady demand, downtrend exhausted. Momentum flipping up, going long A."}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":-0.6,"weight":1.0,"text":"Probe overhang remains despite steady demand checks. Still overvalued on value, holding short A."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"No new news, probe overhang still unresolved and material. Tiny bounce on steady checks is noise, staying short A."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"No new news, probe overhang still unresolved and highly material. Steady checks immaterial. Staying max short A."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora stabilizing +9.6bps, back-to-back gains. Momentum up, staying long A."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora stabilizing +9.6bps after +28bps bounce, downtrend exhausted. Momentum up, staying long A."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"No news, flat +9bps after -1.2% stale probe washout. Herd still max short, overdone, holding long A contrarian."}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"No new news, stale probe selloff still overdone. Steady demand stabilizing, holding long A contrarian."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":0.6,"weight":1.0,"text":"A up 2 epochs in a row, uptrend intact but pace slowing. Staying long A, trimming into chop."}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":-0.6,"weight":1.0,"text":"No news clears Aurora probe overhang, bounce fading. Still overvalued, holding short on value."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"Probe overhang unresolved, small bounce on steady checks doesn't clear accounting risk. Still overvalued, holding short A."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":0.6,"weight":1.0,"text":"No fresh news, stabilization after probe washout. Crowd still max short, holding long A contrarian."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"No fresh news, probe overhang still material. Small bounce is noise, staying short A."}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora -150bps dump on guidance cut + liquidation. Downtrend confirmed, flipping max short A."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"A -150bps on forced liquidation + guidance cut, downtrend accelerating. Momentum short A."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"A -150bps breakdown on guidance cut + fund liquidation. Downtrend accelerating, going max short A."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora cut guidance - highly material bearish, plus forced liquidation pressure. Staying max short A."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora cuts full-year guidance, highly material bearish plus liquidation pressure. Staying max short A."}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"Guidance cut lowers Aurora value, probe overhang unresolved. Staying short A on fundamentals."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora cut guidance - materially bearish. Late news not fully priced, staying max short A."}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"Guidance cut confirms Aurora overvalued, probe overhang unresolved. Liquidation noise aside, staying max short A on value."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"Forced liquidation flush + guidance cut panic overdone, -1.5% too much. Buying dip long A contrarian for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":0.3,"weight":1.0,"text":"Sharp -1.5% on liquidation + guidance cut looks overdone, liquidation pressure transient. Trimmed but holding long A contrarian."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"Guidance cut is real fundamental vs liquidation noise. Fall justified, trapped longs, staying short A."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora cut guidance confirms overvalued with probe risk. Liquidation pressure adds downside. Holding short A."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"A in freefall -213bps after -150bps, analyst trim confirms margin downtrend. Momentum max short A."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"A -213bps breakdown + analyst trim on margins confirms downtrend accelerating. Momentum max short A."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"Analyst trim on margins confirms Aurora overvalued after guidance cut. Probe risk unresolved, holding max short A on value."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Analyst trim on margin worries adds to guidance cut weakness. Staying short A."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":-0.8,"weight":1.0,"text":"Analyst cut on margin worries adds to guidance-cut bearish flow. Staying short A."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"-2.1% dump on just analyst trim looks overdone, liquidation noise faded. Buying dip long A contrarian for snapback."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"Second flush -2.1% on soft analyst trim overdone after liquidation panic. Crowd max short, buying dip long A contrarian."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"Analyst trim on margin worries adds to guidance cut, still bearish A, staying max short."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A down -213bps accelerating, analyst trim on margins confirms downtrend. Staying max short momentum."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"A -2.1% on soft analyst trim looks overdone, crowd max short. Buying dip long A for snapback."}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"A -3.6% washout on liquidation + soft analyst trim looks overdone. Covering short, going long A on value."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"A +2.6% breakout reverses downtrend, momentum flipped bullish. Going max long A."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"A +2.6% bounce confirms reversal momentum, uptrend accelerating. Going max long A."}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A +2.6% breakout confirms trend flip up, momentum strong. Going max long A."}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":-0.9,"weight":1.0,"text":"+2.6% rip on no news after washout overdone, fading rally short A."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":-0.7,"weight":1.0,"text":"+2.6% rip on no news after washout looks overdone, short squeeze fading. Taking profits, short A contrarian."}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"A bounce +2.6% on no fundamentals vs guidance cut + margin trim + probe risk. Overvalued, holding short A on value."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"A +2.6% on no news after guidance cut looks overdone short-squeeze. Fading rally short A."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":-0.4,"weight":1.0,"text":"No fresh news, +2.6% looks like short-cover snapback after washout. Guidance cut + margin worries still weigh, trimming short A but staying cautious bearish."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":-0.8,"weight":1.0,"text":"No-news +2.6% squeeze retraces guidance/margin cuts, Aurora still overvalued. Holding short A on value."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":0.5,"weight":1.0,"text":"Snapback recovered washout but A still below pre-cut levels. Guidance impact modest vs liquidation noise. Holding long A on value."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":-0.7,"weight":1.0,"text":"No-news +2.6% squeeze overdone. Guidance cut + probe still bearish A, fading pump short."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":0.2,"weight":1.0,"text":"No fresh Aurora news, -3.6% washout +2.6% snapback looks like overdone liquidation fade. Covering short to flat A, waiting for earnings."}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"Softer orders adds to guidance/margin weakness, Aurora still overvalued up here. Holding short A on value."}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":-0.3,"weight":1.0,"text":"A flags slightly softer orders in one region - marginally bearish but low materiality. Small short A."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"A flat after squeeze, new softer orders adds to guidance cut + probe risk. Overvalued, holding short A on value."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":-0.3,"weight":1.0,"text":"Slightly softer orders adds to guidance/margin overhang on A, staying lightly short."}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":0.3,"weight":1.0,"text":"Slightly softer orders in one region looks modest vs prior washout. A holding value here, staying long."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"A bounce stalled flat, softer orders confirms downtrend. Flipping max short momentum."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":-0.4,"weight":1.0,"text":"A softer orders in one region slightly bearish, holding modest short A. Low materiality so sized small."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A flat -2bps consolidating after +2.6% breakout, uptrend intact. Soft orders noise, staying max long momentum."}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":-0.6,"weight":1.0,"text":"A stalled flat after +2.6% no-news squeeze, crowded longs trapped. Softer orders confirms fade, holding short A."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"A flat after +2.6% no-news squeeze looks overdone, momentum max long crowded. Softer orders adds downside, fading rally short A."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":-0.7,"weight":1.0,"text":"A flat after +2.6% no-news rip, soft orders adds weight. Rally overdone, staying short A contrarian."}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"A momentum stalled flat after squeeze, softer orders confirms downtrend resuming. Flipping max short A."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A breaking out + largest-ever contract, uptrend accelerating. Staying max long momentum into close."}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora largest-ever contract + uptrend resuming, riding momentum long A!"}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"A +0.58% breakout on largest-ever contract + target hike confirms uptrend. Flipping max long A momentum."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora largest-ever contract is huge vs minor delay/margin noise. Very bullish A, going long."}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora largest-ever contract + renewal dwarfs minor delay/trim noise. Materially bullish, long A."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"A largest-ever contract + renewal is huge vs minor delay/trim noise. Bullish A into close."}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"Largest-ever A contract + renewal dwarfs trim/delay noise. +0.6% barely priced, shorts crowded. Long A value."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"Largest-ever contract dwarfs trim/soft orders noise, only +0.6% priced. Crowd max short overdone, long A value."}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"Largest-ever Aurora contract dwarfs margin trim noise, +0.6% only starts absorption. Fading crowded shorts, long A."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora largest-ever contract + renewal materially undervalued, market barely reacting. Long A on value."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"A pump on vague largest-ever headline vs guidance cut + margin/probe + softer orders. Overvalued, holding short on value."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"A up on unverified largest-contract hype vs margin worries + softer orders + delay. Still overvalued, holding short on value."}

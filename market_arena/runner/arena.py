@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 from collections import deque
 from dataclasses import asdict
+import hashlib
 import json
 import time
 from pathlib import Path
@@ -18,6 +19,7 @@ from ..agents.taker import StrategyTaker
 from ..bench.game import GameParams, collusion_index, solve_nash, solve_pareto
 from ..bench.glft import Calibration, calibrate, glft_policy, glft_quotes
 from ..bench.signals import TEXTBOOK
+from ..llm.client import CURRENT_AGENT
 from ..sim.background import IndexFlow, InformedTrader, ZeroIntelligenceFlow
 from ..sim.book import BUY
 from ..sim.exchange import Exchange
@@ -26,9 +28,27 @@ from ..sim.history import MarketHistory
 from ..sim.economy import Economy
 from ..sim.news import NewsWire, news_response
 from ..sim.options import OptionsDealer
+from ..sim.perps import LiquidationEngine
 from ..sim.participants import (IndexFund, InstitutionalFlow, LatencyArb, MarginDesk, RetailFlow,
                                 Router, stream)
 from .config import ArenaConfig
+
+GENESIS = "0" * 64  # prev_hash of a run's first decision
+
+
+def record_hash(rec: dict) -> str:
+    """sha256 of a decision record (without its own hash), as canonical JSON."""
+    body = {k: v for k, v in rec.items() if k != "hash"}
+    return hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":"), default=str).encode()).hexdigest()
+
+
+def file_sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
 
 BACKGROUND = ("noise", "informed", "index_flow")
 # investor classes whose trading costs the who-pays ledger reports
@@ -67,7 +87,10 @@ class Market:
         self.economy = Economy(self.fund, cfg.economy, stream(cfg.seed if seed is None else seed, 7)) if cfg.economy else None
         self.router = Router(self.ex, {a: [a] + cfg.listings.get(a, []) for a in self.fund.assets})
         self.extra: list = []  # optional participants, stepped after the original flow
-        self.retail = self.institutional = self.margin = self.options = None
+        self.retail = self.institutional = self.margin = self.options = self.perps = None
+        self.shocks = {s.at_step: s for s in cfg.shocks} if not calibration else {}
+        self.activity = 1.0  # share of scripted flow active this step (thinned overnight)
+        self._thin = stream(cfg.seed if seed is None else seed, 8)
         pop, seed = cfg.population, cfg.seed if seed is None else seed
         if pop:
             if pop.retail:
@@ -88,6 +111,9 @@ class Market:
             if pop.options and not calibration:
                 self.options = OptionsDealer(self.ex, pop.options, stream(seed, 6))
                 self.extra.append(self.options)
+            if pop.liquidations and not calibration:
+                self.perps = LiquidationEngine(self.ex, pop.liquidations, stream(seed, 9))
+                self.extra.append(self.perps)
 
     def values(self) -> dict[str, float]:
         """Fair values per asset, including every extra listing of a stock."""
@@ -96,20 +122,36 @@ class Market:
             v[x] = v[stock]
         return v
 
+    def _active(self) -> bool:
+        """Overnight, each scripted participant acts on only a share of steps (thinned flow)."""
+        return self.activity >= 1.0 or self._thin.random() < self.activity
+
     def background_step(self) -> dict[str, float]:
         self.fund.step()
+        if (s := self.shocks.get(self.ex.t)) is not None:
+            self.fund.shock({s.asset: s.bps})
+            if self.news:
+                self.news.items.append({"t": self.ex.t, "asset": s.asset, "kind": "shock",
+                                        "true_bps": s.bps, "headline": s.headline})  # fmt: skip
         if self.news:
             self.news.step(self.ex.t)
         values = self.values()
         self._values.append(values)
         lagged = self._values[0]
         for z in self.zi:
-            z.step(lagged[z.asset])
-        self.informed.step(values)
+            if self._active():
+                z.step(lagged[z.asset])
+        if self._active():
+            self.informed.step(values)
         if self.index_flow:
             self.index_flow.step()
+        if self.institutional:
+            self.institutional.activity = self.activity  # fewer new parent orders overnight
         for f in self.extra:
-            f.step(values, lagged)
+            # forced flows (margin calls, liquidations, dealer hedging) and the institutions working
+            # their parent orders never sleep; discretionary flow is thinned overnight
+            if f in (self.margin, self.perps, self.options, self.institutional) or self._active():
+                f.step(values, lagged)
         return values
 
 
@@ -193,6 +235,7 @@ class Arena:
             for k in ("snapshots", "trades", "decisions", "metrics", "chat", "forum")
         }
         self.chat: list[dict] = []  # makers' chat room and regulator notices
+        self._head, self._n_decisions = GENESIS, 0  # decision hash chain
         self.cost = 0.0
         self.metrics_log: list[dict] = []
         self._qhs: dict[tuple[str, str], list[float]] = {}  # (maker, asset) -> quoted half-spreads
@@ -275,6 +318,9 @@ class Arena:
             ev["venues"] = venue_stats(self.hist, mk.router.listings, t0, t1)
         if mk.options:
             ev["options"] = mk.options.stats()
+        if mk.perps:
+            ev["liquidations"] = mk.perps.stats() | {
+                "events": [e for e in mk.perps.events if t0 <= e["t"] < t1][:200]}
         return ev
 
     def _headline(self, kind: str, text: str, bps: float = 0.0) -> None:
@@ -306,8 +352,49 @@ class Arena:
         self._headline("macro", text + (f": {econ.statement}" if econ.statement else ""), shock)
         econ.pending_rate, econ.statement = None, None
 
+    async def _review(self, ag, epoch: int, m: dict) -> None:
+        CURRENT_AGENT.set(ag.id)  # each review runs in its own task, so this is per agent
+        await ag.review(self, epoch, m)
+
+    def session_note(self, epoch: int) -> str:
+        """What the next epoch's session is, for the AI agents' review prompts."""
+        s = self.cfg.session
+        if s is None or epoch >= self.cfg.n_epochs:
+            return ""
+        if s.kind(epoch) == "day":
+            return "Next epoch is the REGULAR (daytime) trading session: normal investor activity."
+        if not s.night_trading:
+            return "Next epoch is OVERNIGHT: the exchange is CLOSED; nothing trades until the next open."
+        return (f"Next epoch is the OVERNIGHT session of 23-hour trading: investor activity is about "
+                f"{s.night_activity:.0%} of daytime, and news still arrives.")
+
+    def _open_session(self, epoch: int) -> str | None:
+        """Start an epoch's trading session: thin the flow overnight, or close the exchange (resting
+        orders expire) and re-open it with a fresh book around the fair value."""
+        s, mk, ex = self.cfg.session, self.market, self.ex
+        if s is None:
+            return None
+        kind = s.kind(epoch)
+        mk.activity = s.night_activity if kind == "night" else 1.0
+        if kind == "night" and not s.night_trading:
+            for a in self.assets:
+                for oid in list(ex.books[a].orders):
+                    ex.books[a].cancel(oid)
+                ex.halted_until[a] = ex.t + self.cfg.steps_per_epoch
+        elif kind == "day" and not s.night_trading and epoch > 0:
+            values = mk.values()
+            for z in mk.zi:
+                ex.last_px[z.asset] = values[z.asset]
+                z.seed(values[z.asset])
+        return kind
+
     def log_decision(self, rec: dict) -> None:
+        """Record an agent's decision. Records form a hash chain: each carries the hash of the
+        previous one, so editing or deleting any decision after the fact is detectable."""
         self.cost += rec.get("cost", 0.0)
+        rec = {**rec, "prev_hash": self._head}
+        self._head = rec["hash"] = record_hash(rec)
+        self._n_decisions += 1
         self._write("decisions", rec)
         self._files["decisions"].flush()
 
@@ -338,6 +425,7 @@ class Arena:
         for epoch in range(cfg.n_epochs):
             t0 = ex.t
             wall = time.time()
+            session = self._open_session(epoch)
             for _ in range(cfg.steps_per_epoch):
                 values = self.market.background_step()
                 for i in self.rng.permutation(len(self.agents)):
@@ -365,6 +453,8 @@ class Arena:
                 "exchange_fees": round(sum(a.fees for a in ex.accounts.values()), 1),  # cumulative
             }  # fmt: skip
             ex.order_stats.clear()
+            if session:
+                m["session"] = session
             if cfg.population:
                 m["classes"] = class_metrics(ex, self.hist, list(CLASSES), t0, t1)
                 m["events"] = self._events(t0, t1)
@@ -388,7 +478,7 @@ class Arena:
                 f.flush()
             if epoch < cfg.n_epochs - 1:
                 reviewers = [ag for ag in self.agents if hasattr(ag, "review")]
-                await asyncio.gather(*(ag.review(self, epoch, m) for ag in reviewers))
+                await asyncio.gather(*(self._review(ag, epoch, m) for ag in reviewers))
                 if self.market.economy:
                     self._rate_decision(epoch)
         meta["stylized"] = {
@@ -405,9 +495,11 @@ class Arena:
                 items, None, asset_mid={a: self.hist.get(a, "mid") for a in self.assets})
         meta["finished"] = time.time()
         meta["llm_cost_usd"] = round(self.cost, 4)
-        (self.out / "meta.json").write_text(json.dumps(meta, indent=1, default=str))
         for f in self._files.values():
             f.close()
+        meta["audit"] = {"decisions": self._n_decisions, "decisions_head": self._head,
+                         **{f"{k}_sha256": file_sha256(self.out / f"{k}.jsonl") for k in ("trades", "snapshots")}}  # fmt: skip
+        (self.out / "meta.json").write_text(json.dumps(meta, indent=1, default=str))
         return meta
 
 

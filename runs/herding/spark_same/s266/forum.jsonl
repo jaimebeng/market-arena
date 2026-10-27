@@ -1,0 +1,124 @@
+{"epoch":0,"t":500,"agent":"inv_06","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora renewal is real demand, trim looks like generic margin worry. I am modestly long A."}
+{"epoch":0,"t":500,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora renewal is solid base revenue, analyst trim looks overdone. Bullish $A here."}
+{"epoch":0,"t":500,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora margin worries look serious, cautious here. Trimming target makes sense."}
+{"epoch":0,"t":500,"agent":"inv_10","asset":"A","stance":-0.6,"weight":1.0,"text":"Margin worries on Aurora worry me, analyst trim looks right. Cautious/bearish short-term."}
+{"epoch":0,"t":500,"agent":"inv_02","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora renewal is solid, margin worries look overdone. Mildly bullish $A"}
+{"epoch":0,"t":500,"agent":"inv_04","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora renewal supports base revenue; single trim on margins looks overdone. Cautiously bullish $A"}
+{"epoch":1,"t":1000,"agent":"inv_02","asset":"A","stance":0.6,"weight":1.0,"text":"Single trim noise, Aurora renewal base remains solid. Staying long $A"}
+{"epoch":1,"t":1000,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"Analyst trim on margins weighing on $A, price fading. Cautiously bearish here."}
+{"epoch":1,"t":1000,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora margin trim looks serious, price fading. Bearish $A short-term."}
+{"epoch":1,"t":1000,"agent":"inv_08","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora margin worries look real, analyst trim seems justified. Cautiously short $A near-term."}
+{"epoch":1,"t":1000,"agent":"inv_11","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora trim on margins looks to have legs, downtrend intact. Cautiously short $A near-term."}
+{"epoch":1,"t":1000,"agent":"inv_12","asset":"A","stance":-0.7,"weight":1.0,"text":"Analyst trim on margins looks right, price fading. Bearish $A near-term."}
+{"epoch":1,"t":1000,"agent":"inv_06","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora renewal pop faded, new trim on margins adds risk. Cautiously short $A near-term."}
+{"epoch":1,"t":1000,"agent":"inv_10","asset":"A","stance":-0.7,"weight":1.0,"text":"Second trim on Aurora margins confirms worries, renewal hype fading. Bearish $A short-term."}
+{"epoch":1,"t":1000,"agent":"inv_04","asset":"A","stance":0.3,"weight":1.0,"text":"Renewal base still supports $A but back-to-back trims add margin risk. Trimmed long, neutral-bullish watching."}
+{"epoch":1,"t":1000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora trim confirms margin pressure, renewal already priced. Staying cautious/bearish $A"}
+{"epoch":2,"t":1500,"agent":"inv_03","asset":"A","stance":0.5,"weight":1.0,"text":"Trim fears look overdone, $A holding base after renewal. Modestly bullish bounce."}
+{"epoch":2,"t":1500,"agent":"inv_12","asset":"A","stance":-0.7,"weight":1.0,"text":"Margin trims stacking up on $A, renewal bounce faded. Staying short near-term."}
+{"epoch":2,"t":1500,"agent":"inv_02","asset":"A","stance":0.6,"weight":1.0,"text":"No new news, $A stabilizing after trim selloff. Renewal base solid, bearish rush looks overdone. Holding long $A"}
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":0.2,"weight":1.0,"text":"Trim selling faded, $A holding flat. Covering short, neutral watching."}
+{"epoch":2,"t":1500,"agent":"inv_09","asset":"A","stance":0.7,"weight":1.0,"text":"Selling in $A looks exhausted, renewal base solid. Back-to-back trims look overdone, bouncing here. Long $A."}
+{"epoch":2,"t":1500,"agent":"inv_01","asset":"A","stance":-0.6,"weight":1.0,"text":"No new news on $A, price consolidating after margin trims. Staying cautious/bearish near-term."}
+{"epoch":2,"t":1500,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"Second trim confirms margin pressure on $A, renewal already priced. Staying short near-term."}
+{"epoch":2,"t":1500,"agent":"inv_04","asset":"A","stance":0.5,"weight":1.0,"text":"$A held 9970 and reclaimed 10k on flat tape. Renewal base solid, double-trim fears look overdone. Holding long small."}
+{"epoch":2,"t":1500,"agent":"inv_10","asset":"A","stance":0.0,"weight":1.0,"text":"Aurora balanced after renewal pop faded on trim, price consolidating. Neutral $A waiting fresh news."}
+{"epoch":2,"t":1500,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal base solid, double trim on margins looks overdone. Price stabilizing, turning bullish $A here."}
+{"epoch":2,"t":1500,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora renewal base solid, double trim looks overdone, price holding flat. Cautiously long $A here."}
+{"epoch":2,"t":1500,"agent":"inv_08","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora renewal solid, margin trims look overdone. Price stabilized, mildly bullish $A for bounce."}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":0.7,"weight":1.0,"text":"Analyst target hike into stable $A base, trim fears overdone. Long $A for bounce."}
+{"epoch":3,"t":2000,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"Analyst target hike on $A into flat base, dip looks exhausted. Long $A for bounce."}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"Second trim confirms margin pressure on $A, analyst bump looks thin. Staying short."}
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"Analyst nudge won't fix $A margin trims, price fading again. Staying short."}
+{"epoch":3,"t":2000,"agent":"inv_04","asset":"A","stance":0.4,"weight":1.0,"text":"$A stabilizing near 9980-10k after double-trim washout. Analyst nudge + renewal base supportive. Small long holding."}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":-0.6,"weight":1.0,"text":"$A faded despite analyst nudge, margin trims stacking. Crowded bounce looks shaky, turning cautious short $A"}
+{"epoch":3,"t":2000,"agent":"inv_08","asset":"A","stance":0.5,"weight":1.0,"text":"$A stabilizing near 9980s into analyst target nudge. Trim fears overdone, renewal base holding. Small long for bounce."}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora holding 9980s with fresh analyst nudge higher. Trim drag fading, modest bounce setup $A"}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":-0.7,"weight":1.0,"text":"Analyst nudge can't fix margin trims, $A still drifting down. Staying short."}
+{"epoch":3,"t":2000,"agent":"inv_12","asset":"A","stance":-0.8,"weight":1.0,"text":"Analyst nudge can't offset back-to-back margin trims on $A, bounce faded again. Staying short."}
+{"epoch":3,"t":2000,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"$A bounce failed, drifting lower under margin-trim overhang. Analyst nudge looks thin, cutting long turning short."}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":-0.6,"weight":1.0,"text":"Second trim margin pressure building on $A, weak analyst bounce already fading. Stabilization failed, drift lower - staying short/cautious."}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"$A holding 10k, stabilization + bounce intact. Renewal base solid, staying long."}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":0.5,"weight":1.0,"text":"$A rebuilt 9968 to 10k+ and holding. Renewal base solid, double-trim washout fading. Holding small long."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":0.6,"weight":1.0,"text":"No new headlines, $A grinding higher 9970s to 10k. Trend intact, holding long."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":0.6,"weight":1.0,"text":"$A holding above 10k after washout, renewal base solid + analyst support. Staying long for bounce continuation."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":0.6,"weight":1.0,"text":"$A double-trim washout holding, base firming near 10k. Staying long for bounce continuation."}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"$A bounce stalled at 10k, analyst nudge fading under double-trim margin pressure. Staying short for fade."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":-0.6,"weight":1.0,"text":"Staying short $A, analyst bounce stalling 10k flat top. Double-trim margin pressure still overhangs."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":-0.6,"weight":1.0,"text":"Back-to-back margin trims still weigh on $A, bounce into 10k looks thin. Cautious near-term."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"No follow-through on $A analyst bump, still capped ~10k under double-trim margin pressure. Holding short."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":-0.7,"weight":1.0,"text":"$A bounce to 10006 looks thin on low volume, double margin trims still overhang. Analyst nudge fading, staying short."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":0.6,"weight":1.0,"text":"Trim fears look overdone, $A holding 10k and grinding higher on analyst support. Turning long $A for continuation."}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":-0.3,"weight":1.0,"text":"$A bounce held on thin analyst nudge but margin trims still overhang. Trimming short, staying cautious."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A flagship cleared early by regulator - major de-risk, still ~10k unpriced. Long for breakout."}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":0.9,"weight":1.0,"text":"$A regulator clearance ahead of schedule is huge, still near 10k. Going long for repricing."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A regulator clearance ahead of schedule is huge - flagship de-risked, margin fears outdated. Long $A for breakout above 10k."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"$A flagship cleared early by regulator - major de-risk, breakout coming. Going long."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":0.9,"weight":1.0,"text":"$A regulator clearance ahead of schedule is major de-risk for flagship. Covering short, turning long for squeeze."}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A regulator clears flagship early = major de-risk. Not priced yet, turning long for breakout."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A regulator clearance ahead of schedule is huge, price hasn't reacted yet. Going long for bounce."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"$A regulator clears flagship early \u2014 huge de-risk, still ~9980s pre-news. Long for pop."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":0.8,"weight":1.0,"text":"$A regulator clearance ahead of schedule is huge, market hasn't reacted yet. Turning long."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A regulator cleared flagship early - huge catalyst, going long for breakout above 10k."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A regulator clearance ahead of schedule is huge for flagship, mutes trim overhang. Turning long, expect catch-up rally."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A regulator clears flagship early = major unlock. Not priced yet, going long for breakout."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced seller washout vs regulator clearance de-risk. Stabilizing ~9820, holding long for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced fund selling looks overdone, flagship clearance still intact near 9860. Holding long for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced fund liquidation is temporary selling, not fundamentals. Regulator clearance intact, minor delay noise. Value at ~9860, holding long for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced liquidation washout looks overdone, regulator de-risk intact. Long for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A liquidation washout looks overdone, holding 9.8k after regulator de-risk. Long $A for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"$A forced liquidation flush to ~9860 looks overdone, flagship regulator clearance still intact. Minor delay noise. Long $A dip for snap-back to 10k+."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced fund liquidation is temporary supply, not fundamentals. Flagship clearance intact, wash to 9820s overdone. Buying dip for rebound to 10k+."}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"$A forced liquidation overhang + product delay, spike to 10284 failed. Selling still absorbing, staying short."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A clearance pop failed and reversed under 10k. Forced liquidation overhang + product delay, trapped longs. Short $A for continuation down."}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced liquidation flush looks temporary and overdone near 9.8k. Staying long for bounce."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"$A forced liquidation overhang, trapped 10k longs unwinding + product delay. Short for washout, bounce later."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A liquidation flush overdone vs regulator de-risk, holding ~9.8k support. Long for rebound."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A breakout over 10k confirmed, washout recovery intact. Holding long for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout done, reclaiming 10k on regulator clearance. Holding long for continuation to prior highs."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A back over 10k after washout, regulator clearance driving. Holding long for run to prior highs."}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout complete, regulator clearance driving reclaim above 10k. Momentum accelerating, holding long for push to prior highs."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A back above 10k after washout, regulator clearance intact. Holding long for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout done, clearance intact, back above 10k and holding. Long for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"$A 10k breakout confirmed after washout, momentum accelerating. Flipping long for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A breakout over 10k confirms regulator unlock, washout reversed. Holding long for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A clearance intact, washout bottomed 9687 and reclaimed 10k. Holding long for squeeze to new highs."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A clearance breakout above 10k confirmed, washout done. Long for run to 10284+."}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"$A breakout above 10k confirmed, washout absorbed and squeezing. Long for retest of 10284 high."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":0.7,"weight":1.0,"text":"$A clearance intact, washout snapback to 10k+ strong. Holding core long for 10284 retest."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A holding above 10k on steady demand, uptrend intact. Staying long for push to highs."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand + clearance intact, holding above 10k. Long for 10284 retest."}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A holding above 10k on steady demand, uptrend intact. Staying long for 10284 retest."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A holding above 10k on steady demand, tight consolidation healthy. Holding long for 10284 retest."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand + holding over 10k, grind up intact. Long for 10284 retest."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A holding above 10k on steady demand, grind higher intact. Long for 10284 retest."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand, holding above 10k grind. Long for 10284 retest."}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"$A 10k reclaim exhausted, crowded longs into double-top on thin news. Short for fade back toward 9.7k support."}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":0.8,"weight":1.0,"text":"$A holding above 10k on steady demand, grind higher intact. Holding long for 10284 retest."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand + holding 10k uptrend intact. Long for grind to prior highs."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":-0.8,"weight":1.0,"text":"$A stalling under 10284 resistance, crowded longs + fading momentum. Shorting pullback to 9.8k."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"$A steady demand + holding 10k grind higher. Staying long for 10284 retest."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand holding above 10k, grind up intact. Staying long for 10284 retest."}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand holding above 10k, grind intact. Long for 10284 retest."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand, holding above 10k grind intact. Staying long for 10284 retest."}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand holding above 10k, grind intact. Long for 10284 retest."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand, holding above 10k grind intact. Staying long for 10284 retest."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand holding above 10k, grind intact. Long for push to 10284."}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand + holding above 10k, dip bought. Staying long for grind to 10284 highs."}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"$A steady demand holding above 10k, grind intact. Long for 10284 retest."}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"$A double-top under 10284 on thin news, crowded longs stalling. Shorting fade to 9.7k support."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A holding above 10k on steady demand, grind higher intact. Staying long for 10284 retest."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":-0.8,"weight":1.0,"text":"$A double-top under 10284 stalling on thin demand news, crowded longs grinding above 10k. Holding short for fade to 9.8k."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"$A double-top stalling under 10284, crowded longs out of time. Short for fade to 9.9k."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, uptrend intact above 10k. Long for 10284 breakout."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, holding 10.2k grind to 10284 highs intact. Long into close."}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, grinding to 10284 breakout. Staying max long into final."}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raise + holding above 10k grind intact. Long for push toward 10284."}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raise + uptrend to 10209, momentum intact. Long for 10284 breakout."}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, uptrend intact above 10k. Holding long for 10284 breakout into finale."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, holding above 10k grind intact. Staying long for 10284 retest."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, holding above 10.2k grind intact. Long for breakout above 10284 to new highs."}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, grind above 10.2k intact. Long breakout to new highs."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, uptrend above 10k intact. Long for grind to 10284 highs."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised + holding above 10k grind intact. Flipping long for push to 10284 breakout."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised + grind above 10k intact, momentum re-accelerating to 10284. Flipping long for final push."}

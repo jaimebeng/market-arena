@@ -1,0 +1,358 @@
+{
+ "name": "who_pays/tick_x5/s106",
+ "config": {
+  "name": "who_pays/tick_x5/s106",
+  "seed": 106,
+  "steps_per_epoch": 2000,
+  "n_epochs": 6,
+  "components": {
+   "A": {
+    "price": 10000.0,
+    "sigma": 0.0001,
+    "beta": 1.0
+   }
+  },
+  "factor_sigma": 0.0,
+  "jump_rate": 0.002,
+  "jump_bps": 60.0,
+  "index": null,
+  "rules": {
+   "tick": 5,
+   "maker_fee_bps": 0.0,
+   "taker_fee_bps": 0.0,
+   "min_resting_steps": 0,
+   "circuit_breaker_pct": null,
+   "circuit_window": 100,
+   "circuit_halt_steps": 50,
+   "transaction_tax_bps": 0.0,
+   "short_sale_ban": false,
+   "short_ban_exempt": [
+    "noise"
+   ],
+   "venue_fees": {}
+  },
+  "zi": {
+   "limit_rate": 1.2,
+   "market_rate": 0.35,
+   "offset_min": 3,
+   "offset_max": 25,
+   "lifetime_mean": 60.0,
+   "size_mean": 3.0,
+   "anchor_kappa": 0.3,
+   "anchor_lag": 150
+  },
+  "informed": {
+   "rate": 0.03,
+   "threshold_bps": 8.0,
+   "size": 2,
+   "max_size": 12,
+   "noise_bps": 1.0
+  },
+  "index_flow": null,
+  "calibration_steps": 20000,
+  "glft_gamma": 0.05,
+  "competition_eta": 0.5,
+  "snapshot_every": 10,
+  "holdout": 1000,
+  "chat": {
+   "enabled": false,
+   "antitrust_notice": false
+  },
+  "population": {
+   "retail": {
+    "rate": 0.15,
+    "size_mean": 2.0,
+    "chartist": 0.25,
+    "lookback": 200,
+    "herd": 0.0,
+    "routing": "lit",
+    "auction_every": 50,
+    "holdings": 2000
+   },
+   "institutional": {
+    "parent_rate": 0.0015,
+    "parent_size": 60,
+    "horizon": 300,
+    "algo": "twap",
+    "participation": 0.15,
+    "display": 2,
+    "holdings": 2000
+   },
+   "fire_sale": null,
+   "index_fund": {
+    "every": 1000,
+    "size": 20,
+    "window": 50
+   },
+   "latency_arb": null,
+   "leveraged": [],
+   "maker_guards": false
+  },
+  "agents": [
+   {
+    "id": "glft",
+    "kind": "glft",
+    "model": null,
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "maker_1",
+    "kind": "llm_maker",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "maker_2",
+    "kind": "llm_maker",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "maker_3",
+    "kind": "llm_maker",
+    "model": "baseten:meta-models/muse-spark-open-1026",
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "momentum_bot",
+    "kind": "textbook_taker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "signal": "momentum",
+     "max_position": 10,
+     "max_order": 1
+    }
+   }
+  ],
+  "out_dir": "runs"
+ },
+ "assets": [
+  "A"
+ ],
+ "agents": [
+  {
+   "id": "glft",
+   "role": "maker",
+   "model": "GLFT closed form"
+  },
+  {
+   "id": "maker_1",
+   "role": "maker",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "maker_2",
+   "role": "maker",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "maker_3",
+   "role": "maker",
+   "model": "baseten:meta-models/muse-spark-open-1026"
+  },
+  {
+   "id": "momentum_bot",
+   "role": "taker",
+   "model": "textbook: momentum"
+  }
+ ],
+ "calibration": {
+  "A": {
+   "A": 1.3107446475088371,
+   "k": 0.22862031791045306,
+   "sigma": 2.0180547402414226,
+   "deltas": [
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0
+   ],
+   "rates": [
+    0.2552,
+    0.18035,
+    0.0621,
+    0.01535,
+    0.003775,
+    0.00115
+   ],
+   "alpha": 1.7306903750093192
+  }
+ },
+ "started": 1793117748.4666011,
+ "stylized": {
+  "A": {
+   "market": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 10.002,
+    "hill_tail_index": 2.721,
+    "acf_returns": [
+     0.0218,
+     0.0769,
+     0.0836,
+     0.0939,
+     0.0582,
+     0.147,
+     0.0773,
+     0.0617,
+     0.0917,
+     -0.0127,
+     -0.0189,
+     0.0793,
+     0.0314,
+     0.0185,
+     0.073,
+     0.0286,
+     0.0093,
+     -0.0081,
+     0.0048,
+     0.0289
+    ],
+    "acf_abs_returns": [
+     0.089,
+     0.1865,
+     0.1352,
+     0.0632,
+     0.0187,
+     0.0939,
+     0.0224,
+     0.0106,
+     0.0406,
+     -0.0109,
+     0.0475,
+     0.0386,
+     0.0374,
+     0.0352,
+     0.0334,
+     0.0363,
+     0.0164,
+     0.0233,
+     -0.0299,
+     0.0418,
+     0.0227,
+     0.0446,
+     0.0341,
+     0.054,
+     0.014,
+     0.0342,
+     0.0098,
+     0.011,
+     0.0049,
+     0.0782,
+     -0.0034,
+     0.0077,
+     -0.0141,
+     0.0299,
+     0.0044,
+     0.012,
+     -0.0073,
+     0.0293,
+     0.0322,
+     0.0604,
+     0.0562,
+     0.0666,
+     0.0227,
+     0.0197,
+     0.0268,
+     -0.0015,
+     0.0054,
+     -0.0248,
+     -0.0223,
+     0.0443
+    ]
+   },
+   "fair_value": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 149.366,
+    "hill_tail_index": 1.296,
+    "acf_returns": [
+     -0.0075,
+     -0.014,
+     0.013,
+     -0.0251,
+     -0.0046,
+     0.0754,
+     -0.0312,
+     0.0211,
+     -0.0121,
+     -0.0185,
+     0.0025,
+     -0.0028,
+     0.0063,
+     -0.0027,
+     -0.0029,
+     -0.0044,
+     -0.0066,
+     0.0172,
+     0.0082,
+     0.0128
+    ],
+    "acf_abs_returns": [
+     -0.0125,
+     -0.0056,
+     -0.0241,
+     0.0012,
+     -0.0144,
+     0.0435,
+     -0.0148,
+     0.026,
+     -0.0328,
+     0.0038,
+     0.0008,
+     -0.0103,
+     -0.014,
+     -0.0122,
+     -0.0203,
+     -0.0002,
+     -0.0138,
+     -0.0,
+     -0.0109,
+     -0.0076,
+     -0.0011,
+     -0.009,
+     0.041,
+     -0.0121,
+     -0.007,
+     0.0023,
+     0.0055,
+     -0.0141,
+     -0.0125,
+     -0.0115,
+     0.0347,
+     0.018,
+     0.0151,
+     -0.0187,
+     -0.0053,
+     -0.0068,
+     0.0198,
+     -0.0071,
+     -0.0038,
+     -0.0035,
+     0.012,
+     -0.0108,
+     -0.0221,
+     -0.0099,
+     0.0229,
+     0.0471,
+     0.0302,
+     0.0034,
+     -0.011,
+     -0.0101
+    ]
+   }
+  }
+ },
+ "finished": 1793117851.638959,
+ "llm_cost_usd": 0.008,
+ "audit": {
+  "trades_sha256": "487eca84f2a00e00637b9029b85d4b2f7887374e96ba08366b4a21ad0eaad717",
+  "snapshots_sha256": "6bf1bf9b7e38d48a13e62371af915704306aa4d295f31972d5d97dc4c14d6b9c",
+  "sealed_after_recording": true
+ }
+}

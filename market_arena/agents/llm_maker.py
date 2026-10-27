@@ -135,6 +135,9 @@ class LLMMaker(Maker):
     def __init__(self, agent_id, assets, model, params: dict | None = None):
         params = dict(params or {})
         self.reasoning_effort = params.pop("reasoning_effort", None)
+        # vision: "off"; "with_tools" (a chart of its last epoch as well as the tools); "only" (the
+        # chart instead of the data tools)
+        self.vision = params.pop("vision", "off")
         super().__init__(agent_id, assets, MakerPolicy(**params) if params else None)
         self.model = model
         self.notes = ""
@@ -252,6 +255,11 @@ class LLMMaker(Maker):
         system += (CHAT_NOTE if chat else "") + (ANTITRUST_NOTE if cfg.chat.antitrust_notice else "")
         guards = bool(cfg.population and cfg.population.maker_guards)
         system += (GUARD_NOTE if guards else "") + self._extra_system(arena) + _venue_note(cfg)
+        if cfg.session:
+            system += ("\n\nTrading sessions: epochs alternate between the regular daytime session and an "
+                       "overnight session" + (f" with about {cfg.session.night_activity:.0%} of daytime investor "
+                       "activity (news still arrives)" if cfg.session.night_trading else " when the exchange is "
+                       "closed") + ". You may set a different policy for each session.")
         tools = _with_fields(TOOLS, (CHAT_FIELD if chat else {}) | (GUARD_FIELDS if guards else {}))
         if extra := self._extra_fields():
             tools = copy.deepcopy(tools)
@@ -259,6 +267,23 @@ class LLMMaker(Maker):
                 if t["function"]["name"] == "set_policy":
                     t["function"]["parameters"]["properties"].update(extra)
         tools = tools[:-1] + self._extra_tools() + tools[-1:]
+        images, charts = [], []
+        if self.vision != "off":
+            from ..analysis.chart import maker_chart
+
+            (arena.out / "charts").mkdir(exist_ok=True)
+            for a in self.assets:
+                png = maker_chart(arena, self.id, a, m["t0"], m["t1"])
+                path = arena.out / "charts" / f"{self.id}_{a}_e{epoch}.png"
+                path.write_bytes(png)
+                images.append(png)
+                charts.append(path.name)
+            system += ("\n\nYou are shown a chart of your last epoch per asset: the best bid and ask, the "
+                       "mid, your fills, your inventory and your P&L.")
+            if self.vision == "only":
+                tools = [t for t in tools if t["function"]["name"] not in
+                         ("get_performance", "get_market_stats", "get_fill_analysis")]
+                system += " The chart is ALL the information you get: you have no data tools this time."
         me = m["agents"][self.id]
         user = (
             f"Epoch {epoch} just ended ({epoch + 1} of {cfg.n_epochs} done). Assets: {self.assets}.\n"
@@ -273,6 +298,8 @@ class LLMMaker(Maker):
                 f"  [epoch {c['epoch']}] {'EXCHANGE SURVEILLANCE' if c['kind'] == 'notice' else c['agent']}: "
                 f"{c['text']}" for c in visible
             ) + "\n"  # fmt: skip
+        if note := arena.session_note(epoch + 1):
+            user += note + "\n"
         user += "Investigate, then call set_policy."
         self._pending = None
         handlers = {
@@ -283,7 +310,7 @@ class LLMMaker(Maker):
         } | self._extra_handlers(arena, m)
         tr = await run_tools(
             self.model, system, user, tools, handlers, "set_policy",
-            reasoning_effort=self.reasoning_effort,
+            reasoning_effort=self.reasoning_effort, images=images or None,
         )  # fmt: skip
         if self._pending:
             self.policies.update(self._pending)
@@ -299,7 +326,7 @@ class LLMMaker(Maker):
                 "model": self.model,
                 "policy": {a: p.model_dump(exclude_none=True) for a, p in self.policies.items()},
                 "rationale": final.get("rationale"), "notes": final.get("notes_to_self"),
-                "message": message or None, **extra,
+                "message": message or None, **extra, **({"charts": charts} if charts else {}),
                 "tools": [c["name"] for t in tr.turns for c in t["calls"]],
                 "turns": tr.turns, "error": tr.error,
                 "tokens": {"in": tr.input_tokens, "out": tr.output_tokens,

@@ -1,0 +1,27 @@
+{"epoch":0,"t":500,"agent":"inv_momentum","asset":"A","stance":-0.6,"weight":1.0,"text":"A starting to roll over, fading every bounce. Short momentum here."}
+{"epoch":1,"t":1000,"agent":"inv_news","asset":"A","stance":0.4,"weight":1.0,"text":"Aurora narrow beat reported - mildly positive, leaning long small on news."}
+{"epoch":1,"t":1000,"agent":"inv_momentum","asset":"A","stance":0.8,"weight":1.0,"text":"A bottomed and ripping on earnings beat \u2014 momentum flipping long, buying strength."}
+{"epoch":2,"t":1500,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"A lost biggest customer and rolling over hard - shorting this downtrend."}
+{"epoch":2,"t":1500,"agent":"inv_news","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost its biggest customer - very material negative, bearish."}
+{"epoch":3,"t":2000,"agent":"inv_momentum","asset":"A","stance":1.0,"weight":1.0,"text":"A bottomed and turning up fast on steady demand + analyst bump. Momentum long here."}
+{"epoch":3,"t":2000,"agent":"inv_news","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost biggest customer - very bearish. Recent bounce on soft checks/analyst note looks like noise, staying short into earnings."}
+{"epoch":4,"t":2500,"agent":"inv_momentum","asset":"A","stance":1.0,"weight":1.0,"text":"A ripping 2 epochs in a row + earnings beat \u2014 momentum strong, staying long and buying strength."}
+{"epoch":4,"t":2500,"agent":"inv_news","asset":"A","stance":0.4,"weight":1.0,"text":"Aurora narrow earnings beat outweighs soft regional orders - covering short, mildly bullish small long."}
+{"epoch":5,"t":3000,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"A momentum cracked and rolling over - flipping short on weakness."}
+{"epoch":5,"t":3000,"agent":"inv_news","asset":"A","stance":0.0,"weight":1.0,"text":"No fresh Aurora news, stepping flat to wait for next catalyst."}
+{"epoch":5,"t":3000,"agent":"inv_contrarian","asset":"A","stance":-0.7,"weight":1.0,"text":"A bounce on soft checks/narrow beat looks overdone vs losing biggest customer. Fading strength here."}
+{"epoch":6,"t":3500,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"A dumping hard and accelerating lower, sellers in control. Shorting momentum into weakness."}
+{"epoch":6,"t":3500,"agent":"inv_news","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost biggest customer + softer orders outweighs analyst tweak - very bearish into earnings."}
+{"epoch":6,"t":3500,"agent":"inv_contrarian","asset":"A","stance":0.8,"weight":1.0,"text":"A -0.9% washout on stale headline + mixed trivia looks overdone. Buying this dip."}
+{"epoch":7,"t":4000,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"A in freefall on guidance cut + earnings miss, downtrend accelerating. Shorting momentum."}
+{"epoch":7,"t":4000,"agent":"inv_news","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora cut guidance + missed earnings - very bearish, staying short."}
+{"epoch":7,"t":4000,"agent":"inv_contrarian","asset":"A","stance":-0.8,"weight":1.0,"text":"Guidance cut + earnings miss confirms downside, fading any bounce near-term bearish on A."}
+{"epoch":8,"t":4500,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"A still in clear downtrend making lower lows - staying short into weakness."}
+{"epoch":8,"t":4500,"agent":"inv_news","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora cut guidance + missed earnings - very bearish, holding short for drift."}
+{"epoch":8,"t":4500,"agent":"inv_contrarian","asset":"A","stance":0.7,"weight":1.0,"text":"A down 3 straight with no fresh news looks capitulated vs already-priced cut. Buying this washout."}
+{"epoch":9,"t":5000,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"A making lower lows, down 5 straight into earnings - momentum weak, staying short."}
+{"epoch":9,"t":5000,"agent":"inv_news","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer, guidance cut + miss outweighs analyst tweak. Staying max short into earnings."}
+{"epoch":9,"t":5000,"agent":"inv_contrarian","asset":"A","stance":0.7,"weight":1.0,"text":"A washed out 4 straight on recycled headline, shorts crowded. Buying this basing dip."}
+{"epoch":10,"t":5500,"agent":"inv_momentum","asset":"A","stance":-1.0,"weight":1.0,"text":"A down 6 straight on earnings miss, new lows into close - momentum weak, staying short."}
+{"epoch":10,"t":5500,"agent":"inv_contrarian","asset":"A","stance":1.0,"weight":1.0,"text":"A washed out 6 straight into largest-ever contract news - capitulation overdone. Buying for snapback."}
+{"epoch":10,"t":5500,"agent":"inv_news","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora largest-ever contract outweighs earnings miss - thesis flipped bullish."}

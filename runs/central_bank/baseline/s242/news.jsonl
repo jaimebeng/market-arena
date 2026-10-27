@@ -1,0 +1,50 @@
+{"t": 1000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.6%, output gap -0.0% in quarter 0"}
+{"t": 1000, "asset": null, "kind": "macro", "true_bps": -0.4, "headline": "Central bank holds rates at 4.00%"}
+{"t": 1494, "asset": "A", "kind": "news", "true_bps": 41.9, "misleading": true, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 1603, "asset": "A", "kind": "news", "true_bps": -16.5, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 2000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.0%, output gap -0.3% in quarter 1"}
+{"t": 2000, "asset": null, "kind": "macro", "true_bps": 190.0, "headline": "Central bank cuts rates to 3.50%"}
+{"t": 2136, "asset": "A", "kind": "news", "true_bps": -62.7, "misleading": false, "headline": "Aurora Systems loses its biggest customer"}
+{"t": 2422, "asset": "A", "kind": "news", "true_bps": 40.6, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 2832, "asset": "A", "kind": "news", "true_bps": 56.3, "misleading": true, "headline": "Aurora Systems delays a minor product update"}
+{"t": 3000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.0%, output gap +0.5% in quarter 2"}
+{"t": 3000, "asset": null, "kind": "macro", "true_bps": 114.1, "headline": "Central bank cuts rates to 3.25%"}
+{"t": 3091, "asset": "A", "kind": "news", "true_bps": 1.6, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 3324, "asset": "A", "kind": "news", "true_bps": 6.2, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 3600, "asset": "A", "kind": "news", "true_bps": 25.1, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 3814, "asset": "A", "kind": "news", "true_bps": -40.3, "misleading": true, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 3841, "asset": "A", "kind": "news", "true_bps": 36.3, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 3859, "asset": "A", "kind": "news", "true_bps": 17.1, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 3925, "asset": "A", "kind": "news", "true_bps": -47.7, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 4000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.5%, output gap +0.4% in quarter 3"}
+{"t": 4000, "asset": null, "kind": "macro", "true_bps": -88.6, "headline": "Central bank raises rates to 3.50%"}
+{"t": 5000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.9%, output gap +0.2% in quarter 4"}
+{"t": 5000, "asset": null, "kind": "macro", "true_bps": 105.1, "headline": "Central bank cuts rates to 3.25%"}
+{"t": 5253, "asset": "A", "kind": "news", "true_bps": 10.8, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 5739, "asset": "A", "kind": "news", "true_bps": -2.6, "misleading": false, "headline": "Aurora Systems delays a minor product update"}
+{"t": 5834, "asset": "A", "kind": "news", "true_bps": -102.8, "misleading": false, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 6000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.0%, output gap -0.3% in quarter 5"}
+{"t": 6000, "asset": null, "kind": "macro", "true_bps": 92.3, "headline": "Central bank cuts rates to 3.00%"}
+{"t": 7000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.8%, output gap -1.2% in quarter 6"}
+{"t": 7000, "asset": null, "kind": "macro", "true_bps": 164.4, "headline": "Central bank cuts rates to 2.50%"}
+{"t": 7293, "asset": "A", "kind": "news", "true_bps": 6.7, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 7371, "asset": "A", "kind": "news", "true_bps": 25.4, "misleading": true, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 7652, "asset": "A", "kind": "news", "true_bps": -17.8, "misleading": true, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 7971, "asset": "A", "kind": "news", "true_bps": 114.7, "misleading": false, "headline": "Regulator clears Aurora Systems's flagship product ahead of schedule"}
+{"t": 8000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.6%, output gap -1.1% in quarter 7"}
+{"t": 8000, "asset": null, "kind": "macro", "true_bps": 67.9, "headline": "Central bank cuts rates to 2.25%"}
+{"t": 8289, "asset": "A", "kind": "news", "true_bps": 20.7, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 9000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.4%, output gap -0.6% in quarter 8"}
+{"t": 9000, "asset": null, "kind": "macro", "true_bps": 83.0, "headline": "Central bank cuts rates to 2.00%"}
+{"t": 9134, "asset": "A", "kind": "news", "true_bps": -59.1, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 9584, "asset": "A", "kind": "news", "true_bps": -20.5, "misleading": true, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 10000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.4%, output gap -0.2% in quarter 9"}
+{"t": 10000, "asset": null, "kind": "macro", "true_bps": -5.5, "headline": "Central bank holds rates at 2.00%"}
+{"t": 10565, "asset": "A", "kind": "news", "true_bps": -9.1, "misleading": false, "headline": "Aurora Systems delays a minor product update"}
+{"t": 11000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.5%, output gap -0.3% in quarter 10"}
+{"t": 11000, "asset": null, "kind": "macro", "true_bps": -10.4, "headline": "Central bank holds rates at 2.00%"}
+{"t": 11490, "asset": "A", "kind": "news", "true_bps": 78.0, "misleading": false, "headline": "Aurora Systems raises full-year guidance"}
+{"t": 11542, "asset": "A", "kind": "news", "true_bps": 78.9, "misleading": false, "headline": "Aurora Systems lands its largest-ever contract"}
+{"t": 11790, "asset": "A", "kind": "news", "true_bps": 6.8, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 11963, "asset": "A", "kind": "news", "true_bps": -11.9, "misleading": true, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 12000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.9%, output gap +0.1% in quarter 11"}
