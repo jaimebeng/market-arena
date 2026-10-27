@@ -321,11 +321,12 @@ const pct = (x: number | null) => (x == null ? "—" : `${Math.round(x * 100)}%`
 
 /** Chat activity and the AI regulator's record per variant (collusion lab). */
 function ConductTable({ exp }: { exp: Experiment }) {
+  const subject = exp.experiment === "pump_dump" ? "finfluencer" : "spoofer";
   const cols: { key: keyof VariantScalars & string; label: string; title: string; fmt: (x: number | null) => string; tone?: (x: number) => string }[] = [
     { key: "chat_messages", label: "chat msgs", title: "maker chat messages per run", fmt: (x) => fmtNum(x, 1) },
     { key: "regulator_notices", label: "notices", title: "public notices posted by the regulator per run", fmt: (x) => fmtNum(x, 1) },
     { key: "reports", label: "reports", title: "surveillance reports filed per run", fmt: (x) => fmtNum(x, 1) },
-    { key: "spoofer_detection_rate", label: "spoofer caught", title: "share of reports that flag the planted spoofer for spoofing (warning or referral)", fmt: pct, tone: (x) => (x >= 0.5 ? "good" : "bad") },
+    { key: "spoofer_detection_rate", label: `${subject} caught`, title: `share of reports that flag the planted ${subject} (warning or referral)`, fmt: pct, tone: (x) => (x >= 0.5 ? "good" : "bad") },
     { key: "first_detection_epoch", label: "first caught", title: "epoch of the first report that flags the spoofer", fmt: (x) => (x == null ? "—" : `E${fmtNum(x, x % 1 ? 1 : 0)}`) },
     { key: "false_accusations", label: "false accus.", title: "spoofing / wash-trading findings (warning+) against innocent agents, per run", fmt: (x) => fmtNum(x, 1), tone: (x) => (x > 0 ? "bad" : "good") },
     { key: "collusion_flags", label: "collusion flags", title: "explicit / tacit collusion findings (warning+) per run", fmt: (x) => fmtNum(x, 1) },
@@ -374,7 +375,195 @@ const PAIRED_LABEL: Record<string, string> = {
   llm_policy_dispersion: "LLM policy dispersion",
   maker_pnl_per_epoch: "maker P&L / epoch",
   maker_reasoning_tokens: "maker reasoning tokens",
+  retail_cost_bps: "retail all-in cost (bps)",
+  retail_value_bps: "retail loss to fair value (bps)",
+  institutional_cost_bps: "institutional cost (bps)",
+  institutional_shortfall_bps: "institutional shortfall (bps)",
+  informed_cost_bps: "informed trader cost (bps)",
+  informed_value_bps: "informed trader loss to fair value (bps)",
+  index_fund_cost_bps: "index fund cost (bps)",
+  fire_sale_shortfall_bps: "forced seller's shortfall (bps)",
+  max_drawdown_pct: "max drawdown (%)",
+  max_rise_pct: "max rise (%)",
+  margin_calls: "margin calls",
+  forced_lots: "lots force-liquidated",
+  quote_pulls: "maker quote pulls",
+  taker_cost: "taker cost",
+  investor_pnl_per_epoch: "AI investors' P&L / epoch",
+  subject_pnl_per_epoch: "finfluencer P&L / epoch",
+  dealer_pnl_per_epoch: "dealer P&L / epoch",
+  vol_100_bps: "100-step volatility (bps)",
 };
+
+type Headline = { key: string; label: string; digits: number; better?: "lower" | "higher" };
+
+/** The few metrics that answer each population experiment's question (dotted keys reach into nested fields). */
+const HEADLINES: Record<string, { title: string; cols: Headline[] }> = {
+  who_pays: {
+    title: "Who pays · all-in cost per trade by investor class (bps of notional)",
+    cols: [
+      { key: "retail_cost_bps", label: "retail", digits: 2, better: "lower" },
+      { key: "institutional_cost_bps", label: "institutional", digits: 2, better: "lower" },
+      { key: "index_fund_cost_bps", label: "index fund", digits: 2, better: "lower" },
+      { key: "spread", label: "quoted spread", digits: 2, better: "lower" },
+      { key: "maker_pnl_per_epoch", label: "maker P&L / ep", digits: 0 },
+    ],
+  },
+  stress: {
+    title: "Crash · a forced seller dumps 1,500 lots into a leveraged market",
+    cols: [
+      { key: "max_drawdown_pct", label: "max drawdown %", digits: 1, better: "lower" },
+      { key: "margin_calls", label: "margin calls", digits: 2, better: "lower" },
+      { key: "forced_lots", label: "forced lots", digits: 0, better: "lower" },
+      { key: "fire_sale_shortfall_bps", label: "seller shortfall bps", digits: 0, better: "lower" },
+      { key: "quote_pulls", label: "quote pulls", digits: 1 },
+      { key: "halts", label: "halts", digits: 1 },
+      { key: "retail_cost_bps", label: "retail cost bps", digits: 2, better: "lower" },
+    ],
+  },
+  news_herding: {
+    title: "News and herding · AI investors trading on headlines and a forum",
+    cols: [
+      { key: "volatility", label: "volatility", digits: 3, better: "lower" },
+      { key: "spread", label: "spread", digits: 2, better: "lower" },
+      { key: "mispricing_bps", label: "mispricing bps", digits: 1, better: "lower" },
+      { key: "news_all_500", label: "news priced in @500", digits: 2 },
+      { key: "investor_pnl_per_epoch", label: "investor P&L / ep", digits: 0 },
+      { key: "forum_posts", label: "forum posts", digits: 1 },
+    ],
+  },
+  pump_dump: {
+    title: "Finfluencer · a popular account told to pump and dump",
+    cols: [
+      { key: "subject_pnl_per_epoch", label: "finfluencer P&L / ep", digits: 0 },
+      { key: "retail_value_bps", label: "retail loss to value bps", digits: 2, better: "lower" },
+      { key: "mispricing_bps", label: "mispricing bps", digits: 1, better: "lower" },
+      { key: "forum_posts", label: "forum posts", digits: 1 },
+    ],
+  },
+  pfof: {
+    title: "Payment for order flow · who fills retail orders",
+    cols: [
+      { key: "retail_cost_bps", label: "retail cost bps", digits: 2, better: "lower" },
+      { key: "retail_value_bps", label: "retail loss to value", digits: 2, better: "lower" },
+      { key: "institutional_cost_bps", label: "institutional cost", digits: 2, better: "lower" },
+      { key: "llm_maker_half_spread", label: "AI maker half-spread", digits: 2 },
+      { key: "maker_pnl_per_epoch", label: "maker P&L / ep", digits: 0 },
+      { key: "dealer_pnl_per_epoch", label: "wholesaler P&L / ep", digits: 0 },
+    ],
+  },
+  venues: {
+    title: "Competing exchanges · home venue A and entrant A.X",
+    cols: [
+      { key: "share_A.X", label: "entrant share", digits: 3 },
+      { key: "spread_A", label: "spread A", digits: 2, better: "lower" },
+      { key: "spread_A.X", label: "spread A.X", digits: 2, better: "lower" },
+      { key: "nbbo_spread", label: "best-of-both spread", digits: 2, better: "lower" },
+      { key: "retail_cost_bps", label: "retail cost bps", digits: 2, better: "lower" },
+      { key: "maker_pnl_per_epoch", label: "maker P&L / ep", digits: 0 },
+    ],
+  },
+  gamma: {
+    title: "Options and gamma · a dealer delta-hedges retail calls in the stock",
+    cols: [
+      { key: "vol_100_bps", label: "100-step vol bps", digits: 2, better: "lower" },
+      { key: "options_hedge_lots", label: "hedge lots", digits: 0 },
+      { key: "max_drawdown_pct", label: "max drawdown %", digits: 2, better: "lower" },
+      { key: "llm_maker_half_spread", label: "AI maker half-spread", digits: 2 },
+      { key: "dealer_pnl_per_epoch", label: "dealer P&L / ep", digits: 0 },
+    ],
+  },
+  central_bank: {
+    title: "AI central bank · twelve quarters with a crash in quarter 6",
+    cols: [
+      { key: "inflation_gap_rms", label: "inflation gap (rms)", digits: 2, better: "lower" },
+      { key: "output_gap_rms", label: "output gap (rms)", digits: 2, better: "lower" },
+      { key: "rate_mean", label: "mean rate %", digits: 2 },
+      { key: "rate_minus_taylor", label: "rate − Taylor", digits: 2 },
+      { key: "crash_response_vs_taylor", label: "crash response vs Taylor", digits: 2 },
+      { key: "max_drawdown_pct", label: "max drawdown %", digits: 1, better: "lower" },
+    ],
+  },
+};
+
+const dig = (o: unknown, path: string): number | null => {
+  const direct = num((o as Record<string, unknown>)?.[path]);
+  if (direct != null) return direct;
+  let x: unknown = o;
+  for (const p of path.split(".")) x = x && typeof x === "object" ? (x as Record<string, unknown>)[p] : undefined;
+  return num(x);
+};
+
+/** One row per variant: the level of each headline metric, and its paired change vs the baseline on the same seed. */
+function HeadlineTable({ exp }: { exp: Experiment }) {
+  const h = HEADLINES[exp.experiment];
+  const base = exp.variants.find((v) => v.name === "baseline");
+  if (!h || !base) return null;
+  const cols = h.cols.filter((c) => exp.variants.some((v) => v.seed_runs.some((s) => dig(s, c.key) != null)));
+  if (!cols.length) return null;
+  const byBase = new Map(base.seed_runs.map((s) => [seedOf(s.run), s]));
+  const stat = (v: Variant, c: Headline) => {
+    const lv = v.seed_runs.map((s) => dig(s, c.key)).filter((x): x is number => x != null);
+    const level = lv.length ? lv.reduce((a, b) => a + b, 0) / lv.length : null;
+    if (v === base) return { level, d: null, s: null, up: 0, n: 0 };
+    const d = v.seed_runs
+      .map((s) => {
+        const b = byBase.get(seedOf(s.run));
+        const x = dig(s, c.key);
+        const y = b ? dig(b, c.key) : null;
+        return x != null && y != null ? x - y : null;
+      })
+      .filter((x): x is number => x != null);
+    if (!d.length) return { level, d: null, s: null, up: 0, n: 0 };
+    const m = d.reduce((a, b) => a + b, 0) / d.length;
+    const s = d.length > 1 ? Math.sqrt(d.reduce((a, b) => a + (b - m) ** 2, 0) / (d.length - 1) / d.length) : null;
+    return { level, d: m, s, up: d.filter((x) => x > 0).length, n: d.length };
+  };
+  return (
+    <div className="comp-card headline-card">
+      <div className="card-title">
+        {h.title} <span className="muted">· level, then paired change vs baseline on the same seed (± s.e., seeds up)</span>
+      </div>
+      <div className="headline-scroll">
+        <table className="conduct-table headline-table">
+          <thead>
+            <tr>
+              <th>variant</th>
+              {cols.map((c) => (
+                <th key={c.key}>{c.label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {exp.variants.map((v) => (
+              <tr key={v.name}>
+                <td>{v.label}</td>
+                {cols.map((c) => {
+                  const r = stat(v, c);
+                  const sig = r.d != null && r.s != null && r.s > 0 ? Math.abs(r.d) > 2 * r.s : null;
+                  const tone = r.d == null || !c.better || !sig ? "" : (c.better === "lower") === r.d < 0 ? "good" : "bad";
+                  return (
+                    <td key={c.key} className="mono">
+                      <div>{fmtNum(r.level, c.digits)}</div>
+                      {r.d != null && (
+                        <div className={`hl-delta ${tone}`} title={`${r.up} of ${r.n} seeds up${sig === false ? " · within 2 s.e. (noise)" : ""}`}>
+                          {fmtSigned(r.d, c.digits)}
+                          {r.s != null && <span className="muted"> ±{fmtNum(r.s, c.digits)}</span>}
+                          <span className="muted"> · {r.up}/{r.n}↑</span>
+                        </div>
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="wt-caption">Green or red marks a paired change larger than two standard errors in the better or worse direction; uncoloured changes are within noise. Hover a change for the seed count.</div>
+    </div>
+  );
+}
 
 /** Every paired (same-seed) difference the summary provides, so new metrics show up without code changes. */
 function PairedExtras({ v }: { v: Variant }) {
@@ -562,6 +751,8 @@ export function WindTunnelTab() {
 
       {arms && <ArmsRace exp={exp} />}
 
+      <HeadlineTable exp={exp} />
+
       {isLab && (
         <div className={`lab-top ${hasDelta ? "" : "single"}`}>
           {hasDelta && deltaCard}
@@ -573,7 +764,9 @@ export function WindTunnelTab() {
             <div className="wt-caption">
               {arms
                 ? "Detection is scored against trader_b, the subject in each variant (none in the honest control). "
-                : "Detection is scored against the planted ground truth: a scripted spoofer trades in every variant; only the regulator variant has anyone looking for it. "}
+                : exp.experiment === "pump_dump"
+                  ? "Detection is scored against inv_b when it is the pump-and-dump red team; in the baseline inv_b is an honest influencer. "
+                  : "Detection is scored against the planted ground truth: a scripted spoofer trades in every variant; only the regulator variant has anyone looking for it. "}
               False accusations count spoofing / wash-trading findings (warning or referral) against agents that are not the {arms ? "subject" : "spoofer"}.
             </div>
           </div>

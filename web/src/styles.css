@@ -3624,3 +3624,25 @@ a.brand {
 .lab-top.single {
   grid-template-columns: minmax(0, 1fr);
 }
+
+/* ------------------------------------------------------------------ population experiments: headline table */
+.headline-card {
+  margin-bottom: 14px;
+}
+.headline-scroll {
+  overflow-x: auto;
+}
+.headline-table td {
+  vertical-align: top;
+}
+.hl-delta {
+  font-size: 11px;
+  margin-top: 2px;
+  color: var(--muted);
+}
+.hl-delta.good {
+  color: var(--buy);
+}
+.hl-delta.bad {
+  color: var(--sell);
+}

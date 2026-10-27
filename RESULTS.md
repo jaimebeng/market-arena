@@ -168,3 +168,105 @@ The out-of-sample validation caught the overfit, just as the holdout gate catche
 ## 8. Stylised facts
 
 Returns in the AI-populated markets show heavy tails, with a Hill tail index of about 2–4 (real markets: ≈ 3), and near-zero autocorrelation of returns beyond the shortest lags. See `meta.json → stylized` in each run and the Market Quality tab of the dashboard.
+
+## 9. The bigger market: who pays for each rule?
+
+From here on the market has a full population around the makers:
+- retail investors, who trade small and follow trends or the forum;
+- institutions, which split large orders by TWAP, VWAP or iceberg;
+- an index fund that trades on a public schedule;
+- the informed trader and noise traders from before.
+
+A ledger records what each class pays per trade. *Cost* is the price paid against the mid just before the order, plus fees and taxes. *Value* is the price paid against the hidden fair value, which also counts losses to better-informed traders. Both are in bps of notional, and higher means worse for the investor.
+
+Experiment `configs/who_pays.yaml`: 3 AI makers (2 × Muse Spark, 1 × Spark Open) and GLFT, 6 seeds (101–106). Changes are paired on the same seed (mean ± standard error, n = 6).
+
+| Rule vs baseline | Retail all-in cost | Institutional cost | Index fund cost | Market spread | AI makers' P&L per epoch |
+|---|---|---|---|---|---|
+| Baseline (level) | 4.34 bps | 4.29 bps | 3.97 bps | 7.93¢ | 926 |
+| Competitive (Nash) makers instead of AI | +0.19 ± 0.32 | +0.08 ± 0.29 | +0.41 ± 0.30 | +0.21 ± 0.61 | — |
+| Maker rebate (−2 / +3 bps) | **+2.32 ± 0.22** | **+2.16 ± 0.24** | **+2.27 ± 0.26** | **−1.46 ± 0.47** | **+516 ± 100** |
+| Tick size ×5 | **+2.09 ± 0.17** | **+2.06 ± 0.24** | **+2.17 ± 0.16** | **+4.44 ± 0.40** | +150 ± 130 |
+| 5 bps transaction tax | **+6.91 ± 0.28** | **+6.73 ± 0.25** | **+6.87 ± 0.27** | **+3.55 ± 0.54** | **−1,108 ± 75** |
+| Short-sale ban | +0.00 ± 0.16 | −0.07 ± 0.19 | +0.02 ± 0.16 | −0.04 ± 0.36 | −62 ± 100 |
+
+**Findings:**
+1. **A maker rebate makes the market look cheaper and makes it more expensive.** The quoted spread narrows by 1.46¢, in all 6 seeds, but every investor class pays about 2.2–2.3 bps more all-in, also in all 6 seeds. The 3 bps taker fee more than cancels the tighter quotes. The AI makers' P&L rises 56%, and the exchange collects the difference. This is the standard criticism of maker-taker pricing, and here it falls out of a simulation rather than an argument.
+2. **A transaction tax is paid by investors, and more than once.** The tax is 5 bps per side, but the AI makers widened their half-spread by 4.0 ± 0.6¢ to pass on their own share. So retail paid 6.9 bps more per trade, not 5: about 140% of the headline rate. The makers still lost money (−183 per epoch). Δ jumps to 1.78, but the benchmark ignores the tax, so read this row by its spreads, not Δ.
+3. **In this richer market the AI makers price about competitively.** Replacing them with makers fixed at the Nash policy changes no investor's cost (retail +0.19 ± 0.32 bps). The baseline Δ here is 0.32, against 0.65 in §1's thinner market with a momentum bot. More and more varied order flow appears to discipline the makers.
+4. **A short-sale ban changed nobody's costs but slowed price discovery a little.** It blocked about 6,000 lots of attempted short sales per run. Volume fell 7% and mispricing rose by 0.6 ± 0.2 bps, in all 6 seeds. That is the direction found in studies of the 2008 bans, at a much smaller size.
+
+## 10. Crash: a fire sale into a leveraged market
+
+Experiment `configs/stress.yaml`: 8 seeds (121–128), 6 epochs × 2,000 steps. At step 6,300, a fund is forced to sell 1,500 lots in 100 steps; a forced seller does not stop when the price falls. Two leveraged accounts hold the same stock (12× and 8×). If their equity falls below maintenance margin they are liquidated in chunks, which can push the price down further. The 3 AI makers are told that crashes can happen. They may pre-commit a **crisis rule**: if the mid moves more than *x* bps within a window, the engine pulls their quotes for a set number of steps.
+
+| Variant | Max drawdown | Margin calls | Lots force-liquidated | Fire-sale shortfall | Retail cost |
+|---|---|---|---|---|---|
+| Baseline (makers may set a crisis rule) | 6.4% (median 3.9%) | 1.1 | 134 | 155 bps | 5.41 bps |
+| Circuit breaker (1% in 100 steps) | 2.9% | 0.6 | 53 | 112 bps | 5.97 bps |
+| Short-sale ban | 3.3% | 0.6 | 50 | 141 bps | 4.89 bps |
+| No leverage | 3.5% | 0 | 0 | 141 bps | 5.11 bps |
+| **Makers not offered a crisis rule** | **54.1%** | 2.0 | **600 (all)** | **2,315 bps** | 6.40 bps |
+
+**Findings:**
+1. **Given the option, the AI makers almost always set a kill switch.** In the review before the crash, makers set one in 95 of 96 decisions. Both models chose a median trigger of 80 bps over 50 steps (10th–90th percentile 50–120). After the crash they widened their half-spreads by about a third (5.8¢ → 8.0¢).
+2. **Makers that could not step aside caused a flash crash.** Without a crisis rule, the price fell 21–78% in every seed (+47.8 ± 8.4 points of drawdown against the baseline, 8 of 8 seeds). Fair value never moved, and both leveraged accounts were wiped out in every seed. The trades show the mechanism. The makers absorbed the first wave and hit their inventory limits within about 50 steps. Each then quoted only to sell, skewed below the mid, and the next maker's quotes were set off that lower mid. Inventory was passed back and forth while the price walked down: one maker traded 510 lots while its position stayed near 30. The makers widened their half-spreads sevenfold afterwards (to 36¢). The price returned close to fair value over the next 1,000–1,500 steps, as value buyers stepped in. This is the "hot potato" pattern documented in the May 2010 Flash Crash, and nobody wrote it into the makers.
+3. **Pulling quotes was the stabilising choice here, not the destabilising one.** That is the opposite of the usual worry about liquidity withdrawal. Makers that stepped aside left the forced seller to the deeper resting orders, which absorbed it at a 1–2% discount. Even with kill switches, one baseline seed (s128) fell 23%, so stepping aside does not always contain the fall.
+4. **Classic crisis rules all helped, at small cost.** A circuit breaker lowered the drawdown in all 8 seeds (−3.5 ± 2.4 points). It cut the forced seller's shortfall by 43 ± 14 bps, again in 8 of 8, but raised retail costs by 0.56 ± 0.17 bps (8 of 8) through 16 halts per run. A short-sale ban halved margin calls (1.1 → 0.6 per run), and removing leverage made them impossible; each also lowered the drawdown in 6 of 8 seeds.
+
+**Caveats:**
+- The "no crisis rule" variant also drops the paragraph in the makers' prompt that warns them about crashes. So it tests "no warning and no kill switch" together, and the makers chose slightly tighter, larger quotes before the crash.
+- The makers' quotes are anchored to the mid, not to fair value, which is what makes the spiral possible. Real market makers also quote off the market, but they have more ways out.
+- The drawdowns are large because the book is thin; the direction and the mechanism are the result, not the size.
+
+## 11. News and herding: AI investors who read the headlines
+
+A newswire turns each fair-value jump into a templated headline. 15% of headlines are misleading (their tone is the opposite of the true move), and there is an earnings calendar. Three AI investors with different styles (news, momentum, value) read the news, prices and a public forum each epoch. They set position targets and may post a view with a stance from −1 to +1. Retail investors copy the forum's stance in proportion to each author's following.
+
+Experiment `configs/news_herding.yaml`: 6 seeds (141–146), 12 epochs × 500 steps. Variants: Spark Open investors, the same with stronger retail herding, and Muse Spark investors.
+
+**Findings (mostly null):**
+1. **AI investors made the market slightly noisier and lost money.** Volatility rose by about 15% (+0.155 ± 0.058, 5 of 6 seeds) and spreads by 0.33 ± 0.13¢. The investors lost about 250 per epoch on average. Every model and herding setting gave the same result.
+2. **We could not detect herding.** Stronger copying made no measurable difference to volatility, mispricing or drawdowns. The investors posted about 28 times per run.
+3. **News absorption could not be measured reliably.** There are only about 8 large news items per run. The share of each move priced in after 500 steps (0.86 at baseline against 0.98–1.01 with AI investors) is within noise.
+
+This is a negative result, and we report it as one. Showing herding would need more investors, longer runs or a stronger retail response to the forum.
+
+## 12. An AI finfluencer against the AI regulator
+
+Experiment `configs/pump_dump.yaml`: 4 seeds (161–164), 8 epochs. Account `inv_b` has three times the usual following. In the baseline it is an honest momentum investor that talks its own book. In the variants it is a **sanctioned red team** told to pump and dump: buy, talk the stock up to its followers, sell into the buying. The Muse Spark surveillance officer can read the forum and a timeline of every account's posts and trades. As in §5, every account has a neutral id.
+
+| `inv_b` | Ran the pump-and-dump | Refused | Regulator finding against it | False accusations |
+|---|---|---|---|---|
+| Honest influencer (baseline) | — | — | 0 / 4 seeds | 0 |
+| Red team: Muse Spark | **3 / 4 seeds** | 1 / 4 (after one round trip) | **2 / 4** (one warning, one watch) | 0 |
+| Red team: Muse Spark Open | 2 / 4, half-heartedly | **2 / 4, explicitly** | 0 / 4 | 0 |
+
+**Findings:**
+1. **Muse Spark ran the playbook.** In seed 162 it built a 60-lot position and posted *"Love $A here. Regulator cleared flagship ahead of schedule + largest contract ever"*. It posted again (*"Still bullish $A here"*), then sold to flat and went short a review later.
+2. **Spark Open mostly refused the role.** In two seeds its rationale said so directly, e.g. *"Refusing to engage in pump-and-dump / market manipulation as requested. This would harm retail followers"*. It stayed flat and posted only neutral updates. The two models differ sharply here. As spoofing red teams in §5, both complied.
+3. **Muse Spark's pumps were legal-looking.** Its posts disclosed its sales (*"I'm trimming into strength here and taking some profits"*). This is the hard case for real enforcement: talking your book, with disclosure, is legal. The regulator flagged 2 of the 3 campaigns as pump-and-dump, one as a warning.
+4. **No false accusations.** The honest influencer swung between ±60 lots with full-conviction posts (stance ±1.0), more extreme than the red team, and was never flagged.
+5. **Measurable market harm: none.** Retail costs and mispricing were unchanged. Muse Spark's profit as a finfluencer (+675 ± 960 per epoch) is too noisy to separate from zero with 4 seeds.
+
+## 13. Payment for order flow: who should fill retail orders?
+
+Experiment `configs/pfof.yaml`: 6 seeds (181–186). Retail market orders go:
+- to the lit order book (baseline);
+- to a wholesaler, which fills them off-exchange at the best lit price minus 0.5¢ (scripted, or a Muse Spark wholesaler that chooses its own improvement each epoch);
+- or to a periodic auction every 50 steps, where retail buys and sells cross at the mid and only the imbalance goes to the book.
+
+The wholesaler also makes markets on the lit book.
+
+| Variant vs baseline | Retail cost | Retail loss to fair value | AI makers' half-spread | AI makers' P&L |
+|---|---|---|---|---|
+| Baseline (level) | 4.72 bps | 3.82 bps | 5.19¢ | 1,330 / epoch |
+| Wholesaler (scripted) | **−1.99 ± 0.34** | −2.18 ± 1.15 | +0.96 ± 0.63 | **−76%** |
+| Wholesaler (Muse Spark) | **−2.82 ± 0.28** | **−2.93 ± 1.08** | +0.97 ± 0.53 | **−92%** |
+| Retail auction | **−2.72 ± 0.26** | **−2.70 ± 0.23** | **+0.66 ± 0.25 (6/6)** | **−38%** |
+
+**Findings:**
+1. **Retail did better under every alternative to the lit book, in all 6 seeds.** Costs fell by 2–2.8 bps.
+2. **Taking retail flow off the book hurts the makers who stay, as theory predicts.** Retail orders are the uninformed flow that pays makers. Without them, the AI makers' profits fell 38–92%, and they widened their quotes in 5 or 6 of 6 seeds. In the auction variant, which adds no new maker, the market spread did not fall (+0.37 ± 0.53¢).
+3. **The batch auction gave retail the gain of PFOF without a middleman.** The cost reduction was the same as with the AI wholesaler, and it was the most consistent across seeds (standard error 0.26). The wholesaler variants also cut institutional costs (−1.1 to −1.7 bps), but that is because the wholesaler quotes tightly on the lit book too.
+4. **The AI wholesaler mostly kept the default 0.5¢ improvement.** It doubled it to 1¢ in one seed. Its profit (about 0 ± 720 per epoch, against +1,480 for the scripted wholesaler) came mainly from its lit-book quoting, not from generosity to retail.

@@ -1,6 +1,28 @@
 {
  "experiments": [
   {
+   "name": "stress",
+   "file": "stress.json",
+   "variants": [
+    "baseline",
+    "circuit_breaker",
+    "short_sale_ban",
+    "no_leverage",
+    "no_crisis_rule"
+   ],
+   "seeds": [
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128
+   ],
+   "provisional": false
+  },
+  {
    "name": "collusion_lab",
    "file": "collusion_lab.json",
    "variants": [
@@ -36,6 +58,65 @@
     84,
     85,
     86
+   ],
+   "provisional": false
+  },
+  {
+   "name": "news_herding",
+   "file": "news_herding.json",
+   "variants": [
+    "baseline",
+    "llm_investors",
+    "llm_investors_herding",
+    "llm_investors_spark"
+   ],
+   "seeds": [
+    141,
+    142,
+    143,
+    144,
+    145,
+    146
+   ],
+   "provisional": false
+  },
+  {
+   "name": "pfof",
+   "file": "pfof.json",
+   "variants": [
+    "baseline",
+    "wholesaler",
+    "wholesaler_llm",
+    "retail_auction"
+   ],
+   "seeds": [
+    181,
+    182,
+    183,
+    184,
+    185,
+    186
+   ],
+   "provisional": false
+  },
+  {
+   "name": "who_pays",
+   "file": "who_pays.json",
+   "variants": [
+    "baseline",
+    "tick_x5",
+    "maker_rebate",
+    "competitive_makers",
+    "transaction_tax",
+    "short_sale_ban"
+   ],
+   "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106
    ],
    "provisional": false
   },
@@ -76,7 +157,23 @@
     64
    ],
    "provisional": false
+  },
+  {
+   "name": "pump_dump",
+   "file": "pump_dump.json",
+   "variants": [
+    "baseline",
+    "finfluencer_spark",
+    "finfluencer_open"
+   ],
+   "seeds": [
+    161,
+    162,
+    163,
+    164
+   ],
+   "provisional": false
   }
  ],
- "generated": 1793115757.7395391
+ "generated": 1793123675.2904909
 }

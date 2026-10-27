@@ -261,6 +261,9 @@ def export_run(run_dir: Path, name: str | None = None, fixture: dict | None = No
     }
 
 
+FEATURED = ["final_single", "final_multi"]
+
+
 def write_index(out_dir: Path) -> list[dict]:
     entries = []
     for p in sorted(out_dir.glob("*.json")):
@@ -286,7 +289,9 @@ def write_index(out_dir: Path) -> list[dict]:
             "finished": d.get("finished"),
             "bytes": p.stat().st_size,
         })
-    entries.sort(key=lambda e: (-(e["decisions"] > 0), -(e["finished"] or 0)))
+    # the demo runs open first; then runs with LLM decisions, newest first
+    entries.sort(key=lambda e: (FEATURED.index(e["name"]) if e["name"] in FEATURED else len(FEATURED),
+                                -(e["decisions"] > 0), -(e["finished"] or 0)))
     (out_dir / "index.json").write_text(json.dumps({"runs": entries, "generated": time.time()}, indent=1))
     return entries
 
