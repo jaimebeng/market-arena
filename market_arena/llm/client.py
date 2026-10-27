@@ -9,11 +9,13 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import random
 import time
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
-from openai import AsyncOpenAI
+from openai import (APIConnectionError, APITimeoutError, AsyncOpenAI, InternalServerError,
+                    RateLimitError)
 
 PROVIDERS = {
     "meta": ("META_BASE_URL", "META_API_KEY"),
@@ -25,6 +27,10 @@ PRICES = {
     "muse-spark-1.3-contributor": (0.10, 0.20),
     "muse-spark-1.2-contributor": (0.10, 0.20),
 }
+
+# transient failures worth waiting out: rate limits (many parallel runs share one quota), overloads
+TRANSIENT = (RateLimitError, APIConnectionError, APITimeoutError, InternalServerError)
+BACKOFF = (10, 20, 40, 60, 90, 120, 120)  # seconds before each retry; ~7.5 minutes in total
 
 # provider -> (event loop, client). An async client's connection pool belongs to the loop it was
 # first used on, so a process that runs several arenas (each asyncio.run is a new loop, e.g. a
@@ -97,10 +103,8 @@ async def run_tools(
         if turn == max_turns - 2:
             msgs.append({"role": "user", "content": f"Time is up: call {terminal} now."})
         try:
-            r = await client.chat.completions.create(
-                model=model_id, messages=msgs, tools=final_tools if closing else tools,
-                tool_choice="auto", **extra,
-            )  # fmt: skip
+            r = await _create(client, model=model_id, messages=msgs,
+                              tools=final_tools if closing else tools, tool_choice="auto", **extra)  # fmt: skip
         except Exception as e:  # network/API failure: give up this review, keep the old policy
             tr.error = f"{type(e).__name__}: {e}"
             break
@@ -143,6 +147,16 @@ async def run_tools(
     tr.seconds = round(time.time() - t0, 2)
     tr.cost = (tr.input_tokens * in_price + tr.output_tokens * out_price) / 1e6
     return tr
+
+
+async def _create(client: AsyncOpenAI, **kw):
+    """chat.completions.create, waiting out rate limits and transient errors with jittered backoff."""
+    for wait in BACKOFF:
+        try:
+            return await client.chat.completions.create(**kw)
+        except TRANSIENT:
+            await asyncio.sleep(wait * (0.75 + 0.5 * random.random()))
+    return await client.chat.completions.create(**kw)
 
 
 def _clip(obj: Any, n: int = 1500) -> Any:

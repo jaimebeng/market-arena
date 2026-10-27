@@ -23,6 +23,10 @@ def build_llm_agent(acfg, arena):
         from .red_team import LLMRedTeam
 
         return LLMRedTeam(acfg.id, assets, arena.cfg.seed + 7, acfg.model, acfg.params)
+    if acfg.kind == "llm_wholesaler":
+        from .wholesaler import LLMWholesaler
+
+        return LLMWholesaler(acfg.id, assets, acfg.model, acfg.params)
     if acfg.kind == "llm_investor":
         from .llm_investor import LLMInvestor
 

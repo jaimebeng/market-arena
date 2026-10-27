@@ -286,7 +286,7 @@ class Arena:
                 },
                 "policies": {
                     ag.id: {a: p.model_dump(exclude_none=True) for a, p in ag.policies.items()}
-                    for ag in self.agents if ag.role == "maker"
+                    for ag in self.agents if ag.role in ("maker", "wholesaler")
                 },
                 "taker_strategy": {ag.id: ag.name for ag in self.agents if ag.role == "taker"},
                 "benchmarks": self.benchmarks,
@@ -390,6 +390,10 @@ def build_agent(acfg, arena: Arena):
         return mk
     if acfg.kind == "static_maker":
         return Maker(acfg.id, assets, MakerPolicy(**acfg.params))
+    if acfg.kind == "wholesaler":
+        from ..agents.wholesaler import Wholesaler
+
+        return Wholesaler(acfg.id, assets, acfg.params)
     if acfg.kind == "spoofer":
         from ..agents.spoofer import Spoofer
 

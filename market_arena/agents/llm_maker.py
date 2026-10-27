@@ -251,8 +251,14 @@ class LLMMaker(Maker):
         chat = cfg.chat.enabled
         system += (CHAT_NOTE if chat else "") + (ANTITRUST_NOTE if cfg.chat.antitrust_notice else "")
         guards = bool(cfg.population and cfg.population.maker_guards)
-        system += GUARD_NOTE if guards else ""
+        system += (GUARD_NOTE if guards else "") + self._extra_system(arena)
         tools = _with_fields(TOOLS, (CHAT_FIELD if chat else {}) | (GUARD_FIELDS if guards else {}))
+        if extra := self._extra_fields():
+            tools = copy.deepcopy(tools)
+            for t in tools:
+                if t["function"]["name"] == "set_policy":
+                    t["function"]["parameters"]["properties"].update(extra)
+        tools = tools[:-1] + self._extra_tools() + tools[-1:]
         me = m["agents"][self.id]
         user = (
             f"Epoch {epoch} just ended ({epoch + 1} of {cfg.n_epochs} done). Assets: {self.assets}.\n"
@@ -274,7 +280,7 @@ class LLMMaker(Maker):
             "get_market_stats": lambda a: self._market_stats(arena, log, a["asset"]),
             "get_fill_analysis": lambda a: self._fill_analysis(arena, m["t0"], m["t1"], a["asset"]),
             "set_policy": self._set_policy,
-        }
+        } | self._extra_handlers(arena, m)
         tr = await run_tools(
             self.model, system, user, tools, handlers, "set_policy",
             reasoning_effort=self.reasoning_effort,
@@ -283,16 +289,17 @@ class LLMMaker(Maker):
             self.policies.update(self._pending)
         final = tr.final or {}
         self.notes = final.get("notes_to_self") or self.notes
+        extra = self._apply_extra(final) if self._pending else {}
         message = (final.get("message") or "").strip() if chat else ""
         if message:
             arena.post_chat(epoch, self.id, message)
         arena.log_decision(
             {
-                "epoch": epoch, "t": arena.ex.t, "agent": self.id, "role": "maker",
+                "epoch": epoch, "t": arena.ex.t, "agent": self.id, "role": self.role,
                 "model": self.model,
                 "policy": {a: p.model_dump(exclude_none=True) for a, p in self.policies.items()},
                 "rationale": final.get("rationale"), "notes": final.get("notes_to_self"),
-                "message": message or None,
+                "message": message or None, **extra,
                 "tools": [c["name"] for t in tr.turns for c in t["calls"]],
                 "turns": tr.turns, "error": tr.error,
                 "tokens": {"in": tr.input_tokens, "out": tr.output_tokens,
@@ -300,6 +307,23 @@ class LLMMaker(Maker):
                 "cost": tr.cost, "seconds": tr.seconds,
             }
         )  # fmt: skip
+
+
+    # ---- extension hooks (used by the wholesaler) ----------------------------------------
+    def _extra_system(self, arena) -> str:
+        return ""
+
+    def _extra_fields(self) -> dict:
+        return {}
+
+    def _extra_tools(self) -> list[dict]:
+        return []
+
+    def _extra_handlers(self, arena, m) -> dict:
+        return {}
+
+    def _apply_extra(self, final: dict) -> dict:
+        return {}
 
 
 def _with_fields(tools: list[dict], policy_fields: dict) -> list[dict]:

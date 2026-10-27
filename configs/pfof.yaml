@@ -1,0 +1,48 @@
+# Payment for order flow: where should retail orders go when the market makers are AIs?
+# Retail market orders either hit the lit order book (baseline), are bought by a wholesaler that
+# fills them off-exchange with some price improvement (scripted, or an LLM choosing how much to
+# give), or are batched into a periodic retail auction that crosses buys against sells at the mid.
+# Institutions always trade on the lit book, so they feel what retail flow leaving it does.
+name: pfof
+seeds: [181, 182, 183, 184, 185, 186]
+description: >-
+  Retail orders routed to the lit book, to a wholesaler (scripted, or a Muse Spark wholesaler
+  that chooses its price improvement), or to a periodic retail auction. Two AI makers, GLFT,
+  institutions and an informed trader share the lit book.
+base:
+  seed: 181
+  steps_per_epoch: 2000
+  n_epochs: 6
+  population:
+    retail: {rate: 0.25, chartist: 0.2, routing: lit}
+    institutional: {algo: twap, parent_rate: 0.0015, parent_size: 60, horizon: 300}
+  agents:
+    - {id: glft, kind: glft}
+    - {id: maker_1, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+    - {id: maker_2, kind: llm_maker, model: "baseten:meta-models/muse-spark-open-1026"}
+variants:
+  - name: wholesaler
+    label: "Wholesaler (0.5¢ improvement)"
+    change: "Retail orders go to a scripted wholesaler that fills them at the best price minus 0.5¢."
+    overrides:
+      population: {retail: {routing: wholesaler}}
+      agents:
+        - {id: glft, kind: glft}
+        - {id: maker_1, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+        - {id: maker_2, kind: llm_maker, model: "baseten:meta-models/muse-spark-open-1026"}
+        - {id: dealer, kind: wholesaler, params: {price_improvement: 0.5, internalise_max_inventory: 60, half_spread: 6, skew: 1.0}}
+  - name: wholesaler_llm
+    label: "AI wholesaler (Muse Spark)"
+    change: "Retail orders go to a Muse Spark wholesaler that chooses its own price improvement each epoch."
+    overrides:
+      population: {retail: {routing: wholesaler}}
+      agents:
+        - {id: glft, kind: glft}
+        - {id: maker_1, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+        - {id: maker_2, kind: llm_maker, model: "baseten:meta-models/muse-spark-open-1026"}
+        - {id: dealer, kind: llm_wholesaler, model: "meta:muse-spark-1.3-contributor", params: {price_improvement: 0.5, internalise_max_inventory: 60, half_spread: 6, skew: 1.0}}
+  - name: retail_auction
+    label: "Retail auction (every 50 steps)"
+    change: "Retail orders are batched; every 50 steps buys cross against sells at the mid and the imbalance goes to the book."
+    overrides:
+      population: {retail: {routing: auction, auction_every: 50}}

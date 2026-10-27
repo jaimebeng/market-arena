@@ -98,7 +98,13 @@ def _investors(run_dir: Path, meta: dict, use: list[dict]) -> dict:
     kinds = {a["id"]: a["kind"] for a in meta["config"]["agents"]}
     inv = [i for i, k in kinds.items() if k == "llm_investor"]
     subj = [i for i, k in kinds.items() if k in ("llm_finfluencer", "llm_red_team")]
-    for key, ids in (("investor_pnl_per_epoch", inv), ("subject_pnl_per_epoch", subj)):
+    dealer = [i for i, k in kinds.items() if k in ("wholesaler", "llm_wholesaler")]
+    if dealer:
+        out["price_improvement_by_epoch"] = [d["price_improvement"] for line in open(run_dir / "decisions.jsonl")
+                                             if (d := json.loads(line))["agent"] in dealer
+                                             and d.get("price_improvement") is not None] or None  # fmt: skip
+    for key, ids in (("investor_pnl_per_epoch", inv), ("subject_pnl_per_epoch", subj),
+                     ("dealer_pnl_per_epoch", dealer)):
         if ids:
             out[key] = round(float(np.mean([m["agents"][i]["pnl"] for m in use for i in ids])), 1)
     forum = run_dir / "forum.jsonl"
@@ -213,7 +219,7 @@ PAIRED = ("collusion_index", "llm_maker_half_spread", "spread", "depth", "mispri
           "quote_pulls", "taker_cost",
           # news and investors
           "news_all_10", "news_all_100", "news_all_500", "news_all_1500", "investor_pnl_per_epoch",
-          "subject_pnl_per_epoch")
+          "subject_pnl_per_epoch", "dealer_pnl_per_epoch", "informed_cost_bps", "informed_value_bps")
 
 
 def _paired_vs_baseline(variants: list[dict]) -> None:
