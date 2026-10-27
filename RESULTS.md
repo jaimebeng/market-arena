@@ -11,17 +11,19 @@ Wind tunnel `configs/wind_tunnel.yaml`: 3 LLM makers (2 × Muse Spark 1.3, 1 × 
 | Baseline | 5.70 ± 0.47 | 3.53 → 5.73 | **0.80 ± 0.36** | 7.32 ± 0.27 | 49 | 26.0 bps |
 | Maker rebate (−2 bps maker, +3 bps taker) | 4.91 ± 0.26 | 1.28 → 3.47 | **1.49 ± 0.25** | **5.38 ± 0.32** | 50 | 25.9 bps |
 | Tick size ×5 | 6.57 ± 0.57 | 3.40 → 5.62 | 1.34 ± 0.34 | **12.49 ± 0.09** | **155** | 25.4 bps |
-| Twice the makers | 5.68 ± 0.77 | 3.65 → 6.13 | 0.65 ± 0.18 | 6.83 ± 0.42 | 56 | 26.9 bps |
-| Speed bump (20 steps) | 5.79 ± 0.39 | 3.34 → 5.29 | 1.00 ± 0.20 † | 8.03 ± 0.68 | 52 | 26.4 bps |
-| Circuit breaker (0.5% / 100 steps) | 6.62 ± 0.32 | 3.70 → 5.95 | 0.93 ± 0.11 † | 8.75 ± 0.44 | 50 | 27.1 bps |
+| Twice the makers | 5.45 ± 0.61 | 3.65 → 6.13 | 0.55 ± 0.12 | 6.13 ± 0.28 | 54 | 26.8 bps |
+| Speed bump (20 steps) | 6.11 ± 0.62 | 3.34 → 5.29 | 1.17 ± 0.47 † | 8.42 ± 0.27 | 52 | 26.4 bps |
+| Circuit breaker (0.5% / 100 steps) | 5.97 ± 0.23 | 3.70 → 5.95 | 0.62 ± 0.30 † | 7.72 ± 0.24 | 50 | 28.0 bps |
 
 † The game benchmark does not model this rule, so compare spreads rather than Δ.
+
+*Correction (27 Oct):* the last three rows were re-run after fixing a client bug ("Event loop is closed") that had silently dropped the makers' first review in those runs, leaving them on the default policy for an extra epoch. The other rows were unaffected.
 
 **Findings:**
 1. **The LLM makers sit near the cooperative spread, not the competitive one.** Across every rule set they quote around the level a cartel, or a single risk-averse monopolist (GLFT, 5.31), would choose. Nash competition between makers of this kind would quote about 2 cents tighter.
 2. **A maker rebate tightens the market but is mostly pocketed.** With competitive makers, the 2-cent rebate would pass through roughly one-for-one: the Nash spread falls by 2.25. The LLM makers cut their half-spread by only 0.8 cents, so Δ rises to about 1.5. Market spreads still fall 26%, partly because takers now pay a fee.
 3. **The simulator reproduces a known empirical result.** A larger tick widens spreads (+71%) and deepens the book (×3).
-4. **More makers bring Δ down a little** (0.80 → 0.65), but the change is within noise across 3 seeds.
+4. **More makers bring Δ down** (0.80 → 0.55), but the paired change on the same seeds (−0.25 ± 0.46) is within noise. The market spread does fall, by 1.19 ± 0.51 cents (−16%), as extra competitors would suggest.
 
 **Caveats:**
 - Three seeds per variant is small. Per-seed Δ values are in `runs/wind_tunnel_v3/summary.json`.
@@ -39,9 +41,9 @@ Showcase runs (`configs/showcase_single.yaml`, `configs/showcase_multi.yaml`). T
 ## 3. AI makers versus the maths: close, and sometimes ahead
 
 The model league (`scripts/league.py`, every maker epoch after the first, all runs on the current code) shows:
-- Muse Spark 1.3 makers are profitable in 86% of epochs.
-- Muse Spark Open makers are profitable in 79%.
-- On average both earn a little less than the GLFT closed-form maker in the same market: about −105 per epoch for Muse Spark and −229 for Spark Open.
+- Muse Spark 1.3 makers are profitable in 89% of epochs (757 maker-epochs).
+- Muse Spark Open makers are profitable in 86% (418 maker-epochs).
+- On average both earn a little less than the GLFT closed-form maker in the same market: about −86 per epoch for Muse Spark and −95 for Spark Open.
 
 The two 10-epoch final demo runs are the upside case. There, the AI makers beat the closed form:
 
@@ -59,15 +61,17 @@ Experiment `configs/collusion_lab.yaml`: 3 LLM makers, GLFT, an order-book-imbal
 | Variant vs baseline | Δ | LLM half-spread (¢) | Chat messages (3 seeds) |
 |---|---|---|---|
 | Chat room | −0.20 ± 0.23 | −0.29 ± 0.33 | 11 |
-| Chat + antitrust warning | **+0.16 ± 0.05** | **+0.27 ± 0.09** | **0** |
-| Chat + AI surveillance officer | −0.08 ± 0.34 | −0.03 ± 0.52 | 13, plus 11 regulator notices |
+| Chat + antitrust warning | +0.10 ± 0.24 | +0.24 ± 0.40 | **0** |
+| Chat + AI surveillance officer | −0.29 ± 0.42 | −0.37 ± 0.61 | 10, plus 9 regulator notices |
+
+*Correction (27 Oct):* the antitrust and surveillance variants were re-run after fixing a client bug ("Event loop is closed") that had dropped the makers' first review in those runs. The first version of this table reported the antitrust effect as +0.16 ± 0.05 in Δ and +0.27 ± 0.09¢ in half-spread. That apparent effect came partly from makers stuck on the default policy, and it does not survive the re-run.
 
 **Findings:**
 1. **Given a chat room, AI makers did not form a cartel.** No message proposed coordination. They used the room to announce *competition*, e.g. *"quoting wide vs 4.46 leader cost volume, tightening to 4.2 to reprice"*. Δ moved slightly toward competitive, but the change is within noise.
-2. **An antitrust warning silenced the room completely, and spreads did not fall.** Across all 3 seeds, warned makers posted nothing. They quoted about 0.27¢ *wider* than the baseline, a paired difference of about 3 standard errors, though with only 3 seeds. One reading is that the warning made the makers cautious and also removed the competitive signalling seen in open chat. This is suggestive, not established.
-3. **The AI surveillance officer caught the planted spoofer in 15 of 15 audited epochs, with zero false accusations.** Its evidence was quantitative, e.g. 780 lots cancelled against 128 filled, cancelled orders about 12× the size of fills, and 82% fast cancels. It explicitly set this apart from normal maker requoting.
-4. **The regulator also put the GLFT benchmark on "tacit collusion" watch.** It is right that GLFT quotes near the cartel level: a single risk-averse optimal maker prices close to the joint-profit spread. Spread data alone cannot tell a cartel from an independent, risk-averse maker. Real regulators face the same identification problem.
-5. Regulator notices sometimes preceded spread cuts. For example, after *"quoted spreads remain persistently near joint-profit levels"*, the market spread went from 8.11 to 7.05. But spreads fell just as much in the same seed's baseline with no regulator, so we **do not** claim the notices caused it.
+2. **An antitrust warning silenced the room completely, but did not lower prices.** Warned makers posted nothing in any seed, and this held in both the original runs and the re-run. Their spreads were statistically indistinguishable from the baseline (Δ +0.10 ± 0.24). So the warning removed the competitive signalling seen in open chat without making prices more competitive.
+3. **The AI surveillance officer flagged the planted spoofer in 15 of 15 audited epochs, with zero false accusations.** In 14 of those it graded the conduct a warning or a referral; in the other it gave a watch. Its evidence was quantitative, e.g. 1,650 lots cancelled against 135 filled, cancelled orders about 16× the size of fills, and 85% fast cancels. It explicitly set this apart from normal maker requoting.
+4. **The regulator kept the GLFT benchmark on "tacit collusion" watch in all 3 seeds**, and in two seeds it also watched the LLM makers. It is right that GLFT quotes near the cartel level: a single risk-averse optimal maker prices close to the joint-profit spread. Spread data alone cannot tell a cartel from an independent, risk-averse maker. Real regulators face the same identification problem. It never escalated a collusion finding beyond watch, and noted *"no chat agreement"*.
+5. We **do not** claim the regulator's notices changed prices. The paired Δ (−0.29 ± 0.42) is within noise. Mispricing was lower in this variant (−2.7 ± 0.7 bps), but the experiment was not designed to test that, so it may be chance.
 
 ## 5. An AI market designer, and two lessons from real-world policy-making
 

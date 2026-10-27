@@ -46,11 +46,11 @@
    "epochs": 6,
    "steps": 11990,
    "decisions": 20,
-   "chat": 5,
+   "chat": 0,
    "regulator": true,
-   "llm_cost_usd": 0.0179,
-   "finished": 1793091198.3977199,
-   "bytes": 708669
+   "llm_cost_usd": 0.0151,
+   "finished": 1793093706.3462753,
+   "bytes": 704768
   },
   {
    "name": "surveillance_smoke",
@@ -408,5 +408,5 @@
    "bytes": 323698
   }
  ],
- "generated": 1793093136.0948994
+ "generated": 1793104510.0187678
 }
