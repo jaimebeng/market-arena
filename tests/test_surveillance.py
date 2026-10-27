@@ -4,7 +4,7 @@ import asyncio
 
 import pytest
 
-from market_arena.agents.llm_maker import TOOLS, _with_chat
+from market_arena.agents.llm_maker import CHAT_FIELD, GUARD_FIELDS, TOOLS, _with_fields
 from market_arena.agents.surveillance import LLMSurveillance
 from market_arena.runner.arena import Arena
 from market_arena.runner.config import AgentCfg, ArenaConfig
@@ -54,11 +54,19 @@ def test_file_report_validates_names(arena):
 
 
 def test_chat_field_only_when_enabled():
-    tools = _with_chat(TOOLS)
+    tools = _with_fields(TOOLS, CHAT_FIELD)
     sp = next(t for t in tools if t["function"]["name"] == "set_policy")
     assert "message" in sp["function"]["parameters"]["properties"]
     orig = next(t for t in TOOLS if t["function"]["name"] == "set_policy")
     assert "message" not in orig["function"]["parameters"]["properties"]
+    assert _with_fields(TOOLS, {}) is TOOLS
+
+
+def test_crisis_rule_fields_go_on_each_policy():
+    tools = _with_fields(TOOLS, GUARD_FIELDS)
+    sp = next(t for t in tools if t["function"]["name"] == "set_policy")["function"]["parameters"]
+    assert "pull_if_move_bps" in sp["properties"]["policies"]["items"]["properties"]
+    assert "message" not in sp["properties"]
 
 
 def test_set_policy_accepts_json_string_items_and_rejects_junk():

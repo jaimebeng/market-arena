@@ -19,6 +19,11 @@ class Rules(BaseModel):
     circuit_breaker_pct: float | None = None  # halt if mid moves this % within the window
     circuit_window: int = 100
     circuit_halt_steps: int = 50
+    # levers added for the investor-protection experiments; all off by default
+    transaction_tax_bps: float = 0.0  # paid by both sides of every trade (a financial transaction tax)
+    short_sale_ban: bool = False  # sells may not take a participant's position below zero...
+    short_ban_exempt: list[str] = ["noise"]  # ...except these owners; market makers are always exempt
+    venue_fees: dict[str, tuple[float, float]] = {}  # asset/listing -> (maker, taker) bps override
 
 
 @dataclass
@@ -26,6 +31,7 @@ class Account:
     cash: float = 0.0  # price units
     pos: dict[str, int] = field(default_factory=lambda: defaultdict(int))
     fees: float = 0.0
+    taxes: float = 0.0
     volume: int = 0
     n_fills: int = 0
 
@@ -43,6 +49,7 @@ class FillRecord:
     qty: int
     maker: bool
     mid_before: float = float("nan")  # mid just before the order that caused the fill
+    venue: str = "lit"  # "lit" = the order book; "otc" = internalised off-book (wholesaler)
 
 
 FAST_CANCEL_STEPS = 5  # a cancel this soon after placement counts as "fast" for surveillance
@@ -77,6 +84,10 @@ class Exchange:
         self.tracked: set[str] = set()
         self.order_stats: dict[str, OrderStats] = defaultdict(OrderStats)
         self.cancel_log: list[tuple[int, str, str, int, int, int]] = []  # t, owner, asset, side, qty, age
+        self.market_makers: set[str] = set()  # exempt from a short-sale ban
+        self.tax_revenue = 0.0
+        self.blocked_short_lots = 0  # sell quantity refused under a short-sale ban
+        self.halts: list[tuple[int, str]] = []  # (t, asset) each time the circuit breaker trips
 
     # ---- helpers -------------------------------------------------------------------------
     def mid(self, asset: str) -> float:
@@ -85,6 +96,16 @@ class Exchange:
 
     def halted(self, asset: str) -> bool:
         return self.t < self.halted_until[asset]
+
+    def _short_cap(self, owner: str, asset: str, side: int, qty: int) -> int:
+        """Under a short-sale ban, cap a sell at the owner's long position net of resting sells."""
+        r = self.rules
+        if side != SELL or not r.short_sale_ban or owner in self.market_makers or owner in r.short_ban_exempt:
+            return qty
+        resting = sum(o.qty for o in self.books[asset].owner_orders(owner) if o.side == SELL)
+        cap = max(0, min(qty, self.accounts[owner].pos[asset] - resting))
+        self.blocked_short_lots += qty - cap
+        return cap
 
     def _round(self, px: float, side: int) -> int:
         tick = self.rules.tick
@@ -96,6 +117,7 @@ class Exchange:
         self, owner: str, asset: str, side: int, px: float, qty: int, post_only: bool = False
     ) -> int | None:
         """Place a limit order; returns its id if any remainder rests."""
+        qty = self._short_cap(owner, asset, side, qty)
         if qty <= 0 or self.halted(asset):
             return None
         book = self.books[asset]
@@ -120,6 +142,7 @@ class Exchange:
 
     def market(self, owner: str, asset: str, side: int, qty: int) -> int:
         """Send a market order; returns the filled quantity."""
+        qty = self._short_cap(owner, asset, side, qty)
         if qty <= 0 or self.halted(asset):
             return 0
         mid0 = self.mid(asset)
@@ -151,9 +174,21 @@ class Exchange:
             ok &= self.cancel(asset, o.id)
         return ok
 
+    def internalise(self, taker: str, dealer: str, asset: str, side: int, qty: int, px: float) -> int:
+        """Fill a (retail) order off-book against a wholesaler at px. No exchange fees; tax applies."""
+        if qty <= 0 or self.halted(asset):
+            return 0
+        mid0 = self.mid(asset)
+        fill = Fill(int(round(px)), qty, side, dealer, taker, -1)
+        self._settle(asset, [fill], mid0, venue="otc")
+        return qty
+
     # ---- settlement and clock ------------------------------------------------------------
-    def _settle(self, asset: str, fills: list[Fill], mid0: float) -> None:
+    def _settle(self, asset: str, fills: list[Fill], mid0: float, venue: str = "lit") -> None:
         r = self.rules
+        mk_bps, tk_bps = r.venue_fees.get(asset, (r.maker_fee_bps, r.taker_fee_bps))
+        if venue == "otc":
+            mk_bps = tk_bps = 0.0
         for f in fills:
             notional = f.price * f.qty
             buyer = self.accounts[f.buyer]
@@ -162,8 +197,14 @@ class Exchange:
             buyer.pos[asset] += f.qty
             seller.cash += notional
             seller.pos[asset] -= f.qty
-            maker_fee = notional * r.maker_fee_bps * 1e-4
-            taker_fee = notional * r.taker_fee_bps * 1e-4
+            if r.transaction_tax_bps:
+                tax = notional * r.transaction_tax_bps * 1e-4
+                for acct in (buyer, seller):
+                    acct.cash -= tax
+                    acct.taxes += tax
+                self.tax_revenue += 2 * tax
+            maker_fee = notional * mk_bps * 1e-4
+            taker_fee = notional * tk_bps * 1e-4
             self.accounts[f.maker].cash -= maker_fee
             self.accounts[f.maker].fees += maker_fee
             self.accounts[f.taker].cash -= taker_fee
@@ -175,13 +216,14 @@ class Exchange:
                 self.order_stats[f.maker].self_trades += f.qty
             maker_side = -f.aggressor_side
             self.fill_log.append(
-                FillRecord(self.t, asset, f.maker, maker_side, f.price, f.qty, True, mid0)
+                FillRecord(self.t, asset, f.maker, maker_side, f.price, f.qty, True, mid0, venue)
             )
             self.fill_log.append(
-                FillRecord(self.t, asset, f.taker, f.aggressor_side, f.price, f.qty, False, mid0)
+                FillRecord(self.t, asset, f.taker, f.aggressor_side, f.price, f.qty, False, mid0, venue)
             )
             self.step_trades.append((asset, f))
-            self.last_px[asset] = f.price
+            if venue == "lit":
+                self.last_px[asset] = f.price
 
     def end_step(self) -> None:
         """Advance the clock; apply the circuit breaker."""
@@ -194,6 +236,7 @@ class Exchange:
             if r.circuit_breaker_pct and not self.halted(a) and h[0] > 0:
                 if abs(h[-1] / h[0] - 1) * 100 >= r.circuit_breaker_pct:
                     self.halted_until[a] = self.t + r.circuit_halt_steps
+                    self.halts.append((self.t, a))
                     h.clear()
         self.step_trades = []
         self.t += 1

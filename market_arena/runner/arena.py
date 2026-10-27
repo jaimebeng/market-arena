@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 
 from ..agents.maker import Maker, MakerPolicy
-from ..analysis.metrics import agent_metrics, market_metrics
+from ..analysis.metrics import agent_metrics, class_metrics, drawdown, market_metrics
 from ..analysis.stylized import stylized_facts
 from ..agents.taker import StrategyTaker
 from ..bench.game import GameParams, collusion_index, solve_nash, solve_pareto
@@ -23,15 +23,23 @@ from ..sim.book import BUY
 from ..sim.exchange import Exchange
 from ..sim.fundamentals import Fundamentals
 from ..sim.history import MarketHistory
+from ..sim.participants import (IndexFund, InstitutionalFlow, LatencyArb, MarginDesk, RetailFlow,
+                                Router, stream)
 from .config import ArenaConfig
 
 BACKGROUND = ("noise", "informed", "index_flow")
+# investor classes whose trading costs the who-pays ledger reports
+CLASSES = BACKGROUND + ("retail", "institutional", "fund_liquidation", "index_fund", "hft")
 
 
 class Market:
-    """Fundamentals + exchange + scripted background flow."""
+    """Fundamentals + exchange + scripted background flow (+ the optional investor population).
 
-    def __init__(self, cfg: ArenaConfig, rng: np.random.Generator) -> None:
+    `calibration` builds the market used to fit the benchmarks: the investor population trades in
+    it, but one-off shocks (a fire sale, leveraged accounts) do not."""
+
+    def __init__(self, cfg: ArenaConfig, rng: np.random.Generator, seed: int | None = None,
+                 calibration: bool = False) -> None:  # fmt: skip
         comps = {n: c.model_dump() for n, c in cfg.components.items()}
         self.fund = Fundamentals(comps, cfg.factor_sigma, rng, cfg.index, cfg.jump_rate, cfg.jump_bps)
         self.assets = self.fund.assets
@@ -50,6 +58,26 @@ class Market:
             if cfg.index and cfg.index_flow
             else None
         )
+        self.router = Router(self.ex, {a: [a] for a in self.assets})
+        self.extra: list = []  # optional participants, stepped after the original flow
+        self.retail = self.institutional = self.margin = None
+        pop, seed = cfg.population, cfg.seed if seed is None else seed
+        if pop:
+            if pop.retail:
+                self.retail = RetailFlow(self.ex, self.router, pop.retail, stream(seed, 1))
+                self.extra.append(self.retail)
+            fire = None if calibration else pop.fire_sale
+            if pop.institutional or fire:
+                self.institutional = InstitutionalFlow(self.ex, self.router, pop.institutional, fire,
+                                                       stream(seed, 2))  # fmt: skip
+                self.extra.append(self.institutional)
+            if pop.index_fund:
+                self.extra.append(IndexFund(self.ex, self.router, pop.index_fund, stream(seed, 3)))
+            if pop.latency_arb:
+                self.extra.append(LatencyArb(self.ex, self.router, pop.latency_arb, stream(seed, 4)))
+            if pop.leveraged and not calibration:
+                self.margin = MarginDesk(self.ex, pop.leveraged)
+                self.extra.append(self.margin)
 
     def background_step(self) -> dict[str, float]:
         self.fund.step()
@@ -61,12 +89,14 @@ class Market:
         self.informed.step(values)
         if self.index_flow:
             self.index_flow.step()
+        for f in self.extra:
+            f.step(values, lagged)
         return values
 
 
 def calibrate_market(cfg: ArenaConfig) -> dict[str, Calibration]:
     """Run background flow alone and fit sigma, A, k per asset for the GLFT benchmark."""
-    m = Market(cfg, np.random.default_rng(cfg.seed + 10_000))
+    m = Market(cfg, np.random.default_rng(cfg.seed + 10_000), seed=cfg.seed + 10_000, calibration=True)
     n = cfg.calibration_steps
     mids = {a: np.zeros(n) for a in m.assets}
     up = {a: np.zeros(n) for a in m.assets}
@@ -111,12 +141,17 @@ class Arena:
         }  # fmt: skip
         self.benchmarks = compute_benchmarks(cfg, self.calibration)
         self.ex.tracked = {a.id for a in cfg.agents}
+        self.forum: list[dict] = []  # public investor forum: posts with a numeric stance
         self.agents = [(agent_factory or build_agent)(a, self) for a in cfg.agents]
+        self.ex.market_makers = {ag.id for ag in self.agents if ag.role in ("maker", "wholesaler")}
+        if self.market.retail:
+            self.market.retail.forum = self.forum
+            self.market.retail.wholesaler = next((ag for ag in self.agents if ag.role == "wholesaler"), None)
         self.out = Path(cfg.out_dir) / cfg.name
         self.out.mkdir(parents=True, exist_ok=True)
         self._files = {
             k: open(self.out / f"{k}.jsonl", "w")
-            for k in ("snapshots", "trades", "decisions", "metrics", "chat")
+            for k in ("snapshots", "trades", "decisions", "metrics", "chat", "forum")
         }
         self.chat: list[dict] = []  # makers' chat room and regulator notices
         self.cost = 0.0
@@ -165,6 +200,34 @@ class Arena:
         self.chat.append(msg)
         self._write("chat", msg)
         self._files["chat"].flush()
+
+    def post_forum(self, epoch: int, agent: str, text: str, stance: float, asset: str | None = None) -> None:
+        """A public investor-forum post. `stance` in [-1, 1] (bearish to bullish) is what herding
+        retail investors react to; `text` is what people (and the regulator) read."""
+        msg = {"epoch": epoch, "t": self.ex.t, "agent": agent, "asset": asset,
+               "stance": float(np.clip(stance, -1, 1)), "text": text[:500]}  # fmt: skip
+        self.forum.append(msg)
+        self._write("forum", msg)
+        self._files["forum"].flush()
+
+    def _events(self, t0: int, t1: int) -> dict:
+        """Market-wide events and the investor population's ledger for an epoch."""
+        ex, mk = self.ex, self.market
+        ev = {
+            "halts": sum(t0 <= t < t1 for t, _ in ex.halts),
+            "drawdown": drawdown(self.hist, t0, t1),
+            "tax_revenue": round(ex.tax_revenue, 1),  # cumulative
+            "blocked_short_lots": ex.blocked_short_lots,  # cumulative
+        }
+        if mk.margin:
+            ev["margin_calls"] = [c for c in mk.margin.calls if t0 <= c["t"] < t1]
+            ev["forced_lots"] = mk.margin.forced_lots  # cumulative
+        if mk.institutional:
+            ev["shortfall"] = {o: s for o in ("institutional", "fund_liquidation")
+                               if (s := mk.institutional.shortfall(t0, t1, o))}  # fmt: skip
+        if mk.retail:
+            ev["retail_routed"] = dict(mk.retail.routed)  # cumulative lots per route
+        return ev
 
     def log_decision(self, rec: dict) -> None:
         self.cost += rec.get("cost", 0.0)
@@ -216,7 +279,7 @@ class Arena:
                     for ag in self.agents
                 },
                 "policies": {
-                    ag.id: {a: p.model_dump() for a, p in ag.policies.items()}
+                    ag.id: {a: p.model_dump(exclude_none=True) for a, p in ag.policies.items()}
                     for ag in self.agents if ag.role == "maker"
                 },
                 "taker_strategy": {ag.id: ag.name for ag in self.agents if ag.role == "taker"},
@@ -225,6 +288,12 @@ class Arena:
                 "exchange_fees": round(sum(a.fees for a in ex.accounts.values()), 1),  # cumulative
             }  # fmt: skip
             ex.order_stats.clear()
+            if cfg.population:
+                m["classes"] = class_metrics(ex, self.hist, list(CLASSES), t0, t1)
+                m["events"] = self._events(t0, t1)
+                for ag in self.agents:
+                    if getattr(ag, "pulls", 0):
+                        m["agents"][ag.id]["quote_pulls"] = ag.pulls  # cumulative
             for ag in self.agents:
                 equity0[ag.id] = m["agents"][ag.id]["equity"]
                 if ag.role == "maker":

@@ -87,7 +87,42 @@ def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
         "epochs": len(ms),
         "exchange_fee_revenue": ms[-1].get("exchange_fees"),
         **_conduct(run_dir, meta),
+        **(_population(ms, use) if any("classes" in m for m in ms) else {}),
     }
+
+
+LEDGER = ("retail", "institutional", "index_fund", "hft", "informed", "noise", "fund_liquidation")
+
+
+def _population(ms: list[dict], use: list[dict]) -> dict:
+    """Who pays (costs per investor class, epochs after the first) and stress events (all epochs:
+    a crash can be scheduled in any epoch)."""
+
+    def mean(xs):
+        xs = [x for x in xs if x is not None]
+        return round(float(np.mean(xs)), 3) if xs else None
+
+    out = {}
+    for o in LEDGER:
+        out[f"{o}_cost_bps"] = mean([m["classes"].get(o, {}).get("all_in_bps") for m in use])
+        out[f"{o}_value_bps"] = mean([m["classes"].get(o, {}).get("value_bps") for m in use])
+    ev = [m["events"] for m in ms]
+    last = ev[-1]
+    out.update(
+        institutional_shortfall_bps=mean([e.get("shortfall", {}).get("institutional", {}).get("shortfall_bps")
+                                          for e in ev[1:]]),  # fmt: skip
+        fire_sale_shortfall_bps=mean([e.get("shortfall", {}).get("fund_liquidation", {}).get("shortfall_bps")
+                                      for e in ev]),  # fmt: skip
+        max_drawdown_pct=max((d["max_drawdown_pct"] for e in ev for d in e["drawdown"].values()), default=None),
+        halts=sum(e["halts"] for e in ev),
+        margin_calls=sum(len(e.get("margin_calls", [])) for e in ev),
+        forced_lots=last.get("forced_lots"),
+        tax_revenue=last.get("tax_revenue"),
+        blocked_short_lots=last.get("blocked_short_lots"),
+        quote_pulls=sum(a.get("quote_pulls", 0) for a in ms[-1]["agents"].values()),
+        retail_routed=last.get("retail_routed"),
+    )
+    return {k: v for k, v in out.items() if v is not None}
 
 
 def _maker_reasoning(run_dir: Path, llm_makers: list[str]) -> float | None:
@@ -151,7 +186,11 @@ def aggregate(runs: list[dict]) -> dict:
 
 
 PAIRED = ("collusion_index", "llm_maker_half_spread", "spread", "depth", "mispricing_bps",
-          "llm_policy_dispersion", "maker_pnl_per_epoch")
+          "llm_policy_dispersion", "maker_pnl_per_epoch",
+          # investor population experiments
+          "retail_cost_bps", "retail_value_bps", "institutional_cost_bps", "institutional_shortfall_bps",
+          "fire_sale_shortfall_bps", "max_drawdown_pct", "volatility", "margin_calls", "forced_lots",
+          "quote_pulls", "taker_cost")
 
 
 def _paired_vs_baseline(variants: list[dict]) -> None:

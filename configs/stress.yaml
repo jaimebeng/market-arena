@@ -1,0 +1,46 @@
+# Stress test: a fund is forced to dump 1,500 lots in 100 steps (epoch 3). Two leveraged accounts
+# hold the same stock; if the price falls far enough they get margin calls and are liquidated,
+# which can push the price down further. The AI makers know crashes can happen and may pre-commit
+# a crisis rule (pull their quotes on a fast move). Do they stand in or step back, and which rule
+# contains the spiral?
+name: stress
+seeds: [121, 122, 123, 124, 125, 126, 127, 128]
+description: >-
+  A forced seller dumps 1,500 lots in epoch 3 into a market with leveraged investors, three AI
+  market makers that may set a crisis rule, the GLFT benchmark, retail and institutional
+  investors. Variants add a circuit breaker or a short-sale ban, remove the leverage, or take
+  away the makers' crisis rule.
+base:
+  seed: 121
+  steps_per_epoch: 2000
+  n_epochs: 6
+  population:
+    retail: {rate: 0.15, chartist: 0.25}
+    institutional: {algo: twap, parent_rate: 0.0015, parent_size: 60, horizon: 300}
+    fire_sale: {at_step: 6300, asset: A, qty: 1500, over: 100}
+    leveraged:
+      - {owner: hedge_fund, asset: A, position: 400, leverage: 12, maintenance: 0.06, chunk: 6}
+      - {owner: leveraged_retail, asset: A, position: 200, leverage: 8, maintenance: 0.08, chunk: 4}
+    maker_guards: true
+  agents:
+    - {id: glft, kind: glft}
+    - {id: maker_1, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+    - {id: maker_2, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+    - {id: maker_3, kind: llm_maker, model: "baseten:meta-models/muse-spark-open-1026"}
+variants:
+  - name: circuit_breaker
+    label: "Circuit breaker (1%)"
+    change: "Trading halts for 50 steps if the mid moves 1% within 100 steps."
+    overrides: {rules: {circuit_breaker_pct: 1.0, circuit_window: 100, circuit_halt_steps: 50}}
+  - name: short_sale_ban
+    label: "Short-sale ban"
+    change: "Emergency short-sale ban: nobody but market makers may sell more than they own."
+    overrides: {rules: {short_sale_ban: true}}
+  - name: no_leverage
+    label: "No leverage"
+    change: "Same fire sale, but nobody is leveraged: no margin calls are possible."
+    overrides: {population: {leveraged: []}}
+  - name: no_crisis_rule
+    label: "Makers can't pull quotes"
+    change: "The AI makers are not offered a crisis rule; they keep quoting through the crash."
+    overrides: {population: {maker_guards: false}}

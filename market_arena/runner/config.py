@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 
 from ..sim.background import IndexFlowParams, InformedParams, ZIParams
 from ..sim.exchange import Rules
+from ..sim.participants import PopulationCfg
 
 
 class AssetCfg(BaseModel):
@@ -52,6 +53,7 @@ class ArenaConfig(BaseModel):
     snapshot_every: int = 10
     holdout: int = 1000  # steps hidden from takers' research tools, used for the OOS gate
     chat: ChatCfg = Field(default_factory=ChatCfg)
+    population: PopulationCfg | None = None  # retail, institutional, HFT, leverage (opt-in)
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 
