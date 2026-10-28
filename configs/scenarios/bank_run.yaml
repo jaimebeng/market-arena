@@ -27,6 +27,11 @@ rules:
 chat: {enabled: true}
 economy: {pi0: 4.5, i0: 4.75, y0: 0.8}
 news: {misleading: 0.15, earnings_every: 6000, earnings_bps: 80}
+derivatives:  # government bonds: watch the central bank's choices move the yield curve
+  bonds:
+    - {name: BOND2Y, years: 2, short_weight: 0.7, term_premium: 0.2}
+    - {name: BOND10Y, years: 10, short_weight: 0.3, term_premium: 0.3}
+predictions: {}
 shocks:
   - {at_step: 3300, asset: "*", bps: -260, headline: "Regional lender fails after a run on its deposits; contagion fears spread"}
   - {at_step: 3500, asset: A, bps: -220, headline: "Aurora Systems says a third of its cash was held at the failed lender"}

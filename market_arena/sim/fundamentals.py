@@ -31,10 +31,13 @@ class Fundamentals:
         self.factor_sigma = factor_sigma
         self.index_name = None
         self.last_jumps: list[tuple[str, float]] = []
+        self.stocks = [n for n, c in components.items() if c.get("kind", "stock") == "stock"]
         if index is not None:
-            # shares chosen so the basket is worth index["price"] at t=0, equal value-weights
+            # shares chosen so the basket is worth index["price"] at t=0, equal value-weights of the
+            # stocks (coins are not in the index)
             v0 = np.exp(self.log_v)
-            self.index_shares = index["price"] / len(v0) / v0
+            in_index = np.array([n in self.stocks for n in self.names])
+            self.index_shares = np.where(in_index, index["price"] / in_index.sum() / v0, 0.0)
             self.index_name = index["name"]
 
     def step(self) -> None:

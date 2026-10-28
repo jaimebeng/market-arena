@@ -9,10 +9,12 @@ import yaml
 from pydantic import BaseModel, Field, model_validator
 
 from ..sim.background import IndexFlowParams, InformedParams, ZIParams
+from ..sim.derivatives import DerivativesCfg
 from ..sim.exchange import Rules
 from ..sim.economy import EconomyParams
 from ..sim.news import NewsParams
 from ..sim.participants import PopulationCfg
+from ..sim.predictions import PredictionParams
 from ..sim.schedule import SessionParams, Shock
 from ..sim.storyline import StorylineParams
 
@@ -21,6 +23,7 @@ class AssetCfg(BaseModel):
     price: float = 10_000.0  # price units (cents)
     sigma: float = 1e-4  # idiosyncratic log-vol per step
     beta: float = 1.0
+    kind: Literal["stock", "coin"] = "stock"  # coins: not in the index, no company news or earnings
 
 
 class ChatCfg(BaseModel):
@@ -93,6 +96,8 @@ class ArenaConfig(BaseModel):
     live: bool = False  # stream frames and decision cards to live.jsonl as the run goes
     live_every: int = 25  # steps between live frames
     reporter: ReporterCfg | None = None  # live AI market commentary (opt-in, live runs only)
+    predictions: PredictionParams | None = None  # prediction markets on the run's own events
+    derivatives: DerivativesCfg | None = None  # index futures and government bonds
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 

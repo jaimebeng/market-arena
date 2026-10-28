@@ -195,7 +195,7 @@ class LLMTaker(StrategyTaker):
                 f"{idx['name']} is an index: a basket holding fixed shares of the components "
                 f"{json.dumps({c: round(s, 4) for c, s in idx['shares'].items()})}. It trades on "
                 "its own order book.\n" if idx else ""
-            ) + _venue_note(cfg),
+            ) + _venue_note(cfg) + _derivatives_note(cfg),
             eval_every=self.p.eval_every, max_pos=self.p.max_position, max_order=self.p.max_order,
             fee_note=f" plus a {cfg.rules.taker_fee_bps} bps taker fee" if cfg.rules.taker_fee_bps else "",
             fields=", ".join(PUBLIC_FIELDS), call_ms=self.p.call_ms, holdout=cfg.holdout,
@@ -275,6 +275,26 @@ def _venue_note(cfg) -> str:
     return ("Competing exchanges:\n" + "\n".join(lines) + f"\nTaker fees per venue: {fees}. "
             "obs.meta['listings'] maps each stock to its listings. A long on one listing and a short "
             "on another listing of the same stock is a hedged position.\n")
+
+
+def _derivatives_note(cfg) -> str:
+    """Futures, perps and bonds: what each book is, so a quant can trade the basis or the curve."""
+    d = cfg.derivatives
+    if not d:
+        return ""
+    lines = []
+    if d.futures:
+        f = d.futures
+        lines.append(f"- {f.name} is a future on {f.underlying}: fair value = {f.underlying} x exp((policy rate - "
+                     f"{f.dividend_yield}%) x time to expiry); it expires and cash-settles at {f.underlying}'s value "
+                     f"every {f.expiry_every} steps, when a new contract starts")  # fmt: skip
+    for p in d.perps:
+        lines.append(f"- {p.name} is a perpetual future on {p.underlying}: no expiry; every {p.funding_every} steps "
+                     f"longs pay shorts its premium over {p.underlying} (capped at {p.cap_bps} bps)")  # fmt: skip
+    for b in d.bonds:
+        lines.append(f"- {b.name} is a {b.years:g}-year zero-coupon government bond paying 10000 cents; its yield "
+                     "moves with the central bank's policy rate")  # fmt: skip
+    return "Derivatives and bonds:\n" + "\n".join(lines) + "\n"
 
 
 def _ac(x: np.ndarray, lag: int) -> float:

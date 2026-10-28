@@ -14,6 +14,8 @@ import numpy as np
 
 from ..agents.maker import Maker, MakerPolicy
 from ..agents.reporter import MarketReporter
+from ..sim.predictions import PredictionMarket
+from ..sim.derivatives import BasisArb, Derivatives, initial_prices
 from ..analysis.metrics import agent_metrics, class_metrics, drawdown, market_metrics
 from ..analysis.stylized import stylized_facts
 from ..agents.taker import StrategyTaker
@@ -69,8 +71,13 @@ class Market:
         comps = {n: c.model_dump() for n, c in cfg.components.items()}
         self.fund = Fundamentals(comps, cfg.factor_sigma, rng, cfg.index, cfg.jump_rate, cfg.jump_bps)
         self.aliases = {x: stock for stock, xs in cfg.listings.items() for x in xs}  # listing -> stock
-        self.assets = self.fund.assets + list(self.aliases)
+        dcfg = cfg.derivatives
+        self.assets = self.fund.assets + list(self.aliases) + (
+            ([dcfg.futures.name] if dcfg.futures else []) + [b.name for b in dcfg.bonds] + [p.name for p in dcfg.perps]
+            if dcfg else [])  # fmt: skip
         self.ex = Exchange(self.assets, cfg.rules)
+        # futures and bonds: books priced off the index fund and the policy rate (economy set below)
+        self.deriv = Derivatives(dcfg, self.ex, None, cfg.economy, None) if dcfg else None
         v0 = self.values()
         self.zi = []
         for a in self.assets:
@@ -87,6 +94,8 @@ class Market:
         )
         self.news = NewsWire(self.fund, cfg.news, stream(cfg.seed if seed is None else seed, 5)) if cfg.news else None
         self.economy = Economy(self.fund, cfg.economy, stream(cfg.seed if seed is None else seed, 7)) if cfg.economy else None
+        if self.deriv:
+            self.deriv.economy = self.economy
         self.router = Router(self.ex, {a: [a] + cfg.listings.get(a, []) for a in self.fund.assets})
         self.extra: list = []  # optional participants, stepped after the original flow
         self.retail = self.institutional = self.margin = self.options = self.perps = None
@@ -118,12 +127,19 @@ class Market:
             if pop.liquidations and not calibration:
                 self.perps = LiquidationEngine(self.ex, pop.liquidations, stream(seed, 9))
                 self.extra.append(self.perps)
+        if self.deriv and dcfg.futures and dcfg.basis_arb:
+            self.extra.append(BasisArb(self.ex, self.deriv, dcfg.basis_arb, dcfg.futures.underlying, dcfg.futures.name, "basis_arb"))
+        if self.deriv and dcfg.perp_arb:
+            for p in dcfg.perps:
+                self.extra.append(BasisArb(self.ex, self.deriv, dcfg.perp_arb, p.underlying, p.name, "perp_arb"))
 
     def values(self) -> dict[str, float]:
         """Fair values per asset, including every extra listing of a stock."""
         v = self.fund.values()
         for x, stock in self.aliases.items():
             v[x] = v[stock]
+        if self.deriv:
+            v.update(self.deriv.values(v, self.ex.t))
         return v
 
     def _active(self) -> bool:
@@ -141,6 +157,9 @@ class Market:
         if self.news:
             self.news.step(self.ex.t)
         values = self.values()
+        if self.deriv:
+            self.deriv.expire(values, self.zi)
+            self.deriv.fund()
         self._values.append(values)
         lagged = self._values[0]
         for z in self.zi:
@@ -247,11 +266,13 @@ class Arena:
         }
         self._live = open(self.out / "live.jsonl", "w") if cfg.live else None
         self.reporter = MarketReporter(cfg.reporter, self) if cfg.reporter and cfg.live else None
+        self.pm = PredictionMarket(cfg.predictions, np.random.default_rng([cfg.seed, 31])) if cfg.predictions else None
         self._news_seen = 0  # news items already streamed
         self.chat: list[dict] = []  # makers' chat room and regulator notices
         self._head, self._n_decisions = GENESIS, 0  # decision hash chain
         self.cost = 0.0
         self.metrics_log: list[dict] = []
+        self.pm_bets: list[dict] = []  # AI bets on the prediction markets, for scoring
         self._qhs: dict[tuple[str, str], list[float]] = {}  # (maker, asset) -> quoted half-spreads
 
     # ---- recording -----------------------------------------------------------------------
@@ -308,8 +329,9 @@ class Arena:
             b, k = ex.books[a].best_bid(), ex.books[a].best_ask()
             spread[a] = _num(k - b) if b is not None and k is not None else None
         self._emit({"k": "f", "t": ex.t, "mid": {a: _num(x) for a, x in marks.items()}, "sp": spread,
-                    "v": {a: _num(values[a]) for a in self.market.fund.assets},
-                    "eq": {ag.id: _num(ex.accounts[ag.id].equity(marks), 0) for ag in self.agents}})  # fmt: skip
+                    "v": {a: _num(values[a]) for a in self.market.fund.assets + (self.market.deriv.names if self.market.deriv else [])},
+                    "eq": {ag.id: _num(ex.accounts[ag.id].equity(marks), 0) for ag in self.agents},
+                    **({"pm": self.pm.prices()} if self.pm else {})})  # fmt: skip
         if self.market.news:
             for n in self.market.news.items[self._news_seen:]:
                 self._emit({"k": "news", **n})
@@ -387,6 +409,35 @@ class Arena:
         self._headline("macro", f"Inflation {row['inflation']:.1f}%, output gap {row['output_gap']:+.1f}% "
                                 f"in quarter {epoch}")  # fmt: skip
         return row
+
+    def _predictions_close(self, epoch: int, m: dict) -> None:
+        """End of a quarter: settle what it decided, then open the next quarter's contracts."""
+        ex, pm = self.ex, self.pm
+        idx = self.cfg.index["name"] if self.cfg.index else None
+        perps = self.market.perps
+        outcome = {
+            "index_up": lambda c: ex.mid(idx) > c.level,
+            "liquidations": lambda c: any(e["kind"] == "liquidation" and m["t0"] <= e["t"] < m["t1"] for e in perps.events),
+            "inflation": lambda c: m["macro"]["inflation"] > pm.p.inflation_threshold,
+        }  # fmt: skip
+        for kind, f in outcome.items():
+            for card in pm.resolve(self, (kind,), epoch, f):
+                self._emit({"k": "pm_resolve", "t": ex.t, **card})
+        if epoch < self.cfg.n_epochs - 1:
+            for c in pm.open_quarter(self, epoch + 1):
+                self._emit({"k": "pm_open", "t": ex.t, **c.card()})
+
+    def _predictions_after_review(self, epoch: int) -> None:
+        """After the reviews: run the AI bets in a fixed order, and settle the referral contract."""
+        bets = self.pm.run_bets(self)
+        if bets:
+            self.pm_bets.extend({**b, "epoch": epoch} for b in bets)
+            self._emit({"k": "pm_bets", "t": self.ex.t, "epoch": epoch, "bets": bets})
+        reg = next((ag for ag in self.agents if ag.role == "regulator"), None)
+        last = reg.reports[-1] if reg and reg.reports and reg.reports[-1]["epoch"] == epoch else None
+        for card in self.pm.resolve(self, ("referral",), epoch,
+                                    lambda c: bool(last) and any(f.get("severity") == "referral" for f in last["findings"])):  # fmt: skip
+            self._emit({"k": "pm_resolve", "t": self.ex.t, **card})
 
     def _rate_decision(self, epoch: int) -> None:
         """The AI central bank's decision if there is one (it holds if its review failed), else the
@@ -480,6 +531,9 @@ class Arena:
                     "steps_per_epoch": cfg.steps_per_epoch, "assets": self.assets,
                     "listings": self.public_meta.get("listings"), "index": self.public_meta["index"],
                     "agents": meta["agents"], "started": meta["started"]})  # fmt: skip
+        if self.pm:
+            for c in self.pm.open_quarter(self, 0):
+                self._emit({"k": "pm_open", "t": ex.t, **c.card()})
         for epoch in range(cfg.n_epochs):
             t0 = ex.t
             wall = time.time()
@@ -491,6 +545,8 @@ class Arena:
                     k = (ex.t - camp.start) // camp.every
                     self.post_forum(epoch, "forum_crowd", CAMPAIGN_POSTS[k % len(CAMPAIGN_POSTS)].format(
                         co=company(camp.asset)), camp.stance, camp.asset, camp.weight)  # fmt: skip
+                if self.pm and ex.t % self.pm.p.crowd_every == 0:
+                    self.pm.crowd_step(self)
                 if camp and camp.buy_rate and camp.start <= ex.t < camp.end:
                     q = int(camp.buy_rate) + int(self.rng_campaign.random() < camp.buy_rate % 1)
                     if q:
@@ -549,6 +605,8 @@ class Arena:
             self._live_epoch(m)
             if self.reporter:
                 self.reporter.wrap(self, m)
+            if self.pm:
+                self._predictions_close(epoch, m)
             for f in self._files.values():
                 f.flush()
             if epoch < cfg.n_epochs - 1:
@@ -560,8 +618,14 @@ class Arena:
                 # reviews finish in any order; retail reads the latest posts, so fix their order (by
                 # author) before trading resumes, or a replay would see a different forum
                 self.forum[n_posts:] = sorted(self.forum[n_posts:], key=lambda p: p["agent"])
+                rate_before = self.market.economy.i if self.market.economy else None
+                if self.pm:
+                    self._predictions_after_review(epoch)
                 if self.market.economy:
                     self._rate_decision(epoch)
+                if self.pm and rate_before is not None:
+                    for card in self.pm.resolve(self, ("rate_cut",), epoch, lambda c: self.market.economy.i < rate_before):
+                        self._emit({"k": "pm_resolve", "t": ex.t, **card})
         meta["stylized"] = {
             a: {"market": stylized_facts(self.hist.get(a, "mid")),
                 "fair_value": stylized_facts(self.hist.get(a, "value"))}
@@ -574,6 +638,8 @@ class Arena:
             (self.out / "news.jsonl").write_text("".join(json.dumps(n) + "\n" for n in items))
             meta["news_response"] = news_response(
                 items, None, asset_mid={a: self.hist.get(a, "mid") for a in self.assets})
+        if self.pm:
+            meta["predictions"] = {"contracts": [c.card() for c in self.pm.contracts], "bets": self.pm_bets}
         meta["finished"] = time.time()
         meta["llm_cost_usd"] = round(self.cost, 4)
         if self.reporter:
@@ -618,6 +684,8 @@ def asset_prices(cfg: ArenaConfig) -> dict[str, float]:
     for stock, xs in cfg.listings.items():
         for x in xs:
             prices[x] = prices[stock]
+    if cfg.derivatives:
+        prices |= initial_prices(cfg.derivatives, cfg.economy, prices)
     return prices
 
 

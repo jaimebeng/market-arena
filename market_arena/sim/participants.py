@@ -56,6 +56,7 @@ class FireSaleParams(BaseModel):
     qty: int = 600  # lots
     over: int = 200  # steps (TWAP of market orders)
     side: int = SELL
+    owner: str = "fund_liquidation"  # who sells: a fund, or a memecoin's developer wallet
 
 
 class IndexFundParams(BaseModel):
@@ -238,7 +239,7 @@ class InstitutionalFlow:
             for venues in router.listings.values():
                 endow(ex, self.owner, venues[0], p.holdings)
         if fire and fire.side == SELL:  # the liquidating fund sells shares it owns
-            endow(ex, "fund_liquidation", fire.asset, fire.qty)
+            endow(ex, fire.owner, fire.asset, fire.qty)
 
     def _start(self, stock: str, side: int, qty: int, horizon: int, algo: str, owner: str) -> None:
         self.active.append({"stock": stock, "side": side, "qty": qty, "left": qty, "t0": self.ex.t,
@@ -278,7 +279,7 @@ class InstitutionalFlow:
                     self._start(stock, side, size, self.p.horizon, self.p.algo, self.owner)
         f = self.fire
         if f and ex.t == f.at_step and f.asset in self.router.listings:
-            self._start(f.asset, f.side, f.qty, f.over, "twap", "fund_liquidation")
+            self._start(f.asset, f.side, f.qty, f.over, "twap", f.owner)
         for o in self.active:
             self._work(o)
         finished = [o for o in self.active if o["left"] <= 0  # a forced seller never gives up

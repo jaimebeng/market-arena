@@ -1,7 +1,8 @@
 # Scenario: a flash crash, shaped after 6 May 2010 (a stylized replay, not tick data).
 #
 # The Grand Arena market with a fixed storyline. Debt fears open the market lower; then a large fund
-# sells the index fund at a fixed pace regardless of price, with no news behind it. In 2010 the US
+# sells index futures at a fixed pace regardless of price, with no news behind it, and an
+# index-arbitrage desk carries the selling into the index fund, as in 2010. In 2010 the US
 # market fell about 9% in minutes and recovered within the hour, as liquidity providers pulled
 # their quotes and high-frequency traders passed inventory back and forth. Here AI market makers,
 # AI quants, AI investors, an AI regulator, an AI central bank and an AI reporter live through it.
@@ -25,19 +26,23 @@ listings: {A: [A.X], B: [B.X], C: [C.X]}
 rules:
   venue_fees: {A.X: [-2.0, 3.0], B.X: [-2.0, 3.0], C.X: [-2.0, 3.0]}
 chat: {enabled: true}
-# stub bids 3-20% below the index fund's price, as in 2010: a sale that empties its book trades
-# down to them
-zi: {stub_bps: [300, 600, 1000, 2000], stub_assets: [IDX]}
+# stub bids 3-20% below the futures' and the index fund's price, as in 2010: a sale that empties a
+# book trades down to them
+zi: {stub_bps: [300, 600, 1000, 2000], stub_assets: [IDX, IDX.F]}
+derivatives:
+  futures: {underlying: IDX, name: IDX.F}
+  basis_arb: {threshold_bps: 15, size: 4, max_position: 120}
+predictions: {}
 economy: {}
 news: {misleading: 0.15, earnings_every: 6000, earnings_bps: 80}
 shocks:
   - {at_step: 2600, asset: "*", bps: -70, headline: "European debt fears spread; markets open lower"}
-  - {at_step: 4300, asset: "*", bps: 0, headline: "A large fund begins selling the index fund at a fixed share of volume, whatever the price"}
+  - {at_step: 4300, asset: "*", bps: 0, headline: "A large fund begins selling index futures at a fixed share of volume, whatever the price"}
   - {at_step: 5200, asset: "*", bps: 0, headline: "Exchanges review trades after a sudden plunge; no news explains the move"}
 population:
   retail: {rate: 0.12, chartist: 0.25, herd: 0.3}
   institutional: {algo: twap, parent_rate: 0.001, parent_size: 60, horizon: 300}
-  fire_sale: {at_step: 4300, asset: IDX, qty: 2500, over: 150}
+  fire_sale: {at_step: 4300, asset: IDX.F, qty: 2500, over: 150}
   index_fund: {every: 1500, size: 20, window: 50}
   latency_arb: {}
   options: {asset: IDX, flow: retail_buys_calls, rate: 0.1}

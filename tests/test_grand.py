@@ -37,7 +37,7 @@ def test_grand_runs_and_streams_live(tmp_path):
     assert kinds.count("epoch") == 2 and kinds.count("f") == 2 * 600 // 50
     frame = next(r for r in rows if r["k"] == "f")
     assert set(frame["mid"]) == set(arena.assets) and "A.X" in frame["mid"]
-    assert set(frame["v"]) == {"A", "B", "C", "IDX"}
+    assert set(frame["v"]) == {"A", "B", "C", "IDX", "IDX.F", "BOND2Y", "BOND10Y"}  # stocks, index, derived
     assert rows[-1]["storyline"] == [s.model_dump() for s in arena.cfg.shocks]
     # investors route each order to the best venue, so they trade on both exchanges
     pos = arena.ex.accounts

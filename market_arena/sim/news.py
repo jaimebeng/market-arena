@@ -14,7 +14,8 @@ from pydantic import BaseModel
 
 from .fundamentals import Fundamentals
 
-COMPANIES = {"A": "Aurora Systems", "B": "Bolt Logistics", "C": "Cobalt Energy"}
+COMPANIES = {"A": "Aurora Systems", "B": "Bolt Logistics", "C": "Cobalt Energy", "COIN": "the COIN token",
+             "MEME": "the MEME memecoin"}  # fmt: skip
 
 GOOD = {
     "small": ["{co} shares edge up as analyst nudges target higher",
@@ -55,15 +56,17 @@ class NewsWire:
         if not self.p.earnings_every:
             return []
         out = []
-        for i, a in enumerate(self.fund.names):
-            offset = (i + 1) * self.p.earnings_every // (len(self.fund.names) + 1)
+        names = self.fund.stocks  # coins have no earnings
+        for i, a in enumerate(names):
+            offset = (i + 1) * self.p.earnings_every // (len(names) + 1)
             first = offset + max(0, (t0 - offset + self.p.earnings_every - 1) // self.p.earnings_every) * self.p.earnings_every
             out += [{"t": t, "asset": a, "company": company(a)} for t in range(first, t1, self.p.earnings_every)]
         return sorted(out, key=lambda x: x["t"])
 
     def step(self, t: int) -> None:
         for asset, bps in self.fund.last_jumps:
-            self._headline(t, asset, bps)
+            if asset in self.fund.stocks:  # a coin's jumps come without a company headline
+                self._headline(t, asset, bps)
         for e in self.calendar(t, t + 1):
             bps = float(self.rng.normal() * self.p.earnings_bps)
             self.fund.shock({e["asset"]: bps})

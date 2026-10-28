@@ -29,6 +29,7 @@ chat: {enabled: true}
 zi: {anchor_kappa: 0.05}
 economy: {}
 news: {misleading: 0.15, earnings_every: 6000, earnings_bps: 80}
+predictions: {}
 shocks:
   - {at_step: 1800, asset: B, bps: -40, headline: "Short interest in Bolt Logistics passes 100% of its free float"}
   - {at_step: 2700, asset: B, bps: 0, headline: "Online forum rallies retail traders behind Bolt Logistics: 'hold the line'"}

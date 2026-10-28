@@ -17,6 +17,8 @@ SOURCES = [
     ("scenarios/flash_crash", "Flash crash (May 2010)"),
     ("scenarios/bank_run", "Bank run (March 2023)"),
     ("scenarios/meme_squeeze", "Meme squeeze (January 2021)"),
+    ("scenarios/crypto_mania", "Crypto mania: a memecoin rug pull"),
+    ("grand_full", "Grand Arena with futures, bonds and prediction markets"),
     ("grand_league", "Four-model league"),
     ("grand", "Muse Spark 1.3 + 1.2"),
 ]

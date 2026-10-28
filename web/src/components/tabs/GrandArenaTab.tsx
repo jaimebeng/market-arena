@@ -39,6 +39,7 @@ const SCENARIOS: [string, string][] = [
   ["flash_crash", "Flash crash (May 2010)"],
   ["bank_run", "Bank run (March 2023)"],
   ["meme_squeeze", "Meme squeeze (January 2021)"],
+  ["crypto_mania", "Crypto mania: a memecoin rug pull"],
 ];
 const QUESTIONS = [
   "What has moved prices most so far, and why?",
@@ -263,6 +264,7 @@ export function GrandArenaTab() {
               <Feed view={view} onQuant={setOpenQuant} />
             </section>
           </div>
+          {Object.keys(view.pm).length > 0 && <Predictions view={view} />}
           {src && <Ask src={src} online={online} upto={view.last?.t ?? 0} onSeek={seek} />}
           <section className="panel grand-quants">
             <div className="panel-title">
@@ -310,6 +312,7 @@ function derive(ls: Line[]) {
   let end: Line | null = null;
   const feed: Line[] = [];
   const desk: Line[] = []; // the AI reporter's breaking items and quarter wraps
+  const pm: Record<string, Line> = {}; // prediction-market contracts, each with its price history
   const quants: Record<string, Line[]> = {};
   const shocks: Line[] = [];
   let lastEpoch: Line | null = null;
@@ -321,11 +324,14 @@ function derive(ls: Line[]) {
       series.t.push(l.t);
       for (const [a, x] of Object.entries(l.mid)) (series.mid[a] ??= []).push(x as number);
       for (const [a, x] of Object.entries(l.v)) (series.v[a] ??= []).push(x as number);
+      if (l.pm) for (const [id, p] of Object.entries(l.pm)) pm[id]?.hist.push([l.t, p as number]);
       last = l;
     } else if (l.k === "phase") {
       phase = l;
       reported = 0;
-    } else if (l.k === "end") end = l;
+    } else if (l.k === "pm_open") pm[l.id] = { ...l, hist: [[l.t, l.p]] };
+    else if (l.k === "pm_resolve") pm[l.id] = { ...pm[l.id], ...l, hist: pm[l.id]?.hist ?? [] };
+    else if (l.k === "end") end = l;
     else if (l.k === "epoch") {
       lastEpoch = l;
       feed.push(l);
@@ -342,7 +348,7 @@ function derive(ls: Line[]) {
       feed.push(l);
     }
   }
-  return { start, series, last, phase, end, feed, desk, quants, shocks, lastEpoch, rate, reported, roles };
+  return { start, series, last, phase, end, feed, desk, pm, quants, shocks, lastEpoch, rate, reported, roles };
 }
 
 // ---- panels ----------------------------------------------------------------------------------
@@ -375,6 +381,55 @@ function StatusBar({ view, running, caughtUp }: { view: View; running: boolean; 
       )}
       <span className="muted small">{S.agents.length} participants</span>
     </div>
+  );
+}
+
+function Predictions({ view }: { view: View }) {
+  const all = Object.values(view.pm);
+  const open = all.filter((c) => c.outcome == null);
+  const done = all.filter((c) => c.outcome != null).slice(-6).reverse();
+  const Spark = ({ hist }: { hist: [number, number][] }) => {
+    if (hist.length < 2) return null;
+    const t0 = hist[0][0],
+      t1 = hist[hist.length - 1][0] || t0 + 1;
+    const pts = hist.map(([t, p]) => `${(((t - t0) / Math.max(1, t1 - t0)) * 120).toFixed(1)},${(30 - p * 30).toFixed(1)}`).join(" ");
+    return (
+      <svg viewBox="0 0 120 30" className="pm-spark" preserveAspectRatio="none">
+        <line x1={0} x2={120} y1={15} y2={15} className="pm-mid" />
+        <polyline points={pts} />
+      </svg>
+    );
+  };
+  return (
+    <section className="panel grand-pm">
+      <div className="panel-title">
+        Prediction markets <span className="panel-sub">contracts on next quarter's events · price = the market's probability · AI investors bet at their reviews</span>
+      </div>
+      <div className="pm-grid">
+        {open.map((c) => (
+          <div key={c.id} className="pm-card">
+            <div className="pm-q">{c.question}</div>
+            <div className="pm-row">
+              <span className="pm-p mono">{Math.round((c.hist[c.hist.length - 1]?.[1] ?? c.p) * 100)}%</span>
+              <Spark hist={c.hist} />
+            </div>
+            <div className="muted small">model opened at {Math.round(c.p_model_open * 100)}%</div>
+          </div>
+        ))}
+        {done.map((c) => (
+          <div key={c.id} className={`pm-card done ${c.outcome ? "yes" : "no"}`}>
+            <div className="pm-q">{c.question}</div>
+            <div className="pm-row">
+              <span className="pm-out">{c.outcome ? "✓ YES" : "✗ NO"}</span>
+              <Spark hist={c.hist} />
+            </div>
+            <div className="muted small">
+              model {Math.round(c.p_model_open * 100)}%{c.p_after_ai != null && ` · after AI bets ${Math.round(c.p_after_ai * 100)}%`} · final {Math.round(c.p * 100)}%
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -620,6 +675,17 @@ function Feed({ view, onQuant }: { view: View; onQuant: (l: Line) => void }) {
           return (
             <div key={i} className={`feed-item news ${l.kind === "shock" ? "shock" : ""}`}>
               <span className="tag">{l.kind === "macro" ? "MACRO" : l.kind === "shock" ? "BREAKING" : "NEWS"}</span> {l.headline}
+            </div>
+          );
+        if (l.k === "pm_bets")
+          return (
+            <div key={i} className="feed-item pm">
+              <span className="tag">PREDICTIONS</span>{" "}
+              {l.bets.slice(0, 6).map((b: any, j: number) => (
+                <span key={j}>
+                  <b>{b.agent}</b> {b.side} on “{view.pm[b.contract]?.question ?? b.contract}” (thinks {Math.round(b.probability * 100)}%; price now {Math.round(b.price_after * 100)}%){j < Math.min(5, l.bets.length - 1) ? "; " : ""}
+                </span>
+              ))}
             </div>
           );
         if (l.k === "commentary")

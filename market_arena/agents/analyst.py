@@ -16,7 +16,9 @@ from ..llm.client import run_tools, short_name
 SYSTEM = """You are a markets analyst answering a viewer's question about one simulated market \
 run (the Grand Arena). Two exchanges: Aurora Systems (A), Bolt Logistics (B), Cobalt Energy (C) \
 and the index fund IDX trade on the home exchange; A.X, B.X and C.X are the same stocks on an \
-entrant exchange. Prices are in cents. One quarter (epoch) is {spe} steps; one step is about one \
+entrant exchange. Some runs add index futures (IDX.F), government bonds (BOND2Y, BOND10Y), \
+crypto (COIN, its perpetual future COIN.P, the MEME memecoin) and prediction markets on next \
+quarter's events. Prices are in cents. One quarter (epoch) is {spe} steps; one step is about one \
 second. Participants are AI agents (market makers, quants writing strategy code, investors, a \
 finfluencer, a red team, an AI regulator, an AI central bank), the GLFT formula market maker, and \
 a scripted crowd.
@@ -61,6 +63,11 @@ TOOLS = [
         "name": "quarter_data", "description": "End-of-quarter data: inflation, output gap, "
         "liquidations, margin calls, halts, drawdowns, the makers' collusion index, exchange shares.",
         "parameters": {"type": "object", "properties": {"epoch": {"type": "integer"}}}}},
+    {"type": "function", "function": {
+        "name": "predictions", "description": "The prediction-market contracts so far: question, "
+        "the model's opening probability, the price after the AI investors' bets, the latest price, "
+        "the outcome if decided, and the AI investors' bets (stated probability, side, stake).",
+        "parameters": {"type": "object", "properties": {}}}},
     {"type": "function", "function": {
         "name": "answer", "description": "Give the answer. Ends the investigation.",
         "parameters": {"type": "object", "properties": {
@@ -151,6 +158,18 @@ class RunView:
         return [{"agent": i, "role": self.roles.get(i), "model": self.models.get(i), "equity": e} for i, e in rows
                 if self.roles.get(i) not in ("regulator", "central_bank")]  # fmt: skip
 
+    def predictions(self, _=None) -> dict:
+        cards: dict[str, dict] = {}
+        for x in self.lines:
+            if x["k"] in ("pm_open", "pm_resolve"):
+                cards[x["id"]] = {**cards.get(x["id"], {}), **{k: v for k, v in x.items() if k != "k"}}
+        last = self.frames[-1].get("pm", {}) if self.frames else {}
+        for cid, p in last.items():
+            if cid in cards:
+                cards[cid]["p_now"] = p
+        bets = [b | {"t": x["t"]} for x in self.lines if x["k"] == "pm_bets" for b in x["bets"]]
+        return {"contracts": list(cards.values()) or "no prediction markets in this run", "ai_bets": bets[-40:]}
+
     def quarter_data(self, a: dict) -> list[dict]:
         eps = [x for x in self.lines if x["k"] == "epoch"]
         if a.get("epoch") is not None:
@@ -162,7 +181,8 @@ async def ask(lines: list[dict], question: str, model: str, upto: int | None = N
     view = RunView(lines, upto)
     handlers = {"overview": view.overview, "price_history": view.price_history, "events": view.events,
                 "decisions": view.decisions, "leaderboard": view.leaderboard,
-                "quarter_data": view.quarter_data, "answer": lambda a: {"ok": True}}  # fmt: skip
+                "quarter_data": view.quarter_data, "predictions": view.predictions,
+                "answer": lambda a: {"ok": True}}  # fmt: skip
     system = SYSTEM.format(spe=view.start["steps_per_epoch"], upto=view.upto)
     tr = await run_tools(model, system, f"Question: {question}", TOOLS, handlers, "answer", max_turns=8)
     final = tr.final or {}
