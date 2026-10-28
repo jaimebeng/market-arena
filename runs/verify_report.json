@@ -1,6 +1,6 @@
 {
- "runs": 489,
- "verified": 460,
+ "runs": 492,
+ "verified": 463,
  "by_experiment": {
   "arms_race": [
    16,
@@ -106,6 +106,10 @@
    3,
    3
   ],
+  "grand_full": [
+   1,
+   1
+  ],
   "grand_league": [
    3,
    3
@@ -115,8 +119,8 @@
    3
   ],
   "scenarios": [
-   3,
-   3
+   5,
+   5
   ]
  },
  "results": [
@@ -5370,7 +5374,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand/s559705",
    "chain": "intact (194 decisions, head 249e7cb5d930)",
-   "replay_seconds": 31.9,
+   "replay_seconds": 32.9,
    "tool_calls_replayed": 1511,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5381,7 +5385,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand/s927887",
    "chain": "intact (201 decisions, head fa981ca5faf6)",
-   "replay_seconds": 38.7,
+   "replay_seconds": 39.6,
    "tool_calls_replayed": 1538,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5392,7 +5396,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand/s943009",
    "chain": "intact (204 decisions, head c134ff8e8ab5)",
-   "replay_seconds": 37.1,
+   "replay_seconds": 38.6,
    "tool_calls_replayed": 1632,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5401,9 +5405,20 @@
    "verified": true
   },
   {
+   "run": "/home/jaime/Documents/metahackathon/runs/grand_full/s325792",
+   "chain": "intact (210 decisions, head fd14bd6b2ef8)",
+   "replay_seconds": 65.2,
+   "tool_calls_replayed": 1722,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 176103,
+   "verified": true
+  },
+  {
    "run": "/home/jaime/Documents/metahackathon/runs/grand_league/s352217",
    "chain": "intact (257 decisions, head 6d27d2b4a8c5)",
-   "replay_seconds": 50.3,
+   "replay_seconds": 43.7,
    "tool_calls_replayed": 2314,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5414,7 +5429,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand_league/s757742",
    "chain": "intact (261 decisions, head 0fe708784318)",
-   "replay_seconds": 59.8,
+   "replay_seconds": 58.9,
    "tool_calls_replayed": 2303,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5425,7 +5440,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand_league/s847549",
    "chain": "intact (259 decisions, head b4b02745304d)",
-   "replay_seconds": 58.7,
+   "replay_seconds": 58.8,
    "tool_calls_replayed": 2205,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5436,7 +5451,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand_v1/s107066",
    "chain": "intact (203 decisions, head a318dd88bcbd)",
-   "replay_seconds": 44.0,
+   "replay_seconds": 44.1,
    "tool_calls_replayed": 1571,
    "unused_decisions": 0,
    "trades": "DIFFERENT",
@@ -5447,7 +5462,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand_v1/s538498",
    "chain": "intact (199 decisions, head 16963b090199)",
-   "replay_seconds": 42.8,
+   "replay_seconds": 43.1,
    "tool_calls_replayed": 1550,
    "unused_decisions": 0,
    "trades": "DIFFERENT",
@@ -5458,7 +5473,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand_v1/s616926",
    "chain": "intact (207 decisions, head 1bae968fd065)",
-   "replay_seconds": 39.1,
+   "replay_seconds": 39.5,
    "tool_calls_replayed": 1601,
    "unused_decisions": 0,
    "trades": "DIFFERENT",
@@ -5467,9 +5482,20 @@
    "verified": false
   },
   {
+   "run": "/home/jaime/Documents/metahackathon/runs/scenarios/bank_run/s344979",
+   "chain": "intact (132 decisions, head 3afdb337a07f)",
+   "replay_seconds": 28.8,
+   "tool_calls_replayed": 1147,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 120778,
+   "verified": true
+  },
+  {
    "run": "/home/jaime/Documents/metahackathon/runs/scenarios/bank_run/s392884",
    "chain": "intact (136 decisions, head a41b632c8292)",
-   "replay_seconds": 25.3,
+   "replay_seconds": 27.4,
    "tool_calls_replayed": 1022,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5478,9 +5504,20 @@
    "verified": true
   },
   {
+   "run": "/home/jaime/Documents/metahackathon/runs/scenarios/crypto_mania/s5733",
+   "chain": "intact (122 decisions, head d0bfcae19a57)",
+   "replay_seconds": 23.6,
+   "tool_calls_replayed": 1016,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 98658,
+   "verified": true
+  },
+  {
    "run": "/home/jaime/Documents/metahackathon/runs/scenarios/flash_crash/s8133",
    "chain": "intact (128 decisions, head 598c75ad8577)",
-   "replay_seconds": 44.8,
+   "replay_seconds": 47.9,
    "tool_calls_replayed": 995,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5491,7 +5528,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/scenarios/meme_squeeze/s958310",
    "chain": "intact (128 decisions, head 01fffbad42d7)",
-   "replay_seconds": 21.1,
+   "replay_seconds": 23.1,
    "tool_calls_replayed": 960,
    "unused_decisions": 0,
    "trades": "identical",

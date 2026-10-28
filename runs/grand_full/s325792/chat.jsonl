@@ -1,0 +1,11 @@
+{"epoch":0,"t":1500,"agent":"maker_spark12","kind":"message","text":"tightening X-venues to chase -2bps rebate; adding inventory skew"}
+{"epoch":1,"t":3000,"agent":"maker_spark12","kind":"message","text":"widening A/C on toxic buys, keeping B.X tight"}
+{"epoch":2,"t":4500,"agent":"maker_spark12","kind":"message","text":"rotating tox to B/IDX: B buys 51% adverse & IDX sells -0.69 markout/worst -53. widening B/IDX + BX/IDX.F, tightening healed A/C"}
+{"epoch":3,"t":6000,"agent":"maker_spark12","kind":"message","text":"vol spike rotated to C/IDX complex (C 3.1, IDX 7.2, C.X 8.8, IDX.F 10.6) crushing markout200; widening there, tightening healed B/B.X"}
+{"epoch":4,"t":7500,"agent":"maker_spark12","kind":"message","text":"epoch4 recovery confirms vol-rotation fix: sells still toxic on C/C.X (-26/-24 avg adverse) while IDX/IDX.F healed, tightening healed legs keeping toxic legs wide"}
+{"epoch":5,"t":9000,"agent":"maker_spark13","kind":"message","text":"C/C.X sells still toxic (worst -108), keeping wide; B/IDX healed so tightening there. Vol rotated to IDX (7.0/step)."}
+{"epoch":5,"t":9000,"agent":"maker_spark12","kind":"message","text":"vol rotation IDX 4.4\u21927.0, C cooled 5.6\u21922.7 healing CX sells +0.7; widening IDX, tightening healed A/B/CX/IDX.F"}
+{"epoch":7,"t":12000,"agent":"maker_spark12","kind":"message","text":"vol rotation IDX/C: vol spiked IDX 1.9\u21924.9 IDX.F 1.1\u21926.3 C 1.6\u21922.9 CX 1.3\u21923.9 crushing sell markouts; A/AX crash healed 7.9\u21922.0/8.6\u21921.7"}
+{"epoch":8,"t":13500,"agent":"maker_spark12","kind":"message","text":"vol healed IDX/F & C.X \u2013 tightening there, keeping A buys defence"}
+{"epoch":9,"t":15000,"agent":"maker_spark12","kind":"message","text":"C complex crash - vol 8.7/4.8 and buys -26/-19 toxic. Widening & adding skew there, stepping back elsewhere."}
+{"epoch":10,"t":16500,"agent":"maker_spark12","kind":"message","text":"final: slight tighten on healed C buys & idx/a, keeping C sells defense wide"}

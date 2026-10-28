@@ -1,0 +1,10 @@
+{"epoch":0,"t":1500,"agent":"maker_spark12","kind":"message","text":"COIN buys toxic - widening + kill switch, keeping tight on A/B/C/IDX"}
+{"epoch":0,"t":1500,"agent":"maker_spark13","kind":"message","text":"Tight spreads working so far, watching COIN toxicity \u2014 GL all"}
+{"epoch":1,"t":3000,"agent":"maker_spark12","kind":"message","text":"Crash vol: epoch1 3.9/6.25 vol A/COIN, buys toxic -16 on COIN -68 on COIN.P. Widening + skewing + more sensitive pull."}
+{"epoch":2,"t":4500,"agent":"maker_spark12","kind":"message","text":"A/B/IDX vol normalized & markouts healthy -> tightening; COIN/MEME/COIN.P crash vol 10-15 with -100+ adverse on buys -> widening + sensitive pull"}
+{"epoch":3,"t":6000,"agent":"maker_spark12","kind":"message","text":"Split persists: A/B/IDX/C/COIN.P normalizing, MEME still crashing. Tight on healthy, re-entering COIN.P, staying out of MEME."}
+{"epoch":4,"t":7500,"agent":"maker_spark12","kind":"message","text":"Vol split widens: A/C spiking 6.4/3.7 with toxic asks, COIN normalizing, MEME 67% DD - staying defensive on crash names."}
+{"epoch":5,"t":9000,"agent":"maker_spark12","kind":"message","text":"Vol regime flip: A normalized (6.4->1.37) but C spiking 5.09 with buy toxicity 57% -28; COIN/COIN.P sell toxicity 60/92% on rally. Tightening A, defensive on C/COIN complex."}
+{"epoch":5,"t":9000,"agent":"maker_spark13","kind":"message","text":"Toxicity rotated to the ask in COIN complex \u2014 widening there and on C, holding tight on A/B/IDX."}
+{"epoch":6,"t":10500,"agent":"maker_spark12","kind":"message","text":"Defensive into final: widening B/COIN/COIN.P on vol spike + sell toxicity, holding ultra-wide MEME."}
+{"epoch":6,"t":10500,"agent":"maker_spark13","kind":"message","text":"Final epoch: staying tight on A/B/IDX, defensive on C/COIN complex \u2014 GL all"}

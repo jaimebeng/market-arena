@@ -29,8 +29,40 @@
   "winner": "maker_spark13"
  },
  {
-  "id": "bank_run_s392884",
+  "id": "bank_run_s344979",
   "label": "Bank run (March 2023), run 1",
+  "source": "scenarios/bank_run",
+  "league": false,
+  "seed": 344979,
+  "epochs": 8,
+  "cost": 0.6339,
+  "storyline": [
+   "Regional lender fails after a run on its deposits; contagion fears spread",
+   "Aurora Systems says a third of its cash was held at the failed lender",
+   "Reports: a large fund is selling Cobalt Energy to meet redemptions",
+   "Second regional bank closed by regulators",
+   "Authorities guarantee all deposits and open an emergency lending facility",
+   "Aurora Systems regains access to its deposits"
+  ],
+  "strategies": [
+   "C_momentum_trend",
+   "C_momentum_30",
+   "drift_pair_BC_shortC",
+   "A_momentum_30",
+   "venue_revert_wide",
+   "IDX_synth_meanrev_35_15",
+   "momA_IDXcatchup",
+   "CX_imbalance_fade"
+  ],
+  "resembles": {
+   "momentum": 1,
+   "venue_arbitrage": 1
+  },
+  "winner": "inv_02"
+ },
+ {
+  "id": "bank_run_s392884",
+  "label": "Bank run (March 2023), run 2",
   "source": "scenarios/bank_run",
   "league": false,
   "seed": 392884,
@@ -93,6 +125,79 @@
    "venue_arbitrage": 1
   },
   "winner": "glft"
+ },
+ {
+  "id": "crypto_mania_s5733",
+  "label": "Crypto mania: a memecoin rug pull, run 1",
+  "source": "scenarios/crypto_mania",
+  "league": false,
+  "seed": 5733,
+  "epochs": 8,
+  "cost": 0.4674,
+  "storyline": [
+   "MEME memecoin trends on social media; 'next 100x' posts multiply",
+   "Major crypto lender freezes customer withdrawals",
+   "On-chain data: the MEME developer wallet moves its tokens to an exchange",
+   "MEME developer team goes silent; project website taken down",
+   "Regulator approves the first spot COIN fund"
+  ],
+  "strategies": [
+   "COIN-slow-momentum",
+   "drift_plus_coin_mom",
+   "Funding_Premium_MeanRev_Mom",
+   "drift_plus_coin_mom",
+   "COIN.P-slow-momentum",
+   "Regime_Robust_Funding_Mom_v3",
+   "drift_plus_coin_mom",
+   "Regime_Robust_Funding_Arb_Blend_v4",
+   "funding-aware-COIN-C-momo",
+   "funding-aware-COIN-C-momo",
+   "drift_plus_coin_mom",
+   "Regime_Robust_Funding_Attenuated_Mom45_v5",
+   "drift_plus_coin_mom_idx",
+   "funding-aware-COIN-momo-v2",
+   "Regime_Tuned_Mom_B_Arb_FundingZero_v6",
+   "drift_plus_coin_mom_idx",
+   "funding-aware-COIN-momo-L50-dynamic",
+   "Mom_NoArb_B15_ZeroFunding_v7"
+  ],
+  "resembles": {
+   "momentum": 14,
+   "order_book_imbalance": 1,
+   "trade_flow": 1
+  },
+  "winner": "inv_06"
+ },
+ {
+  "id": "grand_s325792",
+  "label": "Grand Arena with futures, bonds and prediction markets, run 1",
+  "source": "grand_full",
+  "league": false,
+  "seed": 325792,
+  "epochs": 12,
+  "cost": 1.0042,
+  "storyline": [
+   "Short seller alleges accounting fraud at Aurora Systems",
+   "Reports: a large fund is being forced to liquidate its holdings of Aurora Systems"
+  ],
+  "strategies": [
+   "carry-IDX-hedge",
+   "carry_expiry_aware",
+   "carry_expiry_aware",
+   "mom20_hold100_AXblend",
+   "basis-fade-hedge",
+   "carry_IDXF_fair_vs_expiry",
+   "trend_100_AC",
+   "trendA_fadeF",
+   "C_mom80_longonly_thr15_hold60",
+   "C-trend-50",
+   "trendA_fadeF",
+   "C-trend-50"
+  ],
+  "resembles": {
+   "momentum": 4
+  },
+  "winner": "maker_spark12"
  },
  {
   "id": "grand_s352217",

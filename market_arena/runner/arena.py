@@ -403,7 +403,7 @@ class Arena:
 
     def _macro_release(self, epoch: int, t0: int, t1: int) -> dict:
         """End of a quarter: the economy advances and its data are published."""
-        names = self.market.fund.names
+        names = self.market.fund.stocks  # the wealth effect comes from stocks, not coins
         dd = max((d["max_drawdown_pct"] for a, d in drawdown(self.hist, t0, t1).items() if a in names), default=0.0)
         row = self.market.economy.advance(epoch, dd)
         self._headline("macro", f"Inflation {row['inflation']:.1f}%, output gap {row['output_gap']:+.1f}% "

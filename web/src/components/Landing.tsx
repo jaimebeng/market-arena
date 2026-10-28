@@ -24,7 +24,7 @@ const STORIES: Story[] = [
     id: "grand",
     kicker: "Everything at once",
     title: "One market, 17 AI agents, a different story every run",
-    body: "Two exchanges and 7 order books. AI makers, quants, investors, a finfluencer, a red team, a regulator and a central bank trade together while a random storyline unfolds: takeovers, tariffs, bank failures. Run it again and everything changes. Or replay a flash crash, a bank run or a meme squeeze, with an AI reporter covering it live and an AI analyst you can question.",
+    body: "Two exchanges and 7 order books. AI makers, quants, investors, a finfluencer, a red team, a regulator and a central bank trade together while a random storyline unfolds: takeovers, tariffs, bank failures. Run it again and everything changes. Or replay a flash crash, a bank run, a meme squeeze or a memecoin rug pull, with futures, bonds and prediction markets on the run's own events, an AI reporter covering it live and an AI analyst you can question.",
     href: "?tab=grand",
     cta: "Watch the Grand Arena",
     accent: "#2dd4bf",
@@ -134,7 +134,7 @@ const STORIES: Story[] = [
     cta: "Read the front pages",
     accent: "#c9bfae",
     stats: [
-      { value: "460/489", label: "recorded runs replay byte-identically with no model calls" },
+      { value: "463/492", label: "recorded runs replay byte-identically with no model calls" },
       { value: "5 Meta models", label: "Muse Spark (text and vision), Spark Open, Glimmer 30B, Voice Transcribe and Muse Image" },
     ],
   },
