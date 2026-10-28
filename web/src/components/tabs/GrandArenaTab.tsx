@@ -4,11 +4,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
  * run's live stream (live.jsonl): from the server while the run happens, or a recorded run. */
 
 type Line = { k: string; [key: string]: any };
-type RunEntry = { id: string; seed: number; label?: string; epochs?: number; cost?: number; running?: boolean; found?: string[] };
+type RunEntry = { id: string; seed: number; label?: string; name?: string; epochs?: number; cost?: number; running?: boolean; found?: string[] };
 
 const BASE = import.meta.env.BASE_URL;
+// the server for live runs and the analyst: ?api=..., the hosted one (VITE_GRAND_API, set in the
+// Pages build), or a local server
 const API =
   new URLSearchParams(window.location.search).get("api") ||
+  (import.meta.env.VITE_GRAND_API as string | undefined) ||
   (import.meta.env.VITE_LAB_API as string | undefined) ||
   "http://localhost:8000";
 
@@ -31,6 +34,18 @@ const ROLE_LABEL: Record<string, string> = {
   finfluencer: "finfluencer",
 };
 const SPEEDS = [1, 2, 4, 8, 16];
+const SCENARIOS: [string, string][] = [
+  ["grand", "Grand Arena: a random story"],
+  ["flash_crash", "Flash crash (May 2010)"],
+  ["bank_run", "Bank run (March 2023)"],
+  ["meme_squeeze", "Meme squeeze (January 2021)"],
+];
+const QUESTIONS = [
+  "What has moved prices most so far, and why?",
+  "Which quant strategy is working, and what does it trade?",
+  "Is the regulator right about the market makers?",
+  "Who is winning, and how did they get there?",
+];
 const COST = (l: Line) => (l.k === "f" ? 1 : l.k === "decision" ? 5 : l.k === "news" || l.k === "chat" ? 3 : 1);
 
 function modelName(m?: string | null) {
@@ -54,6 +69,7 @@ export function GrandArenaTab() {
   const [playing, setPlaying] = useState(true);
   const [err, setErr] = useState<string | null>(null);
   const [openQuant, setOpenQuant] = useState<Line | null>(null);
+  const [scenario, setScenario] = useState("grand");
   const credit = useRef(0);
 
   // what is available: recorded runs (static files) and the live server, if it is running
@@ -128,7 +144,11 @@ export function GrandArenaTab() {
   const start = async () => {
     setErr(null);
     try {
-      const r = await fetch(`${API}/api/grand`, { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+      const r = await fetch(`${API}/api/grand`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ scenario }),
+      });
       const x = await r.json();
       if (!r.ok) throw new Error(x.detail || r.statusText);
       setLiveRuns((l) => [{ id: x.id, seed: 0, running: true }, ...l]);
@@ -140,6 +160,14 @@ export function GrandArenaTab() {
   };
 
   const view = useMemo(() => derive(lines.slice(0, cursor)), [lines, cursor]);
+  // jump the replay to a moment the analyst cited
+  const seek = (t: number) => {
+    const i = lines.findIndex((l) => l.k === "f" && l.t >= t);
+    if (i >= 0) {
+      setPlaying(false);
+      setCursor(i + 1);
+    }
+  };
   const caughtUp = cursor >= lines.length;
   const S = view.start;
 
@@ -172,7 +200,7 @@ export function GrandArenaTab() {
             ))}
             {liveRuns.map((r) => (
               <option key={r.id} value={`live:${r.id}`}>
-                {r.id} {r.running ? "· running" : ""} (this server)
+                {r.name ?? "grand"} · {r.id} {r.running ? "· running" : ""} (this server)
               </option>
             ))}
           </select>
@@ -186,11 +214,20 @@ export function GrandArenaTab() {
             ))}
           </span>
           {online ? (
-            <button className="primary" onClick={start} disabled={liveRuns.some((r) => r.running)}>
-              ▶ Start a new run
-            </button>
+            <>
+              <select value={scenario} onChange={(e) => setScenario(e.target.value)} title="what to run">
+                {SCENARIOS.map(([k, label]) => (
+                  <option key={k} value={k}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+              <button className="primary" onClick={start} disabled={liveRuns.some((r) => r.running)}>
+                ▶ Start a new run
+              </button>
+            </>
           ) : (
-            <span className="muted small">Live runs need the local server (see the README); recorded runs play here.</span>
+            <span className="muted small">The live server is asleep or unreachable; recorded runs play here.</span>
           )}
         </div>
       </div>
@@ -200,6 +237,7 @@ export function GrandArenaTab() {
       ) : (
         <>
           <StatusBar view={view} running={running} caughtUp={caughtUp} />
+          <Desk view={view} />
           <div className="grand-grid">
             <section className="panel grand-books">
               <div className="panel-title">
@@ -225,6 +263,7 @@ export function GrandArenaTab() {
               <Feed view={view} onQuant={setOpenQuant} />
             </section>
           </div>
+          {src && <Ask src={src} online={online} upto={view.last?.t ?? 0} onSeek={seek} />}
           <section className="panel grand-quants">
             <div className="panel-title">
               What the quants found <span className="panel-sub">strategy per review · ✓ passed the out-of-sample gate · click for the code</span>
@@ -270,6 +309,7 @@ function derive(ls: Line[]) {
   let phase: Line | null = null;
   let end: Line | null = null;
   const feed: Line[] = [];
+  const desk: Line[] = []; // the AI reporter's breaking items and quarter wraps
   const quants: Record<string, Line[]> = {};
   const shocks: Line[] = [];
   let lastEpoch: Line | null = null;
@@ -298,10 +338,11 @@ function derive(ls: Line[]) {
         if (l.role === "maker" && !l.message && !l.rationale) continue;
       }
       if (l.k === "news" && l.kind === "shock") shocks.push(l);
+      if (l.k === "commentary") desk.push(l);
       feed.push(l);
     }
   }
-  return { start, series, last, phase, end, feed, quants, shocks, lastEpoch, rate, reported, roles };
+  return { start, series, last, phase, end, feed, desk, quants, shocks, lastEpoch, rate, reported, roles };
 }
 
 // ---- panels ----------------------------------------------------------------------------------
@@ -333,6 +374,98 @@ function StatusBar({ view, running, caughtUp }: { view: View; running: boolean; 
         </span>
       )}
       <span className="muted small">{S.agents.length} participants</span>
+    </div>
+  );
+}
+
+function Ask({ src, online, upto, onSeek }: { src: { kind: string; id: string }; online: boolean; upto: number; onSeek: (t: number) => void }) {
+  const [q, setQ] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [res, setRes] = useState<any>(null);
+  const [err, setErr] = useState<string | null>(null);
+  const go = async (question: string) => {
+    if (!question.trim()) return;
+    setQ(question);
+    setBusy(true);
+    setErr(null);
+    setRes(null);
+    try {
+      const r = await fetch(`${API}/api/ask`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ source: src.kind, id: src.id, question, upto }),
+      });
+      const x = await r.json();
+      if (!r.ok) throw new Error(x.detail || r.statusText);
+      setRes(x);
+    } catch (e) {
+      setErr(String(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <section className="panel grand-ask">
+      <div className="panel-title">
+        Ask the market <span className="panel-sub">an AI analyst investigates this run up to the playhead, with no spoilers</span>
+      </div>
+      {!online ? (
+        <p className="muted small">The analyst runs on the server (Muse Spark with tools over the run's record); start it to ask questions.</p>
+      ) : (
+        <>
+          <form
+            className="ask-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              go(q);
+            }}
+          >
+            <input value={q} maxLength={300} placeholder="e.g. Why did Cobalt fall?" onChange={(e) => setQ(e.target.value)} />
+            <button className="primary" disabled={busy}>
+              {busy ? "investigating…" : "Ask"}
+            </button>
+          </form>
+          <div className="ask-chips">
+            {QUESTIONS.map((x) => (
+              <button key={x} disabled={busy} onClick={() => go(x)}>
+                {x}
+              </button>
+            ))}
+          </div>
+          {err && <div className="error-banner small">{err}</div>}
+          {res && (
+            <div className="ask-answer">
+              <p>{res.answer}</p>
+              {res.moments?.length > 0 && (
+                <div className="ask-moments">
+                  {res.moments.map((m: any, i: number) => (
+                    <button key={i} onClick={() => onSeek(m.t)}>
+                      ⏵ {m.label} <span className="muted small">Q{Math.floor(m.t / 1500) + 1}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+              <div className="muted small">
+                {modelName(res.model)} · checked {res.tools?.filter((t: string) => t !== "answer").length} things in the record · {res.seconds}s
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </section>
+  );
+}
+
+function Desk({ view }: { view: View }) {
+  const c = view.desk[view.desk.length - 1];
+  if (!c) return null;
+  return (
+    <div className={`grand-desk ${c.kind}`}>
+      <span className="desk-tag">{c.kind === "wrap" ? `Q${c.epoch + 1} WRAP` : "BREAKING"}</span>
+      <div className="desk-text">
+        <b>{c.headline}</b> {c.body}
+      </div>
+      <span className="muted small desk-by">Market desk · AI reporter on {modelName(c.model)}</span>
     </div>
   );
 }
@@ -487,6 +620,12 @@ function Feed({ view, onQuant }: { view: View; onQuant: (l: Line) => void }) {
           return (
             <div key={i} className={`feed-item news ${l.kind === "shock" ? "shock" : ""}`}>
               <span className="tag">{l.kind === "macro" ? "MACRO" : l.kind === "shock" ? "BREAKING" : "NEWS"}</span> {l.headline}
+            </div>
+          );
+        if (l.k === "commentary")
+          return (
+            <div key={i} className={`feed-item desk ${l.kind}`}>
+              <span className="tag">{l.kind === "wrap" ? `Q${l.epoch + 1} WRAP` : "MARKET DESK"}</span> <b>{l.headline}</b> {l.body}
             </div>
           );
         if (l.k === "forum")

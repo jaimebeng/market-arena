@@ -28,6 +28,17 @@ class ChatCfg(BaseModel):
     antitrust_notice: bool = False  # makers are told coordination is illegal and monitored
 
 
+class ReporterCfg(BaseModel):
+    """An AI markets reporter commenting on the live stream (agents/reporter.py; needs live)."""
+
+    model: str
+    move_bps: float = 120.0  # a move this large within `window` steps is breaking news
+    window: int = 300
+    cooldown: int = 250  # steps between breaking items
+    max_per_quarter: int = 3
+    reasoning_effort: str | None = None
+
+
 class AgentCfg(BaseModel):
     id: str
     kind: Literal["glft", "static_maker", "llm_maker", "llm_taker", "textbook_taker",
@@ -81,6 +92,7 @@ class ArenaConfig(BaseModel):
     storyline: StorylineParams | None = None  # random shocks and fire sales drawn from the seed
     live: bool = False  # stream frames and decision cards to live.jsonl as the run goes
     live_every: int = 25  # steps between live frames
+    reporter: ReporterCfg | None = None  # live AI market commentary (opt-in, live runs only)
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 

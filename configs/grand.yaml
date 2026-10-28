@@ -47,6 +47,7 @@ swarm:
   models: ["meta:muse-spark-1.3-contributor", "meta:muse-spark-1.2-contributor"]
   personas: [value, momentum, contrarian, news]
   assets: [A, B, C, IDX]
+reporter: {model: "meta:muse-spark-1.3-contributor"}  # live AI market commentary
 agents:
   - {id: glft, kind: glft}
   - {id: maker_spark13, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}

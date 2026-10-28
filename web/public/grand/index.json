@@ -1,7 +1,103 @@
 [
  {
+  "id": "flash_crash_s8133",
+  "label": "Flash crash (May 2010), run 1",
+  "source": "scenarios/flash_crash",
+  "league": false,
+  "seed": 8133,
+  "epochs": 8,
+  "cost": 0.5951,
+  "storyline": [
+   "European debt fears spread; markets open lower",
+   "A large fund begins selling the index fund at a fixed share of volume, whatever the price",
+   "Exchanges review trades after a sudden plunge; no news explains the move"
+  ],
+  "strategies": [
+   "slow_long_B_Atilt",
+   "IDX_Synthetic_Revert_Med400",
+   "steady_short_A",
+   "IDX-prem-fade",
+   "A_reversal_200",
+   "IDX_Revert_W400_k15_Conservative",
+   "IDX-extreme-fade",
+   "IDX_Revert_W400_k15_Conservative",
+   "IDX_premium_hedged"
+  ],
+  "resembles": {
+   "index_arbitrage": 4
+  },
+  "winner": "maker_spark13"
+ },
+ {
+  "id": "bank_run_s392884",
+  "label": "Bank run (March 2023), run 1",
+  "source": "scenarios/bank_run",
+  "league": false,
+  "seed": 392884,
+  "epochs": 8,
+  "cost": 0.5757,
+  "storyline": [
+   "Regional lender fails after a run on its deposits; contagion fears spread",
+   "Aurora Systems says a third of its cash was held at the failed lender",
+   "Reports: a large fund is selling Cobalt Energy to meet redemptions",
+   "Second regional bank closed by regulators",
+   "Authorities guarantee all deposits and open an emergency lending facility",
+   "Aurora Systems regains access to its deposits"
+  ],
+  "strategies": [
+   "CX-leads-C momentum",
+   "C-momentum-50",
+   "IDX-premium-revert-40",
+   "IDX-premium-revert-20",
+   "X-leads-primary momentum B+C"
+  ],
+  "resembles": {
+   "momentum": 2,
+   "index_arbitrage": 2
+  },
+  "winner": "inv_02"
+ },
+ {
+  "id": "meme_squeeze_s958310",
+  "label": "Meme squeeze (January 2021), run 1",
+  "source": "scenarios/meme_squeeze",
+  "league": false,
+  "seed": 958310,
+  "epochs": 8,
+  "cost": 0.5367,
+  "storyline": [
+   "Short interest in Bolt Logistics passes 100% of its free float",
+   "Online forum rallies retail traders behind Bolt Logistics: 'hold the line'",
+   "Hedge fund short Bolt Logistics takes an emergency capital injection",
+   "Brokers restrict buying in Bolt Logistics, citing clearing deposits",
+   "Bolt Logistics announces a share sale into the rally"
+  ],
+  "strategies": [
+   "sticky_drift_cheap",
+   "sticky_drift_cheap",
+   "mom50_AC_IDX",
+   "mom50_tuned_X_AC_IDX",
+   "sticky_drift_cheap",
+   "IDX_mom10",
+   "venue_basket_revert",
+   "IDXbasket_fade100",
+   "idx_basket_conservative",
+   "idx_basket_revert",
+   "IDXbasket_fade100",
+   "idx_basket_revert",
+   "idx_basket_pure"
+  ],
+  "resembles": {
+   "momentum": 5,
+   "index_arbitrage": 6,
+   "venue_arbitrage": 1
+  },
+  "winner": "glft"
+ },
+ {
   "id": "grand_s352217",
   "label": "Four-model league, run 1",
+  "source": "grand_league",
   "league": true,
   "seed": 352217,
   "epochs": 12,
@@ -39,6 +135,7 @@
  {
   "id": "grand_s757742",
   "label": "Four-model league, run 2",
+  "source": "grand_league",
   "league": true,
   "seed": 757742,
   "epochs": 12,
@@ -76,6 +173,7 @@
  {
   "id": "grand_s847549",
   "label": "Four-model league, run 3",
+  "source": "grand_league",
   "league": true,
   "seed": 847549,
   "epochs": 12,
@@ -109,6 +207,7 @@
  {
   "id": "grand_s559705",
   "label": "Muse Spark 1.3 + 1.2, run 1",
+  "source": "grand",
   "league": false,
   "seed": 559705,
   "epochs": 12,
@@ -138,6 +237,7 @@
  {
   "id": "grand_s927887",
   "label": "Muse Spark 1.3 + 1.2, run 2",
+  "source": "grand",
   "league": false,
   "seed": 927887,
   "epochs": 12,
@@ -177,6 +277,7 @@
  {
   "id": "grand_s943009",
   "label": "Muse Spark 1.3 + 1.2, run 3",
+  "source": "grand",
   "league": false,
   "seed": 943009,
   "epochs": 12,

@@ -413,7 +413,7 @@ A regulator auditing an AI trading agent today has to take the firm's logs on tr
 - The simulator is deterministic. If the log is complete and unaltered, the replay reproduces every trade and every order-book snapshot byte for byte.
 - Editing, inserting or deleting a logged decision breaks the hash chain. Changing what an agent decided also changes the market, and the replay no longer matches.
 
-**Result: 457 of the 486 recorded runs replay byte-identically on today's code.** (Retired runs in `runs/superseded/` are not counted.) Every run replays in 17 experiments: arms race, monoculture, designer rounds 2 and 3, who pays, crash, news, finfluencer, PFOF, venues, gamma, central bank, herding, overnight, cascade, vision and the Grand Arena (with its four-model league, §23). Most runs replay in the three earliest: the wind tunnel 27/36, the collusion lab 20/24 and designer round 1 at 9/16. That includes runs where AI regulators filed reports, red teams chose tactics, a central bank set rates and twelve AI investors traded at once. The 29 that don't match were all recorded on earlier versions of the simulator, including two purely scripted runs with no AI at all, so the difference comes from code changes, not from the replay. Three of them are the first Grand Arena runs, and they exposed a real gap (§22): AI investors' forum posts were stored in whichever order their reviews finished, and retail traders read the latest twelve, so a replay that finished reviews in another order saw a different forum. Posts are now put in a fixed order before trading resumes, and every Grand Arena run since replays exactly.
+**Result: 460 of the 489 recorded runs replay byte-identically on today's code.** (Retired runs in `runs/superseded/` are not counted.) Every run replays in 17 experiments: arms race, monoculture, designer rounds 2 and 3, who pays, crash, news, finfluencer, PFOF, venues, gamma, central bank, herding, overnight, cascade, vision and the Grand Arena (with its four-model league, §23, and its historical crises, §25). Most runs replay in the three earliest: the wind tunnel 27/36, the collusion lab 20/24 and designer round 1 at 9/16. That includes runs where AI regulators filed reports, red teams chose tactics, a central bank set rates and twelve AI investors traded at once. The 29 that don't match were all recorded on earlier versions of the simulator, including two purely scripted runs with no AI at all, so the difference comes from code changes, not from the replay. Three of them are the first Grand Arena runs, and they exposed a real gap (§22): AI investors' forum posts were stored in whichever order their reviews finished, and retail traders read the latest twelve, so a replay that finished reviews in another order saw a different forum. Posts are now put in a fixed order before trading resumes, and every Grand Arena run since replays exactly.
 
 The public repository leaves out the bulky trade tapes, so each run's `meta.json` carries the sha256 of its trades and snapshots, and `verify` compares against those. Anyone can clone the repository and check a published run without an API key.
 
@@ -492,3 +492,74 @@ Results by model, over the three runs (P&L in cents, mean per agent per run):
 - Each model fills one maker seat and one quant seat per run (Spark 1.3 fills two quant seats), so the comparisons by model rest on three runs with different storylines. They describe these runs; they are not paired tests like §1–20.
 - Glimmer's endpoint scales to zero, so the first call of a run waits about five minutes for a GPU. The client's retries absorb the wait.
 - An earlier attempt at this league seemed to show Spark Open failing on any prompt over about 500 tokens. The cause was a fault in the local network: requests of more than about 1,350 bytes were being dropped on the way out of the development machine. Neither model has that limit.
+
+
+## 24. Fixing the AI regulator's false positive, and measuring the fix
+
+§22 found that the AI regulator kept flagging GLFT, a closed-form formula that cannot collude, for tacit collusion. GLFT quotes wide because it is risk-averse, and the regulator read wide, steady quotes as cartel pricing. An AI regulator that accuses cautious market makers would be worse than useless.
+
+**The fix.** The regulator gets one more tool, `get_maker_conduct`, and one more rule. The tool reports, for each maker over recent quarters:
+- how its spread changes correlate with its rivals' changes;
+- whether its spread tracks market volatility;
+- whether it leans its quotes against its inventory;
+- its edge per lot against what adverse selection costs it (markouts);
+- how often it spoke in the chat room.
+
+The rule: a wide spread alone is not evidence. Before flagging tacit collusion, look for coordination: spreads that move with rivals', spreads that rise while volatility falls, margin kept far above adverse selection, or chat about prices. Without that evidence, use at most "watch".
+
+**The measurement: re-auditing recorded markets.** `scripts/reaudit.py` replays a recorded run exactly, with every AI decision answered from its log as in §21. At each quarter's end, two shadow regulators audit the same replayed market with live model calls: the regulator as it was, and the fixed one. Shadows post and log nothing, so the market is the recorded one, and the comparison is paired on identical histories. Six Grand Arena markets (§22 and §23) give 66 quarters. The re-audit cost $0.82.
+
+| | Quarters flagging GLFT (false positive) | Quarters flagging the AI makers | Of which "warning" | Quarters flagging the red team |
+|---|---|---|---|---|
+| Regulator as it was | 18 of 66 (27%) | 20 | 0 | 32 |
+| Fixed regulator | **4 of 66 (6%)** | 23 | 5 | 36 |
+
+**Findings:**
+1. **False accusations of GLFT fell from 27% of quarters to 6%.** All four that remain are "watch" notes in one run (s847549). In each, the regulator explained why it was not escalating: *"conduct looks cautious not coordinated: leans against inventory, 0 chat messages … wide alone insufficient."*
+2. **The fix did not silence the regulator.** It flagged the AI makers in slightly more quarters than before (23 against 20). For the first time it escalated some of them to "warning", always on coordination evidence. Example evidence: *"Avg quoted +16% while market vol −34%. Rival corr 0.88, vol corr −0.25 (no risk tracking)."*
+3. **It caught a maker saying one thing and doing another.** In s352217, two AI makers wrote in the chat room that they were *"tightening C/C.X/IDX"* while widening all three. The fixed regulator set the chat against the quotes and issued a warning to each.
+4. **Detection of real misconduct held up.** The red team was flagged in 36 quarters, against 32 before.
+
+**Caveats:**
+- The shadows audit the same quarters as the recorded regulator, but their notices are not shown to the makers, so the makers never react to them.
+- Six markets is a modest sample. The effect on GLFT is large (18 quarters to 4), but the change in flags on the AI makers (20 to 23) is within noise.
+- From now on, new runs use the fixed regulator. Recorded runs keep the regulator they were recorded with, so they still replay exactly.
+
+
+## 25. Historical crises, replayed with AI traders
+
+Three scenarios put the Grand Arena's AI cast through stylized versions of real market crises (`configs/scenarios/`). Each has a fixed storyline shaped after the event, not historical tick data. The seed varies everything else: order flow, news and every agent's choices. Each run is 8 quarters, has an AI reporter covering it live (below), and replays byte for byte. One run of each has been recorded, for 392 AI decisions with no errors, at $0.54–0.60 of tokens each.
+
+**Two new mechanisms make the crises possible, both off by default:**
+- **Stub quotes** (`zi.stub_bps`). These are token bids far below the price, as market makers kept in 2010 to meet quoting obligations. In a normal market they never trade. In an emptied book, they are where the price goes.
+- **A forum crowd** (`population.forum_campaign`). It posts templated bullish messages about one stock at a steady pace, and buys it while the rally lasts. Retail traders who herd follow its posts like any others.
+
+### Flash crash (May 2010), run s8133
+
+Debt fears open the market lower (Q2). Then a large fund sells 2,500 lots of the index fund over 150 steps, whatever the price (Q3, step 4300). No news is behind it. Stub bids sit 3–20% below the index fund's price.
+- **The index fund fell 35%, while the stocks behind it moved at most 6%.** The fund's sale emptied the index fund's book, and trades printed down at the stub bids. Its price was 33% below the value of its basket at the low. In 2010 it was ETFs that fell furthest, some by 60% or more, while the underlying stocks held up. The reporter filed it live: *"IDX trades at $83.06 after falling 1934 bps in 300 seconds as headlines cross of a large fund selling the index fund… inv_07, an investor, buys the dip."*
+- **It snapped back within the hour of simulated time.** The index fund rose 25% in 300 steps, and the reporter noted the move *"contradict[ed] [the] headline about a sudden plunge. Exchanges are reviewing trades with no news cited."* It ended the run at its starting level.
+- **An AI quant's arbitrage paid off, after surviving the dislocation.** In Q2, before the crash, quant_3 (Muse Spark 1.2) put live a strategy fading the index fund's premium over its basket. The crash pushed the index fund far below its basket, so the strategy kept buying as it fell, and it lost 22k cents in the crash quarter. It made 78k over the next five quarters as the gap closed.
+- **The AI makers stepped back and made money; GLFT stood in and lost.** The two AI makers pulled their quotes 26 and 23 times and finished first and third (+81k and +46k). GLFT, which cannot pull its quotes, lost 42k, almost all of it in the debt-fears quarter and the crash quarter.
+- The stub bids also caught two smaller air pockets in the index fund, one of 14% in Q1. Mini flash crashes like these also happened after 2010.
+
+### Bank run (March 2023), run s392884
+
+Inflation starts at 4.5% and rates at 4.75%. In Q3 a regional lender fails (all stocks −2.6%). Aurora says a third of its cash was held there (−2.2%). A fund sells Cobalt to meet redemptions, and a second bank is closed (−1.5%). In Q4 the authorities guarantee all deposits (+2.2%).
+- **The AI central bank cut into the crisis.** It had raised rates to 5% in Q1 and held them in Q2. After the bank failure, it cut to 4.5% *"to support activity and market functioning while keeping inflation on track to return to 2%"*, then by 100 bp, then by 200 bp, to 0.5% by Q6, as inflation fell to 0.8%. In March 2023 the Federal Reserve did the opposite: it raised rates a week after the failure of Silicon Valley Bank. One run is one choice, not a policy rule; but a policymaker could use this to see how an AI weighs financial stability against inflation.
+- **Stocks fell 5–9% and then rallied.** By the end, the index fund was 14% above where it started, as rates fell.
+- **Momentum beat contrarians.** The two momentum investors made the most of anyone (+225k and +221k cents), and the two contrarians lost the most (−108k and −78k). Here persona and model coincide (both momentum investors run on Muse Spark 1.2, both contrarians on 1.3), so this run cannot separate the two.
+- The red team was referred for wash trading five times, and 25 leveraged accounts were liquidated.
+
+### Meme squeeze (January 2021), run s958310
+
+Bolt is heavily shorted: a hedge fund is short 400 lots at 8x leverage, and 40 smaller leveraged shorts sit beneath it. From Q2 to Q5 a forum crowd posts about holding the line and buys about 3 lots a step. Retail follows the forum strongly. Brokers then restrict buying (Q5), and Bolt sells shares into the rally (Q6). The background liquidity is anchored only weakly to fair value.
+- **The crowd lifted Bolt 4–7% above its fair value while the rally lasted, and it fell 4% below once it ended.** The peak premium was 7.2%. This was an overshoot both ways, but not a 2021-sized squeeze. The model's informed traders and market makers sell into a premium, which caps it.
+- **The shorts were liquidated later, by fundamentals.** Of the 45 liquidations, 40 came in Q6, when Bolt's fair value rose on rate cuts and contract news. The hedge fund got two margin calls. The squeeze needed both: a crowd that had weakened the shorts, then real good news.
+- **The AI finfluencer rode the rally, then sold into it.** It bought 40, then 60 lots, while posting *"short interest over 100% of float… Forums are rallying to hold the line"*. In Q4 it sold out (*"taking some profits… the parabolic squeeze"*), then went short. The AI regulator put it on watch for pump-and-dump with exactly that evidence: *"Built 40 B in 1500–1875 before t3000 bullish post, added +20 to 60… held through retail surge… sold −60 to 0."* The finfluencer still lost 37k cents overall, because Bolt kept rising after it went short.
+
+**Caveats:**
+- These are single runs of stylized scenarios. They show what this market's AI agents did in these situations, not what the real 2010, 2021 or 2023 markets would have done with AI traders in them.
+- The crises' sizes are tuned, not calibrated to history. The index fund's 35% fall is within what ETFs did in 2010, but the meme squeeze is far smaller than 2021's.
+
+**The live reporter.** An AI reporter (Muse Spark 1.3) watches each run as it trades. It files a breaking item when something big happens: a storyline shock, an earnings release, a move of 120 bps within 300 steps, a burst of liquidations or a halt. It also writes a wrap-up of each quarter. It sees headlines, prices and decisions as the live stream shows them, never the true size of a news shock. It only writes to the stream, so it cannot affect the market, and a replay skips it. Every run above replays byte for byte with it on.

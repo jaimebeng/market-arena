@@ -1,0 +1,96 @@
+{"t": 372, "asset": "B", "kind": "news", "true_bps": 10.9, "misleading": true, "headline": "Bolt Logistics delays a minor product update"}
+{"t": 392, "asset": "C", "kind": "news", "true_bps": 5.4, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 447, "asset": "B", "kind": "news", "true_bps": 12.3, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 521, "asset": "B", "kind": "news", "true_bps": 12.5, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 848, "asset": "A", "kind": "news", "true_bps": 104.0, "misleading": true, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 853, "asset": "B", "kind": "news", "true_bps": -28.0, "misleading": false, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 870, "asset": "B", "kind": "news", "true_bps": 28.5, "misleading": false, "headline": "Channel checks point to steady demand at Bolt Logistics"}
+{"t": 1026, "asset": "A", "kind": "news", "true_bps": -59.3, "misleading": false, "headline": "Analyst trims Aurora Systems target on margin worries"}
+{"t": 1100, "asset": "C", "kind": "news", "true_bps": -43.3, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 1192, "asset": "B", "kind": "news", "true_bps": 41.8, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 1252, "asset": "A", "kind": "news", "true_bps": -48.5, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 1306, "asset": "C", "kind": "news", "true_bps": 35.8, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 1500, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 3.6%, output gap +0.9% in quarter 0"}
+{"t": 1500, "asset": null, "kind": "macro", "true_bps": -173.4, "headline": "Central bank raises rates to 4.50%: The Committee raises the policy rate to 4.5% to bring inflation back to its 2% target and keep output near potential."}
+{"t": 1500, "asset": "A", "kind": "earnings", "true_bps": -16.4, "headline": "Aurora Systems narrowly misses earnings estimates"}
+{"t": 1509, "asset": "C", "kind": "news", "true_bps": 36.7, "misleading": false, "headline": "Channel checks point to steady demand at Cobalt Energy"}
+{"t": 1613, "asset": "A", "kind": "news", "true_bps": -71.9, "misleading": false, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 1744, "asset": "A", "kind": "news", "true_bps": -157.5, "misleading": true, "headline": "Regulator clears Aurora Systems's flagship product ahead of schedule"}
+{"t": 2072, "asset": "C", "kind": "news", "true_bps": -55.2, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 2074, "asset": "A", "kind": "news", "true_bps": -18.0, "misleading": false, "headline": "Analyst trims Aurora Systems target on margin worries"}
+{"t": 2242, "asset": "C", "kind": "news", "true_bps": -20.8, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 2600, "asset": null, "kind": "shock", "true_bps": -70.0, "headline": "European debt fears spread; markets open lower"}
+{"t": 2618, "asset": "B", "kind": "news", "true_bps": -79.6, "misleading": false, "headline": "Regulator opens probe into Bolt Logistics's accounting"}
+{"t": 2666, "asset": "C", "kind": "news", "true_bps": 11.2, "misleading": true, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 2793, "asset": "C", "kind": "news", "true_bps": 48.3, "misleading": true, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 2963, "asset": "C", "kind": "news", "true_bps": -56.5, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 3000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 3.0%, output gap -0.2% in quarter 1"}
+{"t": 3000, "asset": null, "kind": "macro", "true_bps": -6.3, "headline": "Central bank holds rates at 4.50%: Holding the policy rate at 4.5% as restrictive policy brings inflation back toward 2% while keeping output near potential."}
+{"t": 3000, "asset": "B", "kind": "earnings", "true_bps": -126.3, "headline": "Bolt Logistics comfortably misses earnings estimates"}
+{"t": 3048, "asset": "C", "kind": "news", "true_bps": 32.9, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 3083, "asset": "B", "kind": "news", "true_bps": 77.9, "misleading": false, "headline": "Bolt Logistics lands its largest-ever contract"}
+{"t": 3311, "asset": "B", "kind": "news", "true_bps": 111.2, "misleading": false, "headline": "Regulator clears Bolt Logistics's flagship product ahead of schedule"}
+{"t": 3677, "asset": "C", "kind": "news", "true_bps": -61.2, "misleading": true, "headline": "Regulator clears Cobalt Energy's flagship product ahead of schedule"}
+{"t": 4300, "asset": null, "kind": "shock", "true_bps": 0.0, "headline": "A large fund begins selling the index fund at a fixed share of volume, whatever the price"}
+{"t": 4465, "asset": "C", "kind": "news", "true_bps": -47.7, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 4486, "asset": "A", "kind": "news", "true_bps": 10.2, "misleading": true, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 4489, "asset": "C", "kind": "news", "true_bps": -46.4, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 4500, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.7%, output gap -1.1% in quarter 2"}
+{"t": 4500, "asset": null, "kind": "macro", "true_bps": 67.0, "headline": "Central bank cuts rates to 4.25%: Inflation is moderating but remains above target while output is below potential. The Committee has cut the policy rate to 4.25% to balance progress on inflation with supporting activity."}
+{"t": 4500, "asset": "C", "kind": "earnings", "true_bps": -148.3, "headline": "Cobalt Energy comfortably misses earnings estimates"}
+{"t": 4522, "asset": "B", "kind": "news", "true_bps": 24.3, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 4681, "asset": "A", "kind": "news", "true_bps": 43.8, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 4767, "asset": "A", "kind": "news", "true_bps": 15.7, "misleading": true, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 5113, "asset": "C", "kind": "news", "true_bps": 88.0, "misleading": false, "headline": "Regulator clears Cobalt Energy's flagship product ahead of schedule"}
+{"t": 5200, "asset": null, "kind": "shock", "true_bps": 0.0, "headline": "Exchanges review trades after a sudden plunge; no news explains the move"}
+{"t": 5228, "asset": "A", "kind": "news", "true_bps": -86.5, "misleading": false, "headline": "Regulator opens probe into Aurora Systems's accounting"}
+{"t": 5311, "asset": "B", "kind": "news", "true_bps": -9.4, "misleading": true, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 5486, "asset": "A", "kind": "news", "true_bps": 23.7, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 5815, "asset": "A", "kind": "news", "true_bps": -113.3, "misleading": false, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 6000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.5%, output gap -1.2% in quarter 3"}
+{"t": 6000, "asset": null, "kind": "macro", "true_bps": 64.6, "headline": "Central bank cuts rates to 4.00%: The Committee lowered the policy rate to 4.0% as inflation has eased and slack remains, keeping policy restrictive to return inflation to 2% over the medium term."}
+{"t": 6338, "asset": "C", "kind": "news", "true_bps": 95.5, "misleading": false, "headline": "Cobalt Energy raises full-year guidance"}
+{"t": 6355, "asset": "A", "kind": "news", "true_bps": 15.9, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 6721, "asset": "A", "kind": "news", "true_bps": 52.3, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 6736, "asset": "C", "kind": "news", "true_bps": 15.5, "misleading": false, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 6955, "asset": "C", "kind": "news", "true_bps": -58.8, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 7060, "asset": "A", "kind": "news", "true_bps": -63.9, "misleading": false, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 7087, "asset": "C", "kind": "news", "true_bps": 56.2, "misleading": false, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 7225, "asset": "A", "kind": "news", "true_bps": 106.1, "misleading": false, "headline": "Regulator clears Aurora Systems's flagship product ahead of schedule"}
+{"t": 7277, "asset": "C", "kind": "news", "true_bps": -35.1, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 7312, "asset": "A", "kind": "news", "true_bps": 2.8, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 7500, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.0%, output gap -0.9% in quarter 4"}
+{"t": 7500, "asset": null, "kind": "macro", "true_bps": 172.3, "headline": "Central bank cuts rates to 3.50%: Inflation has returned to 2% but output remains below potential, so the Committee cut the policy rate by 50 basis points to 3.5% to support a return to full employment while keeping inflation anchored."}
+{"t": 7500, "asset": "A", "kind": "earnings", "true_bps": -66.6, "headline": "Aurora Systems narrowly misses earnings estimates"}
+{"t": 7836, "asset": "C", "kind": "news", "true_bps": -53.5, "misleading": true, "headline": "Channel checks point to steady demand at Cobalt Energy"}
+{"t": 8001, "asset": "B", "kind": "news", "true_bps": -59.0, "misleading": true, "headline": "Channel checks point to steady demand at Bolt Logistics"}
+{"t": 8066, "asset": "B", "kind": "news", "true_bps": -26.8, "misleading": false, "headline": "Bolt Logistics delays a minor product update"}
+{"t": 8247, "asset": "C", "kind": "news", "true_bps": 150.5, "misleading": false, "headline": "Cobalt Energy lands its largest-ever contract"}
+{"t": 8301, "asset": "C", "kind": "news", "true_bps": 27.0, "misleading": false, "headline": "Channel checks point to steady demand at Cobalt Energy"}
+{"t": 8591, "asset": "C", "kind": "news", "true_bps": -0.4, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 8605, "asset": "B", "kind": "news", "true_bps": -101.4, "misleading": false, "headline": "Bolt Logistics cuts full-year guidance"}
+{"t": 8822, "asset": "A", "kind": "news", "true_bps": -89.3, "misleading": true, "headline": "Aurora Systems raises full-year guidance"}
+{"t": 9000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.4%, output gap -0.6% in quarter 5"}
+{"t": 9000, "asset": null, "kind": "macro", "true_bps": 182.6, "headline": "Central bank cuts rates to 3.00%: The Committee reduced the policy rate to 3.0% to support activity and return inflation to the 2% target over the medium term."}
+{"t": 9000, "asset": "B", "kind": "earnings", "true_bps": 92.8, "headline": "Bolt Logistics comfortably beats earnings estimates"}
+{"t": 9315, "asset": "C", "kind": "news", "true_bps": -0.0, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 9397, "asset": "A", "kind": "news", "true_bps": -63.4, "misleading": false, "headline": "Aurora Systems loses its biggest customer"}
+{"t": 9463, "asset": "C", "kind": "news", "true_bps": -81.8, "misleading": false, "headline": "Cobalt Energy cuts full-year guidance"}
+{"t": 10078, "asset": "C", "kind": "news", "true_bps": -31.1, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 10241, "asset": "C", "kind": "news", "true_bps": 32.8, "misleading": false, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 10337, "asset": "B", "kind": "news", "true_bps": 39.8, "misleading": false, "headline": "Channel checks point to steady demand at Bolt Logistics"}
+{"t": 10349, "asset": "B", "kind": "news", "true_bps": -6.7, "misleading": false, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 10368, "asset": "C", "kind": "news", "true_bps": -34.2, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 10500, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.8%, output gap -0.2% in quarter 6"}
+{"t": 10500, "asset": null, "kind": "macro", "true_bps": 94.8, "headline": "Central bank cuts rates to 2.75%: The Committee reduced the policy rate to 2.75% to keep inflation at target while supporting a full return of output to potential."}
+{"t": 10500, "asset": "C", "kind": "earnings", "true_bps": -103.3, "headline": "Cobalt Energy comfortably misses earnings estimates"}
+{"t": 10740, "asset": "B", "kind": "news", "true_bps": 99.4, "misleading": false, "headline": "Bolt Logistics lands its largest-ever contract"}
+{"t": 10800, "asset": "A", "kind": "news", "true_bps": -21.8, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 10960, "asset": "C", "kind": "news", "true_bps": 107.5, "misleading": false, "headline": "Cobalt Energy lands its largest-ever contract"}
+{"t": 11167, "asset": "C", "kind": "news", "true_bps": -44.7, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 11209, "asset": "C", "kind": "news", "true_bps": -1.4, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 11495, "asset": "B", "kind": "news", "true_bps": 15.2, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 11623, "asset": "B", "kind": "news", "true_bps": -143.5, "misleading": false, "headline": "Bolt Logistics loses its biggest customer"}
+{"t": 11647, "asset": "C", "kind": "news", "true_bps": 41.8, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 11770, "asset": "C", "kind": "news", "true_bps": -55.7, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 12000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.7%, output gap -0.3% in quarter 7"}

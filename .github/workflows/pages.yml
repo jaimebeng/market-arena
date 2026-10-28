@@ -30,6 +30,8 @@ jobs:
           cache-dependency-path: web/package-lock.json
       - run: npm ci
       - run: npm run build  # data comes from the committed web/public exports
+        env:
+          VITE_GRAND_API: https://metahack--market-arena-web.modal.run  # deploy/modal_app.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web/dist

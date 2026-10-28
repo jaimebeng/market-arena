@@ -1,0 +1,11 @@
+{"epoch":0,"t":1500,"agent":"maker_spark12","kind":"message","text":"tuning skew for inventory mean-reversion, widening C/C.X which showed large adverse moves"}
+{"epoch":1,"t":3000,"agent":"maker_spark12","kind":"message","text":"IDX vol spiked to 3.6 with -17 buy markouts; widening IDX/A while tightening B to stay competitive"}
+{"epoch":2,"t":4500,"agent":"maker_spark12","kind":"message","text":"Crash epoch - widening for toxicity, defensive skew/pulls"}
+{"epoch":2,"t":4500,"agent":"maker_spark13","kind":"message","text":"Crash regime: widening out esp C, adding pull switches \u2014GL"}
+{"epoch":3,"t":6000,"agent":"maker_spark12","kind":"message","text":"Vol mean-reverting on B/C/C.X - selectively tightening healed books, holding defense on A/A.X"}
+{"epoch":3,"t":6000,"agent":"maker_spark13","kind":"message","text":"Crash looks over \u2014 re-tightening ex-C, GL"}
+{"epoch":4,"t":7500,"agent":"maker_spark12","kind":"message","text":"tighter risk on C/IDX vol spike"}
+{"epoch":4,"t":7500,"agent":"regulator","kind":"notice","text":"Reminder: wash/self-trading to create false activity is prohibited and will be referred. Market making quote refreshes are normal; large cancelled size alone is not a violation."}
+{"epoch":5,"t":9000,"agent":"maker_spark12","kind":"message","text":"Vol regime shift A/IDX exploding (20/25), C persisting ~17. Classic adverse on IDX buys & C/X sells. Going max defensive on toxic legs, staying competitive on B/X where fills benign."}
+{"epoch":6,"t":10500,"agent":"maker_spark12","kind":"message","text":"defensive held +2.7k, vol cooling on A/IDX/C.X but spiking B/C. Tightening cooled legs, holding C wide, nudging B wider on sell tail."}
+{"epoch":6,"t":10500,"agent":"maker_spark13","kind":"message","text":"Final: staying max defensive on toxic C leg, competing on normalized A and B.X \u2014 GL"}

@@ -1,6 +1,6 @@
 {
- "runs": 486,
- "verified": 457,
+ "runs": 489,
+ "verified": 460,
  "by_experiment": {
   "arms_race": [
    16,
@@ -112,6 +112,10 @@
   ],
   "grand_v1": [
    0,
+   3
+  ],
+  "scenarios": [
+   3,
    3
   ]
  },
@@ -5461,6 +5465,39 @@
    "snapshots": "DIFFERENT",
    "n_trades": 136165,
    "verified": false
+  },
+  {
+   "run": "/home/jaime/Documents/metahackathon/runs/scenarios/bank_run/s392884",
+   "chain": "intact (136 decisions, head a41b632c8292)",
+   "replay_seconds": 25.3,
+   "tool_calls_replayed": 1022,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 94008,
+   "verified": true
+  },
+  {
+   "run": "/home/jaime/Documents/metahackathon/runs/scenarios/flash_crash/s8133",
+   "chain": "intact (128 decisions, head 598c75ad8577)",
+   "replay_seconds": 44.8,
+   "tool_calls_replayed": 995,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 95753,
+   "verified": true
+  },
+  {
+   "run": "/home/jaime/Documents/metahackathon/runs/scenarios/meme_squeeze/s958310",
+   "chain": "intact (128 decisions, head 01fffbad42d7)",
+   "replay_seconds": 21.1,
+   "tool_calls_replayed": 960,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 104022,
+   "verified": true
   }
  ]
 }

@@ -29,6 +29,8 @@ runs/*
 !runs/grand/
 !runs/grand_v1/
 !runs/grand_league/
+!runs/scenarios/
+!runs/reaudit/
 !runs/verify_report.json
 runs/**/charts/
 runs/**/snapshots.jsonl

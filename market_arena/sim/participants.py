@@ -80,6 +80,28 @@ class LeveragedAccount(BaseModel):
     chunk: int = 6  # lots sold (or bought back) per step while in a margin call
 
 
+class ForumCampaignParams(BaseModel):
+    """A crowd on the public forum rallying behind one stock (a meme rally): templated posts at a
+    fixed pace between two steps. Retail traders who herd follow them like any other post."""
+
+    asset: str = "B"
+    start: int = 3000
+    end: int = 6000
+    every: int = 60  # steps between posts
+    stance: float = 0.9
+    weight: float = 2.0  # influence of each post, as for a popular author
+    buy_rate: float = 0.0  # lots per step the crowd itself buys at market while the rally lasts
+
+
+CAMPAIGN_POSTS = [
+    "{co} is the most shorted stock on the market. If we all hold, the shorts have to buy. Hold the line.",
+    "Just bought more {co}. Not selling. The hedge funds shorting it are trapped.",
+    "{co} short interest is over 100% of the float. This is how a squeeze starts.",
+    "Diamond hands on {co}. Every dip is a gift; the shorts are paying interest every day.",
+    "Look at {co}'s volume today. The shorts are covering and we are just getting started.",
+]
+
+
 class PopulationCfg(BaseModel):
     retail: RetailParams | None = None
     institutional: InstitutionalParams | None = None
@@ -90,6 +112,7 @@ class PopulationCfg(BaseModel):
     options: OptionsParams | None = None  # retail call options, delta-hedged by a dealer
     liquidations: LiquidationParams | None = None  # crypto-style leverage ladder, insurance fund, ADL
     maker_guards: bool = False  # LLM makers may set crisis rules (pull quotes on a fast move)
+    forum_campaign: ForumCampaignParams | None = None  # a crowd rallying behind a stock on the forum
 
 
 def endow(ex: Exchange, owner: str, asset: str, lots: int) -> None:

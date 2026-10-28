@@ -1,0 +1,64 @@
+# Scenario: a bank run, shaped after March 2023 (a stylized replay, not historical data).
+#
+# The Grand Arena market with a fixed storyline. Inflation is running at 4.5% and the central bank
+# has been raising rates. A regional lender fails after a run on its deposits; a tech company
+# says much of its cash is stuck there; a second bank is closed; a fund meets redemptions by
+# selling; then the authorities guarantee all deposits. The question in 2023 was whether to keep
+# fighting inflation or to cut for financial stability. Here the AI central bank has to choose,
+# with AI makers, quants, investors, a regulator and a reporter trading and writing around it.
+# The seed varies everything else, so every run of the scenario plays out differently.
+#   python -m market_arena.runner.run configs/scenarios/bank_run.yaml --seed random
+name: bank_run
+seed: 1
+steps_per_epoch: 1500
+n_epochs: 8
+holdout: 750
+live: true
+components:
+  A: {price: 10000, sigma: 0.00006, beta: 1.0}
+  B: {price: 5000, sigma: 0.00009, beta: 1.3}
+  C: {price: 20000, sigma: 0.00005, beta: 0.8}
+factor_sigma: 0.00006
+index: {name: IDX, price: 10000}
+index_flow: {burst_rate: 0.002, burst_len: 60, size: 3}
+listings: {A: [A.X], B: [B.X], C: [C.X]}
+rules:
+  venue_fees: {A.X: [-2.0, 3.0], B.X: [-2.0, 3.0], C.X: [-2.0, 3.0]}
+chat: {enabled: true}
+economy: {pi0: 4.5, i0: 4.75, y0: 0.8}
+news: {misleading: 0.15, earnings_every: 6000, earnings_bps: 80}
+shocks:
+  - {at_step: 3300, asset: "*", bps: -260, headline: "Regional lender fails after a run on its deposits; contagion fears spread"}
+  - {at_step: 3500, asset: A, bps: -220, headline: "Aurora Systems says a third of its cash was held at the failed lender"}
+  - {at_step: 3900, asset: "*", bps: 0, headline: "Reports: a large fund is selling Cobalt Energy to meet redemptions"}
+  - {at_step: 4100, asset: "*", bps: -150, headline: "Second regional bank closed by regulators"}
+  - {at_step: 4800, asset: "*", bps: 220, headline: "Authorities guarantee all deposits and open an emergency lending facility"}
+  - {at_step: 5100, asset: A, bps: 150, headline: "Aurora Systems regains access to its deposits"}
+population:
+  retail: {rate: 0.12, chartist: 0.25, herd: 0.3}
+  institutional: {algo: twap, parent_rate: 0.001, parent_size: 60, horizon: 300}
+  fire_sale: {at_step: 3900, asset: C, qty: 1500, over: 200}
+  index_fund: {every: 1500, size: 20, window: 50}
+  latency_arb: {}
+  options: {asset: IDX, flow: retail_buys_calls, rate: 0.1}
+  leveraged:
+    - {owner: hedge_fund, asset: C, position: 300, leverage: 10, maintenance: 0.06, chunk: 6}
+  liquidations: {asset: B, n_longs: 20, long_lots: 15, leverage_min: 5, leverage_max: 50, chunk: 3, n_shorts: 10, short_lots: 20}
+  maker_guards: true
+swarm:
+  n: 8
+  models: ["meta:muse-spark-1.3-contributor", "meta:muse-spark-1.2-contributor"]
+  personas: [value, momentum, contrarian, news]
+  assets: [A, B, C, IDX]
+reporter: {model: "meta:muse-spark-1.3-contributor"}
+agents:
+  - {id: glft, kind: glft}
+  - {id: maker_spark13, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+  - {id: maker_spark12, kind: llm_maker, model: "meta:muse-spark-1.2-contributor"}
+  - {id: quant_1, kind: llm_taker, model: "meta:muse-spark-1.3-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: quant_2, kind: llm_taker, model: "meta:muse-spark-1.3-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: quant_3, kind: llm_taker, model: "meta:muse-spark-1.2-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: finfluencer, kind: llm_finfluencer, model: "meta:muse-spark-1.3-contributor", assets: [A, B, C]}
+  - {id: red_team, kind: llm_red_team, model: "meta:muse-spark-1.3-contributor", assets: [B, B.X]}
+  - {id: regulator, kind: llm_surveillance, model: "meta:muse-spark-1.3-contributor"}
+  - {id: central_bank, kind: llm_central_bank, model: "meta:muse-spark-1.3-contributor"}

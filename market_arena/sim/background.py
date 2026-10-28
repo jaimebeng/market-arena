@@ -28,6 +28,12 @@ class ZIParams(BaseModel):
     # information diffusion: new limit orders centre on mid + kappa * (lagged value - mid)
     anchor_kappa: float = 0.3
     anchor_lag: int = 150  # steps; the crowd learns the fair value with this delay
+    # stub quotes: token orders far from the price, as market makers kept in 2010 to meet quoting
+    # obligations. bps from the crowd's reference: positive = a bid that far below, negative = an
+    # ask that far above. Off by default; an emptied book trades there.
+    stub_bps: list[float] = []
+    stub_size: int = 2
+    stub_assets: list[str] | None = None  # books that carry stub quotes (None: all)
 
 
 class InformedParams(BaseModel):
@@ -50,6 +56,7 @@ class ZeroIntelligenceFlow:
     def __init__(self, ex: Exchange, asset: str, p: ZIParams, rng: np.random.Generator):
         self.ex, self.asset, self.p, self.rng = ex, asset, p, rng
         self._expiry: list[tuple[int, int]] = []  # (expiry step, order id)
+        self._stubs: dict[tuple[int, float], int] = {}  # (side, bps) -> resting order id
 
     def _size(self) -> int:
         return int(self.rng.geometric(1 / self.p.size_mean))
@@ -76,6 +83,15 @@ class ZeroIntelligenceFlow:
         mid = ex.mid(self.asset)
         if lagged_value is not None:
             mid += p.anchor_kappa * (lagged_value - mid)
+        if p.stub_bps and ex.t % 50 == 0 and (p.stub_assets is None or self.asset in p.stub_assets):
+            # refill any stub quote that traded
+            ref = lagged_value if lagged_value is not None else mid
+            book = ex.books[self.asset]
+            for bps in p.stub_bps:
+                side = BUY if bps > 0 else SELL
+                if self._stubs.get((side, bps)) not in book.orders:
+                    self._stubs[(side, bps)] = ex.limit(self.owner, self.asset, side, ref * (1 - bps * 1e-4),
+                                                        p.stub_size, post_only=True)  # fmt: skip
         for _ in range(rng.poisson(p.limit_rate)):
             side = BUY if rng.random() < 0.5 else SELL
             off = rng.integers(p.offset_min, p.offset_max + 1)

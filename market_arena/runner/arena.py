@@ -13,6 +13,7 @@ from pathlib import Path
 import numpy as np
 
 from ..agents.maker import Maker, MakerPolicy
+from ..agents.reporter import MarketReporter
 from ..analysis.metrics import agent_metrics, class_metrics, drawdown, market_metrics
 from ..analysis.stylized import stylized_facts
 from ..agents.taker import StrategyTaker
@@ -26,11 +27,11 @@ from ..sim.exchange import Exchange
 from ..sim.fundamentals import Fundamentals
 from ..sim.history import MarketHistory
 from ..sim.economy import Economy
-from ..sim.news import NewsWire, news_response
+from ..sim.news import NewsWire, company, news_response
 from ..sim.options import OptionsDealer
 from ..sim.perps import LiquidationEngine
 from ..sim.storyline import draw_storyline
-from ..sim.participants import (IndexFund, InstitutionalFlow, LatencyArb, MarginDesk, RetailFlow,
+from ..sim.participants import (CAMPAIGN_POSTS, IndexFund, InstitutionalFlow, LatencyArb, MarginDesk, RetailFlow,
                                 Router, stream)
 from .config import ArenaConfig
 
@@ -245,6 +246,7 @@ class Arena:
             for k in ("snapshots", "trades", "decisions", "metrics", "chat", "forum")
         }
         self._live = open(self.out / "live.jsonl", "w") if cfg.live else None
+        self.reporter = MarketReporter(cfg.reporter, self) if cfg.reporter and cfg.live else None
         self._news_seen = 0  # news items already streamed
         self.chat: list[dict] = []  # makers' chat room and regulator notices
         self._head, self._n_decisions = GENESIS, 0  # decision hash chain
@@ -294,6 +296,8 @@ class Arena:
         if self._live:
             self._live.write(json.dumps(obj, separators=(",", ":"), default=str) + "\n")
             self._live.flush()
+            if self.reporter:
+                self.reporter.see(obj)
 
     def _live_frame(self, values: dict[str, float]) -> None:
         """Every book's mid and spread, each company's fair value, and every agent's equity."""
@@ -319,7 +323,7 @@ class Arena:
                     "strategies": m["taker_strategy"], "venues": ev.get("venues"), "halts": ev.get("halts"),
                     "liquidations": liq or None, "margin_calls": len(ev.get("margin_calls") or []),
                     "drawdown": ev.get("drawdown"), "macro": m.get("macro"),
-                    "collusion": m.get("collusion_index")})  # fmt: skip
+                    "collusion": {a: _num(v, 3) for a, v in (m.get("collusion_index") or {}).items()}})  # fmt: skip
 
     def post_chat(self, epoch: int, agent: str, text: str, kind: str = "message") -> None:
         """kind: "message" (a maker in the chat room) or "notice" (the regulator, seen by all)."""
@@ -469,6 +473,8 @@ class Arena:
             "started": time.time(),
         }
         equity0 = {ag.id: 0.0 for ag in self.agents}
+        camp = cfg.population.forum_campaign if cfg.population else None  # a crowd on the forum
+        self.rng_campaign = np.random.default_rng([cfg.seed, 23])
         values = self.market.values()
         self._emit({"k": "start", "name": cfg.name, "seed": cfg.seed, "epochs": cfg.n_epochs,
                     "steps_per_epoch": cfg.steps_per_epoch, "assets": self.assets,
@@ -481,6 +487,14 @@ class Arena:
             self._emit({"k": "phase", "phase": "trade", "epoch": epoch, "t": ex.t, "session": session})
             for _ in range(cfg.steps_per_epoch):
                 values = self.market.background_step()
+                if camp and camp.start <= ex.t < camp.end and (ex.t - camp.start) % camp.every == 0:
+                    k = (ex.t - camp.start) // camp.every
+                    self.post_forum(epoch, "forum_crowd", CAMPAIGN_POSTS[k % len(CAMPAIGN_POSTS)].format(
+                        co=company(camp.asset)), camp.stance, camp.asset, camp.weight)  # fmt: skip
+                if camp and camp.buy_rate and camp.start <= ex.t < camp.end:
+                    q = int(camp.buy_rate) + int(self.rng_campaign.random() < camp.buy_rate % 1)
+                    if q:
+                        ex.market("retail", self.market.router.best(camp.asset, BUY), BUY, q)
                 for i in self.rng.permutation(len(self.agents)):
                     self.agents[i].on_step(ex)
                 self.hist.record(ex, values)
@@ -489,6 +503,9 @@ class Arena:
                     self._snapshot(values)
                 if self._live and ex.t % cfg.live_every == 0:
                     self._live_frame(values)
+                    if self.reporter:  # let the reporter's model calls progress; it only reads
+                        self.reporter.watch(self)
+                        await asyncio.sleep(0)
                 ex.end_step()
             t1 = ex.t
             m = {
@@ -530,6 +547,8 @@ class Arena:
             self.metrics_log.append(m)
             self._write("metrics", m)
             self._live_epoch(m)
+            if self.reporter:
+                self.reporter.wrap(self, m)
             for f in self._files.values():
                 f.flush()
             if epoch < cfg.n_epochs - 1:
@@ -557,6 +576,9 @@ class Arena:
                 items, None, asset_mid={a: self.hist.get(a, "mid") for a in self.assets})
         meta["finished"] = time.time()
         meta["llm_cost_usd"] = round(self.cost, 4)
+        if self.reporter:
+            await self.reporter.close()
+            meta["llm_cost_usd"] = round(self.cost, 4)
         if self._live:  # the storyline is revealed only at the end
             self._emit({"k": "end", "t": ex.t, "cost": meta["llm_cost_usd"],
                         "storyline": [s.model_dump() for s in cfg.shocks]})  # fmt: skip

@@ -1,16 +1,25 @@
 """Export recorded Grand Arena runs for the dashboard: web/public/grand/<id>.json + index.json.
 
-    python scripts/export_grand.py   # every runs/grand_league/s<seed> and runs/grand/s<seed> that finished
+    python scripts/export_grand.py   # every finished run in runs/scenarios/*/, runs/grand_league/, runs/grand/
 """
 
 from __future__ import annotations
 
 import json
+import math
 from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "web" / "public" / "grand"
+# where recorded runs come from, in the order the dashboard lists them, and what to call them
+SOURCES = [
+    ("scenarios/flash_crash", "Flash crash (May 2010)"),
+    ("scenarios/bank_run", "Bank run (March 2023)"),
+    ("scenarios/meme_squeeze", "Meme squeeze (January 2021)"),
+    ("grand_league", "Four-model league"),
+    ("grand", "Muse Spark 1.3 + 1.2"),
+]
 
 
 def summary(lines: list[dict]) -> dict:
@@ -26,22 +35,53 @@ def summary(lines: list[dict]) -> dict:
             "winner": max(last_eq, key=last_eq.get)}  # fmt: skip
 
 
+def finite(o):
+    """NaN and infinity are not JSON: a browser cannot parse them. They become null."""
+    if isinstance(o, float):
+        return o if math.isfinite(o) else None
+    if isinstance(o, dict):
+        return {k: finite(v) for k, v in o.items()}
+    if isinstance(o, list):
+        return [finite(v) for v in o]
+    return o
+
+
+def place_commentary(lines: list[dict]) -> list[dict]:
+    """The reporter files an item a few seconds after the moment it describes, and a quarter of
+    trading takes only seconds, so in the stream its breaking items land at the quarter's end. For a
+    replay, put each item back at the moment it is about: right after the first frame at or past it."""
+    items = sorted((x for x in lines if x["k"] == "commentary"), key=lambda x: x["t"])
+    out, i = [], 0
+    for x in lines:
+        if x["k"] == "commentary":
+            continue
+        if x["k"] == "end":
+            out += items[i:]
+            i = len(items)
+        out.append(x)
+        while x["k"] == "f" and i < len(items) and items[i]["t"] <= x["t"]:
+            out.append(items[i])
+            i += 1
+    return out + items[i:]
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     index = []
-    files = sorted((ROOT / "runs" / "grand_league").glob("s*/live.jsonl")) + sorted((ROOT / "runs" / "grand").glob("s*/live.jsonl"))
-    for f in files:
-        lines = [json.loads(x) for x in f.read_text().splitlines()]
-        if not lines or lines[-1]["k"] != "end":
-            continue  # unfinished
-        league = f.parent.parent.name == "grand_league"  # four models, Spark Open and Glimmer included
-        rid = f"grand_{f.parent.name}"
-        (OUT / f"{rid}.json").write_text(json.dumps({"lines": lines}, separators=(",", ":")))
-        s = summary(lines)
-        n = sum(1 for x in index if x["league"] == league) + 1
-        index.append({"id": rid, "label": f"{'Four-model league' if league else 'Muse Spark 1.3 + 1.2'}, run {n}",
-                      "league": league, **s})  # fmt: skip
-        print(rid, f"{(OUT / f'{rid}.json').stat().st_size / 1e6:.2f} MB", s["strategies"][:4])
+    for source, label in SOURCES:
+        n = 0
+        for f in sorted((ROOT / "runs" / source).glob("s*/live.jsonl")):
+            lines = place_commentary([json.loads(x) for x in f.read_text().splitlines()])
+            if not lines or lines[-1]["k"] != "end":
+                continue  # unfinished
+            n += 1
+            prefix = source.split("/")[-1] if source.startswith("scenarios/") else "grand"
+            rid = f"{prefix}_{f.parent.name}"
+            (OUT / f"{rid}.json").write_text(json.dumps({"lines": finite(lines)}, separators=(",", ":"), allow_nan=False))
+            s = summary(lines)
+            index.append({"id": rid, "label": f"{label}, run {n}", "source": source,
+                          "league": source == "grand_league", **s})  # fmt: skip
+            print(rid, f"{(OUT / f'{rid}.json').stat().st_size / 1e6:.2f} MB", s["strategies"][:4])
     (OUT / "index.json").write_text(json.dumps(index, indent=1))
 
 

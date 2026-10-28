@@ -124,6 +124,10 @@ class Replay:
 
 
 REPLAY: Replay | None = None
+# Set in one task to call the real models during a replay (a shadow auditor re-auditing a
+# recorded market: scripts/reaudit.py). Context variables are per task, so the replayed agents
+# reviewing at the same time are still answered from the log.
+BYPASS_REPLAY: contextvars.ContextVar[bool] = contextvars.ContextVar("bypass_replay", default=False)
 
 
 async def run_tools(
@@ -143,7 +147,7 @@ async def run_tools(
     so it can retry (used for validation, e.g. bad policy values or code failing the sandbox).
     `images` (PNG bytes) are attached to the first user message, for the models' vision.
     """
-    if REPLAY is not None:
+    if REPLAY is not None and not BYPASS_REPLAY.get():
         return REPLAY.answer(model, handlers, terminal)
     provider, model_id = model.split(":", 1)
     client = client_for(provider)

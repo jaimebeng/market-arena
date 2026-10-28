@@ -19,6 +19,8 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 |---|---|---|
 | Can I test a rule myself? | Yes. Say or type it. Muse Voice Transcribe hears it, Muse Spark turns it into exchange settings, AI market makers trade under it, and Muse Spark writes the memo. A maker rebate tightened quoted spreads by 1.9¢, but retail paid 2.1 bps more per trade. | [Rule Lab](https://jaimebeng.github.io/market-arena/?tab=lab) |
 | What happens when everything is in one market? | The Grand Arena: 7 order books on two exchanges, 17 AI agents, a different random storyline every run, streamed live. Across six runs the same AI makers priced anywhere from more competitive than Nash to above the cartel level. Quants found index arbitrage in every run, and lead-lag between the exchanges in four. The AI regulator caught the red team every time, and repeatedly mistook the cautious GLFT formula for a cartel. A four-model league adds Spark Open and Muse Glimmer 30B: every AI maker made money, Spark Open's the most, and Glimmer's quant stuck to arbitrage while the others chased momentum. | [Grand Arena](https://jaimebeng.github.io/market-arena/?tab=grand) |
+| What would AI traders do in a real crisis? | We replayed stylized versions of three. In a flash crash, the index fund fell 35% while its stocks barely moved; the AI makers pulled their quotes and profited, and an AI quant's index arbitrage lost 22k in the crash and made 78k after. In a bank run, the AI central bank cut rates into the crisis, the opposite of the Fed in March 2023. In a meme squeeze, the AI finfluencer rode the rally and sold into it, and the AI regulator flagged it with exactly that evidence. An AI reporter covers every run live. | [Flash crash](https://jaimebeng.github.io/market-arena/?tab=grand) |
+| Can the AI regulator learn from its mistakes? | Yes, measurably. Given a tool that separates cautious pricing from coordinated pricing, its false accusations of the honest GLFT formula fell from 27% of quarters to 6%, re-audited on the same 66 replayed quarters. It still flagged the AI makers, and caught two whose chat said "tightening" while they widened. | [§24](RESULTS.md) |
 | Do AI market makers compete? | Not fully. They quote about two thirds of the way from the competitive spread to the cartel spread, and they pocket most of a maker rebate that competition would pass on. | [Wind tunnel](https://jaimebeng.github.io/market-arena/?tab=wind&exp=wind_tunnel_v3) |
 | Given a chat room, do they form a cartel? | No. They announce price cuts. An antitrust warning silences them completely, in every run, but prices don't fall. | [Collusion lab](https://jaimebeng.github.io/market-arena/?tab=wind&exp=collusion_lab) |
 | Can an AI regulator police them? | It flagged a planted spoofer in 28 of 30 audits, citing order-flow evidence, with zero false accusations. | [Surveillance case](https://jaimebeng.github.io/market-arena/?run=collusion_lab_surveillance_s41&tab=surveillance) |
@@ -44,13 +46,13 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 - **Muse Voice Transcribe** hears spoken rule proposals.
 - **Muse Image** photographs the front pages.
 
-Across 556 recorded runs there were about 11,300 AI decisions, costing about $25 in tokens and about $3 of GPU time.
+Across 559 recorded runs there were about 11,700 AI decisions, costing about $28 in tokens and about $3 of GPU time.
 
 **Why the numbers can be trusted.**
 - The game-theory benchmark is solved for each rule set: the GLFT optimal maker, plus Nash and Pareto equilibria.
 - Quant strategies and the designer's rulebooks only count if they hold up on data they never saw.
 - Every experiment is paired by seed, and claims that didn't survive more seeds are corrected in the open.
-- **Every run can be verified without the model.** Decisions are hash-chained, and `python -m market_arena.runner.verify` re-executes a market from its log with no model calls. 457 of 486 recorded runs reproduce every trade byte for byte ([§21](RESULTS.md)). The dashboard marks them ✓ replay-verified.
+- **Every run can be verified without the model.** Decisions are hash-chained, and `python -m market_arena.runner.verify` re-executes a market from its log with no model calls. 460 of 489 recorded runs reproduce every trade byte for byte ([§21](RESULTS.md)). The dashboard marks them ✓ replay-verified.
 - There are 62 tests, and CI runs on every push. Every new feature is off by default, and a test checks that switching them all off changes nothing.
 
 ---
@@ -108,10 +110,17 @@ The **Grand Arena** tab puts every experiment in one market (`configs/grand.yaml
 - **17 AI agents trade together:** two AI market makers on Muse Spark 1.3 and 1.2, three AI quants writing their own code across all 7 books, eight AI investors in four styles routed to the best exchange, a finfluencer, a red team, an AI regulator and an AI central bank.
 - **Underneath them:** retail, institutions, an index fund, an HFT, an options dealer, a hedge fund on margin and a leverage ladder.
 - **A different story every run.** A fresh random seed draws the shocks (a takeover bid, a fraud report, tariffs, a bank failure) and whether a fund is forced to sell. Nobody sees them coming. Run it again and the news, the central bank's path, the winners and the quants' strategies all change. The seed is recorded, so every run still replays byte for byte.
-- **Live.** The run streams prices, news, decisions, forum posts and regulator notices as they happen. With the server running, press *Start a new run* in the tab and watch it unfold. The public site plays three recorded runs.
+- **Live.** The run streams prices, news, decisions, forum posts and regulator notices as they happen. Press *Start a new run* in the tab and watch it unfold.
+- **An AI reporter covers it.** Muse Spark watches the market as it trades. It files breaking items when something big happens (a shock, a sharp move, a burst of liquidations) and writes a wrap-up of each quarter, shown on a news banner above the books. It only reads the market, so it cannot change it.
+- **Ask the market.** Type a question (*"Why did Cobalt fall?"*, *"Is the regulator right about the makers?"*). An AI analyst (Muse Spark with six tools over the run's record) investigates the run up to your playhead, with no spoilers. It answers with numbers and with moments you can click to jump the replay there.
+- **Historical crises** ([§25](RESULTS.md)). Pick a flash crash (May 2010), a bank run (March 2023) or a meme squeeze (January 2021): a fixed storyline shaped after the event, played out by the same AI cast, and differently every run.
+- **Hosted.** The public dashboard can start live runs and ask the analyst on a server on Modal (`deploy/modal_app.py`), which scales to zero when nobody is watching. Live runs from the public site are 6 quarters long, with a daily cap.
 
 ```bash
 python -m market_arena.runner.run configs/grand.yaml --seed random   # about 35 minutes, ~$0.90
+python -m market_arena.runner.run configs/scenarios/flash_crash.yaml --seed random   # or bank_run, meme_squeeze; ~25 minutes
+python scripts/reaudit.py runs/grand/s559705   # re-audit a recorded market with the regulator before and after the fix (§24)
+uvicorn market_arena.server.public:app --port 8001   # the public server: live runs and the analyst
 ```
 
 The **four-model league** (`configs/grand_league.yaml`, [§23](RESULTS.md)) splits makers, quants and investors across Muse Spark 1.3, Muse Spark 1.2, Muse Spark Open and Muse Glimmer 30B. The tab shows its three runs first.
@@ -152,6 +161,7 @@ The **Front pages** tab turns each headline result into a newspaper front page. 
 | Central bank | **Muse Spark 1.3** and **Muse Spark Open** | Reads the macro data and the markets each quarter, sets the policy rate and writes the statement |
 | Investor swarm | **Muse Spark 1.3** and **Muse Spark Open** | Twelve investors through a crash, to measure herding |
 | Vision | **Muse Spark 1.3** and **Muse Spark Open** | Read a rendered chart of their own trading (image input) |
+| Reporter and analyst | **Muse Spark 1.3** | Live market commentary from the stream; answering viewers' questions with tool calls over a run's record |
 | Rule Lab | **Muse Voice Transcribe**, **Muse Spark 1.3** | Speech to text; then natural-language rules compiled to exchange levers, and the impact memo |
 | Front pages | **Muse Spark 1.3**, **Muse Image** | Stories from measured facts; vintage press photographs |
 

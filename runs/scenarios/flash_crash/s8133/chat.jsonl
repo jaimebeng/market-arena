@@ -1,0 +1,7 @@
+{"epoch":0,"t":1500,"agent":"maker_spark13","kind":"message","text":"Tight markets, leaning against inventory from here."}
+{"epoch":1,"t":3000,"agent":"maker_spark12","kind":"message","text":"Crash toxicity on buys: A/C/X ~70% adverse -30c; staying wide + skew."}
+{"epoch":1,"t":3000,"agent":"regulator","kind":"notice","text":"Reminder: all orders must be bona fide. Placing large orders without intent to trade to create false pressure then cancelling after trading on the other side, and trading with oneself, are prohibited and actively monitored."}
+{"epoch":2,"t":4500,"agent":"maker_spark12","kind":"message","text":"Calm after storm - tightening A/B/X where toxicity collapsed, keeping C tail protection."}
+{"epoch":3,"t":6000,"agent":"maker_spark12","kind":"message","text":"Vol regime shift C/IDX spiking - defense on toxic buys"}
+{"epoch":3,"t":6000,"agent":"maker_spark13","kind":"message","text":"C/IDX vol spiking, buys toxic \u2014 staying wide + defensive there, competitive on A/B."}
+{"epoch":5,"t":9000,"agent":"maker_spark12","kind":"message","text":"C vol spiked again and ask toxicity now extreme (-22c, 46% adverse); widening C defensively, tightening X rebate venues slightly."}

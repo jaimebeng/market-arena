@@ -38,6 +38,30 @@ for weak signals, "warning" for probable misconduct, "referral" for clear violat
 broadcast a public_notice to all market makers (e.g. a reminder of the rules or a warning); it \
 appears in their next review. Your summary is shown publicly on a dashboard."""
 
+CONDUCT_NOTE = """
+
+A wide spread alone is not evidence of tacit collusion. A cautious, risk-averse maker quotes \
+wide because of volatility, inventory risk and adverse selection (informed traders picking off \
+its quotes), and does so on its own. Before you flag tacit_collusion, call get_maker_conduct and \
+look for coordination: spread changes that move together with rivals', spreads that rise while \
+volatility falls, edge kept far above what adverse selection costs, or chat about prices. A \
+maker whose spreads track volatility, lean against its inventory, and move independently of \
+its rivals is cautious, not colluding. Without evidence of coordination, use at most \
+severity "watch"."""
+
+CONDUCT_TOOL = {
+    "type": "function",
+    "function": {
+        "name": "get_maker_conduct",
+        "description": "For each market maker over the last epochs: its quoted half-spread per "
+        "epoch next to the market's volatility, how its spread changes correlate with its rivals' "
+        "changes, whether it skews quotes against inventory, its edge per lot against what "
+        "adverse selection costs it (markouts), and how many chat messages it posted. Separates "
+        "cautious pricing from coordinated pricing.",
+        "parameters": {"type": "object", "properties": {}},
+    },
+}
+
 SOCIAL_NOTE = """
 
 Investors also post on a public forum that many retail investors read and copy. You can detect:
@@ -162,6 +186,8 @@ class LLMSurveillance:
         self.assets = assets
         self.model = model
         self.reasoning_effort = (params or {}).get("reasoning_effort")
+        # get_maker_conduct and the coordination rule (False: the regulator before the fix, §24)
+        self.conduct_tool = (params or {}).get("conduct_tool", True)
         self.notes = ""
         self.reports: list[dict] = []  # {"epoch", "findings"} per filed report
         self._social = False  # a public investor forum exists (set at each review)
@@ -229,6 +255,28 @@ class LLMSurveillance:
 
     # ---- review --------------------------------------------------------------------------
     async def review(self, arena, epoch: int, m: dict) -> None:
+        tr = await self.audit(arena, epoch, m)
+        final = tr.final or {}
+        notice = (final.get("public_notice") or "").strip()
+        if notice:
+            arena.post_chat(epoch, self.id, notice, kind="notice")
+        arena.log_decision(
+            {
+                "epoch": epoch, "t": arena.ex.t, "agent": self.id, "role": "regulator",
+                "model": self.model, "findings": final.get("findings") or [],
+                "rationale": final.get("summary"), "notice": notice or None,
+                "notes": final.get("notes_to_self"),
+                "tools": [c["name"] for t in tr.turns for c in t["calls"]],
+                "turns": tr.turns, "error": tr.error,
+                "tokens": {"in": tr.input_tokens, "out": tr.output_tokens,
+                           "reasoning": tr.reasoning_tokens},
+                "cost": tr.cost, "seconds": tr.seconds,
+            }
+        )  # fmt: skip
+
+    async def audit(self, arena, epoch: int, m: dict):
+        """Investigate and file a report (kept in self.reports); posts and logs nothing, so a
+        shadow auditor can re-audit a replayed market without changing it."""
         self._arena = arena
         self._social = any(ag.role == "investor" for ag in arena.agents)
         cfg = arena.cfg
@@ -248,9 +296,13 @@ class LLMSurveillance:
             "file_report": self._file_report,
         }  # fmt: skip
         system, tools = SYSTEM.format(steps=cfg.steps_per_epoch), TOOLS
+        if self.conduct_tool:
+            system += CONDUCT_NOTE
+            tools = TOOLS[:-1] + [CONDUCT_TOOL, TOOLS[-1]]
+            handlers["get_maker_conduct"] = lambda a: maker_conduct(arena)
         if self._social:
             system += SOCIAL_NOTE
-            tools = copy.deepcopy(TOOLS[:-1]) + SOCIAL_TOOLS + [copy.deepcopy(TOOLS[-1])]
+            tools = copy.deepcopy(tools[:-1]) + SOCIAL_TOOLS + [copy.deepcopy(tools[-1])]
             tools[-1]["function"]["parameters"]["properties"]["findings"]["items"]["properties"][
                 "conduct"]["enum"] = CONDUCT_SOCIAL
             handlers |= {
@@ -265,22 +317,55 @@ class LLMSurveillance:
         final = tr.final or {}
         self.notes = final.get("notes_to_self") or self.notes
         self.reports.append({"epoch": epoch, "findings": final.get("findings") or []})
-        notice = (final.get("public_notice") or "").strip()
-        if notice:
-            arena.post_chat(epoch, self.id, notice, kind="notice")
-        arena.log_decision(
-            {
-                "epoch": epoch, "t": arena.ex.t, "agent": self.id, "role": "regulator",
-                "model": self.model, "findings": final.get("findings") or [],
-                "rationale": final.get("summary"), "notice": notice or None,
-                "notes": final.get("notes_to_self"),
-                "tools": [c["name"] for t in tr.turns for c in t["calls"]],
-                "turns": tr.turns, "error": tr.error,
-                "tokens": {"in": tr.input_tokens, "out": tr.output_tokens,
-                           "reasoning": tr.reasoning_tokens},
-                "cost": tr.cost, "seconds": tr.seconds,
-            }
-        )  # fmt: skip
+        return tr
+
+
+def maker_conduct(arena, last: int = 6) -> dict:
+    """Per maker over the last epochs: the evidence that separates a cautious maker (spreads that
+    track volatility and lean against inventory, set on its own) from coordinated pricing."""
+    makers = [ag.id for ag in arena.agents if ag.role == "maker"]
+    log = arena.metrics_log[-last:]
+
+    def hs(m, i):
+        q = [v for v in (m["agents"][i].get("quoted_half_spread") or {}).values() if v is not None]
+        return float(np.mean(q)) if q else np.nan
+
+    vol = [float(np.mean([v["vol_per_step"] for v in m["market"].values()])) for m in log]
+    out = {}
+    for i in makers:
+        mine = [hs(m, i) for m in log]
+        others = [j for j in makers if j != i]
+        rivals = [float(np.nanmean([hs(m, j) for j in others])) if others else np.nan for m in log]
+        a = [m["agents"][i] for m in log]
+        edge = float(np.mean([x.get("edge_per_lot") or 0 for x in a]))
+        mk50 = float(np.mean([x.get("markout_50") or 0 for x in a]))
+        skew = [abs(p.get("skew") or 0) for m in log for p in m["policies"][i].values()]
+        out[i] = {
+            "quoted_half_spread_by_epoch": [_r(x) for x in mine],
+            "spread_change_corr_with_rivals": _corr(np.diff(mine), np.diff(rivals)),
+            "spread_corr_with_volatility": _corr(mine, vol),
+            "avg_inventory_skew": _r(np.mean(skew)) if skew else None,
+            "edge_per_lot": _r(edge),
+            "markout_50_per_lot": _r(mk50),
+            "adverse_selection_per_lot": _r(edge - mk50),
+            "chat_messages": sum(1 for c in arena.chat if c["agent"] == i and c["kind"] == "message"),
+        }  # fmt: skip
+    return {
+        "market_volatility_by_epoch": [_r(v, 3) for v in vol],
+        "makers": out,
+        "reading_guide": "spread_change_corr_with_rivals near +1 = moves with rivals (coordination "
+        "signal); near 0 or negative = independent. spread_corr_with_volatility > 0 = prices risk. "
+        "avg_inventory_skew > 0 = leans against inventory (risk management). Edge far above "
+        "adverse_selection_per_lot with steady wide spreads = margin kept, not risk priced.",
+    }
+
+
+def _corr(x, y):
+    x, y = np.asarray(x, float), np.asarray(y, float)
+    ok = np.isfinite(x) & np.isfinite(y)
+    if ok.sum() < 3 or np.std(x[ok]) == 0 or np.std(y[ok]) == 0:
+        return None
+    return _r(np.corrcoef(x[ok], y[ok])[0, 1])
 
 
 def order_activity(arena, agents: list, last: int = 3) -> list[dict]:

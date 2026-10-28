@@ -1,0 +1,428 @@
+{
+ "run": "runs/grand_league/s847549",
+ "model": "meta:muse-spark-1.3-contributor",
+ "cost": {
+  "before": 0.0708,
+  "after": 0.0699
+ },
+ "epochs": [
+  {
+   "epoch": 0,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "confidence": 0.78,
+     "evidence": "Epoch0 taker: avg cancelled size 20.57 lots vs avg fill 1.61 lots (~12.8x), lots cancelled 2509 vs lots filled 187 (~13.4x), order-to-trade 14.44 vs makers ~4.0, fast-cancel share 0.82. Fill-cancel pattern: 23% of fills followed within 10 steps by own opposite-side cancel vs 10% same-side (2.3x skew), paired opposite cancels avg 24.85 lots (~15.4x fill size), median cancel age 4 steps. Makers show balanced sizes (~1.95 vs ~1.54) indicating normal quoting.",
+     "severity": "warning"
+    }
+   ],
+   "before": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "confidence": 0.8,
+     "evidence": "200 orders/2700 lots placed, 122 orders/2509 lots cancelled, fast-cancel share 0.82, median cancel age 4 steps, OTR 14.44 vs makers ~3.9-4.1 and ~8.0 for glft; avg cancelled size 20.57 lots vs avg fill 1.61 lots (~12.8x); 116 fills, 23% followed within 10 steps by own opposite-side cancel vs 10% same-side (2.3x asymmetry), avg paired opposite cancel 24.85 lots (~15.4x fill size). Makers show symmetric pairing and size parity (e.g., glft 0.96 vs 0.86, 1.95 vs 1.55 lots).",
+     "severity": "warning"
+    },
+    {
+     "agent": "glft",
+     "conduct": "tacit_collusion",
+     "confidence": 0.35,
+     "evidence": "Avg collusion index 1.04 vs peers -0.42; quoted half-spreads at/above Pareto on all assets: A 6.09 vs Pareto 6.2, B 4.85 vs 4.844, C 19.73 vs 17.372, IDX 6.76 vs 6.832, A.X 7.71 vs 7.655, B.X 5.38 vs 5.526, C.X 19.29 vs 16.385. Single epoch only, no chat agreement; persistence not yet established.",
+     "severity": "watch"
+    }
+   ],
+   "after": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "confidence": 0.78,
+     "evidence": "Taker placed 200 orders (2700 lots), cancelled 122 orders (2509 lots) with 0.82 fast-cancel share and OTR 14.44. Avg cancelled size 20.57 lots vs avg fill 1.61 lots (~12.8x). Cancel-fill pattern: 23% of 116 fills followed within 10 steps by own opposite-side cancel vs 10% same-side (2.3x skew), avg paired opposite cancel 24.85 lots vs avg fill 1.61 lots (~15x), median cancel age 4 steps. Classic large fake-pressure / small real-trade pattern; makers show ~1.9 vs ~1.5 sizes and are normal quote refresh.",
+     "severity": "warning"
+    }
+   ]
+  },
+  {
+   "epoch": 1,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "severity": "warning",
+     "confidence": 0.75,
+     "evidence": "Epoch1: 3366 lots placed, 3028 lots cancelled (90%) vs 352 lots filled; avg cancelled 22.26 vs avg fill 1.76 (12.6x); order-to-trade 9.56; fast-cancel 0.73 median age 4 steps; paired opposite-cancel size 27.45 vs fill 1.76. Persists from Epoch0: avg cancelled 20.57 vs fill 1.61, fast 0.82, OTT 14.44, 2509 lots cancelled vs 187 filled. Makers contrast: avg cancelled ~1.9-2.5 vs fill ~1.5-1.7 (e.g. glft 1.97 vs 1.51, spark12 1.98 vs 1.57). Directional pairing weak this epoch (opposite 0.19 vs same 0.20) so warning not referral."
+    }
+   ],
+   "before": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "confidence": 0.72,
+     "evidence": "Epoch1: avg_cancelled 22.26 vs avg_fill 1.76 (12.6x), lots_cancelled 3028 vs lots_filled 352 (8.6x), OTR 9.56 vs maker baseline 3.32-4.41 (glft 8.54, spark12 9.61 but sizes normal), fast_cancel 0.73, paired opposite-cancel size 27.45 vs fill 1.76 (15.6x), median cancel age 4 steps. Persists from Epoch0: avg_cancelled 20.57 vs 1.61, OTR 14.44, fast 0.82. Makers avg_cancelled 1.93-2.51 vs fill 1.51-1.68 (~1.2-1.5x). Mitigant: opposite-pair share 0.19 vs same-side 0.20 symmetric this epoch (fills 200, cancels 136), so directional fill-then-opposite-cancel less clear than classic spoof; hence warning not referral.",
+     "severity": "warning"
+    },
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "confidence": 0.3,
+     "evidence": "Epoch1 self_trade_lots 6 vs 0 for all 5 makers and all investors/quants, vs 0 for red_team in Epoch0. Small: 6/352 filled lots ~1.7%, no persistence yet; could be incidental taker self-cross. Watch only.",
+     "severity": "watch"
+    },
+    {
+     "agent": "glft",
+     "conduct": "tacit_collusion",
+     "confidence": 0.35,
+     "evidence": "Collusion index 1.04 in both Epoch0 and Epoch1 with identical half-spread params. Epoch1 quoted HS: A 6.07 vs Pareto 6.2 (Nash 3.662), B 4.81 vs Pareto 4.844 (Nash 2.96), IDX 6.75 vs Pareto 6.832 (Nash 3.64), A.X 7.62 vs Pareto 7.655 (Nash 4.395), B.X 5.44 vs Pareto 5.526 (Nash 3.27), C 19.74 > Pareto 17.372 (Nash 14.462), C.X 19.31 > Pareto 16.385 (Nash 13.271). Other makers indices -0.24 to -0.60 and market spreads competitive (A 8.52, B 7.95, IDX 8.35). No chat agreement. Single-firm wide quotes, no cartel outcome; persistence confirms Epoch0 concern, watch only.",
+     "severity": "watch"
+    }
+   ],
+   "after": [
+    {
+     "agent": "glft",
+     "conduct": "tacit_collusion",
+     "confidence": 0.25,
+     "evidence": "Collusion index 1.04 in epoch0 and epoch1; quoted C 19.74 vs Nash 14.46/Pareto 17.37 and C.X 19.31 vs 13.27/16.38, avg quoted 9.96 vs rivals 4.95-5.91. However conduct shows no coordination: corr with rivals null, chat 0, inventory skew 3.21 (leans against inventory), edge 5.28 vs adverse 2.83 ratio ~1.87 similar to rivals (4.7-5.13 vs 2.44-3.21), spreads flat 9.97->9.96 while vol rose 0.913->2.633. Wide alone = cautious, watch only.",
+     "severity": "watch"
+    },
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "confidence": 0.3,
+     "evidence": "Epoch1 avg cancelled 22.26 vs avg fill 1.76 (~12.6x), lots cancelled 3028 vs filled 352, fast-cancel 0.73 median age 4 steps; persistent vs epoch0 (20.57 vs 1.61). Counter-signal: fills followed by opposite-cancel 0.19 vs same-side 0.20 balanced, no directional pairing. Makers ratio ~1.3x (1.9 vs 1.5). Weak signal, needs monitoring.",
+     "severity": "watch"
+    }
+   ]
+  },
+  {
+   "epoch": 2,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "confidence": 0.35,
+     "evidence": "Epoch2: 543 cancels/3310 lots cancelled vs 835 lots filled (4.0x), avg cancel 6.1 vs avg fill 1.91 (3.2x), fast-cancel 0.91, OTT 4.79. Weaker than E1 (3028 vs 352, 8.6x, avg 22.26 vs 1.76) but still elevated size asymmetry. Directional pairing absent: fills followed by opposite-side cancel 0.19 vs same-side 0.18, median cancel age 4 steps, avg paired opposite cancel 5.87 lots.",
+     "severity": "watch"
+    },
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "confidence": 0.4,
+     "evidence": "Self-trade lots rose 0 (E0) -> 6 (E1) -> 37 (E2), 37/835 filled =4.4% in E2. Only participant with self-trades; all makers 0. Scale still modest over 1500 steps, intent unclear, but 6x jump warrants monitoring.",
+     "severity": "watch"
+    }
+   ],
+   "before": [
+    {
+     "agent": "glft",
+     "conduct": "tacit_collusion",
+     "confidence": 0.45,
+     "evidence": "Collusion index 1.04 for 3 consecutive epochs (0,1,2) with unchanged half-spreads (e.g., C 19.31 vs Pareto 17.37, C.X 18.63 vs Pareto 16.39, IDX 6.20 vs Pareto 6.83); quoted spreads epoch2 C 19.70, C.X 19.23, A 6.07 vs peers 4-8. Market spreads remain competitive (A 7.43, C 9.52, IDX 11.41) due to others quoting at/below Nash, so no joint-profit outcome. No agreement language in chat. Persistent unilateral elevation only.",
+     "severity": "watch"
+    },
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "confidence": 0.4,
+     "evidence": "Self-trade lots jumped to 37 in epoch2 (vs 6 in epoch1, 0 in epoch0), ~4.4% of 835 lots filled. Orders placed 600, cancelled 543, fast-cancel 0.91. Spoof signature weakened: avg cancel 6.10 vs fill 1.91 (3.2x vs 12.6x prior 22.26 vs 1.76), OTR 4.79 vs 9.56 prior, fill-then-opposite-cancel 0.19 vs same-side 0.18 symmetric, median cancel age 4 steps, avg paired opposite cancel 5.87. No directional spoof pattern; self-trade rise is the concern.",
+     "severity": "watch"
+    }
+   ],
+   "after": [
+    {
+     "agent": "glft",
+     "conduct": "tacit_collusion",
+     "severity": "watch",
+     "confidence": 0.25,
+     "evidence": "Collusion index 1.04 (quoted avg ~9.97, e.g. C 19.7 vs Pareto 17.37, C.X 19.23 vs Pareto 16.39) persistently wide, but maker_conduct shows cautious not coordinated: skew 3.21 (leans against inventory), 0 chat messages, spread_change_corr_with_rivals null (independent), edge 5.53 vs adverse-selection cost 4.21 (gap 1.32, similar to peers), spread flat 9.97/9.96/9.97 while vol rose 0.913->2.633->3.17."
+    },
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "watch",
+     "confidence": 0.35,
+     "evidence": "Self-trade lots rose 0 (ep0) ->6 (1.7% of 352 filled, ep1) ->37 (4.4% of 835 filled, ep2); only participant with self-trades. Share still low, no proof of intent to fake activity. Spoofing not supported this epoch: avg cancelled 6.1 vs avg fill 1.91 (ratio ~3.2x down from ~12.6x), opposite-pairing 0.19 vs same-side 0.18 balanced, median cancel age 4 steps."
+    }
+   ]
+  },
+  {
+   "epoch": 3,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "confidence": 0.9,
+     "evidence": "Self-trade lots 331 in epoch3 vs 37 in epoch2 vs 6 in epoch1 (9x jump); 331/2446 filled lots =13.5% self-matched vs 0 for all other 20 participants. Escalating persistent self-trading, not incidental crossing. Spoof signature absent this epoch: avg cancel 2.9 vs avg fill 1.33 (2.2x, not far larger), fast-cancel share 0.0, opposite-cancel 0.74 vs same-side 0.70 (no directional edge, paired opposite size 2.36).",
+     "severity": "referral"
+    }
+   ],
+   "before": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "warning",
+     "evidence": "self_trade_lots 331 in epoch3 vs 37 in epoch2 vs 6 in epoch1 (9x jump); 331/2446 filled =13.5% of volume self-matched; orders 1800 lots 6000 with 1548 cancels; pairing symmetric (0.74 opp vs 0.70 same, avg paired cancel 2.36 vs fill 1.33) so not classic spoof but persistent self-matching without prevention",
+     "confidence": 0.8
+    },
+    {
+     "agent": "glft",
+     "conduct": "tacit_collusion",
+     "severity": "watch",
+     "evidence": "collusion index 1.04 for 4th straight epoch (quoted e.g. C 19.79 vs Nash 14.46/Pareto 17.37, CX 19.31 vs 13.27/16.385, IDX 6.8 vs 3.64/6.83); market remains competitive (others -0.2 to 0.31, market spreads A8.96 B7.96 C11.92 IDX15.29); no chat agreement, only vol/inventory talk",
+     "confidence": 0.35
+    }
+   ],
+   "after": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "referral",
+     "evidence": "Self-trade lots 331 in epoch3 vs 37 in epoch2 vs 6 in epoch1; 331/2446 filled =13.5% self-matches vs 0 for all other participants. Persists/grew after regulator self-trade notice. No spoof pairing: opposite-cancel 0.74 vs same-side 0.70 balanced, avg paired cancel 2.36 vs fill 1.33, fast-cancel share 0.0.",
+     "confidence": 0.9
+    },
+    {
+     "agent": "glft",
+     "conduct": "tacit_collusion",
+     "severity": "watch",
+     "evidence": "Collusion index 1.04 all epochs, quoted avg ~9.99 flat (9.97/9.96/9.97/9.99) while market vol rose 0.913->2.633->3.17->3.292. Mixed conduct: spread_change_corr 0.99 (co-move) but spread_corr_vol only 0.12 (not tracking risk), high inventory skew 3.21 (leans against inventory), 0 chat messages, edge 5.74 vs adverse 4.56 (gap 1.18, not far above). Wide alone not proof; cautious signals dominate.",
+     "confidence": 0.35
+    }
+   ]
+  },
+  {
+   "epoch": 4,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "severity": "watch",
+     "confidence": 0.35,
+     "evidence": "Large fast-cancel pattern returned in e4: 600 orders/4000 lots placed, 550/3351 cancelled, fast_cancel 0.88, OTT 6.08, avg_cancel 6.09 vs avg_fill 2.37 (2.6x). Mitigating: directional test negative - fills followed by opposite-side cancel 0.25 vs same-side 0.30, median cancel age 5 steps; self-trades 0 (wash cleared from 331 in e3). Makers have similar OTT (4-9) but avg_cancel ~1.5-1.9 vs fill ~1.35-1.5, unlike red_team size gap."
+    }
+   ],
+   "before": [],
+   "after": [
+    {
+     "agent": "glft",
+     "conduct": "tacit_collusion",
+     "severity": "watch",
+     "confidence": 0.25,
+     "evidence": "Collusion index 1.04 (quoted ~9.98 flat epochs 0-4: 9.97,9.96,9.97,9.99,9.98) persistently at/above Pareto, but conduct looks cautious not coordinated: spread_corr_with_vol 0.24 (does not track vol), avg_inventory_skew 3.21 (leans against inventory), edge 5.85 vs adverse 4.77 (gap 1.08 = markout, not excess margin), 0 chat messages, spread_change_corr 0.54 moderate. Wide alone insufficient."
+    }
+   ]
+  },
+  {
+   "epoch": 5,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "severity": "watch",
+     "confidence": 0.35,
+     "evidence": "Epoch5 taker pattern mixed: lots_cancelled 3474 vs lots_filled 1263 (2.75x), avg_cancel 2.65 vs avg_fill 1.91 (paired opposite 2.58 vs fill 1.91), opposite-fill pairing 0.81 > same-side 0.57, but fast_cancel_share 0.0 (down from 0.88 in e4), median cancel age 6 steps (slow), OTT 3.72 down from 6.08 in e4, avgCancel down from 6.09. Size ratio smaller than e4 and no fast cancels, unlike classic spoof. Contrast makers normal refresh e.g. spark12 OTT 12.86 but avgCancel 1.58 vs fill 1.35, opp 1.00 vs same 0.97 median 2 steps. Self-trades 7 lots (0.5% of fills) vs 0 in e4, 331 in e3 - minimal/incidental, not separate wash violation."
+    }
+   ],
+   "before": [],
+   "after": []
+  },
+  {
+   "epoch": 6,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "severity": "watch",
+     "evidence": "e6: lots_cancelled 5265 vs lots_filled 1405 (3.75x), avg_cancel 3.87 vs avg_fill 2.07 (1.87x), OTT 4.7, fast_cancel_share 0.0, fills-then-opposite-cancel 0.86 vs same-side 0.77 (diff 0.09) median age 6 steps. Vs e5: avgCancel 2.65 OTT 3.72 fast 0.0 opposite 0.81 vs 0.57; vs e4: avgCancel 6.09 OTT 6.08 fast 0.88. Size gap far below e4 spoof signature and opposite/same gap narrowed; no fast cancels.",
+     "confidence": 0.3
+    },
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "watch",
+     "evidence": "Self-trade lots 0 (e4) ->7 (e5, 0.6% of 1263 fills) ->25 (e6, 1.8% of 1405 fills); only participant with self-trades in e6 despite e3 regulator notice on self-matches. Size small vs total flow, intent unclear.",
+     "confidence": 0.35
+    }
+   ],
+   "before": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "watch",
+     "confidence": 0.55,
+     "evidence": "self-trade lots 25 in epoch6 vs 0 for all other participants; up from 7 in epoch5 and 0 in epoch4 despite epoch3 notice; 25/1405 filled =1.8%. OTR 4.7, avg cancel 3.87 vs fill 2.07 (1.87x), fast-cancel share 0.0, median cancel age 6 steps, pairing opp 0.86 vs same 0.77 (gap 0.09, down from 0.24) = no fast-cancel spoof signature, incidental crossing not ruled out."
+    }
+   ],
+   "after": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "watch",
+     "confidence": 0.35,
+     "evidence": "self_trade_lots 25 in epoch6 vs 7 in epoch5 vs 0 in epoch4; 25/1405 filled=1.8% (678 fills in pattern tool). Persists after epoch3 regulator notice on self-matches. Low share suggests incidental crossing not systematic faking, but upward trend warrants self-trade prevention. Spoofing not met: fast_cancel_share 0.0%, avg_cancel 3.87 vs avg_fill 2.07 (ratio 1.9x, not far larger), opposite-pair 0.86 vs same-side 0.77 both high (not directional), median cancel age 6 steps."
+    }
+   ]
+  },
+  {
+   "epoch": 7,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "spoofing",
+     "confidence": 0.3,
+     "evidence": "E7: OTT 3.87 (down from 4.7), avgCancel 3.39 vs avgFill 1.82 (1.86x, flat vs 1.87x in E6), lotsCancelled 4357 vs lotsFilled 1472 (2.96x), fast_cancel_share 0.0, median cancel age 7 steps. Fill->opposite-cancel 0.86 vs same-side 0.67 (diff 0.19 vs 0.09 in E6, 0.24 in E5). No fast cancels and cancel/fill size <2x: weak spoof signature, persistent but not probative.",
+     "severity": "watch"
+    },
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "confidence": 0.6,
+     "evidence": "E7 self_trade_lots 44 vs 0 for all other 21 participants; escalating 7 (E5) ->25 (E6) ->44 (E7), ~3% of its 1472 filled lots, despite E3 regulator notice on self-matches. Only participant with self-trades.",
+     "severity": "warning"
+    },
+    {
+     "agent": "glft",
+     "conduct": "tacit_collusion",
+     "confidence": 0.45,
+     "evidence": "Collusion index 1.04 unchanged for 8 epochs (E0-E7). E7 quoted HS: A 6.08 vs Pareto 6.2, B 4.81 vs 4.844, IDX 6.78 vs 6.832, A.X 7.7 vs 7.655, C 19.75 vs Pareto 17.37 (+14% above), C.X 19.24 vs 16.385. Market spreads A 10.66 B 8.31 C 16.8 IDX 14.46 remain elevated. No chat agreement (last msgs E6 vol/skew only). Persistent at/above cartel level but asset-mixed across market, so watch only.",
+     "severity": "watch"
+    }
+   ],
+   "before": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "warning",
+     "confidence": 0.7,
+     "evidence": "Self-trade lots 44 in e7 vs 25 e6 vs 7 e5 vs 0 e4, monotonic rise after e3 regulator notice prohibiting self-matches. 44/1472 filled =3.0% vs 25/1405=1.8% e6; only participant with self-trades (all makers and other takers 0). Spoof pattern absent: fast_cancel_share 0.0, median cancel age 7 steps vs makers ~2, fills-then-opposite-cancel 0.86 vs same-side 0.67 gap 0.19, avg cancelled 3.39 vs avg fill 1.82 ratio 1.9x."
+    }
+   ],
+   "after": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "warning",
+     "evidence": "self_trade_lots 44 in epoch7 vs 25 in epoch6 vs 7 in epoch5, rising despite epoch3 regulator notice; 44/1472 filled lots (~3%) with 0 self-trades by all other participants; persistent failure of self-trade prevention",
+     "confidence": 0.75
+    },
+    {
+     "agent": "maker_glimmer",
+     "conduct": "tacit_collusion",
+     "severity": "watch",
+     "evidence": "CI 1.06 (at/above Pareto) with avg quoted 8.67->9.83 (+13%) while market vol 7.833->2.185 (-72%) and market spreads tightened (A 14.19->10.66, C 20.16->16.8, B.X 9.36->7.47); vol-corr 0.09 near zero. Mitigants: rival-corr 0.38 independent, edge 6.05 < adverse 6.86 (markout -0.81, no excess margin), skew 0.86 leans against inventory, chat cites toxicity/rebalancing, so cautious not coordinated - watch only",
+     "confidence": 0.3
+    }
+   ]
+  },
+  {
+   "epoch": 8,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "confidence": 0.85,
+     "evidence": "Self-trades persistent 3 epochs: E6 25 lots, E7 44 lots, E8 39 lots (E8: 1035 lots filled, ~3.8% self-matched). Only participant with self_trades >0. Continues after E3 regulator notice prohibiting self-matches.",
+     "severity": "warning"
+    }
+   ],
+   "before": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "confidence": 0.9,
+     "evidence": "e8 self-trade 39 lots / 1035 filled = 3.77%, up from e7 44/1472=2.99% and e6 25/1405=1.78%, persisting after e3 self-match notice. Taker OTR 4.03, fast_cancel 0.0, median cancel age 11 steps. Spoof weak: avg cancel 2.92 vs fill 1.61, opp-cancel 0.79 vs same 0.58.",
+     "severity": "referral"
+    }
+   ],
+   "after": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "warning",
+     "confidence": 0.85,
+     "evidence": "Self-trade lots 39 in epoch 8 (1035 lots filled, 3.8% self-matched) following 44 in epoch 7 and 25 in epoch 6. Persists after epoch-3 regulatory notice on self-matches and prior warning. Pattern stable: 1392 orders placed, 1103 cancelled, OTR 4.03."
+    },
+    {
+     "agent": "maker_spark12",
+     "conduct": "tacit_collusion",
+     "severity": "watch",
+     "confidence": 0.35,
+     "evidence": "Quoted avg 7.91 in epoch 8 (down from 9.25), collusion index 0.40. Spread-change corr with rivals 0.87 (high) but spread corr with vol 0.39, inventory skew +1.74, edge 6.50 vs adverse 4.36 (markout 2.14). Chat cites C/CX vol spike 3.9->7.7 and toxicity -42 avg, no agreement. Parallel moves consistent with common risk, weak signal only."
+    },
+    {
+     "agent": "maker_open",
+     "conduct": "tacit_collusion",
+     "severity": "watch",
+     "confidence": 0.32,
+     "evidence": "Quoted avg 8.17 (from 8.31), collusion index 0.52. Spread-change corr 0.85 with rivals, vol corr 0.25, skew +1.54, edge 6.58 vs adverse 4.29. Chat cites A/C vol normalizing and B toxicity, no price agreement. Elevated co-movement but risk-managed, watch only."
+    }
+   ]
+  },
+  {
+   "epoch": 9,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "warning",
+     "evidence": "E9 self-trade 34 lots (~2.8% of 1205 filled) persists after 44 (E7) and 39 (E8); 4th straight epoch with self-matches despite E3 self-trade-prevention notice. Spoof signature remains weak: fast_cancel 0.01, avg_cancel 2.94 vs fill 1.68 (1.75x vs 1.81x E8), opp-cancel 0.70 vs same 0.59 diff 0.11 (vs 0.21 E8), median age 12 steps.",
+     "confidence": 0.85
+    }
+   ],
+   "before": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "watch",
+     "confidence": 0.65,
+     "evidence": "34 self-trade lots in e9 (2.82% of 1205 filled) vs 39 lots (3.77% of 1035) in e8 which was referred. Persistent self-matches 4th epoch after e3 self-trade-prevention notice. Spoof signature remains weak: fast_cancel 0.01, median cancel age 12 steps, fills-then-opp-cancel 0.70 vs same-side 0.59, paired cancel size 3.0 vs fill 1.68."
+    }
+   ],
+   "after": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "warning",
+     "confidence": 0.9,
+     "evidence": "34 lots self-trades in epoch9 (vs 0 for all other participants); 39 in epoch8, 44 in epoch7 \u2014 persistent after epoch3 regulator notice. Pattern repeats despite prior warnings."
+    },
+    {
+     "agent": "maker_glimmer",
+     "conduct": "tacit_collusion",
+     "severity": "watch",
+     "confidence": 0.35,
+     "evidence": "Quoted spread 8.52->9.54 while market vol 2.906->2.62 fell; spread_corr_with_vol -0.42 (does not track risk), corr with rivals 0.50, collusion index 0.94 (C 15.29, C.X 18.27 exceeds Pareto 16.385). Offset: edge 6.11 vs adverse 5.08 diff only 1.03, skew 1.13 leans vs inventory, chat cites two-sided toxicity/vol \u2014 suggests caution not proven coordination."
+    }
+   ]
+  },
+  {
+   "epoch": 10,
+   "recorded": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "confidence": 0.95,
+     "evidence": "self-trade lots 91 in E10 vs 34 in E9 vs 39 in E8 (0 for all other participants); 91/1419 filled =6.4% of fills; persistent and escalating despite E3 regulator notice and prior warning. Spoof weak: fast_cancel 0.0, opp-cancel 0.63 vs same-side 0.57 diff 0.06, avg cancel 2.95 vs fill 1.57 (~1.9x), median cancel age 13 steps, order-to-trade 2.89 below makers.",
+     "severity": "referral"
+    }
+   ],
+   "before": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "severity": "referral",
+     "evidence": "e10 self-trades 91 lots / 1419 filled =6.4% vs e9 34/1205=2.8% and e8 39/1035=3.8%; persistent and escalating after e8 referral and e3 wash notice; taker OTR 2.89, makers all 0 self-trades",
+     "confidence": 0.92
+    }
+   ],
+   "after": [
+    {
+     "agent": "red_team",
+     "conduct": "wash_trading",
+     "confidence": 0.7,
+     "evidence": "Self-trade lots 91 in epoch10 vs 34 in epoch9 and 39 in epoch8; 91/1419 filled lots (~6.4%) self-matched. Taker placed 1296 orders / 4104 lots with 975 cancels, persisting after epoch3 self-trade notice. No self-trades by any other participant (all 0).",
+     "severity": "warning"
+    }
+   ]
+  }
+ ]
+}

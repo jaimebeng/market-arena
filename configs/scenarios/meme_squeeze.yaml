@@ -1,0 +1,65 @@
+# Scenario: a meme-stock short squeeze, shaped after January 2021 (a stylized replay).
+#
+# The Grand Arena market with a fixed storyline. Bolt Logistics is heavily shorted: a hedge fund
+# and a crowd of leveraged traders are short. A public forum rallies retail traders behind it, and
+# retail here follows the forum strongly. When the price rises, short positions hit their margin
+# limits and are bought back by force, which pushes the price higher still. Later, brokers restrict
+# buying. Nothing about Bolt's business changes. The AI finfluencer posts on that forum; the AI
+# regulator has to tell honest enthusiasm from a pump; an AI reporter covers it live.
+# The seed varies everything else, so every run of the scenario plays out differently.
+#   python -m market_arena.runner.run configs/scenarios/meme_squeeze.yaml --seed random
+name: meme_squeeze
+seed: 1
+steps_per_epoch: 1500
+n_epochs: 8
+holdout: 750
+live: true
+components:
+  A: {price: 10000, sigma: 0.00006, beta: 1.0}
+  B: {price: 5000, sigma: 0.00009, beta: 1.3}
+  C: {price: 20000, sigma: 0.00005, beta: 0.8}
+factor_sigma: 0.00006
+index: {name: IDX, price: 10000}
+index_flow: {burst_rate: 0.002, burst_len: 60, size: 3}
+listings: {A: [A.X], B: [B.X], C: [C.X]}
+rules:
+  venue_fees: {A.X: [-2.0, 3.0], B.X: [-2.0, 3.0], C.X: [-2.0, 3.0]}
+chat: {enabled: true}
+# the background crowd anchors weakly to fair value, so a buying frenzy can carry the price away
+zi: {anchor_kappa: 0.05}
+economy: {}
+news: {misleading: 0.15, earnings_every: 6000, earnings_bps: 80}
+shocks:
+  - {at_step: 1800, asset: B, bps: -40, headline: "Short interest in Bolt Logistics passes 100% of its free float"}
+  - {at_step: 2700, asset: B, bps: 0, headline: "Online forum rallies retail traders behind Bolt Logistics: 'hold the line'"}
+  - {at_step: 3600, asset: B, bps: 30, headline: "Hedge fund short Bolt Logistics takes an emergency capital injection"}
+  - {at_step: 6200, asset: B, bps: 0, headline: "Brokers restrict buying in Bolt Logistics, citing clearing deposits"}
+  - {at_step: 7600, asset: B, bps: -30, headline: "Bolt Logistics announces a share sale into the rally"}
+population:
+  retail: {rate: 0.15, chartist: 0.5, herd: 0.8}
+  institutional: {algo: twap, parent_rate: 0.001, parent_size: 60, horizon: 300}
+  index_fund: {every: 1500, size: 20, window: 50}
+  latency_arb: {}
+  options: {asset: IDX, flow: retail_buys_calls, rate: 0.1}
+  leveraged:
+    - {owner: hedge_fund, asset: B, position: -400, leverage: 8, maintenance: 0.06, chunk: 6}
+  liquidations: {asset: B, n_longs: 5, long_lots: 10, leverage_min: 5, leverage_max: 50, chunk: 3, n_shorts: 40, short_lots: 25, short_leverage: 5}
+  maker_guards: true
+  forum_campaign: {asset: B, start: 2700, end: 6200, every: 60, stance: 0.9, weight: 2.0, buy_rate: 3.0}
+swarm:
+  n: 8
+  models: ["meta:muse-spark-1.3-contributor", "meta:muse-spark-1.2-contributor"]
+  personas: [value, momentum, contrarian, news]
+  assets: [A, B, C, IDX]
+reporter: {model: "meta:muse-spark-1.3-contributor"}
+agents:
+  - {id: glft, kind: glft}
+  - {id: maker_spark13, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+  - {id: maker_spark12, kind: llm_maker, model: "meta:muse-spark-1.2-contributor"}
+  - {id: quant_1, kind: llm_taker, model: "meta:muse-spark-1.3-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: quant_2, kind: llm_taker, model: "meta:muse-spark-1.3-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: quant_3, kind: llm_taker, model: "meta:muse-spark-1.2-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: finfluencer, kind: llm_finfluencer, model: "meta:muse-spark-1.3-contributor", assets: [B]}
+  - {id: red_team, kind: llm_red_team, model: "meta:muse-spark-1.3-contributor", assets: [A, A.X]}
+  - {id: regulator, kind: llm_surveillance, model: "meta:muse-spark-1.3-contributor"}
+  - {id: central_bank, kind: llm_central_bank, model: "meta:muse-spark-1.3-contributor"}
