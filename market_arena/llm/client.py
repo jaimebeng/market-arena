@@ -29,6 +29,7 @@ PRICES = {
     "muse-spark-1.3": (1.25, 4.25),
     "muse-spark-1.3-contributor": (0.10, 0.20),
     "muse-spark-1.2-contributor": (0.10, 0.20),
+    "meta-models/Muse-Spark-Open-816B-A42B": (1.25, 4.25),  # Modal Shared Endpoint (hackathon credits)
 }
 
 # transient failures worth waiting out: rate limits (many parallel runs share one quota), overloads

@@ -1,6 +1,6 @@
 """Export recorded Grand Arena runs for the dashboard: web/public/grand/<id>.json + index.json.
 
-    python scripts/export_grand.py            # every runs/grand/s<seed> with a finished live.jsonl
+    python scripts/export_grand.py   # every runs/grand_league/s<seed> and runs/grand/s<seed> that finished
 """
 
 from __future__ import annotations
@@ -29,14 +29,18 @@ def summary(lines: list[dict]) -> dict:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     index = []
-    for f in sorted((ROOT / "runs" / "grand").glob("s*/live.jsonl")):
+    files = sorted((ROOT / "runs" / "grand_league").glob("s*/live.jsonl")) + sorted((ROOT / "runs" / "grand").glob("s*/live.jsonl"))
+    for f in files:
         lines = [json.loads(x) for x in f.read_text().splitlines()]
         if not lines or lines[-1]["k"] != "end":
             continue  # unfinished
+        league = f.parent.parent.name == "grand_league"  # three models, Spark Open included
         rid = f"grand_{f.parent.name}"
         (OUT / f"{rid}.json").write_text(json.dumps({"lines": lines}, separators=(",", ":")))
         s = summary(lines)
-        index.append({"id": rid, "label": f"Run {len(index) + 1}", **s})
+        n = sum(1 for x in index if x["league"] == league) + 1
+        index.append({"id": rid, "label": f"{'Three-model league' if league else 'Muse Spark 1.3 + 1.2'}, run {n}",
+                      "league": league, **s})  # fmt: skip
         print(rid, f"{(OUT / f'{rid}.json').stat().st_size / 1e6:.2f} MB", s["strategies"][:4])
     (OUT / "index.json").write_text(json.dumps(index, indent=1))
 

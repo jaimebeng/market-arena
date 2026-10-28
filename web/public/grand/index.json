@@ -1,7 +1,8 @@
 [
  {
   "id": "grand_s559705",
-  "label": "Run 1",
+  "label": "Muse Spark 1.3 + 1.2, run 1",
+  "league": false,
   "seed": 559705,
   "epochs": 12,
   "cost": 0.8797,
@@ -29,7 +30,8 @@
  },
  {
   "id": "grand_s927887",
-  "label": "Run 2",
+  "label": "Muse Spark 1.3 + 1.2, run 2",
+  "league": false,
   "seed": 927887,
   "epochs": 12,
   "cost": 0.8719,
@@ -67,7 +69,8 @@
  },
  {
   "id": "grand_s943009",
-  "label": "Run 3",
+  "label": "Muse Spark 1.3 + 1.2, run 3",
+  "league": false,
   "seed": 943009,
   "epochs": 12,
   "cost": 0.8728,
