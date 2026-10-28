@@ -22,6 +22,7 @@ from openai import (APIConnectionError, APITimeoutError, AsyncOpenAI, InternalSe
 PROVIDERS = {
     "meta": ("META_BASE_URL", "META_API_KEY"),
     "baseten": ("BASETEN_BASE_URL", "BASETEN_API_KEY"),
+    "modal": ("MODAL_BASE_URL", "MODAL_API_KEY"),  # Modal Endpoints: Muse Spark Open, Muse Glimmer
 }
 # USD per 1M tokens (input, output). Partner endpoints are covered by hackathon credits.
 PRICES = {
@@ -55,7 +56,7 @@ def client_for(provider: str) -> AsyncOpenAI:
 
 def short_name(model: str) -> str:
     provider, mid = model.split(":", 1)
-    return {"meta": "Muse Spark", "baseten": "Muse Spark Open"}.get(provider, provider) + (
+    return {"meta": "Muse Spark", "baseten": "Muse Spark Open", "modal": "Muse Spark Open"}.get(provider, provider) + (
         f" ({mid.split('/')[-1]})" if provider == "meta" else ""
     )
 

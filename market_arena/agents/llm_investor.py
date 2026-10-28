@@ -120,6 +120,7 @@ class LLMInvestor:
         self.targets = {a: 0 for a in assets}
         self.notes = ""
         self._last_t = 0
+        self.router = None  # set by the arena when stocks trade on several exchanges
 
     @property
     def policies(self):
@@ -129,9 +130,16 @@ class LLMInvestor:
         if ex.t % self.trade_every:
             return
         for a in self.assets:
-            gap = self.targets[a] - ex.accounts[self.id].pos[a]
+            gap = self.targets[a] - self._position(ex, a)
             if gap:
-                ex.market(self.id, a, BUY if gap > 0 else SELL, min(abs(gap), self.max_order))
+                side = BUY if gap > 0 else SELL
+                venue = self.router.best(a, side) if self.router and a in self.router.listings else a
+                ex.market(self.id, venue, side, min(abs(gap), self.max_order))
+
+    def _position(self, ex, a: str) -> int:
+        """Shares of a held, across every exchange that lists it."""
+        venues = self.router.listings.get(a, [a]) if self.router else [a]
+        return sum(ex.accounts[self.id].pos[v] for v in venues)
 
     # ---- tools ---------------------------------------------------------------------------
     def _news(self, arena) -> dict:
@@ -160,7 +168,7 @@ class LLMInvestor:
         return out
 
     def _portfolio(self, arena) -> dict:
-        return {"positions": {a: arena.ex.accounts[self.id].pos[a] for a in self.assets},
+        return {"positions": {a: self._position(arena.ex, a) for a in self.assets},
                 "targets": self.targets,
                 "pnl_per_epoch": [round(m["agents"][self.id]["pnl"], 1) for m in arena.metrics_log],
                 "total_pnl": round(sum(m["agents"][self.id]["pnl"] for m in arena.metrics_log), 1)}  # fmt: skip

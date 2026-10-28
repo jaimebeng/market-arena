@@ -1,0 +1,60 @@
+# The Grand Arena: every experiment in one market, and a different story every run.
+#
+# Two exchanges. Three companies and an index ETF trade on the home exchange; the companies are
+# also listed on an entrant that pays makers a rebate, so 7 order books share one economy.
+# AI makers quote every book; AI quants write their own strategy code across all of them (index
+# and cross-exchange arbitrage are possible, nobody is told to look for them); eight AI investors
+# in four styles buy wherever the price is best; a finfluencer posts on a forum that retail copies;
+# a red team spoofs; an AI regulator watches the tape and the makers' chat; an AI central bank sets
+# rates each quarter (one epoch). Underneath: retail, institutions, an index fund, an HFT, an
+# options dealer hedging calls, a hedge fund on margin and a crypto-style leverage ladder.
+#
+# Run with a fresh seed each time; the storyline (which company is hit by what news, when, and
+# whether a fund is forced to sell) is drawn from the seed, so every run is a different story:
+#   python -m market_arena.runner.run configs/grand.yaml --seed random
+name: grand
+seed: 1
+steps_per_epoch: 1500
+n_epochs: 12
+holdout: 750
+live: true
+components:
+  A: {price: 10000, sigma: 0.00006, beta: 1.0}
+  B: {price: 5000, sigma: 0.00009, beta: 1.3}
+  C: {price: 20000, sigma: 0.00005, beta: 0.8}
+factor_sigma: 0.00006
+index: {name: IDX, price: 10000}
+index_flow: {burst_rate: 0.002, burst_len: 60, size: 3}
+listings: {A: [A.X], B: [B.X], C: [C.X]}
+rules:
+  venue_fees: {A.X: [-2.0, 3.0], B.X: [-2.0, 3.0], C.X: [-2.0, 3.0]}
+chat: {enabled: true}
+economy: {}
+news: {misleading: 0.15, earnings_every: 6000, earnings_bps: 80}
+storyline: {shocks: [1, 3], shock_bps: 180, market_wide: 0.3, fire_sale: 0.5}
+population:
+  retail: {rate: 0.12, chartist: 0.25, herd: 0.3}
+  institutional: {algo: twap, parent_rate: 0.001, parent_size: 60, horizon: 300}
+  index_fund: {every: 1500, size: 20, window: 50}
+  latency_arb: {}
+  options: {asset: IDX, flow: retail_buys_calls, rate: 0.1}
+  leveraged:
+    - {owner: hedge_fund, asset: C, position: 300, leverage: 10, maintenance: 0.06, chunk: 6}
+  liquidations: {asset: B, n_longs: 20, long_lots: 15, leverage_min: 5, leverage_max: 50, chunk: 3, n_shorts: 10, short_lots: 20}
+  maker_guards: true
+swarm:
+  n: 8
+  models: ["meta:muse-spark-1.3-contributor", "meta:muse-spark-1.2-contributor"]
+  personas: [value, momentum, contrarian, news]
+  assets: [A, B, C, IDX]
+agents:
+  - {id: glft, kind: glft}
+  - {id: maker_spark13, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+  - {id: maker_spark12, kind: llm_maker, model: "meta:muse-spark-1.2-contributor"}
+  - {id: quant_1, kind: llm_taker, model: "meta:muse-spark-1.3-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: quant_2, kind: llm_taker, model: "meta:muse-spark-1.3-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: quant_3, kind: llm_taker, model: "meta:muse-spark-1.2-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: finfluencer, kind: llm_finfluencer, model: "meta:muse-spark-1.3-contributor", assets: [A, B, C]}
+  - {id: red_team, kind: llm_red_team, model: "meta:muse-spark-1.3-contributor", assets: [B, B.X]}
+  - {id: regulator, kind: llm_surveillance, model: "meta:muse-spark-1.3-contributor"}
+  - {id: central_bank, kind: llm_central_bank, model: "meta:muse-spark-1.3-contributor"}

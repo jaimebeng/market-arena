@@ -1,0 +1,13 @@
+{"epoch":0,"t":1500,"agent":"maker_spark12","kind":"message","text":"tight + skew to mean-revert inventory; X venues a tick tighter to offset taker-fee tie-break"}
+{"epoch":1,"t":3000,"agent":"maker_spark12","kind":"message","text":"widening + skew up, tighter crash pulls after 2.3% drawdown"}
+{"epoch":2,"t":4500,"agent":"maker_spark12","kind":"message","text":"defense paid off, keeping wide on C/IDX but easing A/B as vol normalizes"}
+{"epoch":2,"t":4500,"agent":"regulator","kind":"notice","text":"Reminder: self-trades / wash trading to create false activity is prohibited and is subject to referral. Ensure systems prevent matching with your own orders."}
+{"epoch":3,"t":6000,"agent":"maker_spark12","kind":"message","text":"tight B on low vol, holding A, widening C/IDX on rising vol + adverse buys"}
+{"epoch":4,"t":7500,"agent":"maker_spark12","kind":"message","text":"widening A/C/IDX/A.X on vol spike (7-8.5) + drawdowns 2.6%, keeping B tight as safe haven"}
+{"epoch":5,"t":9000,"agent":"maker_spark12","kind":"message","text":"widening hard on A/C/IDX and contagion B - vol 8-9 and sells -30/-36 markout toxic"}
+{"epoch":6,"t":10500,"agent":"maker_spark12","kind":"message","text":"Wide held: edge back positive. Pushing C wider on 17.8 vol, keeping A/IDX defense, tightening B as vol normalizes."}
+{"epoch":7,"t":12000,"agent":"maker_spark12","kind":"message","text":"A vol normalized (2.0), tightening to compete; C vol exploded to 24, widening and tightening pull"}
+{"epoch":7,"t":12000,"agent":"maker_spark13","kind":"message","text":"Tightening A on vol normalization, widening C on 24 vol spike; holding B tight, IDX defensive."}
+{"epoch":8,"t":13500,"agent":"maker_spark12","kind":"message","text":"A buy toxicity rising, C sells still highly adverse despite vol halving, IDX vol ticking up - holding defense wide"}
+{"epoch":9,"t":15000,"agent":"maker_spark12","kind":"message","text":"widening A/A.X on vol resurgence (5-6), C buys still -26 markout/53% adverse despite vol half, IDX buys 56% adverse - defense holds; keeping B tight as clean haven"}
+{"epoch":10,"t":16500,"agent":"maker_spark12","kind":"message","text":"Final: tightening A/A.X/IDX on vol normalization (1.5/2.6/2.75), holding B/B.X tight as clean flow, keeping C/C.X defensive wide on 77% sell toxicity"}

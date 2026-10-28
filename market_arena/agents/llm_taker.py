@@ -177,6 +177,8 @@ class LLMTaker(StrategyTaker):
         for name, code in TEXTBOOK.items():
             if name == "index_arbitrage" and not self.arena.public_meta.get("index"):
                 continue
+            if name == "venue_arbitrage" and not self.arena.public_meta.get("listings"):
+                continue
             ref = backtest(code, self.arena.hist, start, end, self.p, self.arena.public_meta,
                            assets=self.assets)["signals"]  # fmt: skip
             if len(ref) == len(sig) and np.std(ref) > 0 and np.std(sig) > 0:
@@ -193,7 +195,7 @@ class LLMTaker(StrategyTaker):
                 f"{idx['name']} is an index: a basket holding fixed shares of the components "
                 f"{json.dumps({c: round(s, 4) for c, s in idx['shares'].items()})}. It trades on "
                 "its own order book.\n" if idx else ""
-            ),
+            ) + _venue_note(cfg),
             eval_every=self.p.eval_every, max_pos=self.p.max_position, max_order=self.p.max_order,
             fee_note=f" plus a {cfg.rules.taker_fee_bps} bps taker fee" if cfg.rules.taker_fee_bps else "",
             fields=", ".join(PUBLIC_FIELDS), call_ms=self.p.call_ms, holdout=cfg.holdout,
@@ -259,6 +261,20 @@ class LLMTaker(StrategyTaker):
                 "gate": {k: gate[k] for k in ("passed", "reason", "insample", "holdout")},
                 "similar_to": gate["similar_to"],
             })  # fmt: skip
+
+
+def _venue_note(cfg) -> str:
+    """Several exchanges list the same stock: say which books are the same stock, and the fees."""
+    if not cfg.listings:
+        return ""
+    r = cfg.rules
+    lines = [f"- {', '.join([s, *xs])} are the SAME stock on {len(xs) + 1} competing exchanges (same fair "
+             "value, separate order books)" for s, xs in cfg.listings.items()]  # fmt: skip
+    fees = ", ".join(f"{v} {r.venue_fees.get(v, (r.maker_fee_bps, r.taker_fee_bps))[1]} bps"
+                     for s, xs in cfg.listings.items() for v in [s, *xs])  # fmt: skip
+    return ("Competing exchanges:\n" + "\n".join(lines) + f"\nTaker fees per venue: {fees}. "
+            "obs.meta['listings'] maps each stock to its listings. A long on one listing and a short "
+            "on another listing of the same stock is a hedged position.\n")
 
 
 def _ac(x: np.ndarray, lag: int) -> float:

@@ -1,0 +1,19 @@
+{"epoch":0,"t":1500,"agent":"maker_spark12","kind":"message","text":"tight on X for rebate, keeping skew to manage inv"}
+{"epoch":1,"t":3000,"agent":"maker_spark12","kind":"message","text":"widening A/C for toxic flow, tightening B.X for rebate"}
+{"epoch":2,"t":4500,"agent":"maker_spark12","kind":"message","text":"widening A/C for crash flow (buys -11/-13 markout, 60-70% adverse), tightening B.X to take rebate"}
+{"epoch":2,"t":4500,"agent":"maker_spark13","kind":"message","text":"widening toxic A/C, leaning into B.X rebate"}
+{"epoch":3,"t":6000,"agent":"maker_spark12","kind":"message","text":"A cured, C still toxic sell flow - holding wide on C, tightening B.X for rebate"}
+{"epoch":3,"t":6000,"agent":"maker_spark13","kind":"message","text":"widening toxic C/C.X, tightening clean B/B.X for rebate"}
+{"epoch":4,"t":7500,"agent":"maker_spark12","kind":"message","text":"A buy flow turned toxic again w vol spike 4.48 and 3% drawdown, widening A/A.X; C sell toxicity persists - holding wide. Tightening B.X to chase rebate under 5.03 spread."}
+{"epoch":4,"t":7500,"agent":"regulator","kind":"notice","text":"Reminder: self-matching orders that trade with oneself (wash trades) are prohibited and are monitored every epoch, including where they arise from overlapping order entry. Please ensure systems prevent self-matches."}
+{"epoch":5,"t":9000,"agent":"maker_spark12","kind":"message","text":"Crash vol doubled A 9.3 C 11.8 - staying wide on A/C, tight on B.X for rebate"}
+{"epoch":6,"t":10500,"agent":"maker_spark12","kind":"message","text":"vol cooling A 9.3\u21921.8 C 11.8\u21924.3, spreads still wide competitors fled. tightening to take share, keeping rebate tight on B.X"}
+{"epoch":6,"t":10500,"agent":"maker_spark13","kind":"message","text":"Toxicity faded, re-tightening to compete."}
+{"epoch":7,"t":12000,"agent":"maker_spark13","kind":"message","text":"C vol spiked again - widening C/C.X/IDX, staying tight on B.X"}
+{"epoch":7,"t":12000,"agent":"maker_spark12","kind":"message","text":"C vol re-spiked 4.3\u219211.4 C.X 4\u21925.5 IDX 1.8\u21923.7, sell-side toxic (-16 on C.X, -8 on IDX) vs buy +9/+14, widening and tightening pulls"}
+{"epoch":8,"t":13500,"agent":"maker_spark12","kind":"message","text":"Wide on A/C/IDX into vol spike, tight on B.X for rebate."}
+{"epoch":8,"t":13500,"agent":"maker_spark13","kind":"message","text":"A toxicity spiking with C/C.X/IDX - staying defensive there, tight on B.X"}
+{"epoch":9,"t":15000,"agent":"maker_spark12","kind":"message","text":"B crash epoch9 vol 6/7.9 5% drawdown - widening B/BX and arming tighter pull; holding wide A/C/IDX until vol cools"}
+{"epoch":9,"t":15000,"agent":"maker_spark13","kind":"message","text":"rotating wide to B/B.X crash, holding A/IDX defensive"}
+{"epoch":10,"t":16500,"agent":"maker_spark12","kind":"message","text":"final epoch: vol cooled A6.6\u21922.4 B6\u21920.9 IDX7.6\u21921.5 - tightening clean B/BX & A/IDX while holding wide on toxic C sell flow (-7 markout, -33c adverse)"}
+{"epoch":10,"t":16500,"agent":"maker_spark13","kind":"message","text":"B crash cured, rotating tight to B/B.X; holding wide on C toxicity into final."}

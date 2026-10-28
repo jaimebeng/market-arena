@@ -15,9 +15,10 @@ import { SurveillanceCount, SurveillanceTab } from "./components/tabs/Surveillan
 import { DesignerTab } from "./components/tabs/DesignerTab";
 import { RuleLabTab } from "./components/tabs/RuleLabTab";
 import { FrontPagesTab } from "./components/tabs/FrontPagesTab";
+import { GrandArenaTab } from "./components/tabs/GrandArenaTab";
 import { Landing } from "./components/Landing";
 
-type Tab = "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer" | "lab" | "paper";
+type Tab = "grand" | "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer" | "lab" | "paper";
 
 const params = new URLSearchParams(window.location.search);
 /** No query params at all: show the judge-friendly "Start here" landing. */
@@ -25,7 +26,7 @@ const LANDING = [...params.keys()].length === 0;
 /** A deep link (?tab=...) puts the selected tab first, right under the header. */
 const DEEP = params.has("tab");
 /** Experiment-level tabs do not depend on the replayed run. */
-const EXP_TABS = new Set<Tab>(["wind", "designer", "lab", "paper"]);
+const EXP_TABS = new Set<Tab>(["grand", "wind", "designer", "lab", "paper"]);
 
 function setParam(k: string, v: string) {
   const p = new URLSearchParams(window.location.search);
@@ -149,6 +150,9 @@ function Explorer() {
   const tabs = (
           <section className={`panel tabs-panel ${DEEP ? "deep" : ""}`}>
             <nav className="tabs">
+              <button className={shownTab === "grand" ? "on" : ""} onClick={() => pickTab("grand")}>
+                Grand Arena <span className="count new">live</span>
+              </button>
               <button className={shownTab === "competition" ? "on" : ""} onClick={() => pickTab("competition")}>
                 Competition
               </button>
@@ -188,6 +192,7 @@ function Explorer() {
               )}
             </nav>
             <div className="tab-body">
+              {shownTab === "grand" && <GrandArenaTab />}
               {shownTab === "wind" && <WindTunnelTab />}
               {shownTab === "designer" && <DesignerTab />}
               {shownTab === "lab" && <RuleLabTab />}

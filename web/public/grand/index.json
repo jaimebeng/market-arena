@@ -1,0 +1,100 @@
+[
+ {
+  "id": "grand_s559705",
+  "label": "Run 1",
+  "seed": 559705,
+  "epochs": 12,
+  "cost": 0.8797,
+  "storyline": [
+   "Regulator approves Cobalt Energy's flagship product",
+   "Reports: a large fund is being forced to liquidate its holdings of Cobalt Energy"
+  ],
+  "strategies": [
+   "C-momentum-30",
+   "C-momentum-30-avg",
+   "AC-momentum-30-avg",
+   "C_mom80_imb_lowturn",
+   "C-momentum-30-avg",
+   "IDX_rev_Cmom_hybrid",
+   "IDX_rev_Cmom_hybrid",
+   "AC-momentum-30-avg",
+   "AC-momentum-30-avg-v2",
+   "AC-momentum-mixed51"
+  ],
+  "resembles": {
+   "momentum": 3,
+   "index_arbitrage": 2
+  },
+  "winner": "inv_02"
+ },
+ {
+  "id": "grand_s927887",
+  "label": "Run 2",
+  "seed": 927887,
+  "epochs": 12,
+  "cost": 0.8719,
+  "storyline": [
+   "Aurora Systems loses its largest customer",
+   "Breaking: 100% tariffs announced; risk assets sell off",
+   "Takeover bid for Cobalt Energy at a large premium",
+   "Reports: a large fund is being forced to liquidate its holdings of Bolt Logistics"
+  ],
+  "strategies": [
+   "Momentum20_IDXRevert",
+   "slow_momo_AC",
+   "fast_momo_AC30",
+   "mom_AC_20_6_2",
+   "slow_momo_B50",
+   "X-Momentum-H10",
+   "X-Mom-Hedged-IDX",
+   "xmom_AC_primary",
+   "slow_momo_B50_flat",
+   "xmom_AC_primary",
+   "X-Mom-Hedged-Conservative",
+   "idx_prem_arb15",
+   "momAC_idxGap",
+   "slow_long_BC_drift",
+   "slow_long_BC_drift",
+   "xmom_AC_strict",
+   "X-Mom-Pure-A-CX-v2"
+  ],
+  "resembles": {
+   "mean_reversion": 1,
+   "index_arbitrage": 2,
+   "momentum": 3
+  },
+  "winner": "maker_spark12"
+ },
+ {
+  "id": "grand_s943009",
+  "label": "Run 3",
+  "seed": 943009,
+  "epochs": 12,
+  "cost": 0.8728,
+  "storyline": [
+   "Cobalt Energy recalls its flagship product",
+   "Cobalt Energy announces a large buyback",
+   "Inflation falls faster than expected",
+   "Reports: a large fund is being forced to liquidate its holdings of Cobalt Energy"
+  ],
+  "strategies": [
+   "short-C-drift",
+   "C-80-momentum",
+   "C-50-hold-momentum",
+   "C-50-hold-dual",
+   "C-50-Momentum",
+   "IDX_gap_fade_14_2",
+   "Multi-30-Momentum",
+   "Multi-50-30-Momentum-v2",
+   "A-50-B-80-dual-mom",
+   "IDXgap_Bmom_combo",
+   "A-mom-IDX-basis",
+   "IDXcheap_longonly"
+  ],
+  "resembles": {
+   "momentum": 4,
+   "index_arbitrage": 4
+  },
+  "winner": "inv_06"
+ }
+]

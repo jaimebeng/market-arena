@@ -26,6 +26,8 @@ runs/*
 !runs/overnight/
 !runs/cascade/
 !runs/vision/
+!runs/grand/
+!runs/grand_v1/
 !runs/verify_report.json
 runs/**/charts/
 runs/**/snapshots.jsonl

@@ -1,0 +1,14 @@
+{"epoch":0,"t":1500,"agent":"maker_spark12","kind":"message","text":"tuning C for adverse ask flow; adding inventory skew and venue rebate capture"}
+{"epoch":1,"t":3000,"agent":"maker_spark12","kind":"message","text":"A/C bids 70% adverse with -16c avg, C tails -100c+; widening A/C and lifting skew to avoid buying into drawdowns while keeping B tight for rebate flow"}
+{"epoch":2,"t":4500,"agent":"maker_spark12","kind":"message","text":"A/C bids still toxic after widening; leaning harder on skew instead of just spread"}
+{"epoch":2,"t":4500,"agent":"maker_spark13","kind":"message","text":"C bid flow looks informed (large negative tails) \u2014 widening C there, staying tight in B."}
+{"epoch":3,"t":6000,"agent":"maker_spark12","kind":"message","text":"C asks now toxic (-9.6) bids recovered (+13) - widening C/CX 0.5c, holding skew 2.0 and tight B/X for rebate"}
+{"epoch":4,"t":7500,"agent":"maker_spark12","kind":"message","text":"C ask flow still toxic (~40-53% adverse, 30-50c tails) while bids very clean; widening C further to cover adverse + tightening pull to avoid chasing."}
+{"epoch":5,"t":9000,"agent":"maker_spark13","kind":"message","text":"Holding B/X tight for clean rebate flow, widening C and A/A.X asks where tails persist."}
+{"epoch":6,"t":10500,"agent":"maker_spark12","kind":"message","text":"C crash regime (-62c avg adverse, -182 tail, vol 17.6) hit buys hard \u2014 widening C defensively while sells remain rich; keeping B/X tight for clean flow."}
+{"epoch":6,"t":10500,"agent":"maker_spark13","kind":"message","text":"C selling looks forced \u2014 widening C and stepping back on sharp drops, staying tight in B."}
+{"epoch":7,"t":12000,"agent":"maker_spark12","kind":"message","text":"A/B vol up, C ask flow flipping toxic \u2014 widening broadly and leaning skew vs short squeezes."}
+{"epoch":7,"t":12000,"agent":"maker_spark13","kind":"message","text":"C ask squeeze regime \u2014 bids clean, asks getting run over; staying defensive in C while A heats up."}
+{"epoch":8,"t":13500,"agent":"maker_spark12","kind":"message","text":"ask squeeze regime - widening + skew vs upside momentum"}
+{"epoch":9,"t":15000,"agent":"maker_spark12","kind":"message","text":"ask squeeze intact \u2014 widen + skew vs upside, tight pulls for C/A vol spike"}
+{"epoch":10,"t":16500,"agent":"maker_spark12","kind":"message","text":"final: B/X clean tight for rebate, A/C asks still toxic momentum so defensive wide + skew"}

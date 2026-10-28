@@ -18,6 +18,7 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 | Question | Answer | See it |
 |---|---|---|
 | Can I test a rule myself? | Yes. Say or type it. Muse Voice Transcribe hears it, Muse Spark turns it into exchange settings, AI market makers trade under it, and Muse Spark writes the memo. A maker rebate tightened quoted spreads by 1.9¢, but retail paid 2.1 bps more per trade. | [Rule Lab](https://jaimebeng.github.io/market-arena/?tab=lab) |
+| What happens when everything is in one market? | The Grand Arena: 7 order books on two exchanges, 17 AI agents, a different random storyline every run, streamed live. Across six runs the same AI makers priced anywhere from more competitive than Nash to above the cartel level. Quants found index arbitrage in every run, and lead-lag between the exchanges in four. The AI regulator caught the red team every time, and repeatedly mistook the cautious GLFT formula for a cartel. | [Grand Arena](https://jaimebeng.github.io/market-arena/?tab=grand) |
 | Do AI market makers compete? | Not fully. They quote about two thirds of the way from the competitive spread to the cartel spread, and they pocket most of a maker rebate that competition would pass on. | [Wind tunnel](https://jaimebeng.github.io/market-arena/?tab=wind&exp=wind_tunnel_v3) |
 | Given a chat room, do they form a cartel? | No. They announce price cuts. An antitrust warning silences them completely, in every run, but prices don't fall. | [Collusion lab](https://jaimebeng.github.io/market-arena/?tab=wind&exp=collusion_lab) |
 | Can an AI regulator police them? | It flagged a planted spoofer in 28 of 30 audits, citing order-flow evidence, with zero false accusations. | [Surveillance case](https://jaimebeng.github.io/market-arena/?run=collusion_lab_surveillance_s41&tab=surveillance) |
@@ -42,14 +43,14 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 - **Muse Voice Transcribe** hears spoken rule proposals.
 - **Muse Image** photographs the front pages.
 
-Across 547 recorded runs there were about 9,300 AI decisions, costing about $5.50 in tokens.
+Across 553 recorded runs there were about 10,500 AI decisions, costing about $11 in tokens.
 
 **Why the numbers can be trusted.**
 - The game-theory benchmark is solved for each rule set: the GLFT optimal maker, plus Nash and Pareto equilibria.
 - Quant strategies and the designer's rulebooks only count if they hold up on data they never saw.
 - Every experiment is paired by seed, and claims that didn't survive more seeds are corrected in the open.
-- **Every run can be verified without the model.** Decisions are hash-chained, and `python -m market_arena.runner.verify` re-executes a market from its log with no model calls. 451 of 477 recorded runs reproduce every trade byte for byte ([§21](RESULTS.md)). The dashboard marks them ✓ replay-verified.
-- There are 59 tests, and CI runs on every push. Every new feature is off by default, and a test checks that switching them all off changes nothing.
+- **Every run can be verified without the model.** Decisions are hash-chained, and `python -m market_arena.runner.verify` re-executes a market from its log with no model calls. 454 of 483 recorded runs reproduce every trade byte for byte ([§21](RESULTS.md)). The dashboard marks them ✓ replay-verified.
+- There are 62 tests, and CI runs on every push. Every new feature is off by default, and a test checks that switching them all off changes nothing.
 
 ---
 
@@ -98,6 +99,19 @@ Across 547 recorded runs there were about 9,300 AI decisions, costing about $5.5
 - **23-hour trading.** Epochs alternate between a regular and an overnight session with thinner flow. The exchange can stay open overnight or close, with resting orders expiring at the close.
 - **Leverage cascades.** A crypto-style liquidation engine with a ladder of 5x–50x accounts, an insurance fund and auto-deleveraging.
 - **Vision.** AI makers can be shown a rendered chart of their last epoch, as a human trader sees it.
+
+### Everything at once: the Grand Arena
+
+The **Grand Arena** tab puts every experiment in one market (`configs/grand.yaml`, [§22](RESULTS.md)).
+- **Two exchanges, 7 order books.** Three companies and an index fund trade on a home exchange, and the companies are also listed on an entrant that pays makers a rebate.
+- **17 AI agents trade together:** two AI market makers on Muse Spark 1.3 and 1.2, three AI quants writing their own code across all 7 books, eight AI investors in four styles routed to the best exchange, a finfluencer, a red team, an AI regulator and an AI central bank.
+- **Underneath them:** retail, institutions, an index fund, an HFT, an options dealer, a hedge fund on margin and a leverage ladder.
+- **A different story every run.** A fresh random seed draws the shocks (a takeover bid, a fraud report, tariffs, a bank failure) and whether a fund is forced to sell. Nobody sees them coming. Run it again and the news, the central bank's path, the winners and the quants' strategies all change. The seed is recorded, so every run still replays byte for byte.
+- **Live.** The run streams prices, news, decisions, forum posts and regulator notices as they happen. With the server running, press *Start a new run* in the tab and watch it unfold. The public site plays three recorded runs.
+
+```bash
+python -m market_arena.runner.run configs/grand.yaml --seed random   # about 35 minutes, ~$0.90
+```
 
 ### Try a rule yourself: the Rule Lab
 
@@ -152,7 +166,8 @@ market_arena/
   analysis/   per-epoch metrics, markouts, stylised facts
   runner/     arena loop, hash-chained event recording, wind-tunnel experiments, AI market designer,
               replay verifier
-  server/     the Rule Lab API (voice, rule compiler, paired wind tunnel, impact memo)
+  server/     the Rule Lab API (voice, rule compiler, paired wind tunnel, impact memo) and
+              live Grand Arena runs
 web/          React dashboard that replays recorded runs
 configs/      arena and experiment configurations
 tests/        order book, sandbox, backtester, game solver, surveillance, designer
@@ -175,8 +190,9 @@ cp .env.example .env    # add META_API_KEY and/or BASETEN_API_KEY
 .venv/bin/python -m market_arena.runner.wind_tunnel configs/stress.yaml         # fire sale, margin calls, kill switches
 .venv/bin/python -m market_arena.runner.wind_tunnel configs/pump_dump.yaml      # AI finfluencer vs AI regulator
 # also: news_herding, pfof, venues, gamma, central_bank, herding, overnight, cascade, vision
+.venv/bin/python -m market_arena.runner.run configs/grand.yaml --seed random   # everything at once
 .venv/bin/python -m market_arena.runner.verify runs/vision/baseline/s321   # replay a run with no model calls
-uvicorn market_arena.server.lab:app --port 8000                           # the Rule Lab server
+uvicorn market_arena.server.lab:app --port 8000                           # Rule Lab + live Grand Arena
 ```
 
 Each run writes `runs/<name>/` (snapshots, trades, decisions, metrics, meta). The dashboard replays them:

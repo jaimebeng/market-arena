@@ -56,4 +56,15 @@ def signal(obs):
         return {idx["name"]: 0.0}
     return {idx["name"]: float(np.clip(-gap_bps / 20, -1, 1))}
 ''',
+    "venue_arbitrage": '''
+def signal(obs):
+    out = {}
+    for stock, venues in (obs.meta.get("listings") or {}).items():
+        home, alt = venues[0], venues[1]
+        # buy the cheaper listing and sell the dearer one when their mids differ by more than costs
+        gap_bps = (obs.last(alt, "mid") / obs.last(home, "mid") - 1) * 1e4
+        s = 0.0 if not abs(gap_bps) >= 6 else float(np.clip(-gap_bps / 15, -1, 1))
+        out[alt], out[home] = s, -s
+    return out
+''',
 }

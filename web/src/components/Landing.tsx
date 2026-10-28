@@ -21,6 +21,19 @@ interface Story {
 
 const STORIES: Story[] = [
   {
+    id: "grand",
+    kicker: "Everything at once",
+    title: "One market, 17 AI agents, a different story every run",
+    body: "Two exchanges and 7 order books. AI makers, quants, investors, a finfluencer, a red team, a regulator and a central bank trade together while a random storyline unfolds: takeovers, tariffs, bank failures. Run it again and everything changes.",
+    href: "?tab=grand",
+    cta: "Watch the Grand Arena",
+    accent: "#2dd4bf",
+    stats: [
+      { value: "−0.5 to 1.2", label: "the same AI makers' collusion index across six runs: competitive to cartel" },
+      { value: "6 of 6", label: "runs where AI quants found index arbitrage on their own" },
+    ],
+  },
+  {
     id: "lab",
     kicker: "Try it",
     title: "Test a market rule before it reaches a real market",
@@ -120,7 +133,7 @@ const STORIES: Story[] = [
     cta: "Read the front pages",
     accent: "#c9bfae",
     stats: [
-      { value: "451/477", label: "recorded runs replay byte-identically with no model calls" },
+      { value: "454/483", label: "recorded runs replay byte-identically with no model calls" },
       { value: "4 Meta models", label: "Muse Spark (text and vision), Spark Open, Voice Transcribe and Muse Image" },
     ],
   },

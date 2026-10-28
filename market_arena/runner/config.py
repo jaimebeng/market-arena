@@ -14,6 +14,7 @@ from ..sim.economy import EconomyParams
 from ..sim.news import NewsParams
 from ..sim.participants import PopulationCfg
 from ..sim.schedule import SessionParams, Shock
+from ..sim.storyline import StorylineParams
 
 
 class AssetCfg(BaseModel):
@@ -44,6 +45,7 @@ class SwarmCfg(BaseModel):
     kind: Literal["llm_investor", "rule_investor"] = "llm_investor"
     models: list[str] = Field(default_factory=list)  # cycled; empty for rule investors
     personas: list[str] = Field(default_factory=lambda: ["generalist"])  # cycled
+    assets: list[str] | None = None  # default: all assets
     params: dict = Field(default_factory=dict)
 
 
@@ -76,6 +78,9 @@ class ArenaConfig(BaseModel):
     shocks: list[Shock] = Field(default_factory=list)  # scheduled fair-value jumps with headlines
     session: SessionParams | None = None  # alternating day / overnight sessions (one per epoch)
     swarm: SwarmCfg | None = None  # many investors, appended to agents
+    storyline: StorylineParams | None = None  # random shocks and fire sales drawn from the seed
+    live: bool = False  # stream frames and decision cards to live.jsonl as the run goes
+    live_every: int = 25  # steps between live frames
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 
@@ -85,7 +90,7 @@ class ArenaConfig(BaseModel):
         if s and not any(a.id == "inv_01" for a in self.agents):
             for i in range(s.n):
                 model = s.models[i % len(s.models)] if s.models else None
-                self.agents.append(AgentCfg(id=f"inv_{i + 1:02d}", kind=s.kind, model=model,
+                self.agents.append(AgentCfg(id=f"inv_{i + 1:02d}", kind=s.kind, model=model, assets=s.assets,
                                             params={**s.params, "persona": s.personas[i % len(s.personas)]}))
         return self
 

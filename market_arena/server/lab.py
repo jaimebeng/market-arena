@@ -35,6 +35,7 @@ from pydantic import BaseModel, Field
 from ..llm.client import run_tools
 from ..runner.wind_tunnel import run_variant, summarise
 from ..sim.exchange import Rules
+from .grand import router as grand_router
 
 ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(ROOT / ".env")
@@ -264,6 +265,7 @@ def _worker() -> None:
 
 app = FastAPI(title="Market Arena Rule Lab")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+app.include_router(grand_router)  # live Grand Arena runs
 threading.Thread(target=_worker, daemon=True).start()
 
 

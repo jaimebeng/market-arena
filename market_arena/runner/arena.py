@@ -29,6 +29,7 @@ from ..sim.economy import Economy
 from ..sim.news import NewsWire, news_response
 from ..sim.options import OptionsDealer
 from ..sim.perps import LiquidationEngine
+from ..sim.storyline import draw_storyline
 from ..sim.participants import (IndexFund, InstitutionalFlow, LatencyArb, MarginDesk, RetailFlow,
                                 Router, stream)
 from .config import ArenaConfig
@@ -88,7 +89,9 @@ class Market:
         self.router = Router(self.ex, {a: [a] + cfg.listings.get(a, []) for a in self.fund.assets})
         self.extra: list = []  # optional participants, stepped after the original flow
         self.retail = self.institutional = self.margin = self.options = self.perps = None
-        self.shocks = {s.at_step: s for s in cfg.shocks} if not calibration else {}
+        self.shocks: dict[int, list] = {}  # step -> scheduled shocks
+        for s in cfg.shocks if not calibration else []:
+            self.shocks.setdefault(s.at_step, []).append(s)
         self.activity = 1.0  # share of scripted flow active this step (thinned overnight)
         self._thin = stream(cfg.seed if seed is None else seed, 8)
         pop, seed = cfg.population, cfg.seed if seed is None else seed
@@ -128,10 +131,11 @@ class Market:
 
     def background_step(self) -> dict[str, float]:
         self.fund.step()
-        if (s := self.shocks.get(self.ex.t)) is not None:
-            self.fund.shock({s.asset: s.bps})
+        for s in self.shocks.get(self.ex.t, ()):
+            names = self.fund.names if s.asset == "*" else [s.asset]  # "*": macro news hits every stock
+            self.fund.shock({n: s.bps for n in names})
             if self.news:
-                self.news.items.append({"t": self.ex.t, "asset": s.asset, "kind": "shock",
+                self.news.items.append({"t": self.ex.t, "asset": None if s.asset == "*" else s.asset, "kind": "shock",
                                         "true_bps": s.bps, "headline": s.headline})  # fmt: skip
         if self.news:
             self.news.step(self.ex.t)
@@ -201,6 +205,7 @@ def calibrate_market(cfg: ArenaConfig) -> dict[str, Calibration]:
 
 class Arena:
     def __init__(self, cfg: ArenaConfig, agent_factory=None) -> None:
+        cfg = draw_storyline(cfg)  # a stochastic story's events, drawn from the seed
         self.cfg = cfg
         self.rng = np.random.default_rng(cfg.seed)
         self.market = Market(cfg, self.rng)
@@ -218,11 +223,16 @@ class Arena:
                 if fund.index_name else None
             ),
         }  # fmt: skip
+        if cfg.listings:  # the same stock on several exchanges: stock -> all its listings
+            self.public_meta["listings"] = {s: [s, *xs] for s, xs in cfg.listings.items()}
         self.benchmarks = compute_benchmarks(cfg, self.calibration)
         self.ex.tracked = {a.id for a in cfg.agents}
         self.forum: list[dict] = []  # public investor forum: posts with a numeric stance
         self.agents = [(agent_factory or build_agent)(a, self) for a in cfg.agents]
         self.ex.market_makers = {ag.id for ag in self.agents if ag.role in ("maker", "wholesaler")}
+        for ag in self.agents:  # investors buy a stock on whichever exchange has the best price
+            if ag.role == "investor" and hasattr(ag, "router"):
+                ag.router = self.market.router if cfg.listings else None
         if self.market.options:
             self.ex.market_makers.add(self.market.options.owner)  # a dealer hedging may go short
         if self.market.retail:
@@ -234,6 +244,8 @@ class Arena:
             k: open(self.out / f"{k}.jsonl", "w")
             for k in ("snapshots", "trades", "decisions", "metrics", "chat", "forum")
         }
+        self._live = open(self.out / "live.jsonl", "w") if cfg.live else None
+        self._news_seen = 0  # news items already streamed
         self.chat: list[dict] = []  # makers' chat room and regulator notices
         self._head, self._n_decisions = GENESIS, 0  # decision hash chain
         self.cost = 0.0
@@ -276,12 +288,46 @@ class Arena:
                  "mk": f.maker, "tk": f.taker},
             )  # fmt: skip
 
+    # ---- live stream ---------------------------------------------------------------------
+    def _emit(self, obj: dict) -> None:
+        """Append to live.jsonl, flushed at once so a viewer can follow the run as it happens."""
+        if self._live:
+            self._live.write(json.dumps(obj, separators=(",", ":"), default=str) + "\n")
+            self._live.flush()
+
+    def _live_frame(self, values: dict[str, float]) -> None:
+        """Every book's mid and spread, each company's fair value, and every agent's equity."""
+        ex = self.ex
+        marks = {a: ex.mid(a) for a in self.assets}
+        spread = {}
+        for a in self.assets:
+            b, k = ex.books[a].best_bid(), ex.books[a].best_ask()
+            spread[a] = _num(k - b) if b is not None and k is not None else None
+        self._emit({"k": "f", "t": ex.t, "mid": {a: _num(x) for a, x in marks.items()}, "sp": spread,
+                    "v": {a: _num(values[a]) for a in self.market.fund.assets},
+                    "eq": {ag.id: _num(ex.accounts[ag.id].equity(marks), 0) for ag in self.agents}})  # fmt: skip
+        if self.market.news:
+            for n in self.market.news.items[self._news_seen:]:
+                self._emit({"k": "news", **n})
+            self._news_seen = len(self.market.news.items)
+
+    def _live_epoch(self, m: dict) -> None:
+        ev = m.get("events", {})
+        liq = {k: v for k, v in (ev.get("liquidations") or {}).items() if k != "events"}
+        self._emit({"k": "epoch", "epoch": m["epoch"], "t": m["t1"],
+                    "pnl": {i: round(a["pnl"]) for i, a in m["agents"].items()},
+                    "strategies": m["taker_strategy"], "venues": ev.get("venues"), "halts": ev.get("halts"),
+                    "liquidations": liq or None, "margin_calls": len(ev.get("margin_calls") or []),
+                    "drawdown": ev.get("drawdown"), "macro": m.get("macro"),
+                    "collusion": m.get("collusion_index")})  # fmt: skip
+
     def post_chat(self, epoch: int, agent: str, text: str, kind: str = "message") -> None:
         """kind: "message" (a maker in the chat room) or "notice" (the regulator, seen by all)."""
         msg = {"epoch": epoch, "t": self.ex.t, "agent": agent, "kind": kind, "text": text[:500]}
         self.chat.append(msg)
         self._write("chat", msg)
         self._files["chat"].flush()
+        self._emit({"k": "chat", **msg})
 
     def post_forum(self, epoch: int, agent: str, text: str, stance: float, asset: str | None = None,
                    weight: float = 1.0) -> None:  # fmt: skip
@@ -293,6 +339,7 @@ class Arena:
         self.forum.append(msg)
         self._write("forum", msg)
         self._files["forum"].flush()
+        self._emit({"k": "forum", **msg})
 
     def _events(self, t0: int, t1: int) -> dict:
         """Market-wide events and the investor population's ledger for an epoch."""
@@ -397,6 +444,7 @@ class Arena:
         self._n_decisions += 1
         self._write("decisions", rec)
         self._files["decisions"].flush()
+        self._emit({"k": "decision", **decision_card(rec)})
 
     # ---- main loop -----------------------------------------------------------------------
     def _collusion(self, m: dict) -> dict:
@@ -422,10 +470,15 @@ class Arena:
         }
         equity0 = {ag.id: 0.0 for ag in self.agents}
         values = self.market.values()
+        self._emit({"k": "start", "name": cfg.name, "seed": cfg.seed, "epochs": cfg.n_epochs,
+                    "steps_per_epoch": cfg.steps_per_epoch, "assets": self.assets,
+                    "listings": self.public_meta.get("listings"), "index": self.public_meta["index"],
+                    "agents": meta["agents"], "started": meta["started"]})  # fmt: skip
         for epoch in range(cfg.n_epochs):
             t0 = ex.t
             wall = time.time()
             session = self._open_session(epoch)
+            self._emit({"k": "phase", "phase": "trade", "epoch": epoch, "t": ex.t, "session": session})
             for _ in range(cfg.steps_per_epoch):
                 values = self.market.background_step()
                 for i in self.rng.permutation(len(self.agents)):
@@ -434,6 +487,8 @@ class Arena:
                 self._record_trades()
                 if ex.t % cfg.snapshot_every == 0:
                     self._snapshot(values)
+                if self._live and ex.t % cfg.live_every == 0:
+                    self._live_frame(values)
                 ex.end_step()
             t1 = ex.t
             m = {
@@ -474,11 +529,18 @@ class Arena:
                 m["macro"] = self._macro_release(epoch, t0, t1)
             self.metrics_log.append(m)
             self._write("metrics", m)
+            self._live_epoch(m)
             for f in self._files.values():
                 f.flush()
             if epoch < cfg.n_epochs - 1:
                 reviewers = [ag for ag in self.agents if hasattr(ag, "review")]
+                self._emit({"k": "phase", "phase": "review", "epoch": epoch, "t": ex.t,
+                            "agents": [ag.id for ag in reviewers]})  # fmt: skip
+                n_posts = len(self.forum)
                 await asyncio.gather(*(self._review(ag, epoch, m) for ag in reviewers))
+                # reviews finish in any order; retail reads the latest posts, so fix their order (by
+                # author) before trading resumes, or a replay would see a different forum
+                self.forum[n_posts:] = sorted(self.forum[n_posts:], key=lambda p: p["agent"])
                 if self.market.economy:
                     self._rate_decision(epoch)
         meta["stylized"] = {
@@ -495,12 +557,36 @@ class Arena:
                 items, None, asset_mid={a: self.hist.get(a, "mid") for a in self.assets})
         meta["finished"] = time.time()
         meta["llm_cost_usd"] = round(self.cost, 4)
+        if self._live:  # the storyline is revealed only at the end
+            self._emit({"k": "end", "t": ex.t, "cost": meta["llm_cost_usd"],
+                        "storyline": [s.model_dump() for s in cfg.shocks]})  # fmt: skip
+            self._live.close()
         for f in self._files.values():
             f.close()
         meta["audit"] = {"decisions": self._n_decisions, "decisions_head": self._head,
                          **{f"{k}_sha256": file_sha256(self.out / f"{k}.jsonl") for k in ("trades", "snapshots")}}  # fmt: skip
         (self.out / "meta.json").write_text(json.dumps(meta, indent=1, default=str))
         return meta
+
+
+CARD_SKIP = ("turns", "hash", "prev_hash", "tools", "tokens", "charts", "similar_to")
+
+
+def decision_card(rec: dict) -> dict:
+    """A decision as the live stream shows it: no transcript, long text cut short."""
+    out = {k: (v[:3000] if isinstance(v, str) else v) for k, v in rec.items() if k not in CARD_SKIP}
+    if isinstance(rec.get("gate"), dict):
+        g = rec["gate"]
+        out["gate"] = {"passed": g.get("passed"), "reason": g.get("reason"),
+                       "holdout_pnl": (g.get("holdout") or {}).get("pnl")}  # fmt: skip
+    if rec.get("similar_to"):  # the textbook signal the strategy most resembles
+        name, c = max(rec["similar_to"].items(), key=lambda x: abs(x[1]))
+        out["resembles"] = {"signal": name, "corr": c}
+    return out
+
+
+def _num(x, nd: int = 1):
+    return round(float(x), nd) if x is not None and np.isfinite(x) else None
 
 
 def asset_prices(cfg: ArenaConfig) -> dict[str, float]:
