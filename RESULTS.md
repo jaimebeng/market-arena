@@ -413,7 +413,7 @@ A regulator auditing an AI trading agent today has to take the firm's logs on tr
 - The simulator is deterministic. If the log is complete and unaltered, the replay reproduces every trade and every order-book snapshot byte for byte.
 - Editing, inserting or deleting a logged decision breaks the hash chain. Changing what an agent decided also changes the market, and the replay no longer matches.
 
-**Result: 454 of the 483 recorded runs replay byte-identically on today's code.** (Retired runs in `runs/superseded/` are not counted.) Every run replays in 17 experiments: arms race, monoculture, designer rounds 2 and 3, who pays, crash, news, finfluencer, PFOF, venues, gamma, central bank, herding, overnight, cascade, vision and the Grand Arena. Most runs replay in the three earliest: the wind tunnel 27/36, the collusion lab 20/24 and designer round 1 at 9/16. That includes runs where AI regulators filed reports, red teams chose tactics, a central bank set rates and twelve AI investors traded at once. The 29 that don't match were all recorded on earlier versions of the simulator, including two purely scripted runs with no AI at all, so the difference comes from code changes, not from the replay. Three of them are the first Grand Arena runs, and they exposed a real gap (§22): AI investors' forum posts were stored in whichever order their reviews finished, and retail traders read the latest twelve, so a replay that finished reviews in another order saw a different forum. Posts are now put in a fixed order before trading resumes, and every Grand Arena run since replays exactly.
+**Result: 457 of the 486 recorded runs replay byte-identically on today's code.** (Retired runs in `runs/superseded/` are not counted.) Every run replays in 17 experiments: arms race, monoculture, designer rounds 2 and 3, who pays, crash, news, finfluencer, PFOF, venues, gamma, central bank, herding, overnight, cascade, vision and the Grand Arena (with its four-model league, §23). Most runs replay in the three earliest: the wind tunnel 27/36, the collusion lab 20/24 and designer round 1 at 9/16. That includes runs where AI regulators filed reports, red teams chose tactics, a central bank set rates and twelve AI investors traded at once. The 29 that don't match were all recorded on earlier versions of the simulator, including two purely scripted runs with no AI at all, so the difference comes from code changes, not from the replay. Three of them are the first Grand Arena runs, and they exposed a real gap (§22): AI investors' forum posts were stored in whichever order their reviews finished, and retail traders read the latest twelve, so a replay that finished reviews in another order saw a different forum. Posts are now put in a fixed order before trading resumes, and every Grand Arena run since replays exactly.
 
 The public repository leaves out the bulky trade tapes, so each run's `meta.json` carries the sha256 of its trades and snapshots, and `verify` compares against those. Anyone can clone the repository and check a published run without an API key.
 
@@ -453,4 +453,42 @@ Six full runs of 12 quarters (1,500 steps each), 1,208 AI decisions with no fail
 **Caveats:**
 - Six runs with different storylines are six stories, not a controlled comparison. Findings 1–3 are about variation between runs, and the paired experiments in §1–20 remain the evidence for any single effect.
 - Strategy types are classified from the quants' own one-line hypotheses, so the counts are approximate.
-- Spark Open sits out this experiment: its Baseten credit ran out. The two Muse Spark versions stand in for a model league.
+- Spark Open sits out these six runs: its Baseten credit had run out. §23 repeats the experiment as a four-model league, with Spark Open and Muse Glimmer 30B on Modal.
+
+
+## 23. The Grand Arena league: four Meta models in one market
+
+The same market as §22 (`configs/grand_league.yaml`), with makers, quants and investors split across four Meta models. Muse Spark 1.3 and 1.2 run on the Meta Model API. The open-weights **Muse Spark Open** runs on a Modal Shared Endpoint, and the open-weights **Muse Glimmer 30B** on a Modal Dedicated Endpoint (one H200 that scales to zero when idle). Each model has one AI market maker. Each has one AI quant, except Muse Spark 1.3, which keeps two. The eight AI investors are split two per model. GLFT is still the benchmark maker, and the finfluencer, red team, regulator and central bank stay on Muse Spark 1.3.
+
+Three full runs of 12 quarters with fresh random seeds, 777 AI decisions, **no errors on any model**, 41–46 minutes each. Tokens cost $2.53 on the Meta API and $11.20 for Spark Open, plus about 45 minutes of Glimmer's GPU (about $3.40); Modal's hackathon credit covered the last two. All three runs replay byte for byte, and they are on the dashboard.
+
+| Run | What happened (drawn from the seed) | Rates | AI makers' Δ | Quant strategies live | Who made most |
+|---|---|---|---|---|---|
+| s352217 | Q2 Cobalt product approved (+112 bps); Q6 short seller alleges fraud at Cobalt (−247) and a stimulus package, every stock (+171) | 4.25 → 1.0% | 0.98 | 16 of 73 | AI makers and AI investors, level |
+| s757742 | Q7 a fund forced to sell Cobalt; Q9 short seller alleges fraud at Bolt (−126) | 4.5 → 5.0 → 2.25% | 1.14 | 16 of 79 | AI makers |
+| s847549 | Q3 Aurora loses its largest customer (−157); Q4 oil price spike, every stock (−161); Q6 a fund forced to sell Bolt; Q7 fraud alleged at Cobalt (−122) | 4.25 → 0.75 → 1.75% | 0.36 | 12 of 76 | AI makers |
+
+Results by model, over the three runs (P&L in cents, mean per agent per run):
+
+| Model | Maker P&L | Quant: strategies live / submitted | Quant P&L | Investors profitable | Median decision time |
+|---|---|---|---|---|---|
+| Muse Spark 1.3 | +26k (3/3 profitable) | 19 / 110 (two quants) | −14k (2 of 6 profitable) | 4 of 9 | 55 s |
+| Muse Spark 1.2 | +24k (3/3) | 14 / 47 | +3k (3 of 3) | 6 of 6 | 24 s |
+| Muse Spark Open | **+44k** (3/3) | 10 / 58 | −10k (1 of 3) | 1 of 6 | 30 s |
+| Muse Glimmer 30B | +28k (3/3) | 1 / 13 | −1k (0 of 3) | 3 of 6 | 39 s |
+
+(Investor counts are agent-runs: two investors per model over three runs. Muse Spark 1.3's count also includes the finfluencer.)
+
+**Findings:**
+1. **Every AI maker made money, and Spark Open made the most.** All 12 maker-runs were profitable. Spark Open's maker earned the most in two runs, and Glimmer's in the third (+67k). With four AI makers sharing the flow instead of two, they beat the GLFT benchmark less often than in §22: an AI maker out-earned GLFT in 1 of 3 runs, against 5 of 6 there.
+2. **Glimmer's quant took a different approach from the rest.** It skipped 21 of its 33 reviews without submitting anything. Everything it did submit was arbitrage: pairs, index against basket, and mean reversion between the two exchanges. It never tried momentum, which was most of what the other quants put live. Five of its strategies never placed a trade. One passed the gate: index arbitrage in s757742, Q9. As in §22, the Muse Spark 1.2 quant was the steadiest: it was profitable in all three runs, and it put index arbitrage live first in s757742.
+3. **The quants lost money as a group in all three runs** (−32k to −40k cents), as in 4 of 6 runs in §22. Momentum was again most of what went live. Index arbitrage went live in every run, and a strategy trading between the two exchanges went live in every run (in s757742, *"C.X 20-step trend leads C"*).
+4. **The Muse Spark 1.2 investors made money in all six of their agent-runs, Spark Open's in one of six.** Spark Open's investors lost 23k cents per agent per run on average. Two investors per model over three runs is a small sample.
+5. **The regulator's collusion flags followed the collusion index this time.** In the two runs where the AI makers priced near the cartel level (Δ 0.98 and 1.14), it flagged every AI maker for tacit collusion, sometimes for many quarters. In the competitive run (Δ 0.36) it flagged none of them. It still flagged GLFT in 2 of 3 runs (the false positive from §22). It caught the red team spoofing, then wash trading, in all three runs, and flagged the finfluencer's pump in one.
+6. **The central bank followed inflation again.** In s757742 it raised rates to 5% in Q3 as inflation reached 3.5%, then cut. In s847549 it cut to 0.75%, then raised to 1.75% as inflation came back toward 2%.
+7. **The rest held up.** The leverage ladder fired in every run (7, 18 and 18 accounts liquidated), with the deepest quarterly fall 5.0–5.9%. The entrant exchange's share averaged 47–49%. The AI investors were on the same side of 74–81% of their decisions.
+
+**Caveats:**
+- Each model fills one maker seat and one quant seat per run (Spark 1.3 fills two quant seats), so the comparisons by model rest on three runs with different storylines. They describe these runs; they are not paired tests like §1–20.
+- Glimmer's endpoint scales to zero, so the first call of a run waits about five minutes for a GPU. The client's retries absorb the wait.
+- An earlier attempt at this league seemed to show Spark Open failing on any prompt over about 500 tokens. The cause was a fault in the local network: requests of more than about 1,350 bytes were being dropped on the way out of the development machine. Neither model has that limit.

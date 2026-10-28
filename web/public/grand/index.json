@@ -1,5 +1,112 @@
 [
  {
+  "id": "grand_s352217",
+  "label": "Four-model league, run 1",
+  "league": true,
+  "seed": 352217,
+  "epochs": 12,
+  "cost": 5.2493,
+  "storyline": [
+   "Regulator approves Cobalt Energy's flagship product",
+   "Short seller alleges accounting fraud at Cobalt Energy",
+   "Government announces a large stimulus package"
+  ],
+  "strategies": [
+   "Filtered Momentum A/C",
+   "xvenue-mom-A-C",
+   "Dual-Confirm Hi-Thr A + C.X Momentum",
+   "idx-rev-plus-A-mom",
+   "xarb-selective",
+   "Dual-Confirm Hi-Thr A+CX Momentum v2",
+   "idx-rev-plus-AB-mom",
+   "AB-trend-20",
+   "Dual-Confirm Hi-Thr A+CX Momentum v2 resubmit",
+   "idx-wide-rev-plus-A-mom",
+   "ABC-trend-20-80",
+   "Dual-Mom A+CX + IDX Reversion",
+   "C-tiered15 IDX15 scaled",
+   "C-tiered15 IDX15 scaled",
+   "idx-rev-plus-Cx-mom",
+   "IDX-premium-reversion"
+  ],
+  "resembles": {
+   "momentum": 2,
+   "index_arbitrage": 5,
+   "venue_arbitrage": 2
+  },
+  "winner": "inv_02"
+ },
+ {
+  "id": "grand_s757742",
+  "label": "Four-model league, run 2",
+  "league": true,
+  "seed": 757742,
+  "epochs": 12,
+  "cost": 4.4073,
+  "storyline": [
+   "Reports: a large fund is being forced to liquidate its holdings of Cobalt Energy",
+   "Short seller alleges accounting fraud at Bolt Logistics"
+  ],
+  "strategies": [
+   "Momentum_EMA_20_50",
+   "Mom50_Filtered",
+   "Mom50_IDxArb_Filtered",
+   "DualVenue_Momentum",
+   "venue-basket-revert",
+   "CX-lead-C-selective",
+   "Momentum_AC_filtered",
+   "Mom20_AX_CX_lowTurn",
+   "CX-lead-C-selective",
+   "cx-trend30",
+   "Momentum_A_only",
+   "A-avg-momentum",
+   "Mom30_A_primary_filtered",
+   "a-trend100",
+   "idx_basket_meanrev",
+   "B_imbalance_momentum_blend"
+  ],
+  "resembles": {
+   "momentum": 7,
+   "mean_reversion": 1,
+   "index_arbitrage": 2,
+   "venue_arbitrage": 1
+  },
+  "winner": "glft"
+ },
+ {
+  "id": "grand_s847549",
+  "label": "Four-model league, run 3",
+  "league": true,
+  "seed": 847549,
+  "epochs": 12,
+  "cost": 4.0762,
+  "storyline": [
+   "Aurora Systems loses its largest customer",
+   "Oil price spikes on supply shock",
+   "Reports: a large fund is being forced to liquidate its holdings of Bolt Logistics",
+   "Short seller alleges accounting fraud at Cobalt Energy"
+  ],
+  "strategies": [
+   "MOM_EMA_A_C_IDX",
+   "momentum-A-C-IDX",
+   "momentum-A-C-IDX",
+   "MOM_EMA_ARBOY2",
+   "slow-momo-ACI-thr",
+   "MOM_EMA_ARBOY3",
+   "momentum-A-C",
+   "slow-momo-AC-thr",
+   "mom50_th15_AC",
+   "MOM_EMA_ARBv4",
+   "mom50_hysteresis_BC_lowTurn",
+   "avgMixMom_hysteresis_ABC"
+  ],
+  "resembles": {
+   "momentum": 8,
+   "mean_reversion": 1
+  },
+  "winner": "inv_06"
+ },
+ {
   "id": "grand_s559705",
   "label": "Muse Spark 1.3 + 1.2, run 1",
   "league": false,

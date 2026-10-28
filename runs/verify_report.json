@@ -1,6 +1,6 @@
 {
- "runs": 483,
- "verified": 454,
+ "runs": 486,
+ "verified": 457,
  "by_experiment": {
   "arms_race": [
    16,
@@ -103,6 +103,10 @@
    36
   ],
   "grand": [
+   3,
+   3
+  ],
+  "grand_league": [
    3,
    3
   ],
@@ -5362,7 +5366,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand/s559705",
    "chain": "intact (194 decisions, head 249e7cb5d930)",
-   "replay_seconds": 31.2,
+   "replay_seconds": 31.9,
    "tool_calls_replayed": 1511,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5384,7 +5388,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand/s943009",
    "chain": "intact (204 decisions, head c134ff8e8ab5)",
-   "replay_seconds": 36.7,
+   "replay_seconds": 37.1,
    "tool_calls_replayed": 1632,
    "unused_decisions": 0,
    "trades": "identical",
@@ -5393,9 +5397,42 @@
    "verified": true
   },
   {
+   "run": "/home/jaime/Documents/metahackathon/runs/grand_league/s352217",
+   "chain": "intact (257 decisions, head 6d27d2b4a8c5)",
+   "replay_seconds": 50.3,
+   "tool_calls_replayed": 2314,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 142685,
+   "verified": true
+  },
+  {
+   "run": "/home/jaime/Documents/metahackathon/runs/grand_league/s757742",
+   "chain": "intact (261 decisions, head 0fe708784318)",
+   "replay_seconds": 59.8,
+   "tool_calls_replayed": 2303,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 152058,
+   "verified": true
+  },
+  {
+   "run": "/home/jaime/Documents/metahackathon/runs/grand_league/s847549",
+   "chain": "intact (259 decisions, head b4b02745304d)",
+   "replay_seconds": 58.7,
+   "tool_calls_replayed": 2205,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 162795,
+   "verified": true
+  },
+  {
    "run": "/home/jaime/Documents/metahackathon/runs/grand_v1/s107066",
    "chain": "intact (203 decisions, head a318dd88bcbd)",
-   "replay_seconds": 43.5,
+   "replay_seconds": 44.0,
    "tool_calls_replayed": 1571,
    "unused_decisions": 0,
    "trades": "DIFFERENT",
@@ -5406,7 +5443,7 @@
   {
    "run": "/home/jaime/Documents/metahackathon/runs/grand_v1/s538498",
    "chain": "intact (199 decisions, head 16963b090199)",
-   "replay_seconds": 42.4,
+   "replay_seconds": 42.8,
    "tool_calls_replayed": 1550,
    "unused_decisions": 0,
    "trades": "DIFFERENT",

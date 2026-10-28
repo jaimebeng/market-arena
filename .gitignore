@@ -28,6 +28,7 @@ runs/*
 !runs/vision/
 !runs/grand/
 !runs/grand_v1/
+!runs/grand_league/
 !runs/verify_report.json
 runs/**/charts/
 runs/**/snapshots.jsonl

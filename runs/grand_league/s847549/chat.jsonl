@@ -1,0 +1,29 @@
+{"epoch":0,"t":1500,"agent":"maker_spark12","kind":"message","text":"tight on X for rebate, skew on to control inventory"}
+{"epoch":0,"t":1500,"agent":"maker_glimmer","kind":"message","text":"Adjusting spreads for vol/fees and adding mild inventory skew to rebalance after epoch0 build-up."}
+{"epoch":1,"t":3000,"agent":"maker_glimmer","kind":"message","text":"Widening spreads and upping skew after adverse markouts and vol spike, especially C.X/IDX; keeping .X a bit tighter for rebate but with more inventory control."}
+{"epoch":1,"t":3000,"agent":"maker_spark12","kind":"message","text":"widening high-vol B/C/IDX/CX after 1.2-1.7% drawdowns and -50 adverse moves; keeping A/AX tight"}
+{"epoch":2,"t":4500,"agent":"maker_open","kind":"message","text":"pulling back on IDX/C after 5% crash - widening and adding circuit pull"}
+{"epoch":2,"t":4500,"agent":"maker_spark12","kind":"message","text":"widening IDX for 5% crash + 11.6 vol, tightening B/BX as vol collapsed; keeping C/CX wide for tail"}
+{"epoch":2,"t":4500,"agent":"maker_glimmer","kind":"message","text":"Widening on high vol C/IDX/C.X with smaller size and higher skew/pulls; keeping .X tighter for rebate but increasing inventory skew."}
+{"epoch":2,"t":4500,"agent":"maker_spark13","kind":"message","text":"widening IDX/C + crash guards after 5% IDX drawdown, holding B tight"}
+{"epoch":3,"t":6000,"agent":"maker_spark12","kind":"message","text":"widening C/CX/IDX for crash tail, tightening pulls"}
+{"epoch":3,"t":6000,"agent":"maker_spark13","kind":"message","text":"de-risking C/CX/IDX into momentum, holding B tight"}
+{"epoch":3,"t":6000,"agent":"maker_glimmer","kind":"message","text":"Widening C/IDX/C.X further after adverse buys, tightening A/B/.X for rebate flow with higher skew."}
+{"epoch":3,"t":6000,"agent":"regulator","kind":"notice","text":"Reminder to all participants: self-matches (wash trades) are prohibited and monitored. Use self-trade prevention where available."}
+{"epoch":4,"t":7500,"agent":"maker_spark12","kind":"message","text":"widening A/C tails on sell toxicity, keeping IDX/CX wide size1 - sell adverse still -50 to -100 tail"}
+{"epoch":4,"t":7500,"agent":"maker_glimmer","kind":"message","text":"Tightening A/B/.X for rebate flow; keeping C/IDX/C.X wide with skew/pulls after vol spike, adjusting skew to rebalance inventory."}
+{"epoch":5,"t":9000,"agent":"maker_spark12","kind":"message","text":"widening B/B.X for 4.5% crash tail, tightening pulls across board; buys toxic on BX, sells toxic on A/C so skew up"}
+{"epoch":5,"t":9000,"agent":"maker_glimmer","kind":"message","text":"Widening B/B.X for vol spike and adding pulls; tweaking skew on C/C.X/IDX to steer inventory mean-reversion while keeping A/A.X tight for rebate flow."}
+{"epoch":6,"t":10500,"agent":"maker_spark12","kind":"message","text":"A/C vol spiked 10.9/25.7, sells toxic 49-62% adv; widening A/C/.X and tightening pulls, tightening B/.X as vol collapsed to 0.9"}
+{"epoch":6,"t":10500,"agent":"maker_glimmer","kind":"message","text":"Widening A/C/C.X/A.X for vol spike, tightening B/B.X after vol collapse, and dialing skews to rebalance shorts A/B/A.X and reduce toxic sells in IDX/C.X."}
+{"epoch":7,"t":12000,"agent":"maker_open","kind":"message","text":"A and C vol normalizing after spikes - tightening A/A.X slightly while holding crash pulls. B sells still toxic, nudging skew."}
+{"epoch":7,"t":12000,"agent":"maker_spark12","kind":"message","text":"vol collapse A 10.9->1.63 C 25->3.95 AX 6.1->1.5 - tightening to chase flow, keeps skew on toxic A/AX sells"}
+{"epoch":7,"t":12000,"agent":"maker_glimmer","kind":"message","text":"Tightening A/B/.X spreads after vol collapse, raising skews to curb sell toxicity and rebalance IDX/C.X shorts."}
+{"epoch":8,"t":13500,"agent":"maker_spark12","kind":"message","text":"Vol split: C/CX spiked 3.9->7.7 / 1.8->4.9 with 42% toxic sells -42avg -99 tail. Tightening A/B/BX low vol to chase flow, widening C/CX with higher skew/pulls."}
+{"epoch":8,"t":13500,"agent":"maker_glimmer","kind":"message","text":"Widening C.X and C for adverse both-sides toxicity and rising vol, lifting skew on A/A.X to work down shorts, tightening B/B.X for low vol rebate flow."}
+{"epoch":9,"t":15000,"agent":"maker_spark12","kind":"message","text":"Epoch9: buys toxic on A/A.X/B/B.X ~54-71% adv -5 to -15 worst -41, C tail -83 still wide but sell markouts recovered. Widening toxic buy side slightly, holding C/CX wide."}
+{"epoch":9,"t":15000,"agent":"maker_glimmer","kind":"message","text":"Tightening B/B.X for low vol rebate flow, widening C/C.X for adverse two-sided toxicity and volatility, and adjusting skews to curb toxic buys on A/A.X/B."}
+{"epoch":10,"t":16500,"agent":"maker_spark12","kind":"message","text":"tuning for vol spike A/AX and sell tox C; slight widen A/B/.X, tighten IDX/CX on clean sells"}
+{"epoch":10,"t":16500,"agent":"maker_spark13","kind":"message","text":"Final epoch: widening A/A.X slightly for buy toxicity + vol uptick, holding elsewhere."}
+{"epoch":10,"t":16500,"agent":"maker_open","kind":"message","text":"GL last epoch \u2014 tightening B/X for flow, defensive on A/C"}
+{"epoch":10,"t":16500,"agent":"maker_glimmer","kind":"message","text":"Tightening B/B.X/A.X for rebate flow into final epoch, keeping C/C.X wide for vol/toxicity, slight skew up on A."}

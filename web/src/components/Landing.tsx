@@ -133,8 +133,8 @@ const STORIES: Story[] = [
     cta: "Read the front pages",
     accent: "#c9bfae",
     stats: [
-      { value: "454/483", label: "recorded runs replay byte-identically with no model calls" },
-      { value: "4 Meta models", label: "Muse Spark (text and vision), Spark Open, Voice Transcribe and Muse Image" },
+      { value: "457/486", label: "recorded runs replay byte-identically with no model calls" },
+      { value: "5 Meta models", label: "Muse Spark (text and vision), Spark Open, Glimmer 30B, Voice Transcribe and Muse Image" },
     ],
   },
 ];

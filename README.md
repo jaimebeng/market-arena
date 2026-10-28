@@ -18,7 +18,7 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 | Question | Answer | See it |
 |---|---|---|
 | Can I test a rule myself? | Yes. Say or type it. Muse Voice Transcribe hears it, Muse Spark turns it into exchange settings, AI market makers trade under it, and Muse Spark writes the memo. A maker rebate tightened quoted spreads by 1.9¢, but retail paid 2.1 bps more per trade. | [Rule Lab](https://jaimebeng.github.io/market-arena/?tab=lab) |
-| What happens when everything is in one market? | The Grand Arena: 7 order books on two exchanges, 17 AI agents, a different random storyline every run, streamed live. Across six runs the same AI makers priced anywhere from more competitive than Nash to above the cartel level. Quants found index arbitrage in every run, and lead-lag between the exchanges in four. The AI regulator caught the red team every time, and repeatedly mistook the cautious GLFT formula for a cartel. | [Grand Arena](https://jaimebeng.github.io/market-arena/?tab=grand) |
+| What happens when everything is in one market? | The Grand Arena: 7 order books on two exchanges, 17 AI agents, a different random storyline every run, streamed live. Across six runs the same AI makers priced anywhere from more competitive than Nash to above the cartel level. Quants found index arbitrage in every run, and lead-lag between the exchanges in four. The AI regulator caught the red team every time, and repeatedly mistook the cautious GLFT formula for a cartel. A four-model league adds Spark Open and Muse Glimmer 30B: every AI maker made money, Spark Open's the most, and Glimmer's quant stuck to arbitrage while the others chased momentum. | [Grand Arena](https://jaimebeng.github.io/market-arena/?tab=grand) |
 | Do AI market makers compete? | Not fully. They quote about two thirds of the way from the competitive spread to the cartel spread, and they pocket most of a maker rebate that competition would pass on. | [Wind tunnel](https://jaimebeng.github.io/market-arena/?tab=wind&exp=wind_tunnel_v3) |
 | Given a chat room, do they form a cartel? | No. They announce price cuts. An antitrust warning silences them completely, in every run, but prices don't fall. | [Collusion lab](https://jaimebeng.github.io/market-arena/?tab=wind&exp=collusion_lab) |
 | Can an AI regulator police them? | It flagged a planted spoofer in 28 of 30 audits, citing order-flow evidence, with zero false accusations. | [Surveillance case](https://jaimebeng.github.io/market-arena/?run=collusion_lab_surveillance_s41&tab=surveillance) |
@@ -39,17 +39,18 @@ Exchanges and regulators can use it to test a rule change against adaptive AI tr
 
 **How Meta models are used.** Four Meta models work together:
 - **Muse Spark 1.3** (Meta Model API) plays eleven roles through multi-step tool calling: market maker (optionally with a chat room, a crisis rule or a chart of its own trading to look at), quant (which writes strategy code), surveillance officer, red team, market designer, investor, finfluencer, order-flow wholesaler, central bank, the Rule Lab's rule compiler, and its policy analyst. It also writes the front pages.
-- **Muse Spark Open** (open weights on Baseten) plays seven roles (maker, quant, red team, investor and investor swarm, finfluencer, central bank) and competes head to head with Muse Spark in the same markets.
+- **Muse Glimmer 30B** (open weights on a Modal Dedicated Endpoint) is a maker, a quant and two investors in the Grand Arena league.
+- **Muse Spark Open** (open weights on Baseten, and on Modal for the Grand Arena league) plays seven roles (maker, quant, red team, investor and investor swarm, finfluencer, central bank) and competes head to head with Muse Spark in the same markets.
 - **Muse Voice Transcribe** hears spoken rule proposals.
 - **Muse Image** photographs the front pages.
 
-Across 553 recorded runs there were about 10,500 AI decisions, costing about $11 in tokens.
+Across 556 recorded runs there were about 11,300 AI decisions, costing about $25 in tokens and about $3 of GPU time.
 
 **Why the numbers can be trusted.**
 - The game-theory benchmark is solved for each rule set: the GLFT optimal maker, plus Nash and Pareto equilibria.
 - Quant strategies and the designer's rulebooks only count if they hold up on data they never saw.
 - Every experiment is paired by seed, and claims that didn't survive more seeds are corrected in the open.
-- **Every run can be verified without the model.** Decisions are hash-chained, and `python -m market_arena.runner.verify` re-executes a market from its log with no model calls. 454 of 483 recorded runs reproduce every trade byte for byte ([§21](RESULTS.md)). The dashboard marks them ✓ replay-verified.
+- **Every run can be verified without the model.** Decisions are hash-chained, and `python -m market_arena.runner.verify` re-executes a market from its log with no model calls. 457 of 486 recorded runs reproduce every trade byte for byte ([§21](RESULTS.md)). The dashboard marks them ✓ replay-verified.
 - There are 62 tests, and CI runs on every push. Every new feature is off by default, and a test checks that switching them all off changes nothing.
 
 ---
@@ -113,6 +114,8 @@ The **Grand Arena** tab puts every experiment in one market (`configs/grand.yaml
 python -m market_arena.runner.run configs/grand.yaml --seed random   # about 35 minutes, ~$0.90
 ```
 
+The **four-model league** (`configs/grand_league.yaml`, [§23](RESULTS.md)) splits makers, quants and investors across Muse Spark 1.3, Muse Spark 1.2, Muse Spark Open and Muse Glimmer 30B. The tab shows its three runs first.
+
 ### Try a rule yourself: the Rule Lab
 
 The **Rule Lab** tab turns the wind tunnel into a tool. Type a proposed rule in plain English, or press the microphone and say it.
@@ -140,6 +143,7 @@ The **Front pages** tab turns each headline result into a newspaper front page. 
 |---|---|---|
 | Market makers and takers | **Muse Spark 1.3** (`muse-spark-1.3-contributor`, Meta Model API) | Multi-step tool calling, reasoning over performance data, writing strategy code |
 | Market makers and takers | **Muse Spark Open** (`meta-models/muse-spark-open-1026`, open weights via Baseten) | The same roles, so the two models compete head to head; its reasoning traces are shown on the dashboard |
+| Grand Arena league | **Muse Spark Open** (Modal Shared Endpoint) and **Muse Glimmer 30B** (Modal Dedicated Endpoint) | Maker, quant and investors alongside Muse Spark 1.3 and 1.2 in one market |
 | Surveillance officer | **Muse Spark 1.3** | Forensic tool use over order-entry data, quotes and chat; graded findings; public notices |
 | Red team | **Muse Spark 1.3** and **Muse Spark Open** | Adversarial tool use: reads its own surveillance footprint and debriefs, then chooses evasion tactics under a mandate |
 | Market designer | **Muse Spark 1.3** | Plans and runs its own experiments (each a full multi-agent market), then recommends a rulebook |
