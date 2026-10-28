@@ -191,7 +191,7 @@ cp .env.example .env    # add META_API_KEY and/or BASETEN_API_KEY
 .venv/bin/python -m market_arena.runner.wind_tunnel configs/pump_dump.yaml      # AI finfluencer vs AI regulator
 # also: news_herding, pfof, venues, gamma, central_bank, herding, overnight, cascade, vision
 .venv/bin/python -m market_arena.runner.run configs/grand.yaml --seed random   # everything at once
-.venv/bin/python -m market_arena.runner.run configs/grand_league.yaml --seed random   # + Spark Open on Modal
+.venv/bin/python -m market_arena.runner.run configs/grand_league.yaml --seed random   # + Spark Open and Glimmer 30B on Modal
 .venv/bin/python -m market_arena.runner.verify runs/vision/baseline/s321   # replay a run with no model calls
 uvicorn market_arena.server.lab:app --port 8000                           # Rule Lab + live Grand Arena
 ```

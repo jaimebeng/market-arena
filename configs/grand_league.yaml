@@ -1,4 +1,6 @@
-# The Grand Arena as a three-model league (needs MODAL_BASE_URL / MODAL_API_KEY for Spark Open).
+# The Grand Arena as a four-model league. Spark Open runs on a Modal Shared Endpoint and Muse
+# Glimmer 30B on a Modal Dedicated Endpoint (needs MODAL_BASE_URL, GLIMMER_BASE_URL, MODAL_API_KEY).
+# Glimmer scales to zero when idle; its first request after that waits ~5 minutes for a GPU.
 # The Grand Arena: every experiment in one market, and a different story every run.
 #
 # Two exchanges. Three companies and an index ETF trade on the home exchange; the companies are
@@ -7,8 +9,8 @@
 # and cross-exchange arbitrage are possible, nobody is told to look for them); nine AI investors
 # in four styles buy wherever the price is best; a finfluencer posts on a forum that retail copies;
 # a red team spoofs; an AI regulator watches the tape and the makers' chat; an AI central bank sets
-# rates each quarter (one epoch). Makers, quants and investors are split across three Meta models:
-# Muse Spark 1.3, Muse Spark 1.2 and the open-weights Muse Spark Open (on a Modal Endpoint).
+# rates each quarter (one epoch). Makers, quants and investors are split across four Meta models:
+# Muse Spark 1.3, Muse Spark 1.2 and the open-weights Muse Spark Open and Muse Glimmer 30B.
 # Underneath: retail, institutions, an index fund, an HFT, an options dealer hedging calls, a hedge
 # fund on margin and a crypto-style leverage ladder.
 #
@@ -46,8 +48,8 @@ population:
   liquidations: {asset: B, n_longs: 20, long_lots: 15, leverage_min: 5, leverage_max: 50, chunk: 3, n_shorts: 10, short_lots: 20}
   maker_guards: true
 swarm:
-  n: 9
-  models: ["meta:muse-spark-1.3-contributor", "meta:muse-spark-1.2-contributor", "modal:meta-models/Muse-Spark-Open-816B-A42B"]
+  n: 8
+  models: ["meta:muse-spark-1.3-contributor", "meta:muse-spark-1.2-contributor", "modal:meta-models/Muse-Spark-Open-816B-A42B", "glimmer:glimmer"]
   personas: [value, momentum, contrarian, news]
   assets: [A, B, C, IDX]
 agents:
@@ -55,10 +57,12 @@ agents:
   - {id: maker_spark13, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
   - {id: maker_spark12, kind: llm_maker, model: "meta:muse-spark-1.2-contributor"}
   - {id: maker_open, kind: llm_maker, model: "modal:meta-models/Muse-Spark-Open-816B-A42B"}
+  - {id: maker_glimmer, kind: llm_maker, model: "glimmer:glimmer"}
   - {id: quant_1, kind: llm_taker, model: "meta:muse-spark-1.3-contributor", params: {max_position: 15, max_order: 2}}
   - {id: quant_2, kind: llm_taker, model: "meta:muse-spark-1.3-contributor", params: {max_position: 15, max_order: 2}}
   - {id: quant_3, kind: llm_taker, model: "meta:muse-spark-1.2-contributor", params: {max_position: 15, max_order: 2}}
   - {id: quant_open, kind: llm_taker, model: "modal:meta-models/Muse-Spark-Open-816B-A42B", params: {max_position: 15, max_order: 2}}
+  - {id: quant_glimmer, kind: llm_taker, model: "glimmer:glimmer", params: {max_position: 15, max_order: 2}}
   - {id: finfluencer, kind: llm_finfluencer, model: "meta:muse-spark-1.3-contributor", assets: [A, B, C]}
   - {id: red_team, kind: llm_red_team, model: "meta:muse-spark-1.3-contributor", assets: [B, B.X]}
   - {id: regulator, kind: llm_surveillance, model: "meta:muse-spark-1.3-contributor"}

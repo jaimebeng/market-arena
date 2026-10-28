@@ -38,6 +38,7 @@ function modelName(m?: string | null) {
   if (!m.includes(":")) return m; // e.g. "GLFT closed form"
   const id = m.split(":")[1];
   if (m.startsWith("meta:")) return "Muse Spark " + (id.match(/\d\.\d/)?.[0] ?? "");
+  if (m.startsWith("glimmer:")) return "Glimmer 30B";
   return "Spark Open";
 }
 

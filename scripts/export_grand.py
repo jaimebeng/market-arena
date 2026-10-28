@@ -34,12 +34,12 @@ def main() -> None:
         lines = [json.loads(x) for x in f.read_text().splitlines()]
         if not lines or lines[-1]["k"] != "end":
             continue  # unfinished
-        league = f.parent.parent.name == "grand_league"  # three models, Spark Open included
+        league = f.parent.parent.name == "grand_league"  # four models, Spark Open and Glimmer included
         rid = f"grand_{f.parent.name}"
         (OUT / f"{rid}.json").write_text(json.dumps({"lines": lines}, separators=(",", ":")))
         s = summary(lines)
         n = sum(1 for x in index if x["league"] == league) + 1
-        index.append({"id": rid, "label": f"{'Three-model league' if league else 'Muse Spark 1.3 + 1.2'}, run {n}",
+        index.append({"id": rid, "label": f"{'Four-model league' if league else 'Muse Spark 1.3 + 1.2'}, run {n}",
                       "league": league, **s})  # fmt: skip
         print(rid, f"{(OUT / f'{rid}.json').stat().st_size / 1e6:.2f} MB", s["strategies"][:4])
     (OUT / "index.json").write_text(json.dumps(index, indent=1))

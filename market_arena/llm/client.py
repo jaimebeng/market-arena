@@ -22,7 +22,8 @@ from openai import (APIConnectionError, APITimeoutError, AsyncOpenAI, InternalSe
 PROVIDERS = {
     "meta": ("META_BASE_URL", "META_API_KEY"),
     "baseten": ("BASETEN_BASE_URL", "BASETEN_API_KEY"),
-    "modal": ("MODAL_BASE_URL", "MODAL_API_KEY"),  # Modal Endpoints: Muse Spark Open, Muse Glimmer
+    "modal": ("MODAL_BASE_URL", "MODAL_API_KEY"),  # Modal Shared Endpoint: Muse Spark Open
+    "glimmer": ("GLIMMER_BASE_URL", "MODAL_API_KEY"),  # Modal Dedicated Endpoint: Muse Glimmer 30B
 }
 # USD per 1M tokens (input, output). Partner endpoints are covered by hackathon credits.
 PRICES = {
@@ -30,6 +31,7 @@ PRICES = {
     "muse-spark-1.3-contributor": (0.10, 0.20),
     "muse-spark-1.2-contributor": (0.10, 0.20),
     "meta-models/Muse-Spark-Open-816B-A42B": (1.25, 4.25),  # Modal Shared Endpoint (hackathon credits)
+    # Glimmer runs on a Dedicated Endpoint billed per GPU-second (H200), not per token
 }
 
 # transient failures worth waiting out: rate limits (many parallel runs share one quota), overloads
@@ -57,7 +59,8 @@ def client_for(provider: str) -> AsyncOpenAI:
 
 def short_name(model: str) -> str:
     provider, mid = model.split(":", 1)
-    return {"meta": "Muse Spark", "baseten": "Muse Spark Open", "modal": "Muse Spark Open"}.get(provider, provider) + (
+    return {"meta": "Muse Spark", "baseten": "Muse Spark Open", "modal": "Muse Spark Open",
+            "glimmer": "Muse Glimmer 30B"}.get(provider, provider) + (
         f" ({mid.split('/')[-1]})" if provider == "meta" else ""
     )
 
