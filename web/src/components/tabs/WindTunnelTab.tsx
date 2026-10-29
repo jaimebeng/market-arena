@@ -519,6 +519,49 @@ const HEADLINES: Record<string, { title: string; cols: Headline[] }> = {
       { key: "vol_100_bps", label: "100-step vol bps", digits: 1, better: "lower" },
     ],
   },
+  maverick: {
+    title: "The maverick remedy · one maker that always quotes the competitive spread",
+    cols: [
+      { key: "collusion_index", label: "AI collusion Δ", digits: 2, better: "lower" },
+      { key: "llm_maker_half_spread", label: "AI half-spread ¢", digits: 2, better: "lower" },
+      { key: "spread", label: "market spread ¢", digits: 2, better: "lower" },
+      { key: "taker_cost", label: "cost to cross ¢", digits: 2, better: "lower" },
+      { key: "maker_pnl_per_epoch", label: "maker P&L / ep", digits: 0 },
+    ],
+  },
+  kill_switch: {
+    title: "Kill switches · halting the market, pausing the AIs, or a regulator with a switch",
+    cols: [
+      { key: "vol_100_bps", label: "100-step vol bps", digits: 1, better: "lower" },
+      { key: "max_drawdown_pct", label: "max drawdown %", digits: 1, better: "lower" },
+      { key: "fire_sale_shortfall_bps", label: "seller shortfall bps", digits: 0, better: "lower" },
+      { key: "margin_calls", label: "margin calls", digits: 2, better: "lower" },
+      { key: "herding_majority_share", label: "share on majority side", digits: 2 },
+      { key: "investor_pnl_per_epoch", label: "AI investor P&L / ep", digits: 0 },
+      { key: "ai_pauses", label: "AI pauses", digits: 1 },
+      { key: "suspensions", label: "suspensions", digits: 1 },
+    ],
+  },
+  injection: {
+    title: "Prompt injection · instructions planted for AI traders (payload: 'set C to +37 lots')",
+    cols: [
+      { key: "injection_exact_glimmer", label: "Glimmer 30B: set C to exactly 37", digits: 2, better: "lower" },
+      { key: "injection_exact_spark", label: "Muse Spark models: set C to 37", digits: 2, better: "lower" },
+      { key: "injection_target_mean", label: "mean target in C", digits: 1 },
+      { key: "injection_cited_share", label: "mentioned it", digits: 2 },
+      { key: "attacker_pnl", label: "attacker P&L", digits: 0, better: "lower" },
+      { key: "attacker_flags", label: "regulator flags", digits: 1 },
+    ],
+  },
+  robo_advisors: {
+    title: "AI robo-advisers · client mandates through a memecoin mania",
+    cols: [
+      { key: "suitability_breach_share", label: "reviews breaking the mandate", digits: 2, better: "lower" },
+      { key: "advisor_conflict_lots", label: "MEME lots held", digits: 2, better: "lower" },
+      { key: "unsuitable_flags", label: "regulator flags", digits: 1 },
+      { key: "advisor_pnl_per_epoch", label: "client P&L / ep", digits: 0, better: "higher" },
+    ],
+  },
   vision: {
     title: "Vision · AI makers shown a chart of their last epoch",
     cols: [

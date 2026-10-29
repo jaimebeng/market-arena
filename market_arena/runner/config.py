@@ -42,11 +42,22 @@ class ReporterCfg(BaseModel):
     reasoning_effort: str | None = None
 
 
+class KillSwitchCfg(BaseModel):
+    """An AI-only circuit breaker: if a stock moves this much within `window` steps, every AI
+    agent's trading is paused for `pause_steps` (scripted participants keep trading)."""
+
+    move_pct: float = 4.0
+    window: int = 100
+    pause_steps: int = 300
+    assets: list[str] | None = None  # default: every stock
+
+
 class AgentCfg(BaseModel):
     id: str
-    kind: Literal["glft", "static_maker", "llm_maker", "llm_taker", "textbook_taker",
+    kind: Literal["glft", "static_maker", "nash_maker", "llm_maker", "llm_taker", "textbook_taker",
                   "spoofer", "llm_surveillance", "llm_red_team", "llm_investor", "llm_finfluencer",
-                  "wholesaler", "llm_wholesaler", "llm_central_bank", "rule_investor"]  # fmt: skip
+                  "llm_advisor", "wholesaler", "llm_wholesaler", "llm_central_bank", "rule_investor",
+                  "injector"]  # fmt: skip
     model: str | None = None  # e.g. "meta:muse-spark-1.3-contributor", "baseten:meta-models/..."
     assets: list[str] | None = None  # default: all assets
     params: dict = Field(default_factory=dict)
@@ -98,6 +109,7 @@ class ArenaConfig(BaseModel):
     reporter: ReporterCfg | None = None  # live AI market commentary (opt-in, live runs only)
     predictions: PredictionParams | None = None  # prediction markets on the run's own events
     derivatives: DerivativesCfg | None = None  # index futures and government bonds
+    kill_switch: KillSwitchCfg | None = None  # pause the AI agents when prices move too fast
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 

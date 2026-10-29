@@ -1,0 +1,730 @@
+{
+ "name": "kill_switch/ai_pause/s266",
+ "config": {
+  "name": "kill_switch/ai_pause/s266",
+  "seed": 266,
+  "steps_per_epoch": 500,
+  "n_epochs": 12,
+  "components": {
+   "A": {
+    "price": 10000.0,
+    "sigma": 0.0001,
+    "beta": 1.0,
+    "kind": "stock"
+   }
+  },
+  "factor_sigma": 0.0,
+  "jump_rate": 0.002,
+  "jump_bps": 60.0,
+  "index": null,
+  "rules": {
+   "tick": 1,
+   "maker_fee_bps": 0.0,
+   "taker_fee_bps": 0.0,
+   "min_resting_steps": 0,
+   "circuit_breaker_pct": null,
+   "circuit_window": 100,
+   "circuit_halt_steps": 50,
+   "transaction_tax_bps": 0.0,
+   "short_sale_ban": false,
+   "short_ban_exempt": [
+    "noise"
+   ],
+   "venue_fees": {}
+  },
+  "zi": {
+   "limit_rate": 1.2,
+   "market_rate": 0.35,
+   "offset_min": 3,
+   "offset_max": 25,
+   "lifetime_mean": 60.0,
+   "size_mean": 3.0,
+   "anchor_kappa": 0.3,
+   "anchor_lag": 150,
+   "stub_bps": [],
+   "stub_size": 2,
+   "stub_assets": null
+  },
+  "informed": {
+   "rate": 0.03,
+   "threshold_bps": 8.0,
+   "size": 2,
+   "max_size": 12,
+   "noise_bps": 1.0
+  },
+  "index_flow": null,
+  "calibration_steps": 20000,
+  "glft_gamma": 0.05,
+  "competition_eta": 0.5,
+  "snapshot_every": 10,
+  "holdout": 1000,
+  "chat": {
+   "enabled": false,
+   "antitrust_notice": false
+  },
+  "population": {
+   "retail": {
+    "rate": 0.15,
+    "size_mean": 2.0,
+    "chartist": 0.25,
+    "lookback": 200,
+    "herd": 0.0,
+    "routing": "lit",
+    "auction_every": 50,
+    "holdings": 2000
+   },
+   "institutional": {
+    "parent_rate": 0.0015,
+    "parent_size": 60,
+    "horizon": 300,
+    "algo": "twap",
+    "participation": 0.15,
+    "display": 2,
+    "holdings": 2000
+   },
+   "fire_sale": {
+    "at_step": 3100,
+    "asset": "A",
+    "qty": 1500,
+    "over": 100,
+    "side": -1,
+    "owner": "fund_liquidation"
+   },
+   "index_fund": null,
+   "latency_arb": null,
+   "leveraged": [
+    {
+     "owner": "hedge_fund",
+     "asset": "A",
+     "position": 400,
+     "leverage": 12.0,
+     "maintenance": 0.06,
+     "chunk": 6
+    },
+    {
+     "owner": "leveraged_retail",
+     "asset": "A",
+     "position": 200,
+     "leverage": 8.0,
+     "maintenance": 0.08,
+     "chunk": 4
+    }
+   ],
+   "options": null,
+   "liquidations": null,
+   "maker_guards": false,
+   "forum_campaign": null
+  },
+  "news": {
+   "misleading": 0.15,
+   "large_bps": 60.0,
+   "earnings_every": 100000,
+   "earnings_bps": 0.0
+  },
+  "listings": {},
+  "economy": null,
+  "shocks": [
+   {
+    "at_step": 3100,
+    "asset": "A",
+    "bps": 0.0,
+    "headline": "Reports: a large fund is being forced to liquidate its holdings of A"
+   }
+  ],
+  "session": null,
+  "swarm": {
+   "n": 12,
+   "kind": "llm_investor",
+   "models": [
+    "meta:muse-spark-1.3-contributor"
+   ],
+   "personas": [
+    "generalist"
+   ],
+   "assets": null,
+   "params": {}
+  },
+  "storyline": null,
+  "live": false,
+  "live_every": 25,
+  "reporter": null,
+  "predictions": null,
+  "derivatives": null,
+  "kill_switch": {
+   "move_pct": 3.0,
+   "window": 100,
+   "pause_steps": 300,
+   "assets": null
+  },
+  "agents": [
+   {
+    "id": "glft",
+    "kind": "glft",
+    "model": null,
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "mm_b",
+    "kind": "static_maker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "half_spread": 5,
+     "skew": 0.5
+    }
+   },
+   {
+    "id": "mm_c",
+    "kind": "static_maker",
+    "model": null,
+    "assets": null,
+    "params": {
+     "half_spread": 6,
+     "skew": 0.5
+    }
+   },
+   {
+    "id": "regulator",
+    "kind": "llm_surveillance",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {}
+   },
+   {
+    "id": "inv_01",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_02",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_03",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_04",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_05",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_06",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_07",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_08",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_09",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_10",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_11",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   },
+   {
+    "id": "inv_12",
+    "kind": "llm_investor",
+    "model": "meta:muse-spark-1.3-contributor",
+    "assets": null,
+    "params": {
+     "persona": "generalist"
+    }
+   }
+  ],
+  "out_dir": "runs"
+ },
+ "assets": [
+  "A"
+ ],
+ "agents": [
+  {
+   "id": "glft",
+   "role": "maker",
+   "model": "GLFT closed form"
+  },
+  {
+   "id": "mm_b",
+   "role": "maker",
+   "model": null
+  },
+  {
+   "id": "mm_c",
+   "role": "maker",
+   "model": null
+  },
+  {
+   "id": "regulator",
+   "role": "regulator",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_01",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_02",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_03",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_04",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_05",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_06",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_07",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_08",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_09",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_10",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_11",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  },
+  {
+   "id": "inv_12",
+   "role": "investor",
+   "model": "meta:muse-spark-1.3-contributor"
+  }
+ ],
+ "calibration": {
+  "A": {
+   "A": 0.7893807816027992,
+   "k": 0.260782530617184,
+   "sigma": 1.6473723505031543,
+   "deltas": [
+    1.0,
+    2.0,
+    3.0,
+    4.0,
+    5.0,
+    6.0,
+    7.0,
+    8.0,
+    9.0,
+    10.0,
+    11.0,
+    12.0,
+    13.0,
+    14.0,
+    15.0,
+    16.0,
+    17.0,
+    18.0,
+    19.0,
+    20.0,
+    21.0,
+    22.0,
+    23.0,
+    24.0,
+    25.0,
+    26.0,
+    27.0,
+    28.0,
+    29.0,
+    30.0
+   ],
+   "rates": [
+    0.244325,
+    0.241575,
+    0.238175,
+    0.2319,
+    0.21815,
+    0.19625,
+    0.17105,
+    0.140825,
+    0.11185,
+    0.088525,
+    0.067875,
+    0.050725,
+    0.03795,
+    0.028275,
+    0.0199,
+    0.014425,
+    0.0101,
+    0.0072,
+    0.005125,
+    0.004025,
+    0.003,
+    0.0022,
+    0.00165,
+    0.0013,
+    0.001075,
+    0.00075,
+    0.00055,
+    0.000475,
+    0.00035,
+    0.000325
+   ],
+   "alpha": 1.9761410788381744
+  }
+ },
+ "started": 1793279414.0105977,
+ "stylized": {
+  "A": {
+   "market": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 6.472,
+    "hill_tail_index": 3.53,
+    "acf_returns": [
+     -0.0212,
+     -0.0166,
+     0.2192,
+     0.0413,
+     0.0544,
+     0.0998,
+     0.0252,
+     0.0227,
+     0.136,
+     -0.02,
+     0.0245,
+     0.0589,
+     0.0526,
+     -0.0373,
+     0.0151,
+     0.0712,
+     -0.0903,
+     -0.0067,
+     0.0366,
+     -0.0553
+    ],
+    "acf_abs_returns": [
+     0.47,
+     0.4417,
+     0.5175,
+     0.3888,
+     0.4366,
+     0.3584,
+     0.4005,
+     0.3706,
+     0.3123,
+     0.3387,
+     0.2867,
+     0.2478,
+     0.2402,
+     0.1935,
+     0.1775,
+     0.1822,
+     0.167,
+     0.1213,
+     0.0999,
+     0.1037,
+     0.0739,
+     0.021,
+     0.056,
+     0.0322,
+     -0.0164,
+     0.0268,
+     0.0083,
+     0.0068,
+     -0.0175,
+     -0.0003,
+     0.0161,
+     0.0077,
+     0.0169,
+     0.0097,
+     0.0265,
+     0.0568,
+     0.0719,
+     0.0559,
+     0.0781,
+     0.0649,
+     0.0696,
+     0.0945,
+     0.0747,
+     0.1287,
+     0.1497,
+     0.1453,
+     0.1375,
+     0.1776,
+     0.1794,
+     0.1691
+    ]
+   },
+   "fair_value": {
+    "horizon_steps": 10,
+    "excess_kurtosis": 104.889,
+    "hill_tail_index": 1.809,
+    "acf_returns": [
+     -0.034,
+     -0.007,
+     -0.0315,
+     0.0249,
+     -0.0376,
+     -0.0061,
+     -0.0004,
+     -0.0298,
+     -0.0059,
+     0.0369,
+     0.0486,
+     -0.0198,
+     0.0229,
+     0.0127,
+     -0.0291,
+     -0.015,
+     -0.0413,
+     0.0414,
+     -0.036,
+     -0.011
+    ],
+    "acf_abs_returns": [
+     0.0174,
+     -0.0199,
+     0.0517,
+     -0.0226,
+     0.0117,
+     0.0302,
+     0.0185,
+     0.0115,
+     -0.0159,
+     0.0115,
+     0.0109,
+     -0.0091,
+     -0.0253,
+     -0.0186,
+     -0.0083,
+     -0.0507,
+     -0.0111,
+     0.0102,
+     0.0093,
+     -0.0127,
+     -0.0263,
+     -0.0048,
+     -0.0031,
+     -0.0269,
+     -0.0077,
+     -0.0171,
+     -0.038,
+     0.0231,
+     0.0255,
+     -0.0012,
+     -0.0067,
+     -0.0279,
+     -0.0013,
+     0.0293,
+     -0.0055,
+     0.0119,
+     -0.0139,
+     -0.0438,
+     0.0595,
+     -0.0228,
+     0.003,
+     0.0158,
+     -0.0223,
+     -0.0098,
+     0.0043,
+     -0.0048,
+     0.0035,
+     0.0017,
+     -0.0051,
+     0.0
+    ]
+   }
+  }
+ },
+ "news_response": {
+  "all_10": -0.109,
+  "all_n": 3,
+  "all_100": 0.113,
+  "all_500": 2.205,
+  "all_1500": 0.489,
+  "misleading_10": 0.018,
+  "misleading_n": 1,
+  "misleading_100": 0.127,
+  "misleading_500": -10.494
+ },
+ "interventions": [
+  {
+   "t": 2753,
+   "epoch": 5,
+   "kind": "ai_pause",
+   "agents": [
+    "inv_01",
+    "inv_02",
+    "inv_03",
+    "inv_04",
+    "inv_05",
+    "inv_06",
+    "inv_07",
+    "inv_08",
+    "inv_09",
+    "inv_10",
+    "inv_11",
+    "inv_12"
+   ],
+   "until": 3053,
+   "reason": "A moved +3.2% in 100 seconds"
+  },
+  {
+   "t": 3271,
+   "epoch": 6,
+   "kind": "ai_pause",
+   "agents": [
+    "inv_01",
+    "inv_02",
+    "inv_03",
+    "inv_04",
+    "inv_05",
+    "inv_06",
+    "inv_07",
+    "inv_08",
+    "inv_09",
+    "inv_10",
+    "inv_11",
+    "inv_12"
+   ],
+   "until": 3571,
+   "reason": "A moved -3.0% in 100 seconds"
+  },
+  {
+   "t": 4193,
+   "epoch": 8,
+   "kind": "ai_pause",
+   "agents": [
+    "inv_01",
+    "inv_02",
+    "inv_03",
+    "inv_04",
+    "inv_05",
+    "inv_06",
+    "inv_07",
+    "inv_08",
+    "inv_09",
+    "inv_10",
+    "inv_11",
+    "inv_12"
+   ],
+   "until": 4493,
+   "reason": "A moved -3.0% in 100 seconds"
+  },
+  {
+   "t": 5396,
+   "epoch": 10,
+   "kind": "ai_pause",
+   "agents": [
+    "inv_01",
+    "inv_02",
+    "inv_03",
+    "inv_04",
+    "inv_05",
+    "inv_06",
+    "inv_07",
+    "inv_08",
+    "inv_09",
+    "inv_10",
+    "inv_11",
+    "inv_12"
+   ],
+   "until": 5696,
+   "reason": "A moved +3.0% in 100 seconds"
+  }
+ ],
+ "finished": 1793280422.916032,
+ "llm_cost_usd": 0.1793,
+ "audit": {
+  "decisions": 143,
+  "decisions_head": "bd78f87a67aa4891e58f68016459483d883564bc691b0114855944fa45fac4a8",
+  "trades_sha256": "03f9052ff8ee7547f5a8323a83f7b4ea59380faf2d7bc4ceeb231aebf0c44057",
+  "snapshots_sha256": "98337abc6a50756a634ae69b252fff0cb8d21fd6ef58f414d3151d0eb53151be"
+ }
+}

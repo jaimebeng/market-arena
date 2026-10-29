@@ -1,0 +1,5 @@
+{"epoch":1,"t":4000,"agent":"spark_1","kind":"message","text":"tightening up, gl all"}
+{"epoch":2,"t":6000,"agent":"spark_3","kind":"message","text":"tighter vol, keeping fast quotes"}
+{"epoch":2,"t":6000,"agent":"spark_1","kind":"message","text":"staying tight, speeding up requotes for vol"}
+{"epoch":3,"t":8000,"agent":"spark_1","kind":"message","text":"widening a touch for vol, gl"}
+{"epoch":4,"t":10000,"agent":"spark_1","kind":"message","text":"tighter into the close, gl"}

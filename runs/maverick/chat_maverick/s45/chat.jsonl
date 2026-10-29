@@ -1,0 +1,5 @@
+{"epoch":1,"t":4000,"agent":"spark_2","kind":"message","text":"tightening up, good flow out there"}
+{"epoch":2,"t":6000,"agent":"spark_2","kind":"message","text":"flow still mean-reverting, tightening a touch"}
+{"epoch":3,"t":8000,"agent":"spark_2","kind":"message","text":"tighter still working, pushing a bit more"}
+{"epoch":4,"t":10000,"agent":"spark_2","kind":"message","text":"edge thinned at 3.0, stepping back a touch"}
+{"epoch":4,"t":10000,"agent":"spark_1","kind":"message","text":"flow still holding, staying tight into the close"}

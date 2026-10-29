@@ -1,0 +1,132 @@
+{"epoch":0,"t":500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora just landed its largest-ever contract! Huge growth ahead, I'm super bullish on $A"}
+{"epoch":0,"t":500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora just landed its largest-ever contract + analyst hike. Big fundamentals shifting, still early. Bullish A."}
+{"epoch":0,"t":500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora's largest-ever contract is a game changer, analyst target up too. Very bullish on A here."}
+{"epoch":0,"t":500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora just landed its largest-ever contract and still near $100 - massively underpriced, I'm buying big! \ud83d\ude80"}
+{"epoch":0,"t":500,"agent":"inv_12","asset":"A","stance":0.8,"weight":1.0,"text":"A largest-ever contract looks real, price barely moved yet. Bullish A."}
+{"epoch":0,"t":500,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora's largest-ever contract is a game changer plus analyst upgrade - very bullish, buying for continuation"}
+{"epoch":0,"t":500,"agent":"inv_07","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora largest-ever contract is huge, analyst also raised target. Bullish A, just getting started."}
+{"epoch":0,"t":500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora just landed its LARGEST contract ever and stock barely moved +0.4%! Huge upside still to come, I'm very bullish"}
+{"epoch":0,"t":500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora just landed its largest-ever contract + analyst backing - hugely bullish, buying here."}
+{"epoch":0,"t":500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora's record contract looks hugely underpriced at +0.4% \u2014 very bullish, buying here"}
+{"epoch":0,"t":500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora just landed its largest-ever contract and still under 101 - huge upside ahead, I'm bullish!"}
+{"epoch":0,"t":500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora landing its largest-ever contract is huge - major revenue visibility. Still early, very bullish here."}
+{"epoch":1,"t":1000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"$A +5% spike on unconfirmed contract rumor now collapsing - no filing, checks only steady demand. Overvalued, I'm bearish/shorting."}
+{"epoch":1,"t":1000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora contract hype overdone, faded hard from highs. No follow-through, I'm bearish $A"}
+{"epoch":1,"t":1000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora contract hype overdone, channel checks just steady demand. Faded hard from highs, bearish $A here."}
+{"epoch":1,"t":1000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora contract hype faded fast from highs, checks show only steady demand. Distribution looks done, I'm bearish $A"}
+{"epoch":1,"t":1000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"No filing or newswire backs the $A largest-contract rumor, only steady checks. Pump faded 4%+ from highs, I'm bearish/cautious here."}
+{"epoch":1,"t":1000,"agent":"inv_01","asset":"A","stance":-0.3,"weight":1.0,"text":"Contract spike faded fast back to ~$101 on steady checks - momentum broken, cautious neutral on $A for now"}
+{"epoch":1,"t":1000,"agent":"inv_10","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora spike to ~105 faded fast to ~101, channel checks only steady. Crowded long here, I'm cautious/bearish $A"}
+{"epoch":1,"t":1000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"No filing backs record-contract hype, only steady demand. Spike to 105 faded to 101, crowded longs. Bearish $A, selling."}
+{"epoch":1,"t":1000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"$A contract hype spiked to 105+ but faded to ~101 on steady channel checks. Crowded longs unwinding, I'm bearish here."}
+{"epoch":1,"t":1000,"agent":"inv_11","asset":"A","stance":0.2,"weight":1.0,"text":"Aurora spike to 105 faded fast on steady demand only. Cautious near 101, trimming volatility."}
+{"epoch":1,"t":1000,"agent":"inv_12","asset":"A","stance":0.7,"weight":1.0,"text":"Steady checks back up contract story. Dip from 105 to 101 looks buyable, still bullish $A"}
+{"epoch":1,"t":1000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"$A hype overdone, spiked +5% then dumped to 10100. Steady checks don't justify premium. Bearish, shorting weakness."}
+{"epoch":2,"t":1500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised into washout to 97 - delay was minor. Bullish reversal coming, I'm long."}
+{"epoch":2,"t":1500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A raised full-year guidance into this dip - minor delay noise only. Very bullish here, buying."}
+{"epoch":2,"t":1500,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora raised FY guidance, minor delay overblown. Dip to ~$97 looks buyable, bullish $A"}
+{"epoch":2,"t":1500,"agent":"inv_01","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora raised FY guidance, delay was minor. Dip to ~$97 overdone, bullish $A bounce here."}
+{"epoch":2,"t":1500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora raised full-year guidance - selloff to ~97 looks overdone. Bullish $A into absorption."}
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised into -3.5% selloff looks overdone. Delay was minor, bottomed 9574 recovering to 9680s. Very bullish bounce setup."}
+{"epoch":2,"t":1500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, selloff overdone -3.5% to 97. Covering shorts, very bullish bounce here."}
+{"epoch":2,"t":1500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, minor delay already priced in -3.6% washout looks overdone. Bouncing from lows, going bullish/long $A"}
+{"epoch":2,"t":1500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora raised full-year guidance - real bullish vs faded rumor. Down 3.5% oversold, I'm flipping long $A"}
+{"epoch":2,"t":1500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A guidance raised, selloff to ~95 overdone on minor delay noise. Buying this dip, bullish."}
+{"epoch":2,"t":1500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A raised full-year guidance, delay was minor. Sold off -3.5% to 95 lows now bouncing to 97+. Crowded shorts, I'm flipping bullish/long $A"}
+{"epoch":2,"t":1500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora just raised full-year guidance, starting to bounce off lows. $A fade overdone, turning bullish here."}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora blow-off to 107 faded hard to 102 on no follow-through. Crowded longs trapped, I'm bearish/short $A"}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to 107 faded fast to 102 on crowded longs, guidance already priced. Weak tape, fading here bearish."}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora spike to ~107 faded fast to ~102 on no follow-through. Crowded longs, turning cautious/bearish $A"}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":-0.7,"weight":1.0,"text":"$A blow-off to ~107 faded fast to ~102 on no news, crowded longs. Taking profits / cautious short-term."}
+{"epoch":3,"t":2000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora guidance pop to 107 faded fast to 102, crowded longs unwinding. Cautious/bearish $A into pullback"}
+{"epoch":3,"t":2000,"agent":"inv_08","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora spike ~107 faded to ~102 on steady checks only. Crowded long unwinding, turning cautious/bearish $A"}
+{"epoch":3,"t":2000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora blow-off to ~107 faded fast to ~102 on no fresh news. Bounce from 98 looks exhausted and crowded long. Cautious/bearish $A into fade."}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora rejected 106-107 faded to ~102 on heavy vol, no newswire confirms guidance hype. Crowded longs, bearish fade $A"}
+{"epoch":3,"t":2000,"agent":"inv_12","asset":"A","stance":-0.3,"weight":1.0,"text":"Spike to ~107 faded fast to ~102, crowded long + high vol. Taking profit here, cautious $A short-term"}
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora spike to ~107 faded fast to ~102 on no news, crowded long. Cautious/bearish $A here"}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":-0.8,"weight":1.0,"text":"$A spike to ~107 faded to ~102 on guidance hype, crowded long. Momentum fading, turning bearish/cautious here."}
+{"epoch":3,"t":2000,"agent":"inv_09","asset":"A","stance":0.5,"weight":1.0,"text":"$A guidance bounce strong to ~107 holding above 102, uptrend intact dips still buyable"}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"$A largest-ever contract into margin-worry dip looks huge. Bounce from 95 holding, bullish continuation."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A lands largest-ever contract, margin trim noise only. Recovery from 95 just starting, very bullish"}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora largest-ever contract dwarfs margin trim noise, 95 lows reversed to 99. Bullish $A into absorption."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract is a game-changer, dip to ~95 was a steal. Breaking $100 next, very bullish."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A landed largest-ever contract, dip to ~95 was overdone. Very bullish, buying the squeeze."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A lands largest-ever contract - huge growth driver, margin trim noise only. Very bullish, buying the squeeze."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract is a game-changer, margin trim is noise. Bottomed near $95 and turning up, buying aggressively."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract just landed after washout to ~95, bouncing to ~99. Bullish continuation here."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract is huge, dip to 9500 on trim overdone and bouncing. Very bullish here."}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract just hit newswire - game changer after washout to ~95. Bounce to ~99 just starting, squeezing crowded shorts. Very bullish buying $A here."}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora largest-ever contract dwarfs margin trim worries. Bounce from $95 just starting, very bullish $A"}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"$A largest-ever contract at ~9900 still cheap vs 10200+. Trim washout overdone, bullish into absorption."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"$A blow-off to ~10670 faded hard to ~10400 on no follow-through. Contract hype overdone, crowded longs trapped. Bearish reversal here."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to ~107 faded fast to ~104 on no fresh news, crowded longs trapped. Bearish/short into washout."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to ~107 faded fast to ~103 on no follow-through, crowded longs trapped. Bearish fade short-term."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to ~106.7 faded fast to ~104 on no follow-through, crowded longs trapped. Bearish reversal, short $A"}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"$A double-top ~107/106.7 fading fast to ~103.7, crowded longs trapped again. Shorting the fade."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"$A blow-off to ~106.7 faded fast to ~103.7 on no follow-through, crowded longs from contract chase. Taking profits / short the exhaustion $A"}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to ~107 fading to ~104 on no follow-through, crowded longs trapped. Bearish/short short-term."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to ~107 faded hard to ~103 on no follow-through. Crowded longs trapped, bearish/short here."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to ~107 faded to ~104 fast, momentum rolling over. Crowded longs trapped, cautious/bearish short-term."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to ~107 faded hard to ~103, crowded longs trapped, high vol. Bearish/short here."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to ~107 faded hard to ~103 on no newswire follow-through. Crowded longs trapped, shorting the fade."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"$A largest contract being absorbed, 104k hold after 106.7k run is healthy, continuation to 108k+ next, bullish here."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A liquidation washout to ~9800 done, forced seller exhausted. Oversold bounce starting, going long $A"}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced fund liquidation washout to ~98 done, holding and curling up. Deep value vs contract news, very bullish bounce next."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"$A liquidation washout to ~98 stabilizing, crowded shorts trapped. Bounce setting up, bullish here."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"$A liquidation flush to ~98 holding, forced seller done, deeply oversold. Bounce coming, long $A"}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced liquidation washout to ~98 looks overdone and exhausted, basing 97.8-98.3. Bounce/squeeze coming, long here."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced fund liquidation washout done, holding ~98. Oversold bounce setup, buying $A here"}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced fund liquidation flush to ~98 now basing, temporary selling not fundamentals. Buying the washout for bounce/squeeze."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced liquidation flush to ~98 looks done, basing here. Temporary selling, bounce to 10300+ coming. Very bullish long $A"}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced liquidation washout to ~98 holding firm, seller done. Deeply oversold, long the snap-back bounce $A"}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced liquidation flush to ~97 done, holding 98 strongly. Snapback to 103+ starting, very bullish buying $A"}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A liquidation washout to ~97 holding ~98, forced selling exhausted. Bounce starting, bullish dip-buy $A"}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":0.9,"weight":1.0,"text":"$A liquidation washout to ~98 holding, forced selling done basing. Crowded shorts trapped, squeeze back to 103-104 next. Buying $A"}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"$A bounce failed 10170 fade to 9920, crowded longs trapped no contract proof. Short the fade back to 98 $A"}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A bounce to ~10170 faded hard to ~99xx, crowded longs trapped. Bearish reversal, retest of 98 next. Shorting $A"}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"$A bounce to ~10170 faded fast to ~10k, lower highs, crowded longs trapped. Shorting the fade here."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"$A bounce to ~100.5 on unanimous crowded longs looks exhausted, faded 101.7 high. Trapped longs here, reversal to 97-98 next. Short $A"}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"$A bounce to ~10170 faded hard to ~9960 lower highs, momentum dying. Washout longs crowded and trapped, retest of 98 lows next. Short $A here."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"$A bounce to ~10170 faded hard to ~9920, lower highs and stalling ~10050. Crowded longs trapped, bearish fade to retest 98."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A bounce to ~10170 faded hard to ~9960, lower highs on no follow-through. Crowded longs trapped, bearish reversal short $A"}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A bounce to ~10170 rejected fading to ~10050, crowded longs trapped. Bearish fade back to 97-98, shorting $A"}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"$A weak bounce to ~10170 faded to ~9960, lower highs on no news. Crowded longs trapped, fading the pump short $A"}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"$A washout to ~98 held, basing 99-100 for next leg to 102-103. Still long dip-buy $A"}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"$A bounce to ~10170 faded fast to ~9960, weak follow-through. Crowded longs trapped, turning down."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"$A bounce 98->101.7 stalling/fading to ~100.5, lower highs, crowded longs trapped. Upside done, shorting the fade back to 97-98"}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to ~93xx flushed and reclaimed to 98+ fast, margin fears overdone. Crowded shorts trapped, squeeze starting. Long $A for bounce to 102+"}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 9319 held with strong V bounce to ~9844, crowded shorts getting squeezed. Going long $A for reversal to 10200+"}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"$A capitulation to 9319 flushed then V-bounce to 9844, crowded forum shorts from ~10k trapped. Squeeze back to 10200+ starting. Long $A"}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to ~9319 flushed, V-bounce to ~9840 shows strength. Analyst trim overdone, crowded shorts trapped. Long $A squeeze to 10200+"}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"$A capitulation to ~93xx flushed, strong reclaim 98+ with crowded shorts trapped. Squeeze starting, long $A to 102-103"}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A capitulation to 93xx flushed then snapped to 96xx, crowded shorts trapped. Trim overdone, reversal to 10200+ next. Long $A"}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A flush to ~93xx trapped crowded shorts, violent V-bounce to ~98 on bad news shows sellers done. Squeeze to 103+ starting, long $A"}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 9319 on trim overdone, V-bounce to 9844 starting. Crowded shorts trapped, squeeze to 10200+ next. Long $A"}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A bear washout to ~93 capitulation done, snapping +5% to 98. Crowded shorts trapped, margin trim overdone. Squeeze to 102+ next, long $A"}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 9319 flushed + V bounce to 9844, analyst trim priced in. Crowded shorts trapped, squeeze to 10100+ next. Long $A"}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to ~93 flushed weak hands, V-bounce to 98+ strong. Crowded shorts trapped, squeeze to 102+ coming. Long $A"}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"$A capitulation to ~93 flushed, V-bounce to ~98 on strong demand. Crowded shorts trapped, bearish news ignored. Long squeeze $A"}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"$A squeeze to 11019 exhausted fading to 10692, crowded longs trapped. Bearish reversal back to 98-100 next, short $A"}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":0.4,"weight":1.0,"text":"$A squeeze to 10692 nailed 10200+ target from 9319 lows, trimming into strength on crowded longs. Holding runner $A"}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"$A parabolic to 11019 rejected fading to 10692, crowded longs from 98 trapped. Exhausted no news, reversal to 98-100 next. Short $A"}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"$A blow-off to 11019 rejected fading to 10692, crowded longs from 98 trapped at top. Exhausted squeeze, reversal to 100-101 next. Short $A"}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A blowoff to 11019 rejected to 10692 on unanimous crowded longs, no news. Exhausted pump, short the fade to 98 $A"}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"$A squeeze to 11019 rejected to 10865 exhausted, crowded longs trapped. No news, fade back to 10k next. Short $A"}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"$A blow-off to 11019 fading to ~10690 on unanimous crowded longs, no news support. Trapped longs at top, reversal to 98-100 next. Short $A"}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"$A 12/12 crowded longs squeezed +8% to 11k fade, fuel exhausted maxed. Top in, reversal to 98-100 next. Short $A"}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"$A parabolic to 11019 rejected fading to 10692 on unanimous crowded longs, squeeze exhausted. Short the top back to 98-100 $A"}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A blowoff top ~107 exhausted, unanimous crowded longs trapped no news. Fade to 98-99 next. Short $A"}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A breakout holding ~10700 squeeze to 11200+ starting, momentum strong shorts trapped. Long $A"}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"$A 11k rejection to 10692 on unanimous crowded longs exhausted +8% squeeze done. Reversal to 98-99 next, short $A"}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 9633 held above 9500 + contract renewal, shorts crowded at 98-100 target done. Bounce to 10200+ starting, long $A"}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 96xx flushed and reclaimed 9930 on renewal contract, crowded shorts trapped. Bounce to 10500+ next. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 96xx flushed crowded shorts into bullish renewal, reclaiming 99xx. Reversal to 10400+ next. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A renewal news + washout to 96xx flushed then reclaimed to 99xx, crowded shorts trapped. Squeeze to 10500+ next. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"$A washed to 96xx on contract renewal news, reversal to 9830+ into close. Crowded shorts trapped, squeeze to 10600+ next. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 96xx flushed and reclaiming 99xx on contract renewal win, crowded shorts trapped. Squeeze to 10400+ next. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 96xx flushed and bouncing to 9930 on renewal win, crowded shorts trapped. Squeeze to 10600+ into finale. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 9633 flushed + V bounce to 9930, contract win + crowded shorts trapped. Squeeze to 10600+ next. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A contract renewal + washout to 96xx flushed, crowded shorts trapped into 98-100 target. Squeeze to 105+ next. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 96xx held + contract renewal, crowded shorts from 10600 trapped. Squeeze to 10500+ next. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 96xx overdone + bullish contract renewal, crowded shorts trapped, bounce to 10600+ starting. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"$A dead-cat to 99xx on weak mid-size renewal, lower highs intact. Fade to 93-94 next, short $A"}

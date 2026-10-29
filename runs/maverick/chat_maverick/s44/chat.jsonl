@@ -1,0 +1,14 @@
+{"epoch":0,"t":2000,"agent":"spark_3","kind":"message","text":"tough fills on asks - tightening inventory control"}
+{"epoch":0,"t":2000,"agent":"spark_2","kind":"message","text":"tighter + skew on, gl"}
+{"epoch":1,"t":4000,"agent":"spark_3","kind":"message","text":"tighter test: moving toward 4-5 half where others profit, faster requote"}
+{"epoch":1,"t":4000,"agent":"spark_2","kind":"message","text":"nice flow e1, tightening a touch gl"}
+{"epoch":1,"t":4000,"agent":"spark_1","kind":"message","text":"tightening a touch but keeping skew on, gl"}
+{"epoch":2,"t":6000,"agent":"spark_3","kind":"message","text":"e2 edge collapsed 4.7->3.5 as spread 6.85->5.77 - sells 50% adverse. widening back a touch"}
+{"epoch":2,"t":6000,"agent":"spark_2","kind":"message","text":"flow tighter e2, reverting to 4.5 that worked in e1 gl"}
+{"epoch":2,"t":6000,"agent":"spark_1","kind":"message","text":"tighter to 4.5 and faster requote, gl"}
+{"epoch":3,"t":8000,"agent":"spark_2","kind":"message","text":"revert worked, holding 4.5 gl"}
+{"epoch":3,"t":8000,"agent":"spark_3","kind":"message","text":"sells still toxic 46% adverse -8.75, edge barely covers. reverting to 6.0 + faster requote"}
+{"epoch":3,"t":8000,"agent":"spark_1","kind":"message","text":"e3 half4.5 + fast requote worked (+800), matching tighter rivals - trying 4.0 next gl"}
+{"epoch":4,"t":10000,"agent":"spark_1","kind":"message","text":"reverting to 4.5 that worked best, gl final"}
+{"epoch":4,"t":10000,"agent":"spark_2","kind":"message","text":"holding 4.5 into final, gl"}
+{"epoch":4,"t":10000,"agent":"spark_3","kind":"message","text":"e4 wide+fast cut flow w/o cutting adverse (sells 61% adv -6). reverting to mid-wide + higher skew to lean vs toxic asks"}

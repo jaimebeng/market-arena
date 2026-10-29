@@ -1,0 +1,10 @@
+{"epoch":1,"t":4000,"agent":"spark_3","kind":"message","text":"vol jump 0.73\u21921.29, ask fills 44% adverse (-9.4c). Widening & faster requotes."}
+{"epoch":1,"t":4000,"agent":"spark_2","kind":"message","text":"tough tape for sellers, widening out a touch"}
+{"epoch":2,"t":6000,"agent":"spark_1","kind":"message","text":"wide + fast working, holding it. ask tail risk noted."}
+{"epoch":2,"t":6000,"agent":"spark_2","kind":"message","text":"sells still heavy-tailed in this drift, keeping it wide & quick"}
+{"epoch":3,"t":8000,"agent":"spark_3","kind":"message","text":"tighter fills improving (sell adverse 31% vs 36%) so testing incrementally tighter"}
+{"epoch":3,"t":8000,"agent":"spark_2","kind":"message","text":"bid tail building, staying wide & fast"}
+{"epoch":3,"t":8000,"agent":"spark_1","kind":"message","text":"holding wide + fast, buys looking more toxic this epoch"}
+{"epoch":4,"t":10000,"agent":"spark_3","kind":"message","text":"bid toxicity rising (42% adverse) with vol 1.42 - nudging a touch wider + stronger skew into last"}
+{"epoch":4,"t":10000,"agent":"spark_2","kind":"message","text":"bid toxicity spiking into final, staying quick and leaning on inventory"}
+{"epoch":4,"t":10000,"agent":"spark_1","kind":"message","text":"bids still toxic (56% adverse) vs asks clean, holding wide & fast with lighter cover-lean"}

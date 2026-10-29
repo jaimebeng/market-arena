@@ -264,7 +264,7 @@ export function GrandArenaTab() {
               <Feed view={view} onQuant={setOpenQuant} />
             </section>
           </div>
-          {Object.keys(view.pm).length > 0 && <Predictions view={view} />}
+          {Object.keys(view.pm).length > 0 && src && <Predictions view={view} runId={`${src.kind}:${src.id}`} />}
           {src && <Ask src={src} online={online} upto={view.last?.t ?? 0} onSeek={seek} />}
           <section className="panel grand-quants">
             <div className="panel-title">
@@ -313,6 +313,7 @@ function derive(ls: Line[]) {
   const feed: Line[] = [];
   const desk: Line[] = []; // the AI reporter's breaking items and quarter wraps
   const pm: Record<string, Line> = {}; // prediction-market contracts, each with its price history
+  const aiBets: Record<string, number[]> = {}; // contract -> the probabilities AI investors bet at
   const quants: Record<string, Line[]> = {};
   const shocks: Line[] = [];
   let lastEpoch: Line | null = null;
@@ -345,10 +346,11 @@ function derive(ls: Line[]) {
       }
       if (l.k === "news" && l.kind === "shock") shocks.push(l);
       if (l.k === "commentary") desk.push(l);
+      if (l.k === "pm_bets") for (const b of l.bets) (aiBets[b.contract] ??= []).push(b.probability);
       feed.push(l);
     }
   }
-  return { start, series, last, phase, end, feed, desk, pm, quants, shocks, lastEpoch, rate, reported, roles };
+  return { start, series, last, phase, end, feed, desk, pm, aiBets, quants, shocks, lastEpoch, rate, reported, roles };
 }
 
 // ---- panels ----------------------------------------------------------------------------------
@@ -384,7 +386,59 @@ function StatusBar({ view, running, caughtUp }: { view: View; running: boolean; 
   );
 }
 
-function Predictions({ view }: { view: View }) {
+const CALLS = [0.1, 0.3, 0.5, 0.7, 0.9];
+const brier = (ps: number[], y: number) => ps.reduce((s, p) => s + (p - y) ** 2, 0) / ps.length;
+
+/** Play along: the viewer calls open contracts, and is scored against the AI investors and the
+ * opening model on the contracts they called (Brier score, lower is better). Kept in this browser. */
+function usePicks(runId: string) {
+  const key = `grand-picks:${runId}`;
+  const [picks, setPicks] = useState<Record<string, number>>({});
+  useEffect(() => {
+    try {
+      setPicks(JSON.parse(localStorage.getItem(key) || "{}"));
+    } catch {
+      setPicks({});
+    }
+  }, [key]);
+  const pick = (id: string, p: number) =>
+    setPicks((x) => {
+      const next = { ...x, [id]: p };
+      try {
+        localStorage.setItem(key, JSON.stringify(next));
+      } catch {
+        /* private mode: keep the picks in memory */
+      }
+      return next;
+    });
+  return [picks, pick] as const;
+}
+
+function Scorecard({ view, picks }: { view: View; picks: Record<string, number> }) {
+  const called = Object.values(view.pm).filter((c) => c.outcome != null && picks[c.id] != null);
+  if (!Object.keys(picks).length) return <div className="pm-score muted small">Call the open contracts below, then watch them settle: you are scored against the AI investors and the simple model.</div>;
+  if (!called.length) return <div className="pm-score muted small">{Object.keys(picks).length} call(s) made · waiting for a contract to settle…</div>;
+  const y = (c: Line) => (c.outcome ? 1 : 0);
+  const you = called.reduce((s, c) => s + brier([picks[c.id]], y(c)), 0) / called.length;
+  const model = called.reduce((s, c) => s + brier([c.p_model_open], y(c)), 0) / called.length;
+  const withAi = called.filter((c) => view.aiBets[c.id]?.length);
+  const ai = withAi.length ? withAi.reduce((s, c) => s + brier(view.aiBets[c.id], y(c)), 0) / withAi.length : null;
+  const rows: [string, number | null][] = [["You", you], ["AI investors", ai], ["Simple model", model]];
+  const best = Math.min(...rows.map(([, v]) => v ?? Infinity));
+  return (
+    <div className="pm-score">
+      <span className="muted small">Your score on {called.length} settled call{called.length > 1 ? "s" : ""} (Brier, lower is better):</span>
+      {rows.map(([k, v]) => (
+        <span key={k} className={`pm-score-item ${v === best ? "best" : ""}`}>
+          {k} <b className="mono">{v == null ? "n/a" : v.toFixed(3)}</b>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function Predictions({ view, runId }: { view: View; runId: string }) {
+  const [picks, pick] = usePicks(runId);
   const all = Object.values(view.pm);
   const open = all.filter((c) => c.outcome == null);
   const done = all.filter((c) => c.outcome != null).slice(-6).reverse();
@@ -403,8 +457,9 @@ function Predictions({ view }: { view: View }) {
   return (
     <section className="panel grand-pm">
       <div className="panel-title">
-        Prediction markets <span className="panel-sub">contracts on next quarter's events · price = the market's probability · AI investors bet at their reviews</span>
+        Prediction markets <span className="panel-sub">contracts on next quarter's events · price = the market's probability · AI investors bet at their reviews · make your own calls</span>
       </div>
+      <Scorecard view={view} picks={picks} />
       <div className="pm-grid">
         {open.map((c) => (
           <div key={c.id} className="pm-card">
@@ -414,6 +469,14 @@ function Predictions({ view }: { view: View }) {
               <Spark hist={c.hist} />
             </div>
             <div className="muted small">model opened at {Math.round(c.p_model_open * 100)}%</div>
+            <div className="pm-call" role="group" aria-label="your probability">
+              <span className="muted small">you:</span>
+              {CALLS.map((p) => (
+                <button key={p} className={picks[c.id] === p ? "on" : ""} onClick={() => pick(c.id, p)}>
+                  {p * 100}%
+                </button>
+              ))}
+            </div>
           </div>
         ))}
         {done.map((c) => (
@@ -425,6 +488,7 @@ function Predictions({ view }: { view: View }) {
             </div>
             <div className="muted small">
               model {Math.round(c.p_model_open * 100)}%{c.p_after_ai != null && ` · after AI bets ${Math.round(c.p_after_ai * 100)}%`} · final {Math.round(c.p * 100)}%
+              {picks[c.id] != null && <b> · you {Math.round(picks[c.id] * 100)}%</b>}
             </div>
           </div>
         ))}

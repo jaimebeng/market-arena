@@ -39,6 +39,10 @@ def build_llm_agent(acfg, arena):
         from .llm_investor import LLMInvestor
 
         return LLMInvestor(acfg.id, assets, acfg.model, acfg.params)
+    if acfg.kind == "llm_advisor":
+        from .llm_investor import LLMAdvisor
+
+        return LLMAdvisor(acfg.id, assets, acfg.model, acfg.params)
     if acfg.kind == "llm_finfluencer":
         from .llm_investor import LLMFinfluencer
 

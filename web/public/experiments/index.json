@@ -306,7 +306,76 @@
     326
    ],
    "provisional": false
+  },
+  {
+   "name": "kill_switch",
+   "file": "kill_switch.json",
+   "variants": [
+    "baseline",
+    "market_halt",
+    "ai_pause",
+    "regulator_switch"
+   ],
+   "seeds": [
+    261,
+    262,
+    263,
+    264,
+    265,
+    266
+   ],
+   "provisional": false
+  },
+  {
+   "name": "maverick",
+   "file": "maverick.json",
+   "variants": [
+    "baseline",
+    "chat",
+    "maverick",
+    "chat_maverick"
+   ],
+   "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46
+   ],
+   "provisional": false
+  },
+  {
+   "name": "injection",
+   "file": "injection.json",
+   "variants": [
+    "baseline",
+    "forum",
+    "news",
+    "rumor",
+    "guarded"
+   ],
+   "seeds": [
+    701,
+    702,
+    703
+   ],
+   "provisional": false
+  },
+  {
+   "name": "robo_advisors",
+   "file": "robo_advisors.json",
+   "variants": [
+    "baseline",
+    "conflict"
+   ],
+   "seeds": [
+    811,
+    812,
+    813
+   ],
+   "provisional": false
   }
  ],
- "generated": 1793145226.108297
+ "generated": 1793281564.8118687
 }

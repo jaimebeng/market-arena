@@ -1,0 +1,5 @@
+{"epoch":1,"t":4000,"agent":"spark_3","kind":"message","text":"Wide 8c turned profitable with symmetric toxicity. Tight competitor still earns more \u2013 inching in to 7c to test edge vs adverse move buffer."}
+{"epoch":2,"t":6000,"agent":"spark_3","kind":"message","text":"sell side toxicity up 41%/-9c last epoch; tight makers still led at ~6.3c so inching to 6.5c with faster requote and stronger skew"}
+{"epoch":3,"t":8000,"agent":"spark_3","kind":"message","text":"tighter to 6c: sell adverse improved -5.7 vs -9 before so room to inch in; fastest requote+skew2 to contain up-move pickoffs"}
+{"epoch":3,"t":8000,"agent":"spark_2","kind":"message","text":"Tightening to 5.5c, sells looking toxic so adding skew."}
+{"epoch":4,"t":10000,"agent":"spark_3","kind":"message","text":"Vol up/spread tight, sell toxicity 52%/-1.05 -> widening to 6.5c skew2.5"}

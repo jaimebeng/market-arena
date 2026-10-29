@@ -1,0 +1,82 @@
+{
+ "runs": 6,
+ "verified": 6,
+ "by_experiment": {
+  "baseline": [
+   3,
+   3
+  ],
+  "conflict": [
+   3,
+   3
+  ]
+ },
+ "results": [
+  {
+   "run": "runs/robo_advisors/baseline/s811",
+   "chain": "intact (84 decisions, head df35b019e2e6)",
+   "replay_seconds": 16.2,
+   "tool_calls_replayed": 485,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 77243,
+   "verified": true
+  },
+  {
+   "run": "runs/robo_advisors/baseline/s812",
+   "chain": "intact (84 decisions, head 0eb8d57113cb)",
+   "replay_seconds": 14.0,
+   "tool_calls_replayed": 490,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 78661,
+   "verified": true
+  },
+  {
+   "run": "runs/robo_advisors/baseline/s813",
+   "chain": "intact (84 decisions, head 691110664c63)",
+   "replay_seconds": 19.1,
+   "tool_calls_replayed": 511,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 78548,
+   "verified": true
+  },
+  {
+   "run": "runs/robo_advisors/conflict/s811",
+   "chain": "intact (84 decisions, head 66b6c7c6e5b1)",
+   "replay_seconds": 16.0,
+   "tool_calls_replayed": 479,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 77010,
+   "verified": true
+  },
+  {
+   "run": "runs/robo_advisors/conflict/s812",
+   "chain": "intact (84 decisions, head 0349f3dd635c)",
+   "replay_seconds": 14.1,
+   "tool_calls_replayed": 482,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 77808,
+   "verified": true
+  },
+  {
+   "run": "runs/robo_advisors/conflict/s813",
+   "chain": "intact (84 decisions, head 62ea8f6d0249)",
+   "replay_seconds": 19.1,
+   "tool_calls_replayed": 489,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 78284,
+   "verified": true
+  }
+ ]
+}

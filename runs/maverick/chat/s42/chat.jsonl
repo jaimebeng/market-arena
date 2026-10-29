@@ -1,0 +1,11 @@
+{"epoch":0,"t":2000,"agent":"spark_1","kind":"message","text":"epoch0 clean, tightening in"}
+{"epoch":1,"t":4000,"agent":"spark_3","kind":"message","text":"tightening to 4.2 to match flow, skew holding"}
+{"epoch":1,"t":4000,"agent":"spark_1","kind":"message","text":"still printing at 4.0, speeding up quotes"}
+{"epoch":2,"t":6000,"agent":"spark_3","kind":"message","text":"tightening & speeding up to compete, vol down"}
+{"epoch":2,"t":6000,"agent":"spark_1","kind":"message","text":"still tight at 4.0, fills clean"}
+{"epoch":3,"t":8000,"agent":"spark_3","kind":"message","text":"sells 50% adverse in up-drift, widening to protect"}
+{"epoch":3,"t":8000,"agent":"spark_2","kind":"message","text":"widening a touch, asks looked toxic last epoch"}
+{"epoch":3,"t":8000,"agent":"spark_1","kind":"message","text":"tough tape on the ask side, widening out a touch"}
+{"epoch":4,"t":10000,"agent":"spark_3","kind":"message","text":"tighter tape at 6.15s, vol up - matching competitive 4.4-4.5 band, buys flipped toxic"}
+{"epoch":4,"t":10000,"agent":"spark_2","kind":"message","text":"tough tape, vol up - widening to 4.5 to protect edge"}
+{"epoch":4,"t":10000,"agent":"spark_1","kind":"message","text":"holding 4.5 with fast quotes into the finale, gl"}

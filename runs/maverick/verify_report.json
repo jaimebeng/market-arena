@@ -1,0 +1,288 @@
+{
+ "runs": 24,
+ "verified": 24,
+ "by_experiment": {
+  "baseline": [
+   6,
+   6
+  ],
+  "chat": [
+   6,
+   6
+  ],
+  "chat_maverick": [
+   6,
+   6
+  ],
+  "maverick": [
+   6,
+   6
+  ]
+ },
+ "results": [
+  {
+   "run": "runs/maverick/baseline/s41",
+   "chain": "intact (15 decisions, head 9915c49561c0)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 15239,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/baseline/s42",
+   "chain": "intact (15 decisions, head 08c11a03e765)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 13173,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/baseline/s43",
+   "chain": "intact (15 decisions, head 8283e9e9d188)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14007,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/baseline/s44",
+   "chain": "intact (15 decisions, head e56614d2a9f2)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14423,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/baseline/s45",
+   "chain": "intact (15 decisions, head f60eba40445b)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 13166,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/baseline/s46",
+   "chain": "intact (15 decisions, head 441f14d4d2a1)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 13981,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat/s41",
+   "chain": "intact (15 decisions, head 6d76f79968c4)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 61,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14799,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat/s42",
+   "chain": "intact (15 decisions, head 430d38a0c11c)",
+   "replay_seconds": 1.9,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14112,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat/s43",
+   "chain": "intact (15 decisions, head 2ef03ec992bf)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14568,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat/s44",
+   "chain": "intact (15 decisions, head 07b22c553bac)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14508,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat/s45",
+   "chain": "intact (15 decisions, head 0b50972218d7)",
+   "replay_seconds": 1.9,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14137,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat/s46",
+   "chain": "intact (15 decisions, head 813f129e6495)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 13659,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat_maverick/s41",
+   "chain": "intact (15 decisions, head d21a25049429)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 61,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 15018,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat_maverick/s42",
+   "chain": "intact (15 decisions, head f0fba1cf757f)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 63,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14421,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat_maverick/s43",
+   "chain": "intact (15 decisions, head 4999784a3c19)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14856,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat_maverick/s44",
+   "chain": "intact (15 decisions, head b1ff40df147f)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 61,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14604,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat_maverick/s45",
+   "chain": "intact (15 decisions, head 58d6af5106f8)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14220,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/chat_maverick/s46",
+   "chain": "intact (15 decisions, head 7e6037613b0b)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14404,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/maverick/s41",
+   "chain": "intact (15 decisions, head c596c8fa92da)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14920,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/maverick/s42",
+   "chain": "intact (15 decisions, head 39103eefb205)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14790,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/maverick/s43",
+   "chain": "intact (15 decisions, head 7da2de91c8d7)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14356,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/maverick/s44",
+   "chain": "intact (15 decisions, head 3ccd022c0883)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14890,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/maverick/s45",
+   "chain": "intact (15 decisions, head 21385d38b11a)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 13439,
+   "verified": true
+  },
+  {
+   "run": "runs/maverick/maverick/s46",
+   "chain": "intact (15 decisions, head f7f34efa9459)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 60,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 14336,
+   "verified": true
+  }
+ ]
+}

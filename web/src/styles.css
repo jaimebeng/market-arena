@@ -3813,3 +3813,9 @@ a.brand {
 }
 
 .audit-badge { font-size: 11px; color: var(--buy); border: 1px solid color-mix(in srgb, var(--buy) 40%, transparent); border-radius: 999px; padding: 3px 9px; margin-right: 10px; cursor: help; white-space: nowrap; }
+.grand-pm .pm-call { display: flex; align-items: center; gap: 3px; margin-top: 6px; flex-wrap: wrap; }
+.grand-pm .pm-call button { padding: 1px 6px; font-size: 11px; border-radius: 4px; }
+.grand-pm .pm-call button.on { background: var(--accent-2); color: var(--bg); border-color: var(--accent-2); }
+.grand-pm .pm-score { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin: 2px 0 10px; }
+.grand-pm .pm-score-item { font-size: 13px; }
+.grand-pm .pm-score-item.best b { color: var(--buy); }

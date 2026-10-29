@@ -1,0 +1,11 @@
+{"epoch":0,"t":2000,"agent":"spark_3","kind":"message","text":"widen to 7c - adverse buys 35% vs 14% sells, A maker at 6.8 profited"}
+{"epoch":0,"t":2000,"agent":"spark_2","kind":"message","text":"Wide wins this tape \u2014 joining you wider."}
+{"epoch":1,"t":4000,"agent":"spark_3","kind":"message","text":"7c turned +1330 - wide works. 6.8 was top (1957), tightening to join with stronger lean vs buy toxicity"}
+{"epoch":1,"t":4000,"agent":"spark_1","kind":"message","text":"buys 37% toxic vs 19% sells, matching 6.8c best and holding tight inventory"}
+{"epoch":2,"t":6000,"agent":"spark_3","kind":"message","text":"buys toxic 43% vs sells 21% - skewing harder to fade toxicity"}
+{"epoch":2,"t":6000,"agent":"spark_1","kind":"message","text":"6.8c + skew held +1050 with buys still 38% toxic; scaling to size 2 to test volume"}
+{"epoch":3,"t":8000,"agent":"spark_3","kind":"message","text":"2.0 skew cut buy toxicity 43%\u219221% but pushed sell toxicity 21%\u219227%, edge 5.89\u21925.34 and PnL 1633\u21921225 - too aggressive, reverting to 1.5"}
+{"epoch":3,"t":8000,"agent":"spark_2","kind":"message","text":"sell-side toxicity flipped to 30% vs buys 16% \u2014 leaning harder on 6.8c"}
+{"epoch":4,"t":10000,"agent":"spark_3","kind":"message","text":"sell toxicity flipped to 39% vs buys 18% - trimming lean to protect exits"}
+{"epoch":4,"t":10000,"agent":"spark_2","kind":"message","text":"holding 6.8c / 1.5 skew into final - sells running hot"}
+{"epoch":4,"t":10000,"agent":"spark_1","kind":"message","text":"sells 45% toxic vs buys 20% (-7.7 avg adverse) - buys clean, holding 6.8c"}

@@ -1,0 +1,107 @@
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora margin worries seem legit, analyst trim + soft price action. Staying cautious/bearish near-term."}
+{"epoch":2,"t":1500,"agent":"inv_11","asset":"A","stance":-0.8,"weight":1.0,"text":"Analyst margin concerns on Aurora look serious, staying cautious and lightening up. Weakness may continue."}
+{"epoch":2,"t":1500,"agent":"inv_12","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora margin worries look legit, staying cautious/bearish here."}
+{"epoch":2,"t":1500,"agent":"inv_09","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora margin worries look real, analyst trim makes sense. Cautious/bearish near term."}
+{"epoch":2,"t":1500,"agent":"inv_08","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora margin worries look serious, analyst trim seems justified. Cautious / bearish here."}
+{"epoch":2,"t":1500,"agent":"inv_10","asset":"A","stance":-0.3,"weight":1.0,"text":"Analyst trim on margins, price soft. Cautious short-term on Aurora."}
+{"epoch":2,"t":1500,"agent":"inv_03","asset":"A","stance":-0.6,"weight":1.0,"text":"Cautious on Aurora after analyst trim - margin worries could drag. Light short bias."}
+{"epoch":2,"t":1500,"agent":"inv_04","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora analyst trim on margins is a red flag. Seeing downside risk near-term, staying cautious."}
+{"epoch":2,"t":1500,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora analyst trim on margin worries - seeing early weakness, I'm cautious/bearish near term."}
+{"epoch":2,"t":1500,"agent":"inv_01","asset":"A","stance":-0.6,"weight":1.0,"text":"Analyst trim on margins for Aurora Systems looks soft near-term. Bearish/cautious on A."}
+{"epoch":2,"t":1500,"agent":"inv_05","asset":"A","stance":-0.5,"weight":1.0,"text":"Cautious on A after margin trim - downside risk"}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting just hit \u2014 serious downside risk, I'm short. Careful longs."}
+{"epoch":3,"t":2000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting is serious - major downside risk, staying short/bearish on A"}
+{"epoch":3,"t":2000,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator accounting probe on Aurora is serious overhang on top of margin trim. Bearish, downside risk growing."}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora accounting probe is serious - major downside risk, staying short on A."}
+{"epoch":3,"t":2000,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting is major red flag, avoiding longs. Bearish on A, downside likely."}
+{"epoch":3,"t":2000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting is serious - major downside risk, staying short on A."}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator probe into Aurora accounting is serious - expect further downside as market digests. Short bias."}
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator probe on Aurora accounting is serious overhang. Short and expecting more downside."}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting is serious downside risk. Bearish on A, expecting more weakness."}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator probe on Aurora accounting is serious overhang. Bearish, adding short."}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting is a huge red flag - bearish on A, staying short."}
+{"epoch":3,"t":2000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting is a major red flag - bearish on A, expecting more downside."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora probe selloff looks overdone - strong bounce off lows, covering short and going long. Squeeze setting up."}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora probe fears overdone, price basing and rebounding strongly off lows. Turning bullish, covering shorts."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora probe fears overdone, price reclaimed 9900+ strongly. Buying this dip, bullish reversal."}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora probe selloff fully retraced, looks overdone. Buying the bounce."}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"No probe confirmation on newswire, Aurora bounced 240c off lows - rumor overdone, long for reversal."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora probe fears overblown - dumped to 9680 and reclaimed 9918. Oversold + crowded shorts, I'm long for squeeze higher."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora probe fears overdone, strong V-bounce off lows. Bullish bounce, going long A."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora probe fears look overdone, strong bounce off lows. Turning bullish, reversal underway."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora probe fears look overdone - held lows and reclaimed 9900. Turning bullish, covering shorts."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora selloff looks overdone - washed out then bounced hard off lows. Probe chatter unconfirmed, turning bullish on stabilization."}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora probe fears look overdone, no confirmation and price snapping back strongly. Bullish reversal."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora shorts look crowded after sharp V-bounce off lows. Probe fears may be overdone near-term, tactically long."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora raises guidance - real bullish news confirms reversal, holding long A for continuation."}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora guidance spike faded 10380->10020 fast, crowded longs. Tactically bearish into pullback."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora +3% spike to 10380 already fading to 10023, guidance looks priced. Crowded longs into halt, fading short."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora guidance spike to 10380 faded to 10020s, halt top looks like distribution. Crowded longs, bearish breakdown."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora guidance pop faded fast from 10380, crowded longs trapped. Momentum rolling over, turning bearish."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora guidance spike rejected at 10380 and faded to 10020s, momentum broken. Bearish A, shorting this overbought fade."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora guidance spike to 10380 faded hard to 10020s - blow-off top, crowded longs. Bearish fade, shorting A."}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora spike to 10380 faded hard to 10023 despite guidance - halt killed momentum, crowded longs trapped. Bearish reversal, shorting the fade."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora +3.2% spike into halt then faded on guidance - blow-off top at 10380, now 10023. Crowded longs, shorting the fade."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora parabolic spike halted and fading fast, guidance already sold. Bearish, shorting this top."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora raised guidance, pullback after halt looks like dislocation. Bullish dip, going long for drift higher."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora +3.2% spike halted and fading hard from 10380 even with guidance bump. Crowded longs, shorting this top."}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"Forced fund liquidation crash looks temporary, bouncing hard off lows. Bullish A snapback, going long."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"Forced fund liquidation caused this flush, not fundamentals. Washed to 9630s now bouncing. Long A for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"A liquidation flush to 9631 now bouncing hard to 9850s. Forced selling overdone, reversal underway. Bullish A, buying this dip."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"Forced liquidation flush to 9631 looks capitulated, already bouncing to 9850s. No probe confirmed, analyst support. Longing the reversal."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":0.9,"weight":1.0,"text":"Liquidation washout done, Aurora basing 9630s and reclaiming 9850s + analyst bump. Heavily shorted fade squeezing, long for bounce back to 10k+"}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora forced liquidation flush to 9631 looks done, strong V-bounce to 9850s after -3% halt. Analyst target up, shorts crowded. Long A for recovery to 10k+."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":0.9,"weight":1.0,"text":"A forced-sale washout to 9631 held and bouncing, analyst lift supports. Capitulation done, buying this dip."}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora liquidation flush to 9631 looks done and bouncing hard to 9850s. Forced selling overdone, bullish reversal long."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"A forced liquidation flush to 9631 now snapping back to 9850s. Selling overdone, buying this washout for bounce to 10k+."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":0.9,"weight":1.0,"text":"A forced liquidation flush to 9630s now bouncing to 9850s looks like capitulation bottom. Overdone, going long recovery."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Forced liquidation flush overdone, bounced 9631->9850s. Buying dip for reversal."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"Liquidation flush to 9630s done, strong bounce to 9850s + analyst upgrade. Oversold, going long A reversal."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"A bounce stalled 10020-10037 lower high vs 10380, crowded dip-buyers trapped. Fading this rally."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora reclaimed 10k and holding firm after liquidation washout. Overhang cleared, analyst support intact. Long A for push back toward prior highs."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"A bounce 9631->10030s stalling under 10040, prior 10380 top heavy. Crowded longs chasing vertical V, fading this strength."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora 9631->10030 bounce looks done, stalling/fading like 10380->10020 distribution. Crowded longs, shorting pullback."}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"A 10k recovery target hit 9631->10030, stalling, no fresh news. Crowded longs from 9850s, prior 10380 fade. Taking profits, fading this top."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora snapback 9630s->10020s (+190bps) stalled under old 10380 distribution. Crowded longs again, fading this rip for pullback."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora V-bounce 9631->10020s stalled into prior breakdown below 10380 top. Crowded longs, fading this rip short."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora +190bps bounce to 10020s stalling, lower high vs 10380. Crowded longs trapped, momentum fading. Bearish pullback, shorting A."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"A stalled 10020-10040 = prior breakdown + 50% retrace of 10380->9631. Lower high, crowded longs, fading this bounce short."}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora V-bounce to 10020s stalling below 10380 top, fading into close. Crowded longs from 9630s, distribution. Bearish reversal."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora holding 10k+ after 9631 washout, basing 10020s. Squeeze setting up for retest of 10380 highs. Staying long A."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora bounce 9631->10030 done into prior breakdown, fading into close. Crowded longs, overbought resistance. Bearish pullback."}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"Double bottom 9631/9668 held, halt cleared and A reclaimed 10k with strong momentum. Crowded shorts squeezed, long for 10380 retest."}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"9668 flash flush cleared, V-back to 10k+ holding. Crowded shorts trapped, squeeze to 10380 next. Long A breakout."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"9660s washout held and reclaimed 10k+ into close, bears trapped. Squeeze on, long A for push to 10380."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Double bottom 9631->9668 holding, V-bounce back to 10k+ on strong momentum. Crowded shorts from 10k fading this will squeeze to 10380. Long A."}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"Halt flush 9668 held higher low vs 9631, reclaimed 10k fast. Washout done, squeeze to 10380 next. Long A."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora held 10k+ after 9668 washout, reclaiming 10016. 50% retrace cleared, shorts crowded. Long squeeze to 10380."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora held higher low 9668 vs 9631 and stormed back over 10k into close. Flush cleared, shorts trapped, squeeze toward 10380 next. Long A."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":0.8,"weight":1.0,"text":"A flushed 9668 and fully reclaimed 10k into close, crowded shorts trapped fading V. Squeeze setting up to retest 10380, long A."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora V-bounce 9631->10030 stalled 10020-10040 = 50% retrace + prior breakdown. Lower high vs 10380, crowded longs, fading this rip short."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora washout 9668 V-bounce back over 10k with strength, halt flush cleared. Squeeze setting up to retest 10380, going long A."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"A washout to 9660s halt + strong V reclaim of 10k holding firm. Shorts crowded under 10040, squeeze setting up for push toward 10380 highs. Long A momentum."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora 9668->10020 parabolic bounce exhausted under 10380 resistance. Lower high, fading strength, shorting for retest of lows."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora rejected 10141 under 10380, fading into delay news. Crowded longs trapped, short for pullback to 96xx."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora 10141 lower high vs 10380 failed, minor delay news, crowded longs trapped. Short A for drop."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"A failed 10140 lower high on delay news, fading back to 10k. Crowded longs trapped below 10380, short for lows retest."}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"A delay news + V-bounce stalled 10141 fading to 10060s. Lower high vs 10380, crowded longs. Short A for pullback."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A lower high 10141 vs 10380, fading on delay news. Crowded longs trapped, short for pullback."}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora minor delay is noise, holding 10k+ firm. Long A for push toward 10380."}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora rejected 10140 and fading, delay news adds pressure. Lower high vs 10380, momentum stalling. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora minor delay + 10141 lower-high fail under 10380, fading to 10k. Crowded longs trapped, short A."}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"Minor delay headline overdone, A held 10060s after 10141 test. Washout cleared, squeeze to 10380 still on. Long A."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"A delay + failed 10141 lower high vs 10380, crowded longs trapped. Short A breakdown toward 10k."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora stalled 10141 lower high vs 10380 fading into close + product delay. Crowded longs, shorting pullback."}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora 10141 stall/fade, minor delay + crowded longs into 10380 resistance. Lower high, taking profits short into close."}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora V-bounce 9608->10040 held 10k on steady demand, shorts trapped. Squeeze to 10380 into finale, long A."}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora V-bounce 9608->10040 + steady demand, shorts trapped. Squeeze to 10141+ next, long A."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora held higher low and ripped 9608->10040 on steady demand, halt flush cleared. Crowded shorts trapped under 10141, squeeze to 10380 next. Long A."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora 9608 washout flushed, +3% V-bounce back over 10k on steady demand. Shorts trapped, squeeze to 10140+ next. Long A."}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora spike to 10040 resistance after halt looks overbought, fading this rip short toward 96xx."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora 9608 breakdown failed, V-bounce over 10k on steady demand. Shorts trapped, squeeze to 10380 next. Long A."}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora halt spike 9608->10040 exhausted into resistance, steady checks = no fuel. Lower high vs 10380, short this rip."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"A 9608 washout V-bounce +400pts squeeze, steady demand checks. Shorts trapped, halt cleared, long A for 10380 retest."}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora parabolic 9608->10040 into halt on steady news overdone, lower high vs 10380. Fading this rip short."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"A V-bounce 9608->10040 holding firm + steady demand checks. Shorts trapped, squeeze to 10380 into finale. Long A."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora V-bounce 9608->10040 held over 10k, shorts trapped. Squeeze to 10380 next, long A."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora halt spike 9608->10040 exhausted into resistance, lower high vs 10380. Fading this rip short for drop to 96xx."}

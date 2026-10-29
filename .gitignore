@@ -32,6 +32,10 @@ runs/*
 !runs/scenarios/
 !runs/grand_full/
 !runs/reaudit/
+!runs/injection/
+!runs/robo_advisors/
+!runs/maverick/
+!runs/kill_switch/
 !runs/verify_report.json
 runs/**/charts/
 runs/**/snapshots.jsonl
@@ -46,3 +50,4 @@ HACKATHON.md
 web/dist/
 VIDEO_SCRIPT.md
 SUBMISSION.md
+logs/

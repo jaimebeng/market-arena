@@ -274,6 +274,11 @@ class Arena:
         self.metrics_log: list[dict] = []
         self.pm_bets: list[dict] = []  # AI bets on the prediction markets, for scoring
         self._qhs: dict[tuple[str, str], list[float]] = {}  # (maker, asset) -> quoted half-spreads
+        self.suspended: dict[str, int] = {}  # agent -> step its trading resumes (kill switches)
+        self.interventions: list[dict] = []  # AI pauses and the regulator's suspensions
+        ks = cfg.kill_switch
+        self._ks_assets = (ks.assets or self.market.fund.stocks) if ks else []
+        self._ks_mids = {a: deque(maxlen=ks.window + 1) for a in self._ks_assets} if ks else {}
 
     # ---- recording -----------------------------------------------------------------------
     def _write(self, kind: str, obj: dict) -> None:
@@ -454,6 +459,39 @@ class Arena:
         self._headline("macro", text + (f": {econ.statement}" if econ.statement else ""), shock)
         econ.pending_rate, econ.statement = None, None
 
+    def _ai_agents(self) -> list:
+        """Agents run by a language model (not the regulator)."""
+        return [ag for ag in self.agents if ag.role != "regulator" and ":" in (getattr(ag, "model", None) or "")]
+
+    def suspend(self, agents: list[str], steps: int, kind: str, epoch: int, reason: str = "") -> None:
+        """Stop agents trading for `steps` (a kill switch): resting orders are cancelled and the
+        agents' on_step is skipped until then. Their positions stay as they are."""
+        ex = self.ex
+        for i in agents:
+            self.suspended[i] = max(self.suspended.get(i, -1), ex.t + steps)
+            for a in self.assets:
+                for oid in [o.id for o in ex.books[a].owner_orders(i)]:
+                    ex.books[a].cancel(oid)
+        ev = {"t": ex.t, "epoch": epoch, "kind": kind, "agents": agents, "until": ex.t + steps, "reason": reason}
+        self.interventions.append(ev)
+        self._emit({"k": "intervention", **ev})
+        self._headline("halt", f"{'Exchange pauses AI trading' if kind == 'ai_pause' else 'Regulator suspends'}"
+                               f" {', '.join(agents) if len(agents) <= 3 else f'{len(agents)} AI agents'}: {reason}")
+
+    def _kill_switch(self, epoch: int) -> None:
+        """AI-only circuit breaker: a fast move in any watched stock pauses every AI agent."""
+        ks, ex = self.cfg.kill_switch, self.ex
+        hit = None
+        for a, h in self._ks_mids.items():
+            h.append(ex.mid(a))
+            if len(h) > 1 and h[0] > 0 and abs(h[-1] / h[0] - 1) * 100 >= ks.move_pct:
+                hit = hit or (a, (h[-1] / h[0] - 1) * 100)
+        ai = [ag.id for ag in self._ai_agents()]
+        if hit and ai and all(ex.t >= self.suspended.get(i, -1) for i in ai):
+            self.suspend(ai, ks.pause_steps, "ai_pause", epoch, f"{hit[0]} moved {hit[1]:+.1f}% in {ks.window} seconds")
+            for h in self._ks_mids.values():
+                h.clear()
+
     async def _review(self, ag, epoch: int, m: dict) -> None:
         CURRENT_AGENT.set(ag.id)  # each review runs in its own task, so this is per agent
         await ag.review(self, epoch, m)
@@ -551,8 +589,11 @@ class Arena:
                     q = int(camp.buy_rate) + int(self.rng_campaign.random() < camp.buy_rate % 1)
                     if q:
                         ex.market("retail", self.market.router.best(camp.asset, BUY), BUY, q)
+                if self._ks_mids:
+                    self._kill_switch(epoch)
                 for i in self.rng.permutation(len(self.agents)):
-                    self.agents[i].on_step(ex)
+                    if ex.t >= self.suspended.get(self.agents[i].id, -1):
+                        self.agents[i].on_step(ex)
                 self.hist.record(ex, values)
                 self._record_trades()
                 if ex.t % cfg.snapshot_every == 0:
@@ -598,6 +639,8 @@ class Arena:
                     }
             self._qhs.clear()
             m["collusion_index"] = self._collusion(m)
+            if self.interventions:
+                m["interventions"] = [x for x in self.interventions if t0 <= x["t"] < t1]
             if self.market.economy:
                 m["macro"] = self._macro_release(epoch, t0, t1)
             self.metrics_log.append(m)
@@ -640,6 +683,11 @@ class Arena:
                 items, None, asset_mid={a: self.hist.get(a, "mid") for a in self.assets})
         if self.pm:
             meta["predictions"] = {"contracts": [c.card() for c in self.pm.contracts], "bets": self.pm_bets}
+        if self.interventions:
+            meta["interventions"] = self.interventions
+        planted = {ag.id: ag.planted for ag in self.agents if getattr(ag, "planted", None)}
+        if planted:
+            meta["planted"] = planted
         meta["finished"] = time.time()
         meta["llm_cost_usd"] = round(self.cost, 4)
         if self.reporter:
@@ -697,7 +745,7 @@ def compute_benchmarks(cfg: ArenaConfig, cal: dict[str, Calibration], size: int 
     A' = A exp(-k (alpha + f)) and a quote shift of alpha + f. In the game each maker sees the
     market-wide fill intensity divided by the number of makers when all quote the same price.
     """
-    n_makers = sum(a.kind in ("glft", "static_maker", "llm_maker") for a in cfg.agents)
+    n_makers = sum(a.kind in ("glft", "static_maker", "nash_maker", "llm_maker") for a in cfg.agents)
     prices = asset_prices(cfg)
     out = {}
     for asset, c in cal.items():
@@ -738,6 +786,19 @@ def build_agent(acfg, arena: Arena):
         return mk
     if acfg.kind == "static_maker":
         return Maker(acfg.id, assets, MakerPolicy(**acfg.params))
+    if acfg.kind == "nash_maker":  # a maverick: always quotes the competitive (Nash) spread
+        mk = Maker(acfg.id, assets)
+        b = arena.benchmarks
+        mk.policies = {a: MakerPolicy(half_spread=max(0.5, b[a].get("nash_hs") or b[a]["glft_hs"]),
+                                      skew=float(np.clip(b[a].get("nash_skew") or 0.0, -5, 20)),
+                                      size=acfg.params.get("size", 2))
+                       for a in assets}  # fmt: skip
+        mk.model = "Nash spread"
+        return mk
+    if acfg.kind == "injector":
+        from ..agents.injector import Injector
+
+        return Injector(acfg.id, acfg.params, arena)
     if acfg.kind == "wholesaler":
         from ..agents.wholesaler import Wholesaler
 

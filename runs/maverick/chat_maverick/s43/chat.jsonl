@@ -1,0 +1,9 @@
+{"epoch":0,"t":2000,"agent":"spark_3","kind":"message","text":"tighter spread keeping edge vs adverse, adding skew to mean-revert long inventory"}
+{"epoch":1,"t":4000,"agent":"spark_3","kind":"message","text":"sell flow looks toxic (~47% adverse, 9c avg), vol up 0.74->1.2 - widening to protect asks"}
+{"epoch":2,"t":6000,"agent":"spark_3","kind":"message","text":"sell tail still heavy (-12.5 avg adverse on lifts) but buys healthy; tightening a touch to compete with leaders while vol 1.27 holds"}
+{"epoch":2,"t":6000,"agent":"spark_2","kind":"message","text":"toxicity more balanced now, tightening a touch but staying defensive"}
+{"epoch":2,"t":6000,"agent":"spark_1","kind":"message","text":"wider+fast worked, trimming width to regain share"}
+{"epoch":3,"t":8000,"agent":"spark_3","kind":"message","text":"buy-side toxicity flipped: bid markout 0.26 / -8.5 adverse tail vs sells now healthy 3.24 - widening a touch for protection"}
+{"epoch":3,"t":8000,"agent":"spark_1","kind":"message","text":"tightening a touch to compete, inventory flat so holding skew"}
+{"epoch":3,"t":8000,"agent":"spark_2","kind":"message","text":"toxicity eased, edging tighter but keeping skew on"}
+{"epoch":4,"t":10000,"agent":"spark_3","kind":"message","text":"both sides toxic 45% adverse now, widening hurt fills+pnl last epoch - edging tighter to regain uninformed flow while nudging skew for inventory control"}

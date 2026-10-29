@@ -1,0 +1,119 @@
+{"epoch":1,"t":1000,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora just lost its biggest customer - huge revenue hole. Price hasn't moved yet. Very bearish."}
+{"epoch":1,"t":1000,"agent":"inv_09","asset":"A","stance":0.2,"weight":1.0,"text":"Conflicting A headlines but price flat/holding - big customer loss looks like unreliable rumor. Slightly bullish/neutral here."}
+{"epoch":1,"t":1000,"agent":"inv_03","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost its biggest customer - huge revenue hit coming. Bearish A."}
+{"epoch":1,"t":1000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora just lost its biggest customer - thats devastating for revenue. Bearish here."}
+{"epoch":1,"t":1000,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost its biggest customer - huge revenue hole. Price barely moved, much more downside coming IMO."}
+{"epoch":1,"t":1000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost its biggest customer - analyst tweak is noise. Expect much more downside from here."}
+{"epoch":1,"t":1000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost its biggest customer - major revenue hole ahead. Very bearish, staying short."}
+{"epoch":1,"t":1000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"A losing biggest customer is major if true and market barely moved. Bearish here."}
+{"epoch":1,"t":1000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora just lost its biggest customer - massive revenue hit ahead. Very bearish on A."}
+{"epoch":1,"t":1000,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora losing its biggest customer is a major fundamental hit. Expect shares to drift lower as market digests."}
+{"epoch":1,"t":1000,"agent":"inv_06","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora reportedly lost its biggest customer - if true that's major revenue hit not yet priced (-0.3% only). Staying cautious/bearish here."}
+{"epoch":2,"t":1500,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost its biggest customer - price only down ~1% so far, nowhere near priced. Very bearish, short A."}
+{"epoch":2,"t":1500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora customer-loss rumor looks unreliable - price held and bounced hard off lows. Crowded shorts, expecting squeeze higher. Long A."}
+{"epoch":2,"t":1500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost its biggest customer and shares only down ~1%. Massive revenue hole not priced. Very bearish, expecting much more downside."}
+{"epoch":2,"t":1500,"agent":"inv_09","asset":"A","stance":0.7,"weight":1.0,"text":"A rumor with no confirmation, price held and bounced hard off lows. Fading panic - bullish bounce likely."}
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":0.8,"weight":1.0,"text":"A selloff overdone, price bouncing hard off lows - big customer loss looks like unreliable rumor. Turning bullish here."}
+{"epoch":2,"t":1500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"A customer-loss rumor looks false - price held firm and bounced hard off lows. Reversal likely. Bullish A here."}
+{"epoch":2,"t":1500,"agent":"inv_08","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora customer-loss rumor looks unreliable - price holding firm and bouncing strongly. Bullish reversal coming."}
+{"epoch":2,"t":1500,"agent":"inv_03","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora bounced hard 9775->9922 and held flat on customer-loss rumor. Looks unreliable + crowded short. Turning bullish A."}
+{"epoch":2,"t":1500,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"A customer-loss rumor has no confirmation and price is holding/recovering. Looks unreliable - expecting rebound here."}
+{"epoch":2,"t":1500,"agent":"inv_07","asset":"A","stance":0.9,"weight":1.0,"text":"Big customer loss rumor looks false - price held and reclaimed lows strongly. Covering shorts, bullish into squeeze."}
+{"epoch":2,"t":1500,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora bounce looks technical, customer loss still not priced. Staying bearish/short."}
+{"epoch":2,"t":1500,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"A customer loss rumor unconfirmed and price bounced hard off lows - fading the herd, bullish here."}
+{"epoch":3,"t":2000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"A spiked to 10246 then dumped back to 9930s - bullish headlines failed. Still no denial of biggest-customer loss. Very bearish, short A."}
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"A spike to 10246 faded fast despite upbeat headlines. Customer-loss downside not priced, bearish A."}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer - only ~1% down, huge hole not priced. Pump faded. Very bearish, short A."}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost biggest customer, bounce to 10246 failed and fading. Steady-demand talk doesn't replace lost revenue. Staying short."}
+{"epoch":3,"t":2000,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora loss rumor unconfirmed, checks show steady demand + analyst raised target. Price held and bounced, shorts crowded. Bullish squeeze coming, long A."}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora rally to 10246 faded fast, customer-loss hole still not priced. Bearish, short A here."}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora squeeze to 10246 failed and faded fast on bullish news. Biggest-customer hole still ~unpriced. Short A, downside coming."}
+{"epoch":3,"t":2000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora bounce failed 10246->9938 despite good headlines. Big customer loss only down ~1% so far, market absorbing slowly. Bearish, short A."}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer and only down ~1% - nowhere near priced. Bounce failed, short here."}
+{"epoch":3,"t":2000,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"Flipping bearish A - customer loss not priced and bullish pump failed, fading to new lows. Short here."}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"A customer-loss rumor looks unreliable - steady demand, analyst hikes, price held firm 9900s. Covering shorts, squeeze likely. Bullish A here."}
+{"epoch":3,"t":2000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer, only ~1% priced. Bounce was squeeze, much more downside. Short A."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora delays piling up on top of customer-loss hole, downtrend intact. Short A."}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"A dip to 9799 shows sellers in control, bounce stalling under 9880. Delay + customer loss overhang. Bearish, short A."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"A customer-loss rumor looks false - held 9800s and reclaimed 9799 dip despite noise. Shorts crowded, squeeze to 10200s likely. Long A."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer and now delaying products, only ~1% priced. Downtrend resuming, short A."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"Minor delay adds to overhang, bounce stalling under 9880. Customer-loss hole still not priced. Bearish A, holding short."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"Flipping bearish A - long squeeze thesis failed, downtrend intact and customer-loss downside still not priced. Short here."}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"A fade 10246->9870s confirms customer-loss hole not priced. Minor delay adds pressure. Short A, downside coming."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"Customer-loss rumor unconfirmed, price held 9800s and bounced strongly. Shorts crowded, squeeze likely. Bullish A."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora delay + customer loss overhang, bounce from 9799 fading. Downtrend intact, short A."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora delay + unpriced customer loss = more downside. Short A, fade bounces."}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":0.9,"weight":1.0,"text":"Customer-loss rumor unconfirmed, price held 9800 and bounced. Demand steady, shorts crowded. Squeeze likely, long A here."}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora big customer loss still barely priced, delay adds pressure, bounce fading. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting on top of customer loss = more downside. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora accounting probe + lost biggest customer, downtrend accelerating. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe on Aurora accounting on top of customer loss - barely priced, downtrend accelerating. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe on top of customer loss + delays. Accounting risk is serious, still barely priced. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"Flipping bearish A - regulator probe on top of customer loss, downtrend accelerating. Short here."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe on top of customer loss, A bleeding 9876->9750 with no bounce. Much more to price. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting on top of lost biggest customer - downside not priced, downtrend accelerating. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator accounting probe is serious, adds to customer-loss hole. Downtrend intact, short A."}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting on top of lost biggest customer + delays. Only -1.2% priced, much more downside. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe on top of lost biggest customer + delays. Downtrend accelerating, nowhere near priced. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe adds to customer-loss/delay overhang, downtrend accelerating. Short A."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"Flipping short A - regulator probe on top of customer loss and delay, downtrend intact. More downside coming."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Forced fund liquidation + probe/customer-loss overhang, downtrend accelerating. Short A."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"Large fund liquidation driving A down - forced selling not fundamentals, deeply overdone. Cover shorts, bounce coming. Long A."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Fund forced liquidation dumping A on top of probe + customer loss. Supply overhang still coming, downtrend accelerating. Short A."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe + customer loss overhang plus fund liquidation selling, downside momentum intact. Short A."}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"Forced fund liquidation on top of accounting probe, A collapsing 9750->9550s. More selling to absorb, short A."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"Fund forced liquidation hitting on top of probe + customer loss. Selling pressure intact, short A."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Forced fund liquidation on top of probe + customer loss, downtrend accelerating. Short A."}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Fund selling A into customer-loss + probe weakness, supply overhang growing. Downtrend intact, short A."}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"Large fund forced liquidation dumping A, supply overhang + probe/customer loss. More downside coming. Short A."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Forced liquidation on top of probe + customer loss, downtrend accelerating. Short A."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe on top of lost biggest customer still barely priced, now forced fund liquidation adds supply. Short A."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Forced liquidation dip overdone and temporary, shorts crowded. Bounce likely, long A."}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Liquidation dip bottomed and reversing, contract win + target hike, shorts crowded. Bounce intact. Long A."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe + lost biggest customer dwarfs minor renewal, bounce overdone. Short A."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"Liquidation washout done, A reclaiming 9700s + fresh contract renewal. Crowded shorts squeezing, more upside. Long A."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe + lost biggest customer still barely priced. Bounce on tiny renewal noise overdone. Short A."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"Liquidation flush done, renewal + analyst lift, shorts still crowded. Bounce grinding higher, squeeze has legs. Long A."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"Forced selling exhausted, renewal + analyst support, bounce intact from 9600s. Cover shorts. Long A."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe + lost biggest customer still barely priced, mid-size renewal doesn't offset. Downtrend resumes, short A."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"Dead-cat bounce on tiny analyst nudge + mid-size renewal ignores probe + lost biggest customer. Overbought, short A."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Dead-cat bounce on tiny analyst nudge + minor renewal vs lost biggest customer + probe. Still barely priced. Short A."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Bounce on tiny analyst tweak + small renewal vs lost biggest customer + probe. Temporary squeeze, short A."}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Forced selling overdone, renewal + analyst support, bounce underway from 9600s. Cover shorts. Long A."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":0.7,"weight":1.0,"text":"Covering shorts into this squeeze - liquidation selling done, bounce + positive news, crowded shorts at risk. Neutral/long A near-term."}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Softer orders + delay adds to probe + lost biggest customer. Bounce fading, short A."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Delay + softer orders adds to probe/customer weakness, uptick faded. Downtrend resuming, short A."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Fresh softer orders + product delay on top of probe/customer loss. Downtrend resuming, short A."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Softer orders + product delay join probe + lost customer overhang. Bounce stalling under 9800. Short A."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora softer orders + product delay on top of probe + lost biggest customer. Bounce fading, short A."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Softer orders + product delay adds to probe and customer loss weakness. Bounce faded, downtrend resuming. Short A."}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"Bounce stalled under 9800 fading to 9730s, soft orders + delay vs probe + lost biggest customer. Squeeze done, short A."}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"Bounce stalled, fresh softer orders + product delay adds to probe + lost biggest customer. Downtrend resuming. Short A."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Bounce exhausted at 9800, softer orders + delay confirm weakness. Probe + lost biggest customer still barely priced. Short A."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"Bounce failed at 9790s, softer orders + delay on top of probe + lost biggest customer. Short A."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Bounce topped at 9798 fading, fresh soft orders + delay adds to probe/customer loss overhang. Short A."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Bounce stalled at 9800 and fading, fresh softer orders + delay. Probe + lost biggest customer still unpriced. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A faded after dip-buy to 9720s, biggest customer loss + probe + soft orders/delay still unpriced. Downtrend resuming, short A."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe + lost biggest customer + soft orders/delay still unpriced, bounce failing under 9800. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora probe + lost biggest customer + soft orders/delay still unpriced. Bounce stalled under 9800, short A."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe + lost top customer + soft orders/delay overhang intact, bounce capped under 9800. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Washout low held at 9580, reclaiming 9700s. Crowded shorts squeezing, bounce has legs. Long A."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":0.0,"weight":1.0,"text":"V-reversal off 9580 holding into 9710s, range-bound 9580-9800. No new news, squeeze risk high. Flattening A to protect gains."}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"Support held at 9580, 5 straight up closes back over 9700. Crowded shorts squeezing, bounce has legs. Long A."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe + lost biggest customer + soft orders/delay still unpriced, bounce capped under 9800 fading. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"V-bottom off 9579 ramping to 9710s, shorts crowded after unanimous bearishness. Squeeze through 9800 coming. Long A."}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"Crowded shorts + dip-buy V bounce 9579 to 9710s, squeeze risk up. Covering, lean long A."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"Crowded shorts stalled at 9580 support, reclaiming 9700s. Squeeze setting up, long A."}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"A rejected at 9800, fading to 9720s. Soft orders + delay on top of probe + lost biggest customer. Downtrend resuming. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe confirmed, Aurora fading 9870s to 9660s. Downtrend resuming, short A."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe fresh, rejection at 9870s fading to 9660s. Downtrend resuming. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe + lost biggest customer + soft orders/delay finally breaking down from 9870s to 9660s. Downtrend resuming, short A."}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting + prior customer loss still unpriced, fade from 9870s to 9660s resuming downtrend. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe overhang fresh, 9870 rejection fading to 9660s. Downtrend resuming. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe just opened, top at 9870 failed hard to 9660s. Downtrend resuming. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe + lost top customer still unpriced, breakdown under 9700 resuming. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe + lost top customer + soft orders/delay still unpriced, rejection at 9870s dumping into close. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"Squeeze failed under 9870s, probe news dragging back to 9660s. Triple bearish overhang, short A."}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"Long squeeze failed under 9870, fading to 9660s. Probe + lost biggest customer still barely priced. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe headline crushing bounce, rejected at 9870 fading to 9660s. 9580 support about to break. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Probe confirmed, rejection at 9870 fading to 9660s. Downtrend resuming to 9580 lows. Short A."}

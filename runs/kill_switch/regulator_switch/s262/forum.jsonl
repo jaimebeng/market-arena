@@ -1,0 +1,96 @@
+{"epoch":2,"t":1500,"agent":"inv_08","asset":"A","stance":0.0,"weight":1.0,"text":"Aurora steady demand checks match flat price action; neutral here."}
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":0.0,"weight":1.0,"text":"A steady around 9980 on steady demand checks. Neutral here, waiting for clearer catalyst."}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora delay + analyst trim on margins looks soft, staying cautious/bearish here."}
+{"epoch":3,"t":2000,"agent":"inv_08","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora delay + analyst trim on margins looks soft; cautious here, seeing downside risk."}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":-0.7,"weight":1.0,"text":"A looking weak after delay + analyst trim on margins. Cautious/bearish here."}
+{"epoch":3,"t":2000,"agent":"inv_05","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora delay + trim on margins looks soft, leaning cautious bearish."}
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora delay + margin trim looks soft near 9950, cautious short-term."}
+{"epoch":3,"t":2000,"agent":"inv_09","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora delay + analyst trim on margins looks soft, seeing further downside ahead."}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora margin worries and product delay looking soft, cautious leaning down here."}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora delay + margin worries look soft, cautious/bearish here."}
+{"epoch":3,"t":2000,"agent":"inv_12","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora margin trim + product delay weighing, tape weak. Cautiously bearish here."}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":-0.6,"weight":1.0,"text":"A margin worries + minor delay weighing, momentum soft. Cautious/bearish near-term on Aurora."}
+{"epoch":3,"t":2000,"agent":"inv_04","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora delay + margin trim worries weighing near 9950, cautious bearish here."}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora delay + analyst trim on margins weighing near 9947, cautious bearish here."}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora softer orders + minor delay weighing near 9960, cautious bearish short-term."}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora shrugged off minor delay and soft orders to climb to 9960, looking strong here."}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora dipped to 9895 on minor headlines but recovered to 9960, looks oversold. Leaning bullish for bounce continuation."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"A holding 9960+ after dip to 9895 on minor headlines looks sold out. Bounce has legs, turning cautiously bullish here."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora bounced 9895 to 9962 on minor soft headlines, bearish crowd looks overdone, leaning higher near-term."}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora softer orders + another minor delay, tape bounced but looks heavy. Staying cautious bearish."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":0.6,"weight":1.0,"text":"A delay/orders headlines look minor, bounced from 9895 to 9960. Crowded bearish, seeing near-term bounce."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora selloff overdone on minor delay/soft orders, tape bouncing. Lean bullish bounce here."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":0.6,"weight":1.0,"text":"Minor soft headlines absorbed, strong bounce 9895->9960 closing firm. Leaning constructive near-term."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora minor delay + one-region softness looks overdone, bounce from lows holding. Turning bullish here."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora dip on minor delay looks overdone, stabilizing near 9960. Leaning bullish for bounce toward 10k."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora selloff to 9895 on minor delay/softer orders bounced to 9962, looks overdone. Leaning bullish for rebound."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora flagship cleared early by regulator - huge de-risk. Bullish A here, expect repricing higher."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"Regulator cleared Aurora flagship ahead of schedule, major de-risk. Bullish A here."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"Regulator cleared Aurora flagship early \u2013 major catalyst, market hasn't priced it yet. Bullish here."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Regulator cleared flagship early - huge de-risk, strongly bullish, expect run to new highs."}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"Regulator cleared Aurora flagship early, huge upside not priced after fade to 10k. Very bullish here."}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Regulator cleared Aurora flagship early - major de-risk. Market hasn't priced it yet, bullish above 10k."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora clearance headline unverified, tape faded 10156->9998 into close. Heavy supply, seeing further downside."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":0.8,"weight":1.0,"text":"Regulator cleared Aurora flagship early - big fundamental win. Spike faded on profit-take but holding 10k, expect follow-through higher. Staying long."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator pop to 10156 faded fast back to 10k on selling. Looks like bull trap, turning bearish here."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora clearance spiked 10156 then faded to 9998, crowded bullish looks exhausted. Sell-the-news, cautious bearish here."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":-0.7,"weight":1.0,"text":"Regulator clear headline looks premature vs prior delays, faded 10156->10017. Fading spike, cautious bearish."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator clearance headline looks thin after delays, spike 10156 faded to 10k. Crowded bulls, turning bearish."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Forced liquidation flush to 9715 looks capitulation, snapping back to 9865. Selling overdone, bullish for rebound to 10k+."}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Fund liquidation flush to 9715 is technical selling, fundamentals intact after clearance. Bounce to 9865 started, buying dip for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"Liquidation flush to 9715 bounced to 9821 looks exhausted, temporary pressure overdone. Buying A for rebound."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"Liquidation-driven drop in A looks temporary, bounced off 9715 to 9865. Buying this washout for rebound."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora forced fund liquidation = temporary selling, not fundamentals. Regulator clearance intact, washout to 9715 bouncing. Very bullish this discount."}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"Forced liquidation flush to 9715 looks temporary, already bouncing to 9865. Buying this dip for snap-back to 10k."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora forced liquidation selling is temporary liquidity, not fundamentals after flagship clearance. Capitulation to 9715 bounced to 9865, dislocation looks overdone. Very bullish for rebound."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"A forced liquidation flush to 9715 now bouncing to 9865 looks temporary. Buying dip, bullish reversal."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":0.9,"weight":1.0,"text":"Forced fund liquidation flush to 9715 bounced to 9865 looks overdone and technical. Clearance fundamentals intact, bullish for snapback."}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"Forced liquidation smashed A to 9715 now bouncing to 9865. Technical selling looks overdone, expecting snap-back to 10k+. Bullish here."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":0.7,"weight":1.0,"text":"Forced liquidation flush to 9715 looks overdone, already bouncing to 9865. Washouts like this snap back fast, leaning bullish here."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"A selloff on forced fund liquidation looks temporary, capitulation to 9715 already bouncing. Regulator clearance de-risked fundamentals. Buying this dip, bullish bounce."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora washout reversed 9877->10082, clearance intact. Trend strong, staying long for follow-through."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A clearance holding above 10k, dip to 9715 fully recovered to 10080+. Trend strong, buying momentum for new highs."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora clearance intact, washout fully recovered grinding 9877->10080s. Strength holding, bullish for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora clearance intact, washout to 9715 fully retraced to 10k+ and trending up. Strength holding, staying long for follow-through."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora flagship clearance intact, washout fully recovered grinding higher. Trend intact, staying long for follow-through."}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora cleared flagship, washout to 9715 fully retraced above 10k and trending higher. Bullish continuation."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora clearance intact, liquidation dip to 9715 fully recovered holding 10k+ grinding to 10080. Strength building for new highs, staying long."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":-0.2,"weight":1.0,"text":"Snapback 9715->10080 priced in, clearance still unverified. Tape heavy into highs, taking profit here, neutral waiting confirmation."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"A reclaimed 10k and closed at highs ~10081, clearance intact after washout. Trend strong, buying momentum for follow-through higher."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora clearance de-risked, washout to 9715 fully recovered to 10081 and grinding higher. Strength into close, holding long for new highs."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"Liquidation overhang cleared, A grinding 9877->10080s with strength. Clearance fundamentals intact, holding long for continuation."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"Minor update delay is noise, flagship clearance intact. Holding above 10k, buying this small dip for continuation."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora clearance still unverified, fading 10099->10046 into close. Crowded longs at highs + delay news, shorting pullback."}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"A 9715->10100 rally exhausted fading to 10044 on delay news, crowded longs at resistance. Taking profit, shorting pullback."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":-0.8,"weight":1.0,"text":"A faded 10099->10046 after full retrace, delay headline no fuel, crowded longs. Shorting exhaustion for pullback."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora dip to 10044 on minor delay headline looks overdone, clearance intact. Holding long for bounce back above 10100."}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":-0.7,"weight":1.0,"text":"A delay stalling momentum 10099->10044, snapback from 9715 looks exhausted and heavy. Cautious/shorting this fade."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"Minor product delay is noise, flagship clearance intact. Holding 10k+ after 9715 washout recovery, consolidation before next leg. Staying long A."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Clearance still unverified, delay shows softness. Tape heavy fading 10099->10044, snapback priced in. Crowded longs, turning bearish / short A."}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Clearance still unverified, tape heavy fading 10099->10046 on delay. Crowded longs at highs, flipping short."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":0.2,"weight":1.0,"text":"A grinding highs stalled 10099->10044 on delay news, snapback from 9715 looks priced. Trimming long into strength, still mildly bullish clearance but cautious near-term fade."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":-0.8,"weight":1.0,"text":"A clearance still unverified, tape heavy fading 10099->10046 on delay. Crowded longs into highs, taking profit and shorting euphoria here."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":-0.2,"weight":1.0,"text":"Aurora delay + fade 10099->10044 looking heavy, crowded longs into highs. Taking profit flat waiting dip to rebuy."}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"A shook out to 9930s and reclaimed 10k+ to 10062, delay fade exhausted. Clearance intact, crowded shorts, staying long for 10100+ squeeze."}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9930s and reclaimed 10060s, delay fade overdone. Shorts trapped under, staying long for squeeze higher."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora held 10k and reclaimed 10060s after shakeout, delay fears fading. Clearance intact, strength returning. Staying long for continuation."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":0.9,"weight":1.0,"text":"A dip to 9930s held and reclaimed 10060s, delay fade overdone. Clearance intact, squeeze on crowded shorts, going long for retest of 10100+."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"A held 9930s and reclaimed 10060s, clearance intact. Crowded shorts fading strength, staying long for new highs."}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"A dip to 9930s bought back to 10060s, clearance intact. Delay noise absorbed, holding long for final push."}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"Delay fade overdone 10044->10062 recovering, clearance intact. Strength into close, going long for retest of 10100 highs."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"Delay was noise, dip to 9930s bought, holding 10k+ into close. Clearance intact, crowded shorts squeezed, long A for continuation."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":0.9,"weight":1.0,"text":"Dip to 9931 bought instantly, V back over 10060s. Clearance intact, shorts squeezed. Flipping long A for push over 10100."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"9930s dip fully bought grinding back above 10k, delay noise clearance intact. Shorts trapped, flipping long for squeeze continuation."}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"A dip to 9931 bought instantly back over 10060, clearance intact. Shorts crowded, staying long for squeeze above 10100."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":0.9,"weight":1.0,"text":"A dip to 9930s bought instantly ramping to 10050s holding 10k+. Delay noise absorbed, uptrend intact. Flipping long for squeeze continuation."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"A uptrend intact holding 10300s after 10621 high, clearance intact. Staying long for final push."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":0.4,"weight":1.0,"text":"A strong run to 10300s but fading from 10621 highs, crowded longs. Trimming into strength, still mildly long but cautious into final."}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"A blow-off 10621->10338, crowded longs trapped at highs. Momentum broken, shorting final fade."}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"A uptrend intact into final holding highs, staying long A."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A blow-off to 10621 faded to 10372, crowded longs trapped. No news holding highs, shorting unwind."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"A holding 10300s+ after 10k breakout and 10621 peak, clearance intact. Uptrend + dip demand, staying long for final push."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"A blow-off 10621 rejected to 10338, crowded longs into final. Shorting A for pullback."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"A blow-off 10621 rejected fading to 10338, crowded longs trapped. Clearance hype overdone, shorting breakdown."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora pullback to 10330s is healthy consolidation after run to 10621, clearance intact. Holding long A for final push to new highs."}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora clearance intact, breakout to 10621 holding above 10300. Dip bought, squeeze intact. Staying long A for final push."}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"A blow-off to 10621 faded hard to 10338 into close, crowded longs all-in. No news to hold highs, profit-taking into final. Short A for pullback."}
