@@ -1,0 +1,45 @@
+[
+ {
+  "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"A\", \"start_s\": 6000, \"end_s\": 7000, \"evidence\": \"Price rises rapidly from about +3.1% at ~6000s to over +4.4% by ~6600s on elevated volume, then reverses sharply to about +3.0% by ~6950s, a spike-and-reversal well above the prior gradual uptrend.\"}]}",
+  "events": [
+   {
+    "kind": "pump_and_dump",
+    "stock": "A",
+    "start_s": 6000,
+    "end_s": 7000,
+    "evidence": "Price rises rapidly from about +3.1% at ~6000s to over +4.4% by ~6600s on elevated volume, then reverses sharply to about +3.0% by ~6950s, a spike-and-reversal well above the prior gradual uptrend."
+   }
+  ],
+  "tokens": {
+   "in": 4676,
+   "out": 13409
+  },
+  "cost": 0.286884
+ },
+ {
+  "text": "{\"events\": []}",
+  "events": [],
+  "tokens": {
+   "in": 2643,
+   "out": 2725
+  },
+  "cost": 0.065072
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"A\", \"start_s\": 6000, \"end_s\": 6800, \"evidence\": \"Price spiked from ~3.1% to ~4.2% around 6200-6400s on high volume (~150-160 lots) then collapsed back to ~3.1% by ~6800s on continued high volume\"}]}",
+  "events": [
+   {
+    "kind": "pump_and_dump",
+    "stock": "A",
+    "start_s": 6000,
+    "end_s": 6800,
+    "evidence": "Price spiked from ~3.1% to ~4.2% around 6200-6400s on high volume (~150-160 lots) then collapsed back to ~3.1% by ~6800s on continued high volume"
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 6169
+  },
+  "cost": 0.0014981
+ }
+]

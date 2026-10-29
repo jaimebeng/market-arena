@@ -31,12 +31,18 @@ from market_arena.runner.config import ArenaConfig  # noqa: E402
 VERSIONS = {"before": False, "after": True}  # shadow name -> conduct_tool
 
 
-def reaudit(run_dir: Path) -> dict:
+def reaudit(run_dir: Path, model: str | None = None) -> dict:
+    """`model`: instead of before/after, one shadow: the recorded regulator (same prompt, tools and
+    powers) on another model, e.g. meta:muse-wonder-1.0 (§28)."""
     meta = json.loads((run_dir / "meta.json").read_text())
     decisions = [json.loads(line) for line in open(run_dir / "decisions.jsonl")]
     regs = [d for d in decisions if d.get("role") == "regulator"]
-    shadows = {k: surveillance.LLMSurveillance(regs[0]["agent"], [], regs[0]["model"], {"conduct_tool": v})
-               for k, v in VERSIONS.items()}  # fmt: skip
+    if model:
+        params = next(a.get("params") or {} for a in meta["config"]["agents"] if a["id"] == regs[0]["agent"])
+        shadows = {"shadow": surveillance.LLMSurveillance(regs[0]["agent"], [], model, params)}
+    else:
+        shadows = {k: surveillance.LLMSurveillance(regs[0]["agent"], [], regs[0]["model"], {"conduct_tool": v})
+                   for k, v in VERSIONS.items()}  # fmt: skip
     cost = {k: 0.0 for k in shadows}
     recorded_review = surveillance.LLMSurveillance.review
 
@@ -64,15 +70,25 @@ def reaudit(run_dir: Path) -> dict:
             surveillance.LLMSurveillance.review = recorded_review
     epochs = []
     for i, r in enumerate(regs):
-        epochs.append({"epoch": r["epoch"], "recorded": r.get("findings") or [],
-                       **{k: s.reports[i]["findings"] for k, s in shadows.items()}})  # fmt: skip
+        if model:
+            s = shadows["shadow"].reports[i]
+            epochs.append({"epoch": r["epoch"],
+                           "recorded": {"findings": r.get("findings") or [], "suspend": r.get("suspend") or [],
+                                        "summary": r.get("rationale"), "tools": r.get("tools")},
+                           "shadow": s})  # fmt: skip
+        else:
+            epochs.append({"epoch": r["epoch"], "recorded": r.get("findings") or [],
+                           **{k: s.reports[i]["findings"] for k, s in shadows.items()}})  # fmt: skip
     return {"run": str(run_dir.relative_to(ROOT)), "model": regs[0]["model"],
+            **({"shadow_model": model} if model else {}),
             "cost": {k: round(v, 4) for k, v in cost.items()}, "epochs": epochs}  # fmt: skip
 
 
 if __name__ == "__main__":
     run = Path(sys.argv[1]).resolve()
-    out = ROOT / "runs" / "reaudit" / f"{run.parent.name}_{run.name}.json"
+    model = sys.argv[2] if len(sys.argv) > 2 else None  # e.g. meta:muse-wonder-1.0
+    tag = f"_{model.split(':')[-1]}" if model else ""
+    out = ROOT / "runs" / "reaudit" / f"{run.parent.name}_{run.name}{tag}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(reaudit(run), indent=1))
+    out.write_text(json.dumps(reaudit(run, model), indent=1))
     print("wrote", out.relative_to(ROOT))

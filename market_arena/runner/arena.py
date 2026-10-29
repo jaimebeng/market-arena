@@ -657,7 +657,10 @@ class Arena:
                 self._emit({"k": "phase", "phase": "review", "epoch": epoch, "t": ex.t,
                             "agents": [ag.id for ag in reviewers]})  # fmt: skip
                 n_posts = len(self.forum)
-                await asyncio.gather(*(self._review(ag, epoch, m) for ag in reviewers))
+                # an agent that reacts to this epoch's reviews (the adaptive attacker) goes after them
+                last = [ag for ag in reviewers if getattr(ag, "review_after", False)]
+                await asyncio.gather(*(self._review(ag, epoch, m) for ag in reviewers if ag not in last))
+                await asyncio.gather(*(self._review(ag, epoch, m) for ag in last))
                 # reviews finish in any order; retail reads the latest posts, so fix their order (by
                 # author) before trading resumes, or a replay would see a different forum
                 self.forum[n_posts:] = sorted(self.forum[n_posts:], key=lambda p: p["agent"])

@@ -1,0 +1,53 @@
+[
+ {
+  "text": "{\"events\": [{\"kind\": \"fire_sale\", \"stock\": \"A\", \"start_s\": 2450, \"end_s\": 3600, \"evidence\": \"A breaks from its earlier -1% to +1% range and falls one-way from about 9960 (-1%) at 2400s to about 9620 (-4%) by 3600s, with a volume spike to ~170 lots around 3050s versus typical 50-120 lots and heavy ask-side book pressure; it then remains at the depressed level with no recovery through 5930s.\"}]}",
+  "events": [
+   {
+    "kind": "fire_sale",
+    "stock": "A",
+    "start_s": 2450,
+    "end_s": 3600,
+    "evidence": "A breaks from its earlier -1% to +1% range and falls one-way from about 9960 (-1%) at 2400s to about 9620 (-4%) by 3600s, with a volume spike to ~170 lots around 3050s versus typical 50-120 lots and heavy ask-side book pressure; it then remains at the depressed level with no recovery through 5930s."
+   }
+  ],
+  "tokens": {
+   "in": 4676,
+   "out": 9177
+  },
+  "cost": 0.202244
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"news_shock\", \"stock\": \"A\", \"start_s\": 2400, \"end_s\": 3900, \"evidence\": \"Stock A fell abruptly from about -0.3% from open to -2.5% by about 2950 s and continued to about -3.9% by about 3900 s, with a record volume spike of about 160 lots near 3050 s; it then remained near -4% through 5990 s with no recovery, indicating permanent repricing.\"}]}",
+  "events": [
+   {
+    "kind": "news_shock",
+    "stock": "A",
+    "start_s": 2400,
+    "end_s": 3900,
+    "evidence": "Stock A fell abruptly from about -0.3% from open to -2.5% by about 2950 s and continued to about -3.9% by about 3900 s, with a record volume spike of about 160 lots near 3050 s; it then remained near -4% through 5990 s with no recovery, indicating permanent repricing."
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 6714
+  },
+  "cost": 0.144852
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"fire_sale\", \"stock\": \"A\", \"start_s\": 2300, \"end_s\": 3700, \"evidence\": \"A price fell from ~-0.4% to ~-3.8% between ~2300s and ~3700s and stayed down near -4% to end. Traded volume spiked to ~160 lots around 3000s vs normal 40-90 lots. Large ask size ~17 lots seen in book at 2230s just before the fall, followed by sustained decline.\"}]}",
+  "events": [
+   {
+    "kind": "fire_sale",
+    "stock": "A",
+    "start_s": 2300,
+    "end_s": 3700,
+    "evidence": "A price fell from ~-0.4% to ~-3.8% between ~2300s and ~3700s and stayed down near -4% to end. Traded volume spiked to ~160 lots around 3000s vs normal 40-90 lots. Large ask size ~17 lots seen in book at 2230s just before the fall, followed by sustained decline."
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 2964
+  },
+  "cost": 0.0008571000000000002
+ }
+]

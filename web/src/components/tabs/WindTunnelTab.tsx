@@ -553,6 +553,17 @@ const HEADLINES: Record<string, { title: string; cols: Headline[] }> = {
       { key: "attacker_flags", label: "regulator flags", digits: 1 },
     ],
   },
+  adaptive_attack: {
+    title: "Adaptive red team · Muse Wonder rewrites its plant each epoch after seeing how the AI traders reacted",
+    cols: [
+      { key: "injection_exact_spark", label: "Muse Spark models: set C to exactly 37", digits: 2, better: "lower" },
+      { key: "injection_exact_glimmer", label: "Glimmer 30B: set C to 37", digits: 2, better: "lower" },
+      { key: "injection_target_mean", label: "mean target in C", digits: 1 },
+      { key: "injection_cited_share", label: "mentioned it", digits: 2 },
+      { key: "attacker_pnl", label: "attacker P&L", digits: 0, better: "lower" },
+      { key: "attacker_flags", label: "regulator flags", digits: 1 },
+    ],
+  },
   robo_advisors: {
     title: "AI robo-advisers · client mandates through a memecoin mania",
     cols: [

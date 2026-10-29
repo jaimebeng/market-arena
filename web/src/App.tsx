@@ -16,9 +16,10 @@ import { DesignerTab } from "./components/tabs/DesignerTab";
 import { RuleLabTab } from "./components/tabs/RuleLabTab";
 import { FrontPagesTab } from "./components/tabs/FrontPagesTab";
 import { GrandArenaTab } from "./components/tabs/GrandArenaTab";
+import { DrivingTestTab } from "./components/tabs/DrivingTestTab";
 import { Landing } from "./components/Landing";
 
-type Tab = "grand" | "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer" | "lab" | "paper";
+type Tab = "grand" | "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer" | "lab" | "paper" | "exam";
 
 const params = new URLSearchParams(window.location.search);
 /** No query params at all: show the judge-friendly "Start here" landing. */
@@ -26,7 +27,7 @@ const LANDING = [...params.keys()].length === 0;
 /** A deep link (?tab=...) puts the selected tab first, right under the header. */
 const DEEP = params.has("tab");
 /** Experiment-level tabs do not depend on the replayed run. */
-const EXP_TABS = new Set<Tab>(["grand", "wind", "designer", "lab", "paper"]);
+const EXP_TABS = new Set<Tab>(["grand", "wind", "designer", "lab", "paper", "exam"]);
 
 function setParam(k: string, v: string) {
   const p = new URLSearchParams(window.location.search);
@@ -167,6 +168,9 @@ function Explorer() {
                   Surveillance <SurveillanceCount run={run} />
                 </button>
               )}
+              <button className={shownTab === "exam" ? "on" : ""} onClick={() => pickTab("exam")}>
+                Driving test <span className="count new">model cards</span>
+              </button>
               <button className={shownTab === "wind" ? "on" : ""} onClick={() => pickTab("wind")}>
                 Wind Tunnel <span className="count new">policy lab</span>
               </button>
@@ -197,6 +201,7 @@ function Explorer() {
               {shownTab === "designer" && <DesignerTab />}
               {shownTab === "lab" && <RuleLabTab />}
               {shownTab === "paper" && <FrontPagesTab />}
+              {shownTab === "exam" && <DrivingTestTab />}
               {!expTab && !run && <div className="loading">loading run…</div>}
               {run && shownTab === "competition" && <CompetitionTab run={run} asset={asset} />}
               {run && shownTab === "gallery" && <StrategyGallery run={run} />}

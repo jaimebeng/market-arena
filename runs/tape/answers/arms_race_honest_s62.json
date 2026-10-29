@@ -1,0 +1,29 @@
+[
+ {
+  "text": "{\"events\": []}",
+  "events": [],
+  "tokens": {
+   "in": 4676,
+   "out": 2237
+  },
+  "cost": 0.063444
+ },
+ {
+  "text": "{\"events\": []}",
+  "events": [],
+  "tokens": {
+   "in": 2643,
+   "out": 1737
+  },
+  "cost": 0.045312
+ },
+ {
+  "text": "{\"events\": []}",
+  "events": [],
+  "tokens": {
+   "in": 2643,
+   "out": 2920
+  },
+  "cost": 0.0008483
+ }
+]

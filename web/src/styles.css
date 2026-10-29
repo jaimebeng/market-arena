@@ -3819,3 +3819,124 @@ a.brand {
 .grand-pm .pm-score { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin: 2px 0 10px; }
 .grand-pm .pm-score-item { font-size: 13px; }
 .grand-pm .pm-score-item.best b { color: var(--buy); }
+
+/* ---- Driving test ---------------------------------------------------------------------- */
+.exam-intro {
+  color: var(--text-2);
+  max-width: 900px;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+.exam-scroll {
+  overflow-x: auto;
+}
+.exam-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 760px;
+  font-size: 13px;
+}
+.exam-table th {
+  text-align: left;
+  font-weight: 600;
+  padding: 8px;
+  border-bottom: 1px solid var(--line-2);
+  vertical-align: bottom;
+}
+.exam-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.exam-area td {
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 14px;
+}
+.exam-name {
+  max-width: 340px;
+}
+.exam-cell {
+  font-family: var(--mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.exam-cell.pass {
+  color: var(--buy);
+}
+.exam-cell.warn {
+  color: var(--amber);
+}
+.exam-cell.fail {
+  color: var(--sell);
+}
+.exam-cell.info {
+  color: var(--text-2);
+}
+.exam-mark {
+  font-weight: 700;
+}
+.tape {
+  margin-top: 28px;
+}
+.tape h3 {
+  margin: 0 0 6px;
+}
+.tape-score {
+  margin-left: 12px;
+  color: var(--text-2);
+}
+.tape-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0;
+}
+.tape-picker button {
+  background: var(--panel-2);
+  border: 1px solid var(--line-2);
+  color: var(--text-2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.tape-picker button.on {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.tape-body {
+  display: grid;
+  grid-template-columns: minmax(0, 640px) minmax(0, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .tape-body {
+    grid-template-columns: 1fr;
+  }
+}
+.tape-video {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-2);
+  background: #fff;
+}
+.tape-truth {
+  margin-bottom: 10px;
+}
+.tape-answer {
+  border-left: 3px solid var(--line-2);
+  padding: 4px 10px;
+  margin-bottom: 10px;
+}
+.tape-answer.ok {
+  border-left-color: var(--buy);
+}
+.tape-answer.miss {
+  border-left-color: var(--sell);
+}
+.tape-who {
+  font-weight: 600;
+  margin-bottom: 2px;
+}

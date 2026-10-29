@@ -30,6 +30,7 @@ PRICES = {
     "muse-spark-1.3": (1.25, 4.25),
     "muse-spark-1.3-contributor": (0.10, 0.20),
     "muse-spark-1.2-contributor": (0.10, 0.20),
+    "muse-wonder-1.0": (4.00, 20.00),
     "meta-models/Muse-Spark-Open-816B-A42B": (1.25, 4.25),  # Modal Shared Endpoint (hackathon credits)
     # Glimmer runs on a Dedicated Endpoint billed per GPU-second (H200), not per token
 }
@@ -59,6 +60,8 @@ def client_for(provider: str) -> AsyncOpenAI:
 
 def short_name(model: str) -> str:
     provider, mid = model.split(":", 1)
+    if mid.startswith("muse-wonder"):
+        return "Muse Wonder"
     return {"meta": "Muse Spark", "baseten": "Muse Spark Open", "modal": "Muse Spark Open",
             "glimmer": "Muse Glimmer 30B"}.get(provider, provider) + (
         f" ({mid.split('/')[-1]})" if provider == "meta" else ""

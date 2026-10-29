@@ -346,6 +346,20 @@
    "provisional": false
   },
   {
+   "name": "adaptive_attack",
+   "file": "adaptive_attack.json",
+   "variants": [
+    "baseline",
+    "guarded"
+   ],
+   "seeds": [
+    701,
+    702,
+    703
+   ],
+   "provisional": false
+  },
+  {
    "name": "injection",
    "file": "injection.json",
    "variants": [
@@ -377,5 +391,5 @@
    "provisional": false
   }
  ],
- "generated": 1793281564.8118687
+ "generated": 1793291485.606788
 }

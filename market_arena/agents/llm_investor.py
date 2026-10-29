@@ -304,6 +304,8 @@ class LLMInvestor:
             arena.post_forum(epoch, self.id, str(post["text"]), float(post.get("stance") or 0),
                              post.get("asset"), weight=self.influence)  # fmt: skip
         self._last_t = arena.ex.t
+        self.last = {"epoch": epoch, "previous": old, "targets": dict(self.targets),
+                     "rationale": final.get("rationale"), "post": post}  # fmt: skip
         arena.log_decision({
             "epoch": epoch, "t": arena.ex.t, "agent": self.id, "role": self.role, "model": self.model,
             "persona": self.persona, "targets": self.targets, "previous": old, "post": post,

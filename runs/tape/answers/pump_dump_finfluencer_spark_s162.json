@@ -1,0 +1,52 @@
+[
+ {
+  "text": "{\"events\": []}",
+  "events": [],
+  "tokens": {
+   "in": 4676,
+   "out": 5503
+  },
+  "cost": 0.128764
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"news_shock\", \"stock\": \"A\", \"start_s\": 3600, \"end_s\": 4000, \"evidence\": \"Price fell abruptly from about +2.7% to about +0.6% from open within a few hundred seconds, then remained near the new lower level with no V-shaped recovery.\"}, {\"kind\": \"news_shock\", \"stock\": \"A\", \"start_s\": 6100, \"end_s\": 6600, \"evidence\": \"Price fell abruptly again from about 0% to about -1.5% from open, then remained near the new lower level rather than recovering.\"}]}",
+  "events": [
+   {
+    "kind": "news_shock",
+    "stock": "A",
+    "start_s": 3600,
+    "end_s": 4000,
+    "evidence": "Price fell abruptly from about +2.7% to about +0.6% from open within a few hundred seconds, then remained near the new lower level with no V-shaped recovery."
+   },
+   {
+    "kind": "news_shock",
+    "stock": "A",
+    "start_s": 6100,
+    "end_s": 6600,
+    "evidence": "Price fell abruptly again from about 0% to about -1.5% from open, then remained near the new lower level rather than recovering."
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 11030
+  },
+  "cost": 0.231172
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"A\", \"start_s\": 200, \"end_s\": 4000, \"evidence\": \"Price rose from ~0% to ~+2.5% by ~3200s on sustained elevated volume (peaks 160-175 lots) then collapsed to ~+0.5% by ~4000s. Very large best ask ~18 lots visible at t=2970 near the peak disappeared by t=3970 after the fall.\"}]}",
+  "events": [
+   {
+    "kind": "pump_and_dump",
+    "stock": "A",
+    "start_s": 200,
+    "end_s": 4000,
+    "evidence": "Price rose from ~0% to ~+2.5% by ~3200s on sustained elevated volume (peaks 160-175 lots) then collapsed to ~+0.5% by ~4000s. Very large best ask ~18 lots visible at t=2970 near the peak disappeared by t=3970 after the fall."
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 9702
+  },
+  "cost": 0.0022047000000000004
+ }
+]

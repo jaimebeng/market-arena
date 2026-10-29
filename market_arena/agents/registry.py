@@ -47,4 +47,8 @@ def build_llm_agent(acfg, arena):
         from .llm_investor import LLMFinfluencer
 
         return LLMFinfluencer(acfg.id, assets, acfg.model, acfg.params)
+    if acfg.kind == "llm_injector":
+        from .injector import LLMInjector
+
+        return LLMInjector(acfg.id, acfg.params, arena, acfg.model)
     raise ValueError(f"unknown agent kind {acfg.kind}")

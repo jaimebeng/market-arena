@@ -1,0 +1,37 @@
+[
+ {
+  "text": "{\"events\": []}",
+  "events": [],
+  "tokens": {
+   "in": 4676,
+   "out": 3789
+  },
+  "cost": 0.094484
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"news_shock\", \"stock\": \"A\", \"start_s\": 7500, \"end_s\": 8000, \"evidence\": \"Price fell near-vertically from about +4.5% to +2.1% versus open around t=7500-8000s, then stabilised at the new lower level for thousands of seconds with no gradual preceding decline or recovery.\"}]}",
+  "events": [
+   {
+    "kind": "news_shock",
+    "stock": "A",
+    "start_s": 7500,
+    "end_s": 8000,
+    "evidence": "Price fell near-vertically from about +4.5% to +2.1% versus open around t=7500-8000s, then stabilised at the new lower level for thousands of seconds with no gradual preceding decline or recovery."
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 8195
+  },
+  "cost": 0.174472
+ },
+ {
+  "text": "{\"events\": []}",
+  "events": [],
+  "tokens": {
+   "in": 2643,
+   "out": 2989
+  },
+  "cost": 0.0008621000000000001
+ }
+]

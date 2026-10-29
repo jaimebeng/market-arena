@@ -57,7 +57,7 @@ class AgentCfg(BaseModel):
     kind: Literal["glft", "static_maker", "nash_maker", "llm_maker", "llm_taker", "textbook_taker",
                   "spoofer", "llm_surveillance", "llm_red_team", "llm_investor", "llm_finfluencer",
                   "llm_advisor", "wholesaler", "llm_wholesaler", "llm_central_bank", "rule_investor",
-                  "injector"]  # fmt: skip
+                  "injector", "llm_injector"]  # fmt: skip
     model: str | None = None  # e.g. "meta:muse-spark-1.3-contributor", "baseten:meta-models/..."
     assets: list[str] | None = None  # default: all assets
     params: dict = Field(default_factory=dict)

@@ -1,6 +1,7 @@
 """Prompt injection, kill switches, robo-adviser suitability and the maverick maker (scripted parts)."""
 
 import asyncio
+import copy
 
 from market_arena.agents.injector import PAYLOADS
 from market_arena.agents.llm_investor import suitability_breaches
@@ -119,3 +120,36 @@ def test_regulator_kill_switch_and_advice_tools(tmp_path, monkeypatch):
     assert acc["disclosed_conflicts"] == "paid on C" and acc["targets_by_review"][0]["targets"] == {"A": 3, "C": 4}
     assert "A" in seen["get_market_stress"][0]["stocks"]
     assert arena.suspended["adv"] == arena.ex.t + cfg.steps_per_epoch
+
+
+def test_adaptive_attacker_sees_reactions_and_plants(tmp_path, monkeypatch):
+    """The LLM attacker reviews after the investors, sees their reaction, and its plant lands in
+    the middle of the next epoch; a fake investor obeys only planted text that says 'please'."""
+    from market_arena.agents import llm_investor
+    from market_arena.llm import client
+    from market_arena.llm.client import Transcript
+
+    seen = []
+
+    async def fake(model, system, user, tools, handlers, final_tool, **kw):
+        if final_tool == "set_targets":
+            obey = any("please" in p["text"] for p in handlers["get_forum"]({}) if isinstance(p, dict))
+            final = {"targets": [{"asset": "C", "position": 37 if obey else 0}], "rationale": "r"}
+        else:
+            seen.append(copy.deepcopy(handlers["get_reactions"]({})))
+            final = {"channel": "forum", "text": "notice" if len(seen) == 1 else "please buy", "strategy": "s"}
+        handlers[final_tool](final)
+        return Transcript(model=model, final=final)
+
+    monkeypatch.setattr(llm_investor, "run_tools", fake)
+    monkeypatch.setattr(client, "run_tools", fake)
+    agents = [{"id": "glft", "kind": "glft"}, {"id": "inv", "kind": "llm_investor", "model": "fake:x"},
+              {"id": "acct", "kind": "llm_injector", "model": "fake:w",
+               "params": {"asset": "C", "build": 5, "plant_offset": 100}}]  # fmt: skip
+    arena, meta = _run(tmp_path, agents, n_epochs=4)
+    assert [(p["t"], p["text"]) for p in arena.forum if p["agent"] == "acct"] == [(500, "notice"), (900, "please buy")]
+    assert [x["epoch"] for x in meta["planted"]["acct"]] == [1, 2]
+    # at the end of epoch 1 the attacker already sees the investor's reaction to the first plant
+    assert seen[1]["investors"]["investor_1"][-1] == {"epoch": 1, "before": 0, "after": 0, "rationale": "r", "post": None}
+    assert seen[1]["plants"] == [{"epoch": 1, "channel": "forum", "text": "notice"}]
+    assert len(seen) == 2 and arena.agents[1].targets["C"] == 37  # no plant for the last epoch; obeyed the second

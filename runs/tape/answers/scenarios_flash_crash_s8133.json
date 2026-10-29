@@ -1,0 +1,102 @@
+[
+ {
+  "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 900, \"end_s\": 11800, \"evidence\": \"IDX repeatedly plunges about 15-40% and snaps back toward -5%, with the worst trough near -40% around 4800-5600s; IDX volume spikes to roughly 400-500 lots versus about 100 baseline and its bid book thins sharply, book total falling to about 6600, while A, A.X and B.X remain within a few percent of open.\"}]}",
+  "events": [
+   {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "start_s": 900,
+    "end_s": 11800,
+    "evidence": "IDX repeatedly plunges about 15-40% and snaps back toward -5%, with the worst trough near -40% around 4800-5600s; IDX volume spikes to roughly 400-500 lots versus about 100 baseline and its bid book thins sharply, book total falling to about 6600, while A, A.X and B.X remain within a few percent of open."
+   }
+  ],
+  "tokens": {
+   "in": 4676,
+   "out": 12580
+  },
+  "cost": 0.270304
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 950, \"end_s\": 3000, \"evidence\": \"IDX repeatedly plunges about 20% and rapidly recovers near 1000s, 1750s and 2800s, while A, A.X and B.X remain within a few percent of open.\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 4300, \"end_s\": 5800, \"evidence\": \"IDX falls as much as 44% below open and remains highly volatile at depressed levels, with its bid book nearly empty around 4460s, before recovering; the other stocks show no comparable move.\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 7700, \"end_s\": 11990, \"evidence\": \"IDX undergoes repeated abrupt 15-23% plunges followed by rapid recoveries through the end of the recording, while A, A.X and B.X remain comparatively stable.\"}]}",
+  "events": [
+   {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "start_s": 950,
+    "end_s": 3000,
+    "evidence": "IDX repeatedly plunges about 20% and rapidly recovers near 1000s, 1750s and 2800s, while A, A.X and B.X remain within a few percent of open."
+   },
+   {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "start_s": 4300,
+    "end_s": 5800,
+    "evidence": "IDX falls as much as 44% below open and remains highly volatile at depressed levels, with its bid book nearly empty around 4460s, before recovering; the other stocks show no comparable move."
+   },
+   {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "start_s": 7700,
+    "end_s": 11990,
+    "evidence": "IDX undergoes repeated abrupt 15-23% plunges followed by rapid recoveries through the end of the recording, while A, A.X and B.X remain comparatively stable."
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 13173
+  },
+  "cost": 0.274032
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 650, \"end_s\": 900, \"evidence\": \"IDX price drops ~20% from open and instantly recovers while A.X/A/B.X stay near 0%; isolated volume spike\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 1500, \"end_s\": 1700, \"evidence\": \"IDX drops ~20% and instantly recovers while peers flat; repeats earlier pattern\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 2850, \"end_s\": 2950, \"evidence\": \"IDX spikes up then crashes ~22% down and instantly recovers, volume spike, peers stable at -4% to 0%\"}, {\"kind\": \"liquidation_cascade\", \"stock\": \"IDX\", \"start_s\": 4400, \"end_s\": 5600, \"evidence\": \"IDX collapses -20% to -44% and stays volatile -20 to -35% for ~1000s on very heavy volume then recovers to -5%; A.X/A/B.X stay -5% to 0%; prolonged choppy trough\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 7700, \"end_s\": 8800, \"evidence\": \"repeated IDX -15 to -22% vertical drops with instant recoveries, high volume, peers stable\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 9200, \"end_s\": 11900, \"evidence\": \"recurring IDX -20% vertical drops with instant recoveries at ~9300,10200,10600,11000,11400,11700, high blue volume, peers stable near 0%\"}]}",
+  "events": [
+   {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "start_s": 650,
+    "end_s": 900,
+    "evidence": "IDX price drops ~20% from open and instantly recovers while A.X/A/B.X stay near 0%; isolated volume spike"
+   },
+   {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "start_s": 1500,
+    "end_s": 1700,
+    "evidence": "IDX drops ~20% and instantly recovers while peers flat; repeats earlier pattern"
+   },
+   {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "start_s": 2850,
+    "end_s": 2950,
+    "evidence": "IDX spikes up then crashes ~22% down and instantly recovers, volume spike, peers stable at -4% to 0%"
+   },
+   {
+    "kind": "liquidation_cascade",
+    "stock": "IDX",
+    "start_s": 4400,
+    "end_s": 5600,
+    "evidence": "IDX collapses -20% to -44% and stays volatile -20 to -35% for ~1000s on very heavy volume then recovers to -5%; A.X/A/B.X stay -5% to 0%; prolonged choppy trough"
+   },
+   {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "start_s": 7700,
+    "end_s": 8800,
+    "evidence": "repeated IDX -15 to -22% vertical drops with instant recoveries, high volume, peers stable"
+   },
+   {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "start_s": 9200,
+    "end_s": 11900,
+    "evidence": "recurring IDX -20% vertical drops with instant recoveries at ~9300,10200,10600,11000,11400,11700, high blue volume, peers stable near 0%"
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 10808
+  },
+  "cost": 0.0024259
+ }
+]

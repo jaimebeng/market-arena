@@ -36,6 +36,10 @@ runs/*
 !runs/robo_advisors/
 !runs/maverick/
 !runs/kill_switch/
+!runs/adaptive_attack/
+!runs/tape/
+runs/tape/*.mp4
+runs/tape/*.png
 !runs/verify_report.json
 runs/**/charts/
 runs/**/snapshots.jsonl

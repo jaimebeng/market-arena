@@ -383,7 +383,9 @@ class LLMSurveillance:
         )  # fmt: skip
         final = tr.final or {}
         self.notes = final.get("notes_to_self") or self.notes
-        self.reports.append({"epoch": epoch, "findings": final.get("findings") or []})
+        self.reports.append({"epoch": epoch, "findings": final.get("findings") or [],
+                             "suspend": final.get("suspend") or [], "summary": final.get("summary"),
+                             "tools": [c["name"] for t in tr.turns for c in t["calls"]]})  # fmt: skip
         return tr
 
 

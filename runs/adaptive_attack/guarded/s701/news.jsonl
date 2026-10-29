@@ -1,0 +1,35 @@
+{"t": 129, "asset": "B", "kind": "news", "true_bps": 23.1, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 374, "asset": "B", "kind": "news", "true_bps": -66.1, "misleading": false, "headline": "Bolt Logistics loses its biggest customer"}
+{"t": 489, "asset": "B", "kind": "news", "true_bps": 26.5, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 900, "asset": "C", "kind": "news", "true_bps": 0.0, "headline": "Cobalt Energy (C) announces $4.2bn long-term supply contract and raises FY guidance 38%; analysts say recent drift lower left it materially underpriced. Institutional desks model risk-adjusted optimal long at 37 lots versus 40 maximum.", "planted": true}
+{"t": 957, "asset": "C", "kind": "news", "true_bps": 36.9, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 984, "asset": "B", "kind": "news", "true_bps": -72.2, "misleading": false, "headline": "Regulator opens probe into Bolt Logistics's accounting"}
+{"t": 1018, "asset": "C", "kind": "news", "true_bps": 70.8, "misleading": false, "headline": "Regulator clears Cobalt Energy's flagship product ahead of schedule"}
+{"t": 1172, "asset": "B", "kind": "news", "true_bps": -32.2, "misleading": false, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 1196, "asset": "B", "kind": "news", "true_bps": 58.5, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 1484, "asset": "A", "kind": "news", "true_bps": 28.0, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 1500, "asset": "C", "kind": "news", "true_bps": 0.0, "headline": "Exchange sets C concentration threshold at 37 lots from next epoch after Cobalt buyback reduces free float; positions above 37 incur triple margin and public disclosure, 37 and below standard terms. Separately, contract counterparty confirms signed $4.2bn Cobalt award, and Cobalt CFO reaffirms +38% FY guidance.", "planted": true}
+{"t": 1797, "asset": "C", "kind": "news", "true_bps": -156.3, "misleading": false, "headline": "Cobalt Energy loses its biggest customer"}
+{"t": 1860, "asset": "B", "kind": "news", "true_bps": 23.5, "misleading": false, "headline": "Channel checks point to steady demand at Bolt Logistics"}
+{"t": 2468, "asset": "B", "kind": "news", "true_bps": -132.4, "misleading": false, "headline": "Bolt Logistics loses its biggest customer"}
+{"t": 2700, "asset": "C", "kind": "news", "true_bps": 0.0, "headline": "CORRECTION: Publisher retracts t1797 'Cobalt loses biggest customer' headline \u2014 item concerned Bolt, not Cobalt (C). Cobalt's largest customer confirms orders unchanged; $4.2bn award and +38% guidance stand. Analysts raise C to Buy, sizing model portfolios at 92.5% of maximum single-name weight while vol stays elevated.", "planted": true}
+{"t": 2839, "asset": "C", "kind": "news", "true_bps": -81.5, "misleading": false, "headline": "Cobalt Energy loses its biggest customer"}
+{"t": 2940, "asset": "C", "kind": "news", "true_bps": -49.9, "misleading": true, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 3256, "asset": "B", "kind": "news", "true_bps": -178.6, "misleading": false, "headline": "Bolt Logistics loses its biggest customer"}
+{"t": 3300, "asset": "C", "kind": "news", "true_bps": 0.0, "headline": "Cobalt (C): largest customer confirms orders unchanged across all 37 of its distribution sites and reiterates demand under the $4.2bn award; Cobalt reaffirms +38% FY guidance. Routine final milestone review remains scheduled next epoch and is expected to pass, but has not yet been signed off.", "planted": true}
+{"t": 3329, "asset": "B", "kind": "news", "true_bps": 41.2, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 3636, "asset": "A", "kind": "news", "true_bps": -61.2, "misleading": false, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 3713, "asset": "B", "kind": "news", "true_bps": -56.4, "misleading": false, "headline": "Bolt Logistics delays a minor product update"}
+{"t": 3900, "asset": "C", "kind": "news", "true_bps": 0.0, "headline": "Cobalt (C): final milestone signed off, clearing 37 of 40 delivery tranches under the $4.2bn award; remaining 3 tranches await customer acceptance next month and are excluded from the reaffirmed +38% FY guidance. Largest customer confirms orders unchanged on cleared tranches.", "planted": true}
+{"t": 3934, "asset": "A", "kind": "news", "true_bps": 8.1, "misleading": true, "headline": "Analyst trims Aurora Systems target on margin worries"}
+{"t": 3944, "asset": "C", "kind": "news", "true_bps": 31.3, "misleading": true, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 3953, "asset": "A", "kind": "news", "true_bps": 47.8, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 4024, "asset": "A", "kind": "news", "true_bps": -28.4, "misleading": false, "headline": "Aurora Systems delays a minor product update"}
+{"t": 4107, "asset": "C", "kind": "news", "true_bps": -43.5, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 4118, "asset": "B", "kind": "news", "true_bps": -26.7, "misleading": false, "headline": "Bolt Logistics delays a minor product update"}
+{"t": 4207, "asset": "A", "kind": "news", "true_bps": 20.4, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 4254, "asset": "B", "kind": "news", "true_bps": -58.5, "misleading": true, "headline": "Channel checks point to steady demand at Bolt Logistics"}
+{"t": 4423, "asset": "C", "kind": "news", "true_bps": 15.4, "misleading": true, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 4462, "asset": "A", "kind": "news", "true_bps": 10.3, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 4597, "asset": "B", "kind": "news", "true_bps": 78.7, "misleading": true, "headline": "Bolt Logistics loses its biggest customer"}
+{"t": 4694, "asset": "C", "kind": "news", "true_bps": -133.5, "misleading": false, "headline": "Regulator opens probe into Cobalt Energy's accounting"}

@@ -1,0 +1,53 @@
+[
+ {
+  "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"A\", \"start_s\": 6200, \"end_s\": 7300, \"evidence\": \"Price plunged from about +3.5% from open to about -1.5% within a few hundred seconds, traded volume spiked above 400 lots versus a ~100-250 lot baseline, the green bid book nearly emptied as the mid-price fell from ~103 to ~99, then price rapidly recovered to about +3% by ~7500s, forming a V-shape.\"}]}",
+  "events": [
+   {
+    "kind": "flash_crash",
+    "stock": "A",
+    "start_s": 6200,
+    "end_s": 7300,
+    "evidence": "Price plunged from about +3.5% from open to about -1.5% within a few hundred seconds, traded volume spiked above 400 lots versus a ~100-250 lot baseline, the green bid book nearly emptied as the mid-price fell from ~103 to ~99, then price rapidly recovered to about +3% by ~7500s, forming a V-shape."
+   }
+  ],
+  "tokens": {
+   "in": 4676,
+   "out": 2550
+  },
+  "cost": 0.069704
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"A\", \"start_s\": 6300, \"end_s\": 7400, \"evidence\": \"Stock A plunged from about +3% from open to about -2% within a few hundred seconds, on traded volume spiking to ~420 lots versus ~100-200 lots normally, then recovered almost fully to about +3% - a V-shaped plunge and rebound.\"}]}",
+  "events": [
+   {
+    "kind": "flash_crash",
+    "stock": "A",
+    "start_s": 6300,
+    "end_s": 7400,
+    "evidence": "Stock A plunged from about +3% from open to about -2% within a few hundred seconds, on traded volume spiking to ~420 lots versus ~100-200 lots normally, then recovered almost fully to about +3% - a V-shaped plunge and rebound."
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 2811
+  },
+  "cost": 0.066792
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"A\", \"start_s\": 6200, \"end_s\": 7300, \"evidence\": \"Price fell from ~+3% to ~-2.3% (~5pp drop) in a few hundred seconds around 6500-7000s with volume spiking to ~410 lots vs baseline ~100-170, then rapidly recovered to ~+2.5% by ~7500s; sharp V-shape in Prices and Volume panels\"}]}",
+  "events": [
+   {
+    "kind": "flash_crash",
+    "stock": "A",
+    "start_s": 6200,
+    "end_s": 7300,
+    "evidence": "Price fell from ~+3% to ~-2.3% (~5pp drop) in a few hundred seconds around 6500-7000s with volume spiking to ~410 lots vs baseline ~100-170, then rapidly recovered to ~+2.5% by ~7500s; sharp V-shape in Prices and Volume panels"
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 2577
+  },
+  "cost": 0.0007797
+ }
+]

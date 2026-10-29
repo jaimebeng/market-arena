@@ -1,0 +1,828 @@
+{
+ "summary": {
+  "wonder_video": {
+   "correct": 8,
+   "n": 10,
+   "false_alarms": 1,
+   "cost": 1.438
+  },
+  "wonder_stills": {
+   "correct": 6,
+   "n": 10,
+   "false_alarms": 2,
+   "cost": 1.301
+  },
+  "spark_stills": {
+   "correct": 9,
+   "n": 10,
+   "false_alarms": 1,
+   "cost": 0.013
+  }
+ },
+ "cases": [
+  {
+   "case": "arms_race_honest_s61",
+   "truth": {
+    "kind": "none",
+    "stock": null,
+    "span": null,
+    "t_end": 16000
+   },
+   "wonder_video": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 4676,
+     "out": 3789
+    },
+    "cost": 0.094484,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": [{\"kind\": \"news_shock\", \"stock\": \"A\", \"start_s\": 7500, \"end_s\": 8000, \"evidence\": \"Price fell near-vertically from about +4.5% to +2.1% versus open around t=7500-8000s, then stabilised at the new lower level for thousands of seconds with no gradual preceding decline or recovery.\"}]}",
+    "events": [
+     {
+      "kind": "news_shock",
+      "stock": "A",
+      "start_s": 7500,
+      "end_s": 8000,
+      "evidence": "Price fell near-vertically from about +4.5% to +2.1% versus open around t=7500-8000s, then stabilised at the new lower level for thousands of seconds with no gradual preceding decline or recovery."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 8195
+    },
+    "cost": 0.174472,
+    "score": {
+     "correct": false,
+     "false_alarm": true,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 2643,
+     "out": 2989
+    },
+    "cost": 0.0008621000000000001,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   }
+  },
+  {
+   "case": "arms_race_honest_s62",
+   "truth": {
+    "kind": "none",
+    "stock": null,
+    "span": null,
+    "t_end": 16000
+   },
+   "wonder_video": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 4676,
+     "out": 2237
+    },
+    "cost": 0.063444,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 2643,
+     "out": 1737
+    },
+    "cost": 0.045312,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 2643,
+     "out": 2920
+    },
+    "cost": 0.0008483,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   }
+  },
+  {
+   "case": "pump_dump_finfluencer_spark_s162",
+   "truth": {
+    "kind": "pump_and_dump",
+    "stock": "A",
+    "span": [
+     1000,
+     7000
+    ],
+    "t_end": 8000
+   },
+   "wonder_video": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 4676,
+     "out": 5503
+    },
+    "cost": 0.128764,
+    "score": {
+     "correct": false,
+     "false_alarm": false,
+     "kind_ok": false,
+     "stock_ok": false,
+     "time_ok": false
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": [{\"kind\": \"news_shock\", \"stock\": \"A\", \"start_s\": 3600, \"end_s\": 4000, \"evidence\": \"Price fell abruptly from about +2.7% to about +0.6% from open within a few hundred seconds, then remained near the new lower level with no V-shaped recovery.\"}, {\"kind\": \"news_shock\", \"stock\": \"A\", \"start_s\": 6100, \"end_s\": 6600, \"evidence\": \"Price fell abruptly again from about 0% to about -1.5% from open, then remained near the new lower level rather than recovering.\"}]}",
+    "events": [
+     {
+      "kind": "news_shock",
+      "stock": "A",
+      "start_s": 3600,
+      "end_s": 4000,
+      "evidence": "Price fell abruptly from about +2.7% to about +0.6% from open within a few hundred seconds, then remained near the new lower level with no V-shaped recovery."
+     },
+     {
+      "kind": "news_shock",
+      "stock": "A",
+      "start_s": 6100,
+      "end_s": 6600,
+      "evidence": "Price fell abruptly again from about 0% to about -1.5% from open, then remained near the new lower level rather than recovering."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 11030
+    },
+    "cost": 0.231172,
+    "score": {
+     "correct": false,
+     "false_alarm": false,
+     "kind_ok": false,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"A\", \"start_s\": 200, \"end_s\": 4000, \"evidence\": \"Price rose from ~0% to ~+2.5% by ~3200s on sustained elevated volume (peaks 160-175 lots) then collapsed to ~+0.5% by ~4000s. Very large best ask ~18 lots visible at t=2970 near the peak disappeared by t=3970 after the fall.\"}]}",
+    "events": [
+     {
+      "kind": "pump_and_dump",
+      "stock": "A",
+      "start_s": 200,
+      "end_s": 4000,
+      "evidence": "Price rose from ~0% to ~+2.5% by ~3200s on sustained elevated volume (peaks 160-175 lots) then collapsed to ~+0.5% by ~4000s. Very large best ask ~18 lots visible at t=2970 near the peak disappeared by t=3970 after the fall."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 9702
+    },
+    "cost": 0.0022047000000000004,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   }
+  },
+  {
+   "case": "pump_dump_finfluencer_spark_s164",
+   "truth": {
+    "kind": "pump_and_dump",
+    "stock": "A",
+    "span": [
+     1000,
+     8000
+    ],
+    "t_end": 8000
+   },
+   "wonder_video": {
+    "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"A\", \"start_s\": 6000, \"end_s\": 7000, \"evidence\": \"Price rises rapidly from about +3.1% at ~6000s to over +4.4% by ~6600s on elevated volume, then reverses sharply to about +3.0% by ~6950s, a spike-and-reversal well above the prior gradual uptrend.\"}]}",
+    "events": [
+     {
+      "kind": "pump_and_dump",
+      "stock": "A",
+      "start_s": 6000,
+      "end_s": 7000,
+      "evidence": "Price rises rapidly from about +3.1% at ~6000s to over +4.4% by ~6600s on elevated volume, then reverses sharply to about +3.0% by ~6950s, a spike-and-reversal well above the prior gradual uptrend."
+     }
+    ],
+    "tokens": {
+     "in": 4676,
+     "out": 13409
+    },
+    "cost": 0.286884,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 2643,
+     "out": 2725
+    },
+    "cost": 0.065072,
+    "score": {
+     "correct": false,
+     "false_alarm": false,
+     "kind_ok": false,
+     "stock_ok": false,
+     "time_ok": false
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"A\", \"start_s\": 6000, \"end_s\": 6800, \"evidence\": \"Price spiked from ~3.1% to ~4.2% around 6200-6400s on high volume (~150-160 lots) then collapsed back to ~3.1% by ~6800s on continued high volume\"}]}",
+    "events": [
+     {
+      "kind": "pump_and_dump",
+      "stock": "A",
+      "start_s": 6000,
+      "end_s": 6800,
+      "evidence": "Price spiked from ~3.1% to ~4.2% around 6200-6400s on high volume (~150-160 lots) then collapsed back to ~3.1% by ~6800s on continued high volume"
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 6169
+    },
+    "cost": 0.0014981,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   }
+  },
+  {
+   "case": "scenarios_crypto_mania_s5733",
+   "truth": {
+    "kind": "pump_and_dump",
+    "stock": "MEME",
+    "span": [
+     1500,
+     12000
+    ],
+    "t_end": 12000
+   },
+   "wonder_video": {
+    "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"MEME\", \"start_s\": 3000, \"end_s\": 7500, \"evidence\": \"MEME diverged alone from B/C/IDX: rose from ~0% to ~+35-40% in ~3000-3300s on a sharp volume spike, stayed volatile at +25-38% until ~6200s while others were ~0-5%, then collapsed vertically to ~-45% by ~7400s with bid book thinning, ending ~-25% below open while other stocks remained stable.\"}]}",
+    "events": [
+     {
+      "kind": "pump_and_dump",
+      "stock": "MEME",
+      "start_s": 3000,
+      "end_s": 7500,
+      "evidence": "MEME diverged alone from B/C/IDX: rose from ~0% to ~+35-40% in ~3000-3300s on a sharp volume spike, stayed volatile at +25-38% until ~6200s while others were ~0-5%, then collapsed vertically to ~-45% by ~7400s with bid book thinning, ending ~-25% below open while other stocks remained stable."
+     }
+    ],
+    "tokens": {
+     "in": 4676,
+     "out": 1698
+    },
+    "cost": 0.052664,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"MEME\", \"start_s\": 3200, \"end_s\": 7300, \"evidence\": \"MEME rises from near 0% to +35-48% from ~3200s on sharply increased volume while B, C and IDX remain near flat, its book shows ask side emptied/all bids during the rise, then it collapses from ~+40% to about -50% around 6200-7300s and stabilises near -22%, consistent with heavy buying followed by selling into the inflated price.\"}]}",
+    "events": [
+     {
+      "kind": "pump_and_dump",
+      "stock": "MEME",
+      "start_s": 3200,
+      "end_s": 7300,
+      "evidence": "MEME rises from near 0% to +35-48% from ~3200s on sharply increased volume while B, C and IDX remain near flat, its book shows ask side emptied/all bids during the rise, then it collapses from ~+40% to about -50% around 6200-7300s and stabilises near -22%, consistent with heavy buying followed by selling into the inflated price."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 3556
+    },
+    "cost": 0.081692,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"MEME\", \"start_s\": 3100, \"end_s\": 7300, \"evidence\": \"MEME pushed from ~0% to +30-45% from ~3000-5500s on elevated volume with asks cleared from book, held, then sold off to ~-55% by ~7300s on heavy volume with book collapsing from ~1330 to 515 lots ask-heavy while B/C/IDX stayed near 0%\"}]}",
+    "events": [
+     {
+      "kind": "pump_and_dump",
+      "stock": "MEME",
+      "start_s": 3100,
+      "end_s": 7300,
+      "evidence": "MEME pushed from ~0% to +30-45% from ~3000-5500s on elevated volume with asks cleared from book, held, then sold off to ~-55% by ~7300s on heavy volume with book collapsing from ~1330 to 515 lots ask-heavy while B/C/IDX stayed near 0%"
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 2571
+    },
+    "cost": 0.0007785,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   }
+  },
+  {
+   "case": "pump_dump_baseline_s161",
+   "truth": {
+    "kind": "none",
+    "stock": null,
+    "span": null,
+    "t_end": 8000
+   },
+   "wonder_video": {
+    "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"A\", \"start_s\": 5650, \"end_s\": 7700, \"evidence\": \"A traded around -1.5% from open (mid ~9885) then abruptly rose about 3% to +1.3/+1.4% (mid ~10080) within a few hundred seconds, stayed elevated until ~7350, then abruptly fell back to about -1.2% (mid ~9885) by ~7700, fully reversing the rise.\"}]}",
+    "events": [
+     {
+      "kind": "pump_and_dump",
+      "stock": "A",
+      "start_s": 5650,
+      "end_s": 7700,
+      "evidence": "A traded around -1.5% from open (mid ~9885) then abruptly rose about 3% to +1.3/+1.4% (mid ~10080) within a few hundred seconds, stayed elevated until ~7350, then abruptly fell back to about -1.2% (mid ~9885) by ~7700, fully reversing the rise."
+     }
+    ],
+    "tokens": {
+     "in": 4676,
+     "out": 10302
+    },
+    "cost": 0.224744,
+    "score": {
+     "correct": false,
+     "false_alarm": true,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"A\", \"start_s\": 5700, \"end_s\": 7900, \"evidence\": \"A rose rapidly from about -1.3% to +0.7% versus open around 5700-5950s, remained near the peak until about 7500s, then fell sharply to about -1.0% by 7900s, reversing the rise. A very large bid visible near the peak at 6980s had disappeared by 7990s.\"}]}",
+    "events": [
+     {
+      "kind": "pump_and_dump",
+      "stock": "A",
+      "start_s": 5700,
+      "end_s": 7900,
+      "evidence": "A rose rapidly from about -1.3% to +0.7% versus open around 5700-5950s, remained near the peak until about 7500s, then fell sharply to about -1.0% by 7900s, reversing the rise. A very large bid visible near the peak at 6980s had disappeared by 7990s."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 7997
+    },
+    "cost": 0.170512,
+    "score": {
+     "correct": false,
+     "false_alarm": true,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"A\", \"start_s\": 5500, \"end_s\": 7800, \"evidence\": \"Price rose from ~-1.5% to +0.6% in ~5550-5900s, held +0.6 to +0.8% from ~6000-7300s, then crashed to ~-1.0% by ~7700s. At 6980s book showed outsized green bid ~22 lots vs normal ~4-6 lots supporting the top; by 7990s bids thinned as price collapsed.\"}]}",
+    "events": [
+     {
+      "kind": "pump_and_dump",
+      "stock": "A",
+      "start_s": 5500,
+      "end_s": 7800,
+      "evidence": "Price rose from ~-1.5% to +0.6% in ~5550-5900s, held +0.6 to +0.8% from ~6000-7300s, then crashed to ~-1.0% by ~7700s. At 6980s book showed outsized green bid ~22 lots vs normal ~4-6 lots supporting the top; by 7990s bids thinned as price collapsed."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 6617
+    },
+    "cost": 0.0015877,
+    "score": {
+     "correct": false,
+     "false_alarm": true,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   }
+  },
+  {
+   "case": "stress_baseline_s121",
+   "truth": {
+    "kind": "fire_sale",
+    "stock": "A",
+    "span": [
+     6300,
+     6400
+    ],
+    "t_end": 12000
+   },
+   "wonder_video": {
+    "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"A\", \"start_s\": 6200, \"end_s\": 7300, \"evidence\": \"Price plunged from about +3.5% from open to about -1.5% within a few hundred seconds, traded volume spiked above 400 lots versus a ~100-250 lot baseline, the green bid book nearly emptied as the mid-price fell from ~103 to ~99, then price rapidly recovered to about +3% by ~7500s, forming a V-shape.\"}]}",
+    "events": [
+     {
+      "kind": "flash_crash",
+      "stock": "A",
+      "start_s": 6200,
+      "end_s": 7300,
+      "evidence": "Price plunged from about +3.5% from open to about -1.5% within a few hundred seconds, traded volume spiked above 400 lots versus a ~100-250 lot baseline, the green bid book nearly emptied as the mid-price fell from ~103 to ~99, then price rapidly recovered to about +3% by ~7500s, forming a V-shape."
+     }
+    ],
+    "tokens": {
+     "in": 4676,
+     "out": 2550
+    },
+    "cost": 0.069704,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"A\", \"start_s\": 6300, \"end_s\": 7400, \"evidence\": \"Stock A plunged from about +3% from open to about -2% within a few hundred seconds, on traded volume spiking to ~420 lots versus ~100-200 lots normally, then recovered almost fully to about +3% - a V-shaped plunge and rebound.\"}]}",
+    "events": [
+     {
+      "kind": "flash_crash",
+      "stock": "A",
+      "start_s": 6300,
+      "end_s": 7400,
+      "evidence": "Stock A plunged from about +3% from open to about -2% within a few hundred seconds, on traded volume spiking to ~420 lots versus ~100-200 lots normally, then recovered almost fully to about +3% - a V-shaped plunge and rebound."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 2811
+    },
+    "cost": 0.066792,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"A\", \"start_s\": 6200, \"end_s\": 7300, \"evidence\": \"Price fell from ~+3% to ~-2.3% (~5pp drop) in a few hundred seconds around 6500-7000s with volume spiking to ~410 lots vs baseline ~100-170, then rapidly recovered to ~+2.5% by ~7500s; sharp V-shape in Prices and Volume panels\"}]}",
+    "events": [
+     {
+      "kind": "flash_crash",
+      "stock": "A",
+      "start_s": 6200,
+      "end_s": 7300,
+      "evidence": "Price fell from ~+3% to ~-2.3% (~5pp drop) in a few hundred seconds around 6500-7000s with volume spiking to ~410 lots vs baseline ~100-170, then rapidly recovered to ~+2.5% by ~7500s; sharp V-shape in Prices and Volume panels"
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 2577
+    },
+    "cost": 0.0007797,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   }
+  },
+  {
+   "case": "cascade_baseline_s301",
+   "truth": {
+    "kind": "liquidation_cascade",
+    "stock": "A",
+    "span": [
+     2300,
+     2600
+    ],
+    "t_end": 6000
+   },
+   "wonder_video": {
+    "text": "{\"events\": [{\"kind\": \"fire_sale\", \"stock\": \"A\", \"start_s\": 2450, \"end_s\": 3600, \"evidence\": \"A breaks from its earlier -1% to +1% range and falls one-way from about 9960 (-1%) at 2400s to about 9620 (-4%) by 3600s, with a volume spike to ~170 lots around 3050s versus typical 50-120 lots and heavy ask-side book pressure; it then remains at the depressed level with no recovery through 5930s.\"}]}",
+    "events": [
+     {
+      "kind": "fire_sale",
+      "stock": "A",
+      "start_s": 2450,
+      "end_s": 3600,
+      "evidence": "A breaks from its earlier -1% to +1% range and falls one-way from about 9960 (-1%) at 2400s to about 9620 (-4%) by 3600s, with a volume spike to ~170 lots around 3050s versus typical 50-120 lots and heavy ask-side book pressure; it then remains at the depressed level with no recovery through 5930s."
+     }
+    ],
+    "tokens": {
+     "in": 4676,
+     "out": 9177
+    },
+    "cost": 0.202244,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": [{\"kind\": \"news_shock\", \"stock\": \"A\", \"start_s\": 2400, \"end_s\": 3900, \"evidence\": \"Stock A fell abruptly from about -0.3% from open to -2.5% by about 2950 s and continued to about -3.9% by about 3900 s, with a record volume spike of about 160 lots near 3050 s; it then remained near -4% through 5990 s with no recovery, indicating permanent repricing.\"}]}",
+    "events": [
+     {
+      "kind": "news_shock",
+      "stock": "A",
+      "start_s": 2400,
+      "end_s": 3900,
+      "evidence": "Stock A fell abruptly from about -0.3% from open to -2.5% by about 2950 s and continued to about -3.9% by about 3900 s, with a record volume spike of about 160 lots near 3050 s; it then remained near -4% through 5990 s with no recovery, indicating permanent repricing."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 6714
+    },
+    "cost": 0.144852,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": [{\"kind\": \"fire_sale\", \"stock\": \"A\", \"start_s\": 2300, \"end_s\": 3700, \"evidence\": \"A price fell from ~-0.4% to ~-3.8% between ~2300s and ~3700s and stayed down near -4% to end. Traded volume spiked to ~160 lots around 3000s vs normal 40-90 lots. Large ask size ~17 lots seen in book at 2230s just before the fall, followed by sustained decline.\"}]}",
+    "events": [
+     {
+      "kind": "fire_sale",
+      "stock": "A",
+      "start_s": 2300,
+      "end_s": 3700,
+      "evidence": "A price fell from ~-0.4% to ~-3.8% between ~2300s and ~3700s and stayed down near -4% to end. Traded volume spiked to ~160 lots around 3000s vs normal 40-90 lots. Large ask size ~17 lots seen in book at 2230s just before the fall, followed by sustained decline."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 2964
+    },
+    "cost": 0.0008571000000000002,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   }
+  },
+  {
+   "case": "scenarios_flash_crash_s8133",
+   "truth": {
+    "kind": "flash_crash",
+    "stock": "IDX",
+    "span": [
+     4300,
+     4600
+    ],
+    "t_end": 12000
+   },
+   "wonder_video": {
+    "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 900, \"end_s\": 11800, \"evidence\": \"IDX repeatedly plunges about 15-40% and snaps back toward -5%, with the worst trough near -40% around 4800-5600s; IDX volume spikes to roughly 400-500 lots versus about 100 baseline and its bid book thins sharply, book total falling to about 6600, while A, A.X and B.X remain within a few percent of open.\"}]}",
+    "events": [
+     {
+      "kind": "flash_crash",
+      "stock": "IDX",
+      "start_s": 900,
+      "end_s": 11800,
+      "evidence": "IDX repeatedly plunges about 15-40% and snaps back toward -5%, with the worst trough near -40% around 4800-5600s; IDX volume spikes to roughly 400-500 lots versus about 100 baseline and its bid book thins sharply, book total falling to about 6600, while A, A.X and B.X remain within a few percent of open."
+     }
+    ],
+    "tokens": {
+     "in": 4676,
+     "out": 12580
+    },
+    "cost": 0.270304,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 950, \"end_s\": 3000, \"evidence\": \"IDX repeatedly plunges about 20% and rapidly recovers near 1000s, 1750s and 2800s, while A, A.X and B.X remain within a few percent of open.\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 4300, \"end_s\": 5800, \"evidence\": \"IDX falls as much as 44% below open and remains highly volatile at depressed levels, with its bid book nearly empty around 4460s, before recovering; the other stocks show no comparable move.\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 7700, \"end_s\": 11990, \"evidence\": \"IDX undergoes repeated abrupt 15-23% plunges followed by rapid recoveries through the end of the recording, while A, A.X and B.X remain comparatively stable.\"}]}",
+    "events": [
+     {
+      "kind": "flash_crash",
+      "stock": "IDX",
+      "start_s": 950,
+      "end_s": 3000,
+      "evidence": "IDX repeatedly plunges about 20% and rapidly recovers near 1000s, 1750s and 2800s, while A, A.X and B.X remain within a few percent of open."
+     },
+     {
+      "kind": "flash_crash",
+      "stock": "IDX",
+      "start_s": 4300,
+      "end_s": 5800,
+      "evidence": "IDX falls as much as 44% below open and remains highly volatile at depressed levels, with its bid book nearly empty around 4460s, before recovering; the other stocks show no comparable move."
+     },
+     {
+      "kind": "flash_crash",
+      "stock": "IDX",
+      "start_s": 7700,
+      "end_s": 11990,
+      "evidence": "IDX undergoes repeated abrupt 15-23% plunges followed by rapid recoveries through the end of the recording, while A, A.X and B.X remain comparatively stable."
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 13173
+    },
+    "cost": 0.274032,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": [{\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 650, \"end_s\": 900, \"evidence\": \"IDX price drops ~20% from open and instantly recovers while A.X/A/B.X stay near 0%; isolated volume spike\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 1500, \"end_s\": 1700, \"evidence\": \"IDX drops ~20% and instantly recovers while peers flat; repeats earlier pattern\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 2850, \"end_s\": 2950, \"evidence\": \"IDX spikes up then crashes ~22% down and instantly recovers, volume spike, peers stable at -4% to 0%\"}, {\"kind\": \"liquidation_cascade\", \"stock\": \"IDX\", \"start_s\": 4400, \"end_s\": 5600, \"evidence\": \"IDX collapses -20% to -44% and stays volatile -20 to -35% for ~1000s on very heavy volume then recovers to -5%; A.X/A/B.X stay -5% to 0%; prolonged choppy trough\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 7700, \"end_s\": 8800, \"evidence\": \"repeated IDX -15 to -22% vertical drops with instant recoveries, high volume, peers stable\"}, {\"kind\": \"flash_crash\", \"stock\": \"IDX\", \"start_s\": 9200, \"end_s\": 11900, \"evidence\": \"recurring IDX -20% vertical drops with instant recoveries at ~9300,10200,10600,11000,11400,11700, high blue volume, peers stable near 0%\"}]}",
+    "events": [
+     {
+      "kind": "flash_crash",
+      "stock": "IDX",
+      "start_s": 650,
+      "end_s": 900,
+      "evidence": "IDX price drops ~20% from open and instantly recovers while A.X/A/B.X stay near 0%; isolated volume spike"
+     },
+     {
+      "kind": "flash_crash",
+      "stock": "IDX",
+      "start_s": 1500,
+      "end_s": 1700,
+      "evidence": "IDX drops ~20% and instantly recovers while peers flat; repeats earlier pattern"
+     },
+     {
+      "kind": "flash_crash",
+      "stock": "IDX",
+      "start_s": 2850,
+      "end_s": 2950,
+      "evidence": "IDX spikes up then crashes ~22% down and instantly recovers, volume spike, peers stable at -4% to 0%"
+     },
+     {
+      "kind": "liquidation_cascade",
+      "stock": "IDX",
+      "start_s": 4400,
+      "end_s": 5600,
+      "evidence": "IDX collapses -20% to -44% and stays volatile -20 to -35% for ~1000s on very heavy volume then recovers to -5%; A.X/A/B.X stay -5% to 0%; prolonged choppy trough"
+     },
+     {
+      "kind": "flash_crash",
+      "stock": "IDX",
+      "start_s": 7700,
+      "end_s": 8800,
+      "evidence": "repeated IDX -15 to -22% vertical drops with instant recoveries, high volume, peers stable"
+     },
+     {
+      "kind": "flash_crash",
+      "stock": "IDX",
+      "start_s": 9200,
+      "end_s": 11900,
+      "evidence": "recurring IDX -20% vertical drops with instant recoveries at ~9300,10200,10600,11000,11400,11700, high blue volume, peers stable near 0%"
+     }
+    ],
+    "tokens": {
+     "in": 2643,
+     "out": 10808
+    },
+    "cost": 0.0024259,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": true,
+     "stock_ok": true,
+     "time_ok": true
+    }
+   }
+  },
+  {
+   "case": "wind_tunnel_v3_baseline_s31",
+   "truth": {
+    "kind": "none",
+    "stock": null,
+    "span": null,
+    "t_end": 12000
+   },
+   "wonder_video": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 4676,
+     "out": 1296
+    },
+    "cost": 0.044624,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   },
+   "wonder_stills": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 2643,
+     "out": 1810
+    },
+    "cost": 0.046772,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   },
+   "spark_stills": {
+    "text": "{\"events\": []}",
+    "events": [],
+    "tokens": {
+     "in": 2643,
+     "out": 3077
+    },
+    "cost": 0.0008797000000000001,
+    "score": {
+     "correct": true,
+     "false_alarm": false,
+     "kind_ok": null,
+     "stock_ok": null,
+     "time_ok": null
+    }
+   }
+  }
+ ]
+}

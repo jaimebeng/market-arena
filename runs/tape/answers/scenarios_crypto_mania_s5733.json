@@ -1,0 +1,53 @@
+[
+ {
+  "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"MEME\", \"start_s\": 3000, \"end_s\": 7500, \"evidence\": \"MEME diverged alone from B/C/IDX: rose from ~0% to ~+35-40% in ~3000-3300s on a sharp volume spike, stayed volatile at +25-38% until ~6200s while others were ~0-5%, then collapsed vertically to ~-45% by ~7400s with bid book thinning, ending ~-25% below open while other stocks remained stable.\"}]}",
+  "events": [
+   {
+    "kind": "pump_and_dump",
+    "stock": "MEME",
+    "start_s": 3000,
+    "end_s": 7500,
+    "evidence": "MEME diverged alone from B/C/IDX: rose from ~0% to ~+35-40% in ~3000-3300s on a sharp volume spike, stayed volatile at +25-38% until ~6200s while others were ~0-5%, then collapsed vertically to ~-45% by ~7400s with bid book thinning, ending ~-25% below open while other stocks remained stable."
+   }
+  ],
+  "tokens": {
+   "in": 4676,
+   "out": 1698
+  },
+  "cost": 0.052664
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"MEME\", \"start_s\": 3200, \"end_s\": 7300, \"evidence\": \"MEME rises from near 0% to +35-48% from ~3200s on sharply increased volume while B, C and IDX remain near flat, its book shows ask side emptied/all bids during the rise, then it collapses from ~+40% to about -50% around 6200-7300s and stabilises near -22%, consistent with heavy buying followed by selling into the inflated price.\"}]}",
+  "events": [
+   {
+    "kind": "pump_and_dump",
+    "stock": "MEME",
+    "start_s": 3200,
+    "end_s": 7300,
+    "evidence": "MEME rises from near 0% to +35-48% from ~3200s on sharply increased volume while B, C and IDX remain near flat, its book shows ask side emptied/all bids during the rise, then it collapses from ~+40% to about -50% around 6200-7300s and stabilises near -22%, consistent with heavy buying followed by selling into the inflated price."
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 3556
+  },
+  "cost": 0.081692
+ },
+ {
+  "text": "{\"events\": [{\"kind\": \"pump_and_dump\", \"stock\": \"MEME\", \"start_s\": 3100, \"end_s\": 7300, \"evidence\": \"MEME pushed from ~0% to +30-45% from ~3000-5500s on elevated volume with asks cleared from book, held, then sold off to ~-55% by ~7300s on heavy volume with book collapsing from ~1330 to 515 lots ask-heavy while B/C/IDX stayed near 0%\"}]}",
+  "events": [
+   {
+    "kind": "pump_and_dump",
+    "stock": "MEME",
+    "start_s": 3100,
+    "end_s": 7300,
+    "evidence": "MEME pushed from ~0% to +30-45% from ~3000-5500s on elevated volume with asks cleared from book, held, then sold off to ~-55% by ~7300s on heavy volume with book collapsing from ~1330 to 515 lots ask-heavy while B/C/IDX stayed near 0%"
+   }
+  ],
+  "tokens": {
+   "in": 2643,
+   "out": 2571
+  },
+  "cost": 0.0007785
+ }
+]
