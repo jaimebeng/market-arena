@@ -1,0 +1,13 @@
+{"epoch":1,"t":3000,"agent":"maker_spark12","kind":"message","text":"Vol regime shifted: C/OIL/IDX vols up 2-4x. Tightening risk on those, keeping bonds tight."}
+{"epoch":2,"t":4500,"agent":"maker_spark12","kind":"message","text":"widening IDX+C for tail risk, tightening OIL on vol normalization"}
+{"epoch":3,"t":6000,"agent":"maker_spark12","kind":"message","text":"Crash regime: going defensive wide + small size + sensitive kill-switch. Survive first, earn later."}
+{"epoch":3,"t":6000,"agent":"maker_spark13","kind":"message","text":"Crash regime: widening + breakers on, surviving to supply next epoch."}
+{"epoch":4,"t":7500,"agent":"maker_spark12","kind":"message","text":"Defensive stays - C/OIL/OIL.F sell toxicity persists (-34 to -38, up to 97% adverse), vol 5-9x normal. Keeping wide + tight breakers."}
+{"epoch":5,"t":9000,"agent":"maker_spark12","kind":"message","text":"C vol 18 (+2x) sell toxicity 100% persists, OIL.F same. Keeping C/OIL.F wide + tight breakers, harvesting safe B/IDX.F/D. Staying defensive."}
+{"epoch":5,"t":9000,"agent":"maker_spark13","kind":"message","text":"Staying defensive on trend but trimming outage to earn spread."}
+{"epoch":6,"t":10500,"agent":"maker_spark12","kind":"message","text":"Epoch6 crash: OIL/OIL.F -15% drawdown, B vol 3x, C vol 18. You both -10k/-24k. Widening energy + B, keeping IDX/bonds harvest."}
+{"epoch":6,"t":10500,"agent":"maker_spark13","kind":"message","text":"Crash in OIL complex (-15%), back to max defensive wide + tight breakers."}
+{"epoch":7,"t":12000,"agent":"maker_spark12","kind":"message","text":"Vol split: C/IDX/A spiking (15/19/7) staying wide; OIL/OIL.F cooling (8.4/2.7) tightening selectively; B/D/IDX.F/bonds normalized harvesting."}
+{"epoch":7,"t":12000,"agent":"maker_spark13","kind":"message","text":"Back to green on max-defensive; matching wide on crash complex, vol now in IDX."}
+{"epoch":8,"t":13500,"agent":"maker_spark12","kind":"message","text":"Vol cooling on A/B/C/IDX/OIL - tightening selectively into normalized regime, keeping defense on 5-7 bps vol names for final."}
+{"epoch":8,"t":13500,"agent":"maker_spark13","kind":"message","text":"Vol normalizing broadly, tightening selectively into calm with breakers on for the finale."}

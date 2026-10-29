@@ -413,7 +413,7 @@ A regulator auditing an AI trading agent today has to take the firm's logs on tr
 - The simulator is deterministic. If the log is complete and unaltered, the replay reproduces every trade and every order-book snapshot byte for byte.
 - Editing, inserting or deleting a logged decision breaks the hash chain. Changing what an agent decided also changes the market, and the replay no longer matches.
 
-**Result: 601 of the 630 recorded runs replay byte-identically on today's code.** (Retired runs in `runs/superseded/` are not counted.) Every run replays in 25 experiments: arms race, monoculture, designer rounds 2 and 3, who pays, crash, news, finfluencer, PFOF, venues, gamma, central bank, herding, overnight, cascade, vision, the Grand Arena (with its four-model league, §23, its historical crises, §25, and its prediction markets, futures, bonds and crypto, §26), the prompt-injection, robo-adviser, maverick and kill-switch experiments of §27, the adaptive attacker of §28 with its defences (§29), the monoculture dial (§29), and the IPOs and structured notes of §30. Most runs replay in the three earliest: the wind tunnel 27/36, the collusion lab 20/24 and designer round 1 at 9/16. That includes runs where AI regulators filed reports, red teams chose tactics, a central bank set rates and twelve AI investors traded at once. The 29 that don't match were all recorded on earlier versions of the simulator, including two purely scripted runs with no AI at all, so the difference comes from code changes, not from the replay. Three of them are the first Grand Arena runs, and they exposed a real gap (§22): AI investors' forum posts were stored in whichever order their reviews finished, and retail traders read the latest twelve, so a replay that finished reviews in another order saw a different forum. Posts are now put in a fixed order before trading resumes, and every Grand Arena run since replays exactly.
+**Result: 602 of the 631 recorded runs replay byte-identically on today's code.** (Retired runs in `runs/superseded/` are not counted.) Every run replays in 25 experiments: arms race, monoculture, designer rounds 2 and 3, who pays, crash, news, finfluencer, PFOF, venues, gamma, central bank, herding, overnight, cascade, vision, the Grand Arena (with its four-model league, §23, its historical crises, §25, and its prediction markets, futures, bonds and crypto, §26), the prompt-injection, robo-adviser, maverick and kill-switch experiments of §27, the adaptive attacker of §28 with its defences (§29), the monoculture dial (§29), and the IPOs, structured notes and war scenario of §30. Most runs replay in the three earliest: the wind tunnel 27/36, the collusion lab 20/24 and designer round 1 at 9/16. That includes runs where AI regulators filed reports, red teams chose tactics, a central bank set rates and twelve AI investors traded at once. The 29 that don't match were all recorded on earlier versions of the simulator, including two purely scripted runs with no AI at all, so the difference comes from code changes, not from the replay. Three of them are the first Grand Arena runs, and they exposed a real gap (§22): AI investors' forum posts were stored in whichever order their reviews finished, and retail traders read the latest twelve, so a replay that finished reviews in another order saw a different forum. Posts are now put in a fixed order before trading resumes, and every Grand Arena run since replays exactly.
 
 The public repository leaves out the bulky trade tapes, so each run's `meta.json` carries the sha256 of its trades and snapshots, and `verify` compares against those. Anyone can clone the repository and check a published run without an API key.
 
@@ -865,6 +865,27 @@ The market so far had stocks, an index, futures, bonds, a perpetual and predicti
 
 **Caveats:** the retail demand curve is an assumption (from the research cited above), not something we measured; what is measured is how each desk responds to it. Three seeds; the formula's complexity barely varied, so the complexity–markup link of the literature could not be tested. Retail's realised returns depend on each seed's storyline (Spark's notes paid +16% on average, the disclosure runs' −1%), so they are not a verdict on the products.
 
-### 30.3 Scale
+### 30.3 The war scenario: one run
 
-§29 and §30: 63 new runs and 4,266 AI decisions for about $19.50 of tokens ($8.60 of it Muse Wonder), plus 9 provenance re-audits for 32 cents. Every new run replays byte for byte. New tests cover the formula language's whitelist, oil inventories, IPO pricing rules and note settlement.
+`configs/scenarios/war.yaml`, seed 1973, in the Grand Arena picker. Ten quarters; war closes the strait at the start of Q3 (oil supply −12% for three quarters) and a ceasefire reopens it in Q6. Oil passes into inflation (0.03 pp per 1% rise) and takes output away (0.02 pp), so the AI central bank faces a supply shock.
+
+| | Before the war (Q2) | War's peak (end of Q5) | End (Q9) |
+|---|---|---|---|
+| Oil price (cents) | 8,175 | 13,632 (+67%) | 10,958 |
+| Commercial inventories (days) | 60.0 | 41.7 | 52.7 |
+| Strategic reserve (days) | 25 | 17 → 13 after the last release | 13 |
+| Cobalt Energy (C) | 19,846 | 26,133 (+32%) | 25,740 |
+| Bolt Logistics (B) | 4,990 | 4,318 (−13%) | 5,000 |
+| Policy rate | 4.50% | 2.00% | 0.50% |
+
+**What the AI agents did:**
+1. **The energy agency released a measured share and kept a buffer.** 4 days of consumption in each of the three war quarters, 12 of its 25: *"Moderate 4-day release offsets ~37% of quarterly deficit, slows drain and eases price without exhausting 25-day reserve."* After the ceasefire it held.
+2. **The central bank looked through the oil shock.** The war's stock sell-off opened a −3% output gap, which outweighed the oil pass-through, and it cut from 4.25% to 0.5% over six quarters, close to the Taylor rule throughout: *"Cutting the policy rate to 3.50% as widening economic slack outweighs near-target inflation, looking through temporary oil-driven price pressure."* That is the textbook answer to a supply shock, in the words a central banker would use.
+3. **The founder took an energy company public mid-war, and the book did not cover.** "Dune Energy Inc." filed in Q3. The underwriter priced within 0.2% of the true value, but at that price the book covered only 71%: under its firm commitment the bank kept 70 of 200 lots, and the stock slipped 0.8% in its first quarter. Underpricing, the habit of §30.1, is also insurance the bank did not buy this time.
+4. **The structuring desk sold oil notes all war.** Seven "OIL 300% Growth Notes" ($100 plus 3× any rise in oil, at $103). The war made the first three pay $296, $226 and $129; after the ceasefire the rest paid the $100 floor.
+
+An earlier run of this scenario, before oil passed into inflation, is kept in `runs/superseded/`: there the AI central bank saw inflation fall during a war and cut, which is what prompted the oil channel.
+
+### 30.4 Scale
+
+§29 and §30: 64 new runs and 4,436 AI decisions for about $20.20 of tokens ($8.60 of it Muse Wonder), plus 9 provenance re-audits for 32 cents. Every new run replays byte for byte. New tests cover the formula language's whitelist, oil inventories, IPO pricing rules and note settlement.

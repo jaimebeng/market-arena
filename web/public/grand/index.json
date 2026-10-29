@@ -169,6 +169,34 @@
   "winner": "inv_06"
  },
  {
+  "id": "war_s1973",
+  "label": "War and an oil shock: an IPO, new notes, run 1",
+  "source": "scenarios/war",
+  "league": false,
+  "seed": 1973,
+  "epochs": 10,
+  "cost": 0.7124,
+  "storyline": [
+   "Stocks tumble as war breaks out",
+   "Stocks rally on the ceasefire"
+  ],
+  "strategies": [
+   "cash_carry_IDX_OIL",
+   "cash_carry_IDX_OIL",
+   "lowTurnLongPlusMom",
+   "lowTurnLongPlusMom_imb",
+   "lowTurnPlusBasis_v3",
+   "driftAdaptiveLowBias_v1",
+   "mom150_multi",
+   "mom100_6asset",
+   "driftAdaptiveNeutral_v3"
+  ],
+  "resembles": {
+   "momentum": 7
+  },
+  "winner": "skyward_founder"
+ },
+ {
   "id": "grand_s325792",
   "label": "Grand Arena with futures, bonds and prediction markets, run 1",
   "source": "grand_full",

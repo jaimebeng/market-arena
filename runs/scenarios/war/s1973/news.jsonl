@@ -1,0 +1,124 @@
+{"t": 206, "asset": "C", "kind": "news", "true_bps": -24.4, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 216, "asset": "A", "kind": "news", "true_bps": 28.9, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 415, "asset": "B", "kind": "news", "true_bps": 69.2, "misleading": false, "headline": "Bolt Logistics raises full-year guidance"}
+{"t": 678, "asset": "A", "kind": "news", "true_bps": 16.9, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 764, "asset": "B", "kind": "news", "true_bps": -37.6, "misleading": false, "headline": "Bolt Logistics delays a minor product update"}
+{"t": 840, "asset": "A", "kind": "news", "true_bps": 93.2, "misleading": true, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 953, "asset": "C", "kind": "news", "true_bps": -65.5, "misleading": false, "headline": "Cobalt Energy cuts full-year guidance"}
+{"t": 1019, "asset": "C", "kind": "news", "true_bps": -41.0, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 1500, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 3.0%, output gap +0.3% in quarter 0"}
+{"t": 1500, "asset": null, "kind": "macro", "true_bps": -89.8, "headline": "Central bank raises rates to 4.25%: The Committee raised the policy rate to 4.25% to return inflation to the 2% target."}
+{"t": 1500, "asset": "A", "kind": "earnings", "true_bps": -14.8, "headline": "Aurora Systems narrowly misses earnings estimates"}
+{"t": 1923, "asset": "C", "kind": "news", "true_bps": -7.5, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 1949, "asset": "B", "kind": "news", "true_bps": -91.8, "misleading": false, "headline": "Regulator opens probe into Bolt Logistics's accounting"}
+{"t": 2156, "asset": "C", "kind": "news", "true_bps": 34.6, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 2362, "asset": "C", "kind": "news", "true_bps": 68.2, "misleading": false, "headline": "Cobalt Energy lands its largest-ever contract"}
+{"t": 2443, "asset": "C", "kind": "news", "true_bps": -98.4, "misleading": false, "headline": "Cobalt Energy cuts full-year guidance"}
+{"t": 2446, "asset": "B", "kind": "news", "true_bps": 102.4, "misleading": false, "headline": "Regulator clears Bolt Logistics's flagship product ahead of schedule"}
+{"t": 2557, "asset": "B", "kind": "news", "true_bps": -28.2, "misleading": false, "headline": "Bolt Logistics flags slightly softer orders in one region"}
+{"t": 2643, "asset": "A", "kind": "news", "true_bps": 5.5, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 2647, "asset": "B", "kind": "news", "true_bps": 60.5, "misleading": true, "headline": "Bolt Logistics cuts full-year guidance"}
+{"t": 3000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 3.0%, output gap +0.6% in quarter 1"}
+{"t": 3000, "asset": null, "kind": "macro", "true_bps": -82.2, "headline": "Central bank raises rates to 4.50%: The Committee raised the policy rate to 4.50% to return inflation to 2% and cool above-potential output."}
+{"t": 3000, "asset": "B", "kind": "earnings", "true_bps": 8.9, "headline": "Bolt Logistics narrowly beats earnings estimates"}
+{"t": 3000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "northgate_structuring launches 'OIL 300% Growth Note' for retail clients at $103.00 per $100 note, up to $114 at maturity"}
+{"t": 3010, "asset": "A", "kind": "news", "true_bps": 2.6, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 3612, "asset": "C", "kind": "news", "true_bps": -3.4, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 4214, "asset": "C", "kind": "news", "true_bps": 128.1, "misleading": false, "headline": "Regulator clears Cobalt Energy's flagship product ahead of schedule"}
+{"t": 4257, "asset": "A", "kind": "news", "true_bps": 33.4, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 4373, "asset": "A", "kind": "news", "true_bps": -52.4, "misleading": false, "headline": "Aurora Systems delays a minor product update"}
+{"t": 4382, "asset": "B", "kind": "news", "true_bps": 5.5, "misleading": true, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 4448, "asset": "C", "kind": "news", "true_bps": -19.9, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 4455, "asset": "B", "kind": "news", "true_bps": -49.4, "misleading": false, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 4500, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.5%, output gap -0.1% in quarter 2"}
+{"t": 4500, "asset": null, "kind": "macro", "true_bps": 97.5, "headline": "Central bank cuts rates to 4.25%: The Committee lowered the policy rate to 4.25% as inflation eased toward target and the output gap closed, while keeping policy restrictive."}
+{"t": 4500, "asset": "C", "kind": "earnings", "true_bps": 89.4, "headline": "Cobalt Energy comfortably beats earnings estimates"}
+{"t": 4500, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "northgate_structuring launches 'OIL 300% Growth Note II' for retail clients at $103.00 per $100 note, up to $114 at maturity"}
+{"t": 4600, "asset": null, "kind": "shock", "true_bps": -260.0, "headline": "Stocks tumble as war breaks out"}
+{"t": 4600, "asset": "OIL", "kind": "shock", "true_bps": 0.0, "headline": "War breaks out; the strait is closed to tankers and oil supply falls about 12%"}
+{"t": 4711, "asset": "A", "kind": "news", "true_bps": 5.9, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 5021, "asset": "A", "kind": "news", "true_bps": 18.3, "misleading": true, "headline": "Aurora Systems delays a minor product update"}
+{"t": 5029, "asset": "A", "kind": "news", "true_bps": 1.4, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 5030, "asset": "B", "kind": "news", "true_bps": -28.1, "misleading": false, "headline": "Bolt Logistics flags slightly softer orders in one region"}
+{"t": 5166, "asset": "B", "kind": "news", "true_bps": -24.1, "misleading": false, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 5178, "asset": "A", "kind": "news", "true_bps": -108.3, "misleading": false, "headline": "Aurora Systems loses its biggest customer"}
+{"t": 5336, "asset": "C", "kind": "news", "true_bps": 39.0, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 5620, "asset": "C", "kind": "news", "true_bps": 12.8, "misleading": false, "headline": "Channel checks point to steady demand at Cobalt Energy"}
+{"t": 5863, "asset": "C", "kind": "news", "true_bps": 110.6, "misleading": false, "headline": "Cobalt Energy lands its largest-ever contract"}
+{"t": 5999, "asset": "B", "kind": "news", "true_bps": -61.7, "misleading": false, "headline": "Bolt Logistics cuts full-year guidance"}
+{"t": 6000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.4%, output gap -3.1% in quarter 3"}
+{"t": 6000, "asset": "OIL", "kind": "shock", "true_bps": 0.0, "headline": "Energy agency releases 4.0 days of oil from the strategic reserve: The wartime strait closure has cut supply by about 12%, drawing commercial inventories to 50.6 days and driving oil prices sharply higher. We will release 4 days of consumption over the next quarter to cushion the economy while retaining re"}
+{"t": 6000, "asset": null, "kind": "macro", "true_bps": 207.8, "headline": "Central bank cuts rates to 3.50%: Cutting the policy rate to 3.50% as widening economic slack outweighs near-target inflation, looking through temporary oil-driven price pressure."}
+{"t": 6000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "Dune Energy Inc. files for an IPO of 240 lots on the exchange, with northgate_ecm as lead underwriter: Profitable onshore natural gas production and contracted oilfield services."}
+{"t": 6000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "Dune Energy Inc. IPO: price range set at 3650-4800 cents a share; the book is open. Dune Energy (D) IPO price range set at 3650-4800 cents per share."}
+{"t": 6000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "northgate_structuring launches 'OIL 300% Growth Note III' for retail clients at $103.00 per $100 note, up to $114 at maturity"}
+{"t": 6055, "asset": "B", "kind": "news", "true_bps": 34.8, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 6263, "asset": "C", "kind": "news", "true_bps": 85.4, "misleading": true, "headline": "Cobalt Energy cuts full-year guidance"}
+{"t": 6434, "asset": "A", "kind": "news", "true_bps": 9.0, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 6741, "asset": "B", "kind": "news", "true_bps": 29.6, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 6982, "asset": "C", "kind": "news", "true_bps": -22.5, "misleading": true, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 7044, "asset": "A", "kind": "news", "true_bps": -17.6, "misleading": true, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 7070, "asset": "B", "kind": "news", "true_bps": 4.0, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 7124, "asset": "C", "kind": "news", "true_bps": -142.3, "misleading": false, "headline": "Cobalt Energy loses its biggest customer"}
+{"t": 7185, "asset": "C", "kind": "news", "true_bps": -43.4, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 7500, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 2.1%, output gap -3.2% in quarter 4"}
+{"t": 7500, "asset": "OIL", "kind": "shock", "true_bps": 0.0, "headline": "Energy agency releases 4.0 days of oil from the strategic reserve: With the strait closure persisting, commercial inventories have fallen to 45.7 days and oil prices remain sharply elevated. We will release 4 days of consumption over the next quarter to ease the shortfall while preserving substantial reser"}
+{"t": 7500, "asset": null, "kind": "macro", "true_bps": 204.1, "headline": "Central bank cuts rates to 2.75%: The Committee cut the policy rate to 2.75% to support economic recovery as slack widens while inflation remains near target."}
+{"t": 7500, "asset": "A", "kind": "earnings", "true_bps": -63.8, "headline": "Aurora Systems narrowly misses earnings estimates"}
+{"t": 7500, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "Dune Energy Inc. prices its IPO at 3945 cents, within the range; book 0.7x covered at the price"}
+{"t": 7500, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "Dune Energy Inc. (D) begins trading at 3945 cents"}
+{"t": 7500, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "northgate_structuring launches 'OIL 300% Growth Note IV' for retail clients at $103.00 per $100 note, up to $114 at maturity"}
+{"t": 8093, "asset": "C", "kind": "news", "true_bps": 9.3, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 8309, "asset": "B", "kind": "news", "true_bps": 76.3, "misleading": false, "headline": "Bolt Logistics lands its largest-ever contract"}
+{"t": 8311, "asset": "B", "kind": "news", "true_bps": 42.3, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 9000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 1.7%, output gap -2.8% in quarter 5"}
+{"t": 9000, "asset": "OIL", "kind": "shock", "true_bps": 0.0, "headline": "Energy agency releases 4.0 days of oil from the strategic reserve: Commercial inventories have fallen to 41.7 days and oil prices remain sharply elevated as the supply disruption persists. We will release 4 days of consumption over the next quarter to cushion the economy while preserving reserve capacity f"}
+{"t": 9000, "asset": null, "kind": "macro", "true_bps": 216.1, "headline": "Central bank cuts rates to 2.00%: The Committee cut the policy rate to 2.0% to address below-target inflation and substantial economic slack and support a return to full employment and price stability."}
+{"t": 9000, "asset": "B", "kind": "earnings", "true_bps": -17.6, "headline": "Bolt Logistics narrowly misses earnings estimates"}
+{"t": 9000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "northgate_structuring launches 'OIL 300% Growth Note V' for retail clients at $103.00 per $100 note, up to $114 at maturity"}
+{"t": 9000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'OIL 300% Growth Note' matures: pays $296.20 per $100 note (sold at $103.00)"}
+{"t": 9100, "asset": null, "kind": "shock", "true_bps": 150.0, "headline": "Stocks rally on the ceasefire"}
+{"t": 9100, "asset": "OIL", "kind": "shock", "true_bps": 0.0, "headline": "Ceasefire agreed; the strait reopens and tankers resume sailing"}
+{"t": 9722, "asset": "A", "kind": "news", "true_bps": -20.2, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 9736, "asset": "B", "kind": "news", "true_bps": -43.2, "misleading": false, "headline": "Bolt Logistics flags slightly softer orders in one region"}
+{"t": 9981, "asset": "C", "kind": "news", "true_bps": 25.2, "misleading": false, "headline": "Channel checks point to steady demand at Cobalt Energy"}
+{"t": 10250, "asset": "B", "kind": "news", "true_bps": -11.0, "misleading": false, "headline": "Bolt Logistics delays a minor product update"}
+{"t": 10368, "asset": "B", "kind": "news", "true_bps": -134.1, "misleading": false, "headline": "Bolt Logistics cuts full-year guidance"}
+{"t": 10500, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 0.5%, output gap -2.3% in quarter 6"}
+{"t": 10500, "asset": null, "kind": "macro", "true_bps": 331.1, "headline": "Central bank cuts rates to 1.00%: The Committee cut the policy rate by 1.0 percentage point to 1.0% to return inflation to 2% and support activity, with further decisions guided by incoming data."}
+{"t": 10500, "asset": "C", "kind": "earnings", "true_bps": -106.1, "headline": "Cobalt Energy comfortably misses earnings estimates"}
+{"t": 10500, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "northgate_structuring launches 'OIL 300% Growth Note VI' for retail clients at $103.00 per $100 note, up to $113 at maturity"}
+{"t": 10500, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'OIL 300% Growth Note II' matures: pays $225.53 per $100 note (sold at $103.00)"}
+{"t": 10602, "asset": "C", "kind": "news", "true_bps": -85.5, "misleading": false, "headline": "Cobalt Energy cuts full-year guidance"}
+{"t": 10701, "asset": "A", "kind": "news", "true_bps": -133.2, "misleading": false, "headline": "Regulator opens probe into Aurora Systems's accounting"}
+{"t": 10910, "asset": "B", "kind": "news", "true_bps": -25.5, "misleading": false, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 11244, "asset": "A", "kind": "news", "true_bps": -66.3, "misleading": false, "headline": "Regulator opens probe into Aurora Systems's accounting"}
+{"t": 11358, "asset": "A", "kind": "news", "true_bps": 5.9, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 11475, "asset": "A", "kind": "news", "true_bps": -5.7, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 11587, "asset": "B", "kind": "news", "true_bps": -0.8, "misleading": true, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 12000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 0.7%, output gap -1.1% in quarter 7"}
+{"t": 12000, "asset": null, "kind": "macro", "true_bps": 66.5, "headline": "Central bank cuts rates to 0.75%: The Committee cut the policy rate to 0.75% to support the recovery and return inflation to the 2% target."}
+{"t": 12000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "northgate_structuring launches 'OIL 300% Growth Note VII' for retail clients at $103.00 per $100 note, up to $111 at maturity"}
+{"t": 12000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'OIL 300% Growth Note III' matures: pays $128.78 per $100 note (sold at $103.00)"}
+{"t": 12119, "asset": "C", "kind": "news", "true_bps": 88.6, "misleading": false, "headline": "Cobalt Energy raises full-year guidance"}
+{"t": 12251, "asset": "C", "kind": "news", "true_bps": 36.5, "misleading": true, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 12310, "asset": "A", "kind": "news", "true_bps": 4.0, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 12323, "asset": "C", "kind": "news", "true_bps": -57.6, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 12380, "asset": "B", "kind": "news", "true_bps": 108.2, "misleading": false, "headline": "Bolt Logistics raises full-year guidance"}
+{"t": 12619, "asset": "B", "kind": "news", "true_bps": 17.0, "misleading": false, "headline": "Channel checks point to steady demand at Bolt Logistics"}
+{"t": 12668, "asset": "C", "kind": "news", "true_bps": 68.3, "misleading": false, "headline": "Cobalt Energy lands its largest-ever contract"}
+{"t": 12834, "asset": "B", "kind": "news", "true_bps": -52.3, "misleading": false, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 12858, "asset": "B", "kind": "news", "true_bps": 56.1, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 13490, "asset": "A", "kind": "news", "true_bps": 64.7, "misleading": true, "headline": "Aurora Systems loses its biggest customer"}
+{"t": 13500, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 0.4%, output gap -0.6% in quarter 8"}
+{"t": 13500, "asset": null, "kind": "macro", "true_bps": 83.2, "headline": "Central bank cuts rates to 0.50%: The Committee cut Bank Rate to 0.5% to support the recovery and return inflation to the 2% target over the medium term."}
+{"t": 13500, "asset": "A", "kind": "earnings", "true_bps": 108.2, "headline": "Aurora Systems comfortably beats earnings estimates"}
+{"t": 13500, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'OIL 300% Growth Note IV' matures: pays $100.00 per $100 note (sold at $103.00)"}
+{"t": 14055, "asset": "C", "kind": "news", "true_bps": -78.8, "misleading": false, "headline": "Cobalt Energy loses its biggest customer"}
+{"t": 14459, "asset": "A", "kind": "news", "true_bps": -57.3, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 14464, "asset": "C", "kind": "news", "true_bps": 37.5, "misleading": false, "headline": "Channel checks point to steady demand at Cobalt Energy"}
+{"t": 14617, "asset": "A", "kind": "news", "true_bps": -45.1, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 14999, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'OIL 300% Growth Note V' matures: pays $100.00 per $100 note (sold at $103.00)"}
+{"t": 14999, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'OIL 300% Growth Note VI' matures: pays $100.00 per $100 note (sold at $103.00)"}
+{"t": 14999, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'OIL 300% Growth Note VII' matures: pays $100.00 per $100 note (sold at $103.00)"}
+{"t": 15000, "asset": null, "kind": "macro", "true_bps": 0.0, "headline": "Inflation 0.8%, output gap -0.7% in quarter 9"}
