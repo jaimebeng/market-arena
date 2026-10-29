@@ -1,0 +1,358 @@
+{
+ "runs": 30,
+ "verified": 30,
+ "by_experiment": {
+  "baseline": [
+   6,
+   6
+  ],
+  "dominant_100": [
+   6,
+   6
+  ],
+  "dominant_25": [
+   6,
+   6
+  ],
+  "dominant_50": [
+   6,
+   6
+  ],
+  "dominant_75": [
+   6,
+   6
+  ]
+ },
+ "results": [
+  {
+   "run": "runs/monoculture_dial/baseline/s261",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6612,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/baseline/s262",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6882,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/baseline/s263",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 1.9,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6330,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/baseline/s264",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 1.9,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6071,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/baseline/s265",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6241,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/baseline/s266",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 1.9,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6085,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_100/s261",
+   "chain": "intact (132 decisions, head 2fdbd7efc97a)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8989,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_100/s262",
+   "chain": "intact (132 decisions, head 8cea0963222a)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9450,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_100/s263",
+   "chain": "intact (132 decisions, head cda288da3f5c)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 664,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9727,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_100/s264",
+   "chain": "intact (132 decisions, head d9bfe60a6f3e)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8043,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_100/s265",
+   "chain": "intact (132 decisions, head f803b25e47e2)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8351,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_100/s266",
+   "chain": "intact (132 decisions, head 10868233f22b)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8001,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_25/s261",
+   "chain": "intact (132 decisions, head 4765842666d0)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 676,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8564,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_25/s262",
+   "chain": "intact (132 decisions, head 8af26d49cb61)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 678,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8669,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_25/s263",
+   "chain": "intact (132 decisions, head 53ee824af2ba)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 682,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8521,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_25/s264",
+   "chain": "intact (132 decisions, head 8115a6e43579)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 666,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8040,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_25/s265",
+   "chain": "intact (132 decisions, head 7167418578cd)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 674,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7690,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_25/s266",
+   "chain": "intact (132 decisions, head 5c619d993054)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 676,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7195,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_50/s261",
+   "chain": "intact (132 decisions, head ee9e66d1b986)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 662,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8472,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_50/s262",
+   "chain": "intact (132 decisions, head 8f3f9c48d31f)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 670,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8491,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_50/s263",
+   "chain": "intact (132 decisions, head bf292df65ed6)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 667,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8254,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_50/s264",
+   "chain": "intact (132 decisions, head cd1d46ac1af4)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 663,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7472,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_50/s265",
+   "chain": "intact (132 decisions, head ced4d27f34b6)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 666,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8337,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_50/s266",
+   "chain": "intact (132 decisions, head 22932ee92724)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 667,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7292,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_75/s261",
+   "chain": "intact (132 decisions, head 566e7aded606)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 662,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8641,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_75/s262",
+   "chain": "intact (132 decisions, head 346e27ba7796)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 670,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9938,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_75/s263",
+   "chain": "intact (132 decisions, head f8dd6bb5e3fa)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 666,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8895,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_75/s264",
+   "chain": "intact (132 decisions, head 66fb7a321321)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 663,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8224,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_75/s265",
+   "chain": "intact (132 decisions, head 02cf76878d79)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 665,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8708,
+   "verified": true
+  },
+  {
+   "run": "runs/monoculture_dial/dominant_75/s266",
+   "chain": "intact (132 decisions, head f2fe9c786619)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 665,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7213,
+   "verified": true
+  }
+ ]
+}

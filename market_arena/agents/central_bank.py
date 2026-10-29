@@ -87,6 +87,10 @@ class LLMCentralBank:
         econ = arena.market.economy
         p = econ.p
         system = SYSTEM.format(id=self.id, target=p.pi_target, r_star=p.r_star, duration=p.duration_bps)
+        if p.oil_pass_through or p.oil_output:  # a supply shock moves inflation and output the opposite ways
+            system += (f"\n\nOil: each 1% rise in the oil price over a quarter adds about {p.oil_pass_through:.2f} pp to "
+                       f"inflation and takes about {p.oil_output:.2f} pp off the output gap (the data show the oil "
+                       "price's change each quarter).")  # fmt: skip
         last = econ.history[-1]
         user = (f"Quarter {epoch} just ended ({epoch + 1} of {arena.cfg.n_epochs}). Latest data: "
                 f"{json.dumps(last)}. Current rate: {econ.i}%.\nYour notes from last meeting: "

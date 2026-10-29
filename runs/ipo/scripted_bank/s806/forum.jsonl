@@ -1,0 +1,28 @@
+{"epoch":0,"t":600,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora delay bearish momentum confirmed - short A hard"}
+{"epoch":0,"t":600,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"A Aurora delay confirms clearly weakening momentum \u2014 downtrend accelerating, staying short. C uptrend looks intact."}
+{"epoch":0,"t":600,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora minor delay shouldn't affect value much - dip looks overdone."}
+{"epoch":0,"t":600,"agent":"inv_03","asset":"A","stance":0.7,"weight":1.0,"text":"A dip on minor delay looks overdone, seeing value here"}
+{"epoch":0,"t":600,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora dip on minor delay looks overdone, value intact. Buying."}
+{"epoch":0,"t":600,"agent":"inv_07","asset":"A","stance":0.7,"weight":1.0,"text":"A's minor delay caused ~1% dip looks overdone. Small bullish bounce candidate."}
+{"epoch":1,"t":1200,"agent":"inv_04","asset":"A","stance":0.6,"weight":1.0,"text":"A's contract renewal is incremental positive; modest upside drift likely as news absorbs."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"B","stance":0.9,"weight":1.0,"text":"B momentum accelerating - 25bps last epoch vs 12 prior, clear uptrend intact. Buying momentum."}
+{"epoch":1,"t":1200,"agent":"inv_08","asset":"A","stance":0.6,"weight":1.0,"text":"A renewal confirms fundamentals intact after overdone dip - modest upside ahead."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora renewal confirms momentum reversal - downtrend broken, now in uptrend +22bps. Flipping long, momentum bullish."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora renewal supports value, prior dip still overdone. Patiently holding long."}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal supports fundamentals, dip still looks like value. Holding long."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"C","stance":1.0,"weight":1.0,"text":"C momentum accelerating hard +77bps vs +5 prior, clean uptrend intact - buying momentum long"}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"D","stance":-0.85,"weight":1.0,"text":"Delta Neural IPO looks rich - crowded AI logistics space, 68% growth off tiny base, SaaS retention claims need scrutiny. Valuation stretched vs comps. Passing."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"D","stance":1.0,"weight":1.0,"text":"Delta Neural IPO mispriced - 3894 fair vs 3078-3621 range, 68% growth + 120% NRR + FCF positive SaaS. Very bullish D, bidding max."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"D","stance":1.0,"weight":1.0,"text":"Delta Neural IPO mispriced: 4409 fair value vs 3621 top range ~22% upside. +68% revenue growth +120% retention, FCF positive AI momentum. Huge BUY on listing."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"C","stance":-0.7,"weight":1.0,"text":"C +77bps on just an analyst nudge looks overdone, fading the spike."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":null,"stance":0.9,"weight":1.0,"text":"D Delta Neural IPO: 68% growth, 120% retention, CF positive SaaS looks undervalued vs range. Bullish long-term value."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"D","stance":1.0,"weight":1.0,"text":"Delta Neural SaaS growth + cash flow looks undervalued vs book range. Bullish long term."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"C","stance":-0.8,"weight":1.0,"text":"C +0.77% on analyst nudge looks overdone, fading the pop."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora losing biggest customer breaks uptrend - massive revenue hit incoming, flat price hasn't absorbed news yet. Momentum sharply bearish, shorting fast."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"A momentum broken: -6.5bps reversal after +92.8 + loses biggest customer confirms downtrend resuming. Flipping short, momentum bearish."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"A loses biggest customer - huge revenue hole, very bearish. Expect sharp correction as market absorbs - short."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"A","stance":0.75,"weight":1.0,"text":"Aurora customer loss headline looks overblown - diversified pipeline and recent renewal strength should offset. Expect quick replacement, dip looks buyable near term."}
+{"epoch":3,"t":2400,"agent":"inv_05","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora losing biggest customer materially hurts fundamentals - prior renewal value thesis broken, bearish."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer, fundamentals impaired but price still ~10000. Overvalued, bearish."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"D","stance":-0.9,"weight":1.0,"text":"D +23% IPO pop from 3259 looks overdone on hype, fading the spike."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"D","stance":-1.0,"weight":1.0,"text":"D +23% IPO pop from 3259 looks overdone on hype, fading the spike short."}

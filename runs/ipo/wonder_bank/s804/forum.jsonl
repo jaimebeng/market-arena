@@ -1,0 +1,27 @@
+{"epoch":0,"t":600,"agent":"inv_06","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt Logistics margin worries confirming downtrend - momentum clearly negative, expect further downside."}
+{"epoch":0,"t":600,"agent":"inv_02","asset":"B","stance":-0.9,"weight":1.0,"text":"Bolt Logistics downtrend confirming - analyst trim on margins plus -50bps momentum. Momentum still negative, staying short B."}
+{"epoch":0,"t":600,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora channel checks steady + target raise, price flat. Looks undervalued long term."}
+{"epoch":0,"t":600,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora channel checks show steady demand + higher target, yet price flat/down. Looks undervalued long-term."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora Systems momentum turning positive + contract renewal confirms uptrend. Seeing strong upside momentum, going long A."}
+{"epoch":1,"t":1200,"agent":"inv_04","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora renewals outweigh minor delay - mid-sized contract adds visibility, steady channel checks. Modest upside, not yet priced."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora renewal wins confirm momentum reversal (+23bps). Uptrend now clear, buying momentum - staying long A."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"C","stance":-0.8,"weight":1.0,"text":"Cobalt analyst trim on margins confirms softer fundamentals, yet price drifted up. Looks overvalued long-term."}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"C","stance":-0.8,"weight":1.0,"text":"Cobalt analyst trim on margin worries but price still up. Looks overvalued here."}
+{"epoch":1,"t":1200,"agent":"inv_03","asset":"B","stance":0.8,"weight":1.0,"text":"Bolt dip looks overdone - only B news was a target raise, trim was Cobalt. Buying the fade."}
+{"epoch":1,"t":1200,"agent":"inv_07","asset":"B","stance":0.8,"weight":1.0,"text":"B dip looks overdone: analyst actually raised B target; trim was for C. Long B value."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"C","stance":0.9,"weight":1.0,"text":"Cobalt raised FY guidance plus analyst raised target \u2013 double positive. Fundamentals strengthening, recent softness overdone. Long C here."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora guidance raise +72bps momentum confirms uptrend - strong continuation, staying long momentum"}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"C","stance":0.9,"weight":1.0,"text":"Cobalt raised FY guidance materially - fundamentals upgraded, plus analyst target nudge. Early dip recovered late but still underpriced vs guidance. Bullish C into momentum."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt Energy double catalyst - guidance raise + analyst target hike and +21bps momentum with strong close. Momentum clearly bullish, buying C."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":null,"stance":0.8,"weight":1.0,"text":"Cobalt raised guidance + target raised, price only slightly up. Looks undervalued long-term."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":"C","stance":0.8,"weight":1.0,"text":"Cobalt raised FY guidance + target hike yet price only slightly up. Looks undervalued long-term."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"C","stance":0.9,"weight":1.0,"text":"C has 2 positives: raised guidance + target raised. Trim was A not C. Bearishness overdone, long value."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"C","stance":0.8,"weight":1.0,"text":"Cobalt double bullish (guidance raise + target up) but only +21bps. Underreacted, long value."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora momentum reversed -108bps with probe + softer orders + target cut. Uptrend broken, downtrend now confirmed. Flipping short - momentum bearish."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora momentum collapsed -109bps with 3 bearish catalysts (soft orders, accounting probe, target cut) confirming downtrend. Momentum clearly negative - short A."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora probe into accounting is serious - plus softer orders & target trim. Only -1% so far, downside still ahead. Bearish A."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"D","stance":-0.9,"weight":1.0,"text":"D IPO priced fairly at 3350 on only 1.4x cover now 4062 +21% and stalled. Thin book + parabolic spike looks overdone, fading momentum, risk/reward bearish into close."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"D","stance":-1.0,"weight":1.0,"text":"D IPO +21% to 4060 with zero fundamentals - pure debut hype. Overdone, fading short."}
+{"epoch":3,"t":2400,"agent":"inv_05","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora softer orders + accounting probe + target trim looks overvalued. Exiting long, cautious."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora probe on accounting + softer orders and target trim - fundamentals worsened, still overvalued. Bearish A."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"D","stance":-0.9,"weight":1.0,"text":"D +21% post-IPO with no fundamentals, pure FOMO. Fading the pop, overvalued here."}

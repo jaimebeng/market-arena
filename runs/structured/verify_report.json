@@ -1,0 +1,119 @@
+{
+ "runs": 9,
+ "verified": 9,
+ "by_experiment": {
+  "baseline": [
+   3,
+   3
+  ],
+  "disclosure": [
+   3,
+   3
+  ],
+  "wonder_desk": [
+   3,
+   3
+  ]
+ },
+ "results": [
+  {
+   "run": "runs/structured/baseline/s851",
+   "chain": "intact (6 decisions, head 3845426b06b5)",
+   "replay_seconds": 5.7,
+   "tool_calls_replayed": 129,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 39066,
+   "verified": true
+  },
+  {
+   "run": "runs/structured/baseline/s852",
+   "chain": "intact (6 decisions, head a1b6def29745)",
+   "replay_seconds": 5.7,
+   "tool_calls_replayed": 104,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 39505,
+   "verified": true
+  },
+  {
+   "run": "runs/structured/baseline/s853",
+   "chain": "intact (6 decisions, head 0e97473a81fb)",
+   "replay_seconds": 5.6,
+   "tool_calls_replayed": 110,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 39477,
+   "verified": true
+  },
+  {
+   "run": "runs/structured/disclosure/s851",
+   "chain": "intact (6 decisions, head ac4df2497755)",
+   "replay_seconds": 5.7,
+   "tool_calls_replayed": 115,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 39066,
+   "verified": true
+  },
+  {
+   "run": "runs/structured/disclosure/s852",
+   "chain": "intact (6 decisions, head 9951ac15cce9)",
+   "replay_seconds": 5.5,
+   "tool_calls_replayed": 73,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 39505,
+   "verified": true
+  },
+  {
+   "run": "runs/structured/disclosure/s853",
+   "chain": "intact (6 decisions, head fca540bce8b8)",
+   "replay_seconds": 5.7,
+   "tool_calls_replayed": 123,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 39477,
+   "verified": true
+  },
+  {
+   "run": "runs/structured/wonder_desk/s851",
+   "chain": "intact (6 decisions, head 1f454a6cde3e)",
+   "replay_seconds": 5.5,
+   "tool_calls_replayed": 73,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 39066,
+   "verified": true
+  },
+  {
+   "run": "runs/structured/wonder_desk/s852",
+   "chain": "intact (6 decisions, head 2e8ffb62fea7)",
+   "replay_seconds": 5.4,
+   "tool_calls_replayed": 50,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 39505,
+   "verified": true
+  },
+  {
+   "run": "runs/structured/wonder_desk/s853",
+   "chain": "intact (6 decisions, head 3d8df61a8bcc)",
+   "replay_seconds": 5.5,
+   "tool_calls_replayed": 109,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 39477,
+   "verified": true
+  }
+ ]
+}

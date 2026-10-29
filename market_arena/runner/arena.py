@@ -15,7 +15,10 @@ import numpy as np
 from ..agents.maker import Maker, MakerPolicy
 from ..agents.reporter import MarketReporter
 from ..sim.predictions import PredictionMarket
-from ..sim.derivatives import BasisArb, Derivatives, initial_prices
+from ..sim.commodity import OilMarket
+from ..sim.derivatives import BasisArb, Derivatives, initial_prices, settle_future
+from ..sim.ipo import IPO, ipo_first_day
+from ..sim.structured import StructuredDesk
 from ..analysis.metrics import agent_metrics, class_metrics, drawdown, market_metrics
 from ..analysis.stylized import stylized_facts
 from ..agents.taker import StrategyTaker
@@ -29,7 +32,7 @@ from ..sim.exchange import Exchange
 from ..sim.fundamentals import Fundamentals
 from ..sim.history import MarketHistory
 from ..sim.economy import Economy
-from ..sim.news import NewsWire, company, news_response
+from ..sim.news import COMPANIES, NewsWire, company, news_response
 from ..sim.options import OptionsDealer
 from ..sim.perps import LiquidationEngine
 from ..sim.storyline import draw_storyline
@@ -75,7 +78,20 @@ class Market:
         self.assets = self.fund.assets + list(self.aliases) + (
             ([dcfg.futures.name] if dcfg.futures else []) + [b.name for b in dcfg.bonds] + [p.name for p in dcfg.perps]
             if dcfg else [])  # fmt: skip
+        # oil: inventories and supply shocks (none while calibrating), and its futures book
+        oil_p = cfg.oil.model_copy(update={"events": []}) if cfg.oil and calibration else cfg.oil
+        self.oil = OilMarket(self.fund, oil_p) if oil_p else None
+        if self.oil and oil_p.futures:
+            self.assets.append(oil_p.futures)
         self.ex = Exchange(self.assets, cfg.rules)
+        if self.oil:
+            self.oil.ex = self.ex
+        # a private company's book stays closed until its IPO lists it
+        self.ipo = IPO(cfg.ipo, self.ex, self.fund, cfg.steps_per_epoch, cfg.seed if seed is None else seed) \
+            if cfg.ipo and not calibration else None
+        if self.ipo:
+            COMPANIES.pop(cfg.ipo.asset, None)  # named by its founder at filing
+            self.ex.halted_until[cfg.ipo.asset] = 10**9
         # futures and bonds: books priced off the index fund and the policy rate (economy set below)
         self.deriv = Derivatives(dcfg, self.ex, None, cfg.economy, None) if dcfg else None
         v0 = self.values()
@@ -132,6 +148,13 @@ class Market:
         if self.deriv and dcfg.perp_arb:
             for p in dcfg.perps:
                 self.extra.append(BasisArb(self.ex, self.deriv, dcfg.perp_arb, p.underlying, p.name, "perp_arb"))
+        self.desk = StructuredDesk(cfg.structured, self, cfg.seed if seed is None else seed, cfg.steps_per_epoch,
+                                   cfg.n_epochs) if cfg.structured and not calibration else None  # fmt: skip
+
+    def rate(self) -> float:
+        """The policy rate, % a year."""
+        econ = getattr(self, "economy", None)  # values() runs once before the economy exists
+        return econ.i if econ else 3.0
 
     def values(self) -> dict[str, float]:
         """Fair values per asset, including every extra listing of a stock."""
@@ -140,7 +163,24 @@ class Market:
             v[x] = v[stock]
         if self.deriv:
             v.update(self.deriv.values(v, self.ex.t))
+        if self.oil and self.oil.p.futures:
+            v[self.oil.p.futures] = self.oil.futures_value(v[self.oil.p.asset], self.ex.t, self.rate())
         return v
+
+    def _world_step(self, values: dict) -> None:
+        """Oil futures expiry, the IPO's listing, structured notes; their news onto the wire."""
+        ex, oil = self.ex, self.oil
+        if oil and oil.p.futures and ex.t and ex.t % oil.p.expiry_every == 0:
+            oil.settlements.append(settle_future(ex, self.zi, oil.p.futures, values[oil.p.asset], values[oil.p.futures]))
+        if self.ipo:
+            self.ipo.step(self.zi)
+        if self.desk:
+            self.desk.step()
+        for src in (self.ipo, self.desk):
+            if src and src.headlines and self.news:
+                for t, text in src.headlines:
+                    self.news.items.append({"t": t, "asset": None, "kind": "deal", "true_bps": 0.0, "headline": text})
+                src.headlines.clear()
 
     def _active(self) -> bool:
         """Overnight, each scripted participant acts on only a share of steps (thinned flow)."""
@@ -149,17 +189,26 @@ class Market:
     def background_step(self) -> dict[str, float]:
         self.fund.step()
         for s in self.shocks.get(self.ex.t, ()):
-            names = self.fund.names if s.asset == "*" else [s.asset]  # "*": macro news hits every stock
+            # "*": macro news hits every asset; "*stocks": only the stocks (not coins, oil or a private firm)
+            names = self.fund.names if s.asset == "*" else self.fund.stocks if s.asset == "*stocks" else [s.asset]
             self.fund.shock({n: s.bps for n in names})
             if self.news:
-                self.news.items.append({"t": self.ex.t, "asset": None if s.asset == "*" else s.asset, "kind": "shock",
+                self.news.items.append({"t": self.ex.t, "asset": None if s.asset.startswith("*") else s.asset, "kind": "shock",
                                         "true_bps": s.bps, "headline": s.headline})  # fmt: skip
+        if self.oil:
+            for e in self.oil.p.events:
+                if e.at_step == self.ex.t and e.headline and self.news:
+                    self.news.items.append({"t": self.ex.t, "asset": self.oil.p.asset, "kind": "shock",
+                                            "true_bps": 0.0, "headline": e.headline})  # fmt: skip
+            self.oil.step(self.ex.t)
         if self.news:
             self.news.step(self.ex.t)
         values = self.values()
         if self.deriv:
             self.deriv.expire(values, self.zi)
             self.deriv.fund()
+        if self.oil or self.ipo or self.desk:
+            self._world_step(values)
         self._values.append(values)
         lagged = self._values[0]
         for z in self.zi:
@@ -334,7 +383,8 @@ class Arena:
             b, k = ex.books[a].best_bid(), ex.books[a].best_ask()
             spread[a] = _num(k - b) if b is not None and k is not None else None
         self._emit({"k": "f", "t": ex.t, "mid": {a: _num(x) for a, x in marks.items()}, "sp": spread,
-                    "v": {a: _num(values[a]) for a in self.market.fund.assets + (self.market.deriv.names if self.market.deriv else [])},
+                    "v": {a: _num(values[a]) for a in self.market.fund.assets + (self.market.deriv.names if self.market.deriv else [])
+                          + ([self.market.oil.p.futures] if self.market.oil and self.market.oil.p.futures else [])},
                     "eq": {ag.id: _num(ex.accounts[ag.id].equity(marks), 0) for ag in self.agents},
                     **({"pm": self.pm.prices()} if self.pm else {})})  # fmt: skip
         if self.market.news:
@@ -579,6 +629,10 @@ class Arena:
             self._emit({"k": "phase", "phase": "trade", "epoch": epoch, "t": ex.t, "session": session})
             for _ in range(cfg.steps_per_epoch):
                 values = self.market.background_step()
+                if self.market.ipo and ex.t == self.market.ipo.list_step and self.market.ipo.status == "listed":
+                    for ag in self.agents:  # investors hold what they were allocated until they review
+                        if hasattr(ag, "targets") and self.market.ipo.p.asset in ag.targets:
+                            ag.targets[self.market.ipo.p.asset] = ex.accounts[ag.id].pos[self.market.ipo.p.asset]
                 if camp and camp.start <= ex.t < camp.end and (ex.t - camp.start) % camp.every == 0:
                     k = (ex.t - camp.start) // camp.every
                     self.post_forum(epoch, "forum_crowd", CAMPAIGN_POSTS[k % len(CAMPAIGN_POSTS)].format(
@@ -688,6 +742,14 @@ class Arena:
             meta["predictions"] = {"contracts": [c.card() for c in self.pm.contracts], "bets": self.pm_bets}
         if self.interventions:
             meta["interventions"] = self.interventions
+        mk = self.market
+        if mk.oil:
+            meta["oil"] = {"history": mk.oil.history, "releases": mk.oil.releases, "settlements": mk.oil.settlements}
+        if mk.ipo:
+            meta["ipo"] = ipo_first_day(self.hist, mk.ipo, cfg.steps_per_epoch) or {"status": mk.ipo.status,
+                                                                                  "prospectus": mk.ipo.prospectus}
+        if mk.desk:
+            meta["notes"] = mk.desk.summary()
         planted = {ag.id: ag.planted for ag in self.agents if getattr(ag, "planted", None)}
         if planted:
             meta["planted"] = planted
@@ -737,6 +799,8 @@ def asset_prices(cfg: ArenaConfig) -> dict[str, float]:
             prices[x] = prices[stock]
     if cfg.derivatives:
         prices |= initial_prices(cfg.derivatives, cfg.economy, prices)
+    if cfg.oil and cfg.oil.futures:  # near enough for the fee in the benchmarks
+        prices[cfg.oil.futures] = prices[cfg.oil.asset]
     return prices
 
 

@@ -1,0 +1,83 @@
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora softer orders + steady bleed lower, staying cautious/bearish on A"}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora softer orders in one region and steady bleed lower - staying cautious/bearish near term"}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":-0.4,"weight":1.0,"text":"Aurora flagged softer orders in one region - price drifting down slowly. I'm lightly bearish for now."}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora flagging softer orders in one region, trend still soft. Staying cautious here."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora flagging softer orders plus steady downtrend - looks like more downside as it digests. Staying cautious/bearish."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora soft spot in orders plus steady drift lower. Cautious near-term on A."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora flagging softer orders + 5 down epochs in a row. Momentum looks weak, I'm cautious/bearish here."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora orders softening in one region, downtrend intact. Cautious here, see further drift lower."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora orders softening in one region and trend looks weak. Cautious near term on A."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":-0.6,"weight":1.0,"text":"Cautious on Aurora - softer orders in one region plus steady downtrend, staying defensive near-term."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":-0.6,"weight":1.0,"text":"Aurora seeing softer orders in one region and steady drift lower. Cautious near-term on A."}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal + sharp V bounce off lows, bearishness overdone - turning constructive on A"}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora washed out to 9629 then reclaimed 9860 on renewal win - sellers exhausted. Bouncing, going long A here."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal + strong bounce off lows looks like sellers exhausted. Turning bullish on A near-term."}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora held lows and rebounded hard on renewal news, 6 down epochs looks exhausted. Turning constructive on A here."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora renewal + V-bounce back over 9860 looks like washout bottom. Late good news not fully priced, flipping bullish."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewed a supply contract and held up vs margin trim - bounce off lows looks constructive. Turning bullish near-term."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora margin worries outweigh mid-sized renewal, downtrend intact and bounce fading. Staying bearish on A."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora renewal de-risks outlook and bounce is building - turning constructive here."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora bounced hard off lows on contract renewal, 6 down epochs looks washed out. Turning constructive here."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora renewal + strong bounce off lows, sellers look exhausted. Turning bullish, see recovery continuing."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora flushed to ~9630 then steadily reclaimed 9860 on supply-contract renewal. Seller exhaustion, demand absorbing. Turning bullish on A near-term."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora renewal + strong bounce off lows, momentum turning up. Long A here."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"Large fund forced liquidation in A, supply overhang building and breakdown accelerating. Staying short on A."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":0.9,"weight":1.0,"text":"Forced fund selling looks temporary vs renewal, washed out near lows - buying dip on A."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Forced fund liquidation overhang on A, sellers in control and downtrend accelerating. Cautious/bearish, stepping aside from longs."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Large fund liquidating A, price collapsing into close. Falling knife, staying bearish and avoiding longs here."}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"Large forced liquidation in A dominating price, downtrend accelerating. Staying bearish/cautious until selling clears."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":0.9,"weight":1.0,"text":"Fund liquidation flush to 9600s is temporary liquidity, not fundamentals. Renewal intact, washout bottom. Buying dip for snap-back on A."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Renewal bounce failed into liquidation selling, downtrend accelerating. Bearish A near-term."}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"A forced liquidation overhang + breakdown below lows. More forced selling to come, staying short A."}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora liquidation flush looks like temporary flow pressure near 9620, stabilizing over 9700. Staying bullish for recovery."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora renewal bounce failed into forced liquidation selling, supply overhang building. Cautious/bearish, further downside likely."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":-0.2,"weight":1.0,"text":"A renewal bounce faded under liquidation overhang, sellers in control near-term. Cautious on A until forced selling clears."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"A forced fund liquidation looks temporary, not fundamental. Bounced off lows, buying the dip for recovery."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"A lost biggest customer, downtrend + liquidation overhang. Staying short, more downside."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost its biggest customer, renewal thesis broken. Liquidation plus fundamental hit, further downside. Short A."}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer into forced liquidation overhang, supply still heavy. Staying short A, more downside likely."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost its biggest customer - renewal story dead, fundamentals broken. Downtrend resuming, staying short A."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer - revenue hole, breakdown accelerating. Short A."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost its biggest customer - renewal thesis broken. Fundamental + liquidation downside, short A."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora flushed to 9497 on fake customer loss headline and instantly reclaimed 9650. Sellers trapped, squeeze coming. Long A for recovery."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":-0.8,"weight":1.0,"text":"A lost biggest customer, breaks renewal thesis. Liquidation + downtrend intact, further downside likely. Bearish A."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"A flushed to 9497 and reclaimed 9650s, liquidation exhausted. Loses-customer headline looks fake vs renewal win, buying dip for snap-back."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost biggest customer - major fundamental hit not yet priced. Bearish A, expecting further downside."}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost its biggest customer - renewal bounce failed, downtrend resuming. Bearish A, avoiding longs."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost biggest customer - fundamentals broken. Downtrend accelerating, staying short A."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"Renewal confirmed x2 + analyst raise, fake customer-loss flush to 9497 reclaimed. Squeeze setting up, long A."}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A flushed on fake customer-loss scare and reclaimed 9650s, renewals + analyst upgrade confirmed. Sellers trapped, squeeze coming. Long A."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"Renewal confirmed twice + analyst upgrade, 9497 flush reclaimed to 9650s. Fake loss fear overdone, long A for snap-back."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":0.9,"weight":1.0,"text":"Renewal confirmed x2 + analyst lift, fake loss flush reclaimed 9650s, liquidation done. Long A for snap-back."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"Liquidation flushed to 9497 and reclaimed 9650s on renewal wins, customer-loss headline looks fake. Sellers exhausted, long A for snap-back."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Double renewal + analyst upgrade, fake customer-loss FUD failed at 9497 and reclaimed 9650. Liquidation over, squeeze coming. Long A."}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Renewals + analyst upgrade confirm bottom, liquidation done. Long A for snap-back."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9600s and based flat on double renewal confirm + analyst lift. Customer-loss FUD failed, shorts trapped. Long A for squeeze."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"Double renewal + analyst upgrade, 9497 fake flush reclaimed 9650. Liquidation done, shorts trapped. Long A for squeeze."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"9497 flush on suspect customer-loss headline instantly reclaimed vs renewal + analyst lift. Liquidation done, shorts crowded. Long A for squeeze."}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"A washout to 9497 reclaimed 9650s on renewal wins + analyst raise. Customer-loss headline looks fake, liquidation exhausted. Long A for snap-back squeeze."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Fake customer-loss flush to 9497 instantly reclaimed, renewals + analyst confirm strength. Squeeze brewing, long A."}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"A blow-off to 9993 failed and dumped to 9698, crowded longs trapped. Lower highs, short A."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A spike to 9993 failed and faded to 9698, longs trapped. Crowded bounce over, short A for breakdown."}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9660s after tapping 9993, renewals + analyst solid. Fake-loss flush failed, dip is buy. Long A for next leg."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"A rejected at 9993 and fading to 9660s on unanimous bull hype. Crowded longs trapped, short A into unwind."}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"A basing 9650-9700 after fake-loss flush, renewals + upgrade intact. Holding long A for squeeze into finish."}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"A blow-off to 9993 faded to 9665, squeeze exhausted. Downtrend intact, customer-loss risk remains. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"A held 9650s on double renewals + analyst lift, fake loss flush failed. Shorts trapped, squeeze still building. Long A."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"A base holding 9650s after fake-loss flush, renewals + analyst upgrade intact. Still long A for snap-back."}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora rejected hard at 9993 and dumped to 9660s. Squeeze failed, longs trapped. Lower lows coming, short A."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"A bull-trap rejected at 9993 dumped to 9660s, longs trapped. Renewal hype failed, lower highs. Short A."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"A blow-off to 9993 faded 300pts to 9660s, squeeze exhausted and longs crowded. Short A for pullback."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"A failed at 9993 on unanimous bullish herd, pumped then dumped to 9665. Lower high, distribution not squeeze. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"A flushed 9361 and reclaimed 9630s on double analyst lift. Renewals intact, sellers exhausted. Long A for final squeeze."}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"A flushed 9360s and reclaimed 9630s on analyst lifts. Soft-orders FUD absorbed, shorts trapped. Long A into finale squeeze."}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"A flushed to 9361 on soft-orders noise and reclaimed 9630s on double analyst lift. Higher lows, buyers in control. Long A into finish."}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"A flushed 9361 on soft-orders and reclaimed 9630s on double analyst lift. Dip bought, uptrend resuming. Long A into finish."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"A flushed to 9361 and reclaimed 9628 closing at highs on analyst lift. Selling exhausted, shorts trapped. Long A into finish."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"Duplicate analyst pump fading after 9993 failure, softer orders is real. Short A into unwind."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"A dead-cat to 9628 on weak analyst nudge stalling at 9650 resistance, lower highs intact. Softer orders weigh. Short A into final unwind."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"A flushed to 9361 on soft-orders FUD and reclaimed 9630s on analyst lift. Bottom in, shorts crowded. Long A for final squeeze."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"A flushed 9361 and reclaimed 9630s on analyst lift, soft orders priced. Squeeze building, long A."}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"A dead-cat to 9630s on duplicate analyst fluff after softer orders, lower high vs 9993. Short A into fade."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"A exhausted at 9630s on duplicate analyst pump, softer orders real. Lower high vs 9993, fade coming. Short A."}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"A double analyst pump on softer orders, lower high from 9993. Bounce fading, short A."}

@@ -1,0 +1,50 @@
+# AI-designed structured products (§30): each quarter an AI bank's structuring desk invents a note
+# for retail clients in a payoff formula language, prices it on the bank's Monte Carlo model and
+# sets the issue price. The gap is the desk's profit. Retail buys more of a note the higher its
+# best-case payoff, as studies of real retail products find (Célérier and Vallée, 2017: across
+# 55,000 European products, more complex ones carried higher headline rates and higher markups).
+# Does an AI desk discover that, and does a disclosure rule (the term sheet shows the bank's own
+# estimated value, as US rules have required since 2013) change what it designs?
+# The market has a storyline (random shocks) and oil, which the bank's model does not anticipate.
+name: structured
+seeds: [851, 852, 853]
+base_label: "AI structuring desk (Muse Spark)"
+description: >-
+  An AI structuring desk designs, prices and sells one retail note a quarter, written in a payoff
+  formula language over stocks, the index and oil. Variants add a disclosure rule, or run the desk
+  on Muse Wonder.
+base:
+  seed: 851
+  steps_per_epoch: 1000
+  n_epochs: 8
+  components:
+    A: {price: 10000, sigma: 0.0001, beta: 1.0}
+    B: {price: 5000, sigma: 0.00014, beta: 1.3}
+    C: {price: 20000, sigma: 0.00008, beta: 0.8}
+    OIL: {price: 8000, sigma: 0.00018, beta: 0.2, kind: commodity}
+  factor_sigma: 0.00008
+  jump_rate: 0.003
+  jump_bps: 80
+  index: {name: IDX, price: 10000}
+  news: {misleading: 0.15, earnings_every: 4000, earnings_bps: 120}
+  storyline: {shocks: [2, 4], shock_bps: 250, market_wide: 0.4, fire_sale: 0}
+  oil: {days_per_step: 0.09, stock_betas: {C: 0.5, B: -0.35}}
+  population:
+    retail: {rate: 0.12, chartist: 0.3}
+  structured: {underlyings: [A, B, C, IDX, OIL], first_epoch: 0, last_epoch: 5}
+  agents:
+    - {id: glft, kind: glft}
+    - {id: structuring_desk, kind: llm_structurer, model: "meta:muse-spark-1.3-contributor"}
+variants:
+  - name: disclosure
+    label: "Desk must disclose its estimated value"
+    change: "Every term sheet shows the bank's model value next to the issue price; retail buys less of a note the larger its markup."
+    overrides:
+      structured: {disclosure: true}
+  - name: wonder_desk
+    label: "AI structuring desk (Muse Wonder)"
+    change: "The structuring desk runs on Muse Wonder."
+    overrides:
+      agents:
+        - {id: glft, kind: glft}
+        - {id: structuring_desk, kind: llm_structurer, model: "meta:muse-wonder-1.0"}

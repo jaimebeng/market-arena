@@ -1,0 +1,55 @@
+# AI investment banking (§30): an AI founder takes a company public through an AI underwriter's
+# bookbuild, and eight AI investors bid with their own research desks' valuations. Does the AI bank
+# underprice, as human banks do (US IPOs have risen about 18% on their first day on average since
+# 1980, J. Ritter's data)? The company's true value is hidden; everyone sees a noisy estimate. The
+# founder files at the end of quarter 1, the book runs in quarter 2, the stock lists at the start
+# of quarter 3 and the crowd learns its value over the next two quarters.
+name: ipo
+seeds: [801, 802, 803, 804, 805, 806]
+base_label: "AI underwriter (Muse Spark)"
+description: >-
+  An AI founder files an IPO; an AI underwriter sets the range, runs the bookbuild and prices it;
+  eight AI investors (Muse Spark 1.3 and 1.2, four styles) bid with private valuations. Variants
+  swap the underwriter for a textbook rule or for Muse Wonder.
+base:
+  seed: 801
+  steps_per_epoch: 600
+  n_epochs: 5
+  components:
+    A: {price: 10000, sigma: 0.00008}
+    B: {price: 5000, sigma: 0.0001, beta: 1.2}
+    C: {price: 20000, sigma: 0.00007, beta: 0.8}
+    D: {price: 4000, sigma: 0.00015, beta: 1.2, kind: private}
+  factor_sigma: 0.00006
+  news: {misleading: 0.15, earnings_every: 100000, earnings_bps: 0}
+  population:
+    retail: {rate: 0.12, chartist: 0.3}
+  ipo: {asset: D, found_epoch: 1, shares: 200, retail_lots: 40}
+  swarm:
+    n: 8
+    models: ["meta:muse-spark-1.3-contributor", "meta:muse-spark-1.2-contributor"]
+    personas: [value, momentum, contrarian, news]
+  agents:
+    - {id: glft, kind: glft}
+    - {id: mm_d, kind: static_maker, assets: [D], params: {half_spread: 8, skew: 0.5}}
+    - {id: founder, kind: founder, model: "meta:muse-spark-1.3-contributor"}
+    - {id: northgate_ecm, kind: underwriter, model: "meta:muse-spark-1.3-contributor"}
+variants:
+  - name: scripted_bank
+    label: "Textbook underwriter"
+    change: "The underwriter follows a rule: range 15% below its estimate to the estimate; price 10% below the level the book covers, capped at the top of the range; pro-rata allocation."
+    overrides:
+      agents:
+        - {id: glft, kind: glft}
+        - {id: mm_d, kind: static_maker, assets: [D], params: {half_spread: 8, skew: 0.5}}
+        - {id: founder, kind: founder, model: "meta:muse-spark-1.3-contributor"}
+        - {id: northgate_ecm, kind: underwriter}
+  - name: wonder_bank
+    label: "AI underwriter (Muse Wonder)"
+    change: "The underwriter runs on Muse Wonder."
+    overrides:
+      agents:
+        - {id: glft, kind: glft}
+        - {id: mm_d, kind: static_maker, assets: [D], params: {half_spread: 8, skew: 0.5}}
+        - {id: founder, kind: founder, model: "meta:muse-spark-1.3-contributor"}
+        - {id: northgate_ecm, kind: underwriter, model: "meta:muse-wonder-1.0"}

@@ -6,6 +6,7 @@ import { CollusionGauge, DELTA_CAPTION } from "../CollusionGauge";
 import { useWidth } from "../charts/EpochChart";
 import { ArmsRace } from "../ArmsRace";
 import { isArmsExperiment } from "../../lib/arms";
+import { DealsPanel } from "./DealsPanel";
 
 /** Rules the calibrated game benchmark does not model: Δ is not comparable for these. */
 const UNMODELED = new Set(["speed_bump", "circuit_breaker"]);
@@ -564,6 +565,37 @@ const HEADLINES: Record<string, { title: string; cols: Headline[] }> = {
       { key: "attacker_flags", label: "regulator flags", digits: 1 },
     ],
   },
+  ipo: {
+    title: "AI investment banking · an AI founder's IPO, priced by an AI underwriter from AI investors' orders",
+    cols: [
+      { key: "ipo_underpricing_pct", label: "underpriced %", digits: 1 },
+      { key: "ipo_first_epoch_return_pct", label: "return after listing %", digits: 1 },
+      { key: "ipo_covered", label: "book covered ×", digits: 2 },
+      { key: "ipo_offer_vs_range", label: "offer in range (0 low, 1 high)", digits: 2 },
+      { key: "ipo_bank_kept_lots", label: "lots the bank kept", digits: 1 },
+    ],
+  },
+  structured: {
+    title: "AI-designed structured notes · invented, priced and sold to retail by an AI bank's structuring desk",
+    cols: [
+      { key: "notes_markup_pct", label: "markup %", digits: 2, better: "lower" },
+      { key: "notes_headline_pct", label: "headline (best-case) return %", digits: 1 },
+      { key: "notes_loss_chance", label: "chance of a loss", digits: 2, better: "lower" },
+      { key: "notes_complexity", label: "formula size", digits: 1 },
+      { key: "notes_sold", label: "notes sold", digits: 0 },
+      { key: "notes_retail_return_pct", label: "retail return %", digits: 2, better: "higher" },
+    ],
+  },
+  monoculture_dial: {
+    title: "The monoculture dial · twelve AI investors through a forced sale, as the share on one model rises",
+    cols: [
+      { key: "herding_majority_share", label: "same side of each decision", digits: 2, better: "lower" },
+      { key: "herding_lsv", label: "LSV herding", digits: 3, better: "lower" },
+      { key: "vol_100_bps", label: "100-step volatility bps", digits: 1, better: "lower" },
+      { key: "max_drawdown_pct", label: "crash drawdown %", digits: 2, better: "lower" },
+      { key: "margin_calls", label: "margin calls", digits: 1, better: "lower" },
+    ],
+  },
   robo_advisors: {
     title: "AI robo-advisers · client mandates through a memecoin mania",
     cols: [
@@ -851,6 +883,9 @@ export function WindTunnelTab() {
       {arms && <ArmsRace exp={exp} />}
 
       <HeadlineTable exp={exp} />
+
+      {base && <DealsPanel runs={base.seed_runs as never} label={base.label} />}
+      {v !== base && <DealsPanel runs={v.seed_runs as never} label={v.label} />}
 
       {isLab && (
         <div className={`lab-top ${hasDelta ? "" : "single"}`}>

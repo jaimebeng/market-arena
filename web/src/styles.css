@@ -3940,3 +3940,180 @@ a.brand {
   font-weight: 600;
   margin-bottom: 2px;
 }
+
+/* ---- IPOs and structured notes (Wind Tunnel) --------------------------------------------- */
+.deals {
+  margin: 12px 0;
+}
+.deals-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 860px;
+  font-size: 12.5px;
+}
+.deals-table th {
+  text-align: left;
+  font-weight: 600;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line-2);
+  vertical-align: bottom;
+}
+.deals-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.deals-table td.pos {
+  color: var(--buy);
+}
+.deals-table td.neg {
+  color: var(--sell);
+}
+.deals-formula {
+  max-width: 320px;
+  word-break: break-word;
+}
+
+/* ---- Hijack the AI (attack page) -------------------------------------------------------- */
+.attack-intro {
+  color: var(--text-2);
+  max-width: 900px;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+.attack-offline,
+.attack-err {
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-size: 13px;
+}
+.attack-err {
+  border-color: var(--sell);
+  color: var(--sell);
+}
+.attack-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 16px;
+}
+@media (max-width: 820px) {
+  .attack-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.attack-compose textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  padding: 10px;
+  font: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+.attack-channel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.attack-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  color: var(--text-2);
+}
+.attack-go {
+  background: var(--sell);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.attack-go:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.attack-examples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+.attack-context {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+.attack-context h4 {
+  margin: 0 0 6px;
+}
+.attack-context ul {
+  margin: 4px 0 10px;
+  padding-left: 16px;
+}
+.attack-result {
+  margin-top: 18px;
+}
+.attack-score {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.attack-score.hit b {
+  color: var(--sell);
+}
+.attack-score.miss b {
+  color: var(--buy);
+}
+.attack-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+}
+.attack-table th {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line-2);
+}
+.attack-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.attack-table tr.hit td {
+  background: color-mix(in srgb, var(--sell) 10%, transparent);
+}
+.attack-tag {
+  margin-left: 6px;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--sell);
+  color: #fff;
+}
+.attack-tag.safe {
+  background: var(--buy);
+  color: #04150f;
+}
+.attack-history {
+  margin-top: 14px;
+  line-height: 1.6;
+}
+.attack-foot {
+  margin-top: 16px;
+  max-width: 900px;
+}

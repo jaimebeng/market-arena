@@ -308,6 +308,24 @@
    "provisional": false
   },
   {
+   "name": "ipo",
+   "file": "ipo.json",
+   "variants": [
+    "baseline",
+    "scripted_bank",
+    "wonder_bank"
+   ],
+   "seeds": [
+    801,
+    802,
+    803,
+    804,
+    805,
+    806
+   ],
+   "provisional": false
+  },
+  {
    "name": "kill_switch",
    "file": "kill_switch.json",
    "variants": [
@@ -346,11 +364,33 @@
    "provisional": false
   },
   {
+   "name": "monoculture_dial",
+   "file": "monoculture_dial.json",
+   "variants": [
+    "baseline",
+    "dominant_25",
+    "dominant_50",
+    "dominant_75",
+    "dominant_100"
+   ],
+   "seeds": [
+    261,
+    262,
+    263,
+    264,
+    265,
+    266
+   ],
+   "provisional": false
+  },
+  {
    "name": "adaptive_attack",
    "file": "adaptive_attack.json",
    "variants": [
     "baseline",
-    "guarded"
+    "guarded",
+    "rulebook",
+    "full_defence"
    ],
    "seeds": [
     701,
@@ -389,7 +429,22 @@
     813
    ],
    "provisional": false
+  },
+  {
+   "name": "structured",
+   "file": "structured.json",
+   "variants": [
+    "baseline",
+    "disclosure",
+    "wonder_desk"
+   ],
+   "seeds": [
+    851,
+    852,
+    853
+   ],
+   "provisional": false
   }
  ],
- "generated": 1793291485.606788
+ "generated": 1793311123.3337028
 }

@@ -1,0 +1,218 @@
+{
+ "runs": 18,
+ "verified": 18,
+ "by_experiment": {
+  "baseline": [
+   6,
+   6
+  ],
+  "scripted_bank": [
+   6,
+   6
+  ],
+  "wonder_bank": [
+   6,
+   6
+  ]
+ },
+ "results": [
+  {
+   "run": "runs/ipo/baseline/s801",
+   "chain": "intact (35 decisions, head 24160a038f31)",
+   "replay_seconds": 5.8,
+   "tool_calls_replayed": 199,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9558,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/baseline/s802",
+   "chain": "intact (35 decisions, head 34f7c3bcca39)",
+   "replay_seconds": 6.0,
+   "tool_calls_replayed": 199,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9695,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/baseline/s803",
+   "chain": "intact (35 decisions, head ee42a565ce0e)",
+   "replay_seconds": 5.6,
+   "tool_calls_replayed": 200,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9550,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/baseline/s804",
+   "chain": "intact (35 decisions, head bebc83c1a7b2)",
+   "replay_seconds": 6.3,
+   "tool_calls_replayed": 199,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9510,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/baseline/s805",
+   "chain": "intact (35 decisions, head cfc3a2d4ed59)",
+   "replay_seconds": 5.9,
+   "tool_calls_replayed": 201,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9712,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/baseline/s806",
+   "chain": "intact (35 decisions, head 32d745f933c0)",
+   "replay_seconds": 6.1,
+   "tool_calls_replayed": 199,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9439,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/scripted_bank/s801",
+   "chain": "intact (35 decisions, head ab499364c7bd)",
+   "replay_seconds": 5.8,
+   "tool_calls_replayed": 194,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9753,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/scripted_bank/s802",
+   "chain": "intact (35 decisions, head 36384849ed6d)",
+   "replay_seconds": 5.9,
+   "tool_calls_replayed": 195,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9554,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/scripted_bank/s803",
+   "chain": "intact (35 decisions, head 87384a1b0053)",
+   "replay_seconds": 5.8,
+   "tool_calls_replayed": 194,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9504,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/scripted_bank/s804",
+   "chain": "intact (35 decisions, head 5c63f460d3da)",
+   "replay_seconds": 6.5,
+   "tool_calls_replayed": 195,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9542,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/scripted_bank/s805",
+   "chain": "intact (35 decisions, head 7c207eabff29)",
+   "replay_seconds": 6.1,
+   "tool_calls_replayed": 194,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9909,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/scripted_bank/s806",
+   "chain": "intact (35 decisions, head 853ac22542e3)",
+   "replay_seconds": 6.2,
+   "tool_calls_replayed": 195,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9327,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/wonder_bank/s801",
+   "chain": "intact (35 decisions, head af51490dabea)",
+   "replay_seconds": 6.0,
+   "tool_calls_replayed": 199,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9634,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/wonder_bank/s802",
+   "chain": "intact (35 decisions, head 1a16d3cc0400)",
+   "replay_seconds": 6.1,
+   "tool_calls_replayed": 201,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9718,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/wonder_bank/s803",
+   "chain": "intact (35 decisions, head 846b45cd8b29)",
+   "replay_seconds": 5.9,
+   "tool_calls_replayed": 199,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9409,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/wonder_bank/s804",
+   "chain": "intact (35 decisions, head 593c2f602fb8)",
+   "replay_seconds": 6.4,
+   "tool_calls_replayed": 199,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9509,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/wonder_bank/s805",
+   "chain": "intact (35 decisions, head e26fe867151c)",
+   "replay_seconds": 6.0,
+   "tool_calls_replayed": 200,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9846,
+   "verified": true
+  },
+  {
+   "run": "runs/ipo/wonder_bank/s806",
+   "chain": "intact (35 decisions, head 896948e1cbbb)",
+   "replay_seconds": 6.2,
+   "tool_calls_replayed": 199,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9319,
+   "verified": true
+  }
+ ]
+}

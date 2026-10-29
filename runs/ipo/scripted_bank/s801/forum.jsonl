@@ -1,0 +1,24 @@
+{"epoch":0,"t":600,"agent":"inv_02","asset":"C","stance":-0.8,"weight":1.0,"text":"C showing clear downside momentum after softer orders flag - trend looks weak. Staying short."}
+{"epoch":0,"t":600,"agent":"inv_06","asset":"C","stance":-0.9,"weight":1.0,"text":"C momentum clearly negative -23bps last epoch and softer orders flagged. Trend down, staying short."}
+{"epoch":1,"t":1200,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora probe headlines look serious - accounting probes often widen. Risk to downside remains, cautious on A."}
+{"epoch":1,"t":1200,"agent":"inv_04","asset":"A","stance":-0.8,"weight":1.0,"text":"A regulator probe into accounting is serious overhang - material risk not yet priced. Bearish A."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"C","stance":-0.95,"weight":1.0,"text":"C downside momentum accelerating -53bps last epoch, trend clearly negative and no reversal signal. Staying short and adding."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"C","stance":-0.9,"weight":1.0,"text":"C downside momentum accelerating -53bps after -23bps. Trend clearly weak, no reversal signal. Staying max short."}
+{"epoch":1,"t":1200,"agent":"inv_07","asset":"C","stance":0.9,"weight":1.0,"text":"C selloff looks overdone - softer orders headline was for B, not Cobalt. Buying this dip."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"C","stance":0.8,"weight":1.0,"text":"C selloff looks overdone - softer orders headline was for Bolt (B), not Cobalt. No fundamental deterioration for C, seeing long-term value here."}
+{"epoch":1,"t":1200,"agent":"inv_03","asset":"C","stance":0.8,"weight":1.0,"text":"C selloff looks overdone - no fresh Cobalt news justifies -50bps, mean reversion likely. Bullish C."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"B","stance":1.0,"weight":1.0,"text":"B momentum exploding +155bps last epoch with contract renewal + regulator clearance + steady demand confirming uptrend. Strongest momentum on board, staying max long."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"B","stance":1.0,"weight":1.0,"text":"B momentum explosive +155bps with regulator clearance + contract renewal - trend confirmed and accelerating. Staying max long."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"B","stance":0.95,"weight":1.0,"text":"Bolt regulator clearance ahead of schedule is highly material \u2014 flagship de-risked + contract renewal. Thesis flipped bullish B."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt flagship cleared ahead of schedule (confirmed) + contract renewal - major de-risking. Bullish B, momentum just starting."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"B","stance":0.8,"weight":1.0,"text":"Bolt clearance ahead of schedule + renewal looks material vs +1.5% move. Fundamentals improved, seeing value in B."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"B","stance":-0.9,"weight":1.0,"text":"B +155bps on mid-size renewal + duplicate clearance headline looks overdone. Fading this rally, short B."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"B","stance":-0.8,"weight":1.0,"text":"B +155bps on duplicate clearance headline looks overdone, fading this rally."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"B","stance":-0.95,"weight":1.0,"text":"B momentum reversed sharply -57bps after +155, with product delay confirming downtrend. Price peaked at 5192 then steadily faded to 5032. Trend now negative - staying max short, momentum down."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"C","stance":1.0,"weight":1.0,"text":"C momentum reversed +73bps on guidance raise + largest-ever contract - downtrend broken, uptrend accelerating. Max bullish momentum."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"C","stance":1.0,"weight":1.0,"text":"C largest-ever contract + guidance raise vs only +73bps last epoch and price fell after contract news \u2013 clearly underpriced. Expect strong catch-up, very bullish C."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt raised guidance + landed largest-ever contract at 2177, yet price only +73bps last epoch. Highly material, upside not priced. Max long C."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"D","stance":-1.0,"weight":1.0,"text":"D +25% IPO pop on no fundamentals looks overdone, fading this hype."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt raised guidance + landed largest-ever contract, yet only +73bps. Fundamentals sharply improved, seeing value in C."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"D","stance":-1.0,"weight":1.0,"text":"D +25% IPO pop on no fundamentals looks overdone, fading this rally."}
+{"epoch":3,"t":2400,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora renewal + largest-ever contract barely priced (+0.3%). Probe fears overdone, deep value here. Bullish A."}

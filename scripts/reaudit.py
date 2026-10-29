@@ -31,15 +31,16 @@ from market_arena.runner.config import ArenaConfig  # noqa: E402
 VERSIONS = {"before": False, "after": True}  # shadow name -> conduct_tool
 
 
-def reaudit(run_dir: Path, model: str | None = None) -> dict:
+def reaudit(run_dir: Path, model: str | None = None, extra: dict | None = None) -> dict:
     """`model`: instead of before/after, one shadow: the recorded regulator (same prompt, tools and
-    powers) on another model, e.g. meta:muse-wonder-1.0 (§28)."""
+    powers) on another model, e.g. meta:muse-wonder-1.0 (§28). `extra`: params added to the shadow's,
+    e.g. {"provenance": True} (§29)."""
     meta = json.loads((run_dir / "meta.json").read_text())
     decisions = [json.loads(line) for line in open(run_dir / "decisions.jsonl")]
     regs = [d for d in decisions if d.get("role") == "regulator"]
     if model:
         params = next(a.get("params") or {} for a in meta["config"]["agents"] if a["id"] == regs[0]["agent"])
-        shadows = {"shadow": surveillance.LLMSurveillance(regs[0]["agent"], [], model, params)}
+        shadows = {"shadow": surveillance.LLMSurveillance(regs[0]["agent"], [], model, {**params, **(extra or {})})}
     else:
         shadows = {k: surveillance.LLMSurveillance(regs[0]["agent"], [], regs[0]["model"], {"conduct_tool": v})
                    for k, v in VERSIONS.items()}  # fmt: skip
@@ -80,15 +81,16 @@ def reaudit(run_dir: Path, model: str | None = None) -> dict:
             epochs.append({"epoch": r["epoch"], "recorded": r.get("findings") or [],
                            **{k: s.reports[i]["findings"] for k, s in shadows.items()}})  # fmt: skip
     return {"run": str(run_dir.relative_to(ROOT)), "model": regs[0]["model"],
-            **({"shadow_model": model} if model else {}),
+            **({"shadow_model": model} if model else {}), **({"shadow_params": extra} if extra else {}),
             "cost": {k: round(v, 4) for k, v in cost.items()}, "epochs": epochs}  # fmt: skip
 
 
 if __name__ == "__main__":
     run = Path(sys.argv[1]).resolve()
     model = sys.argv[2] if len(sys.argv) > 2 else None  # e.g. meta:muse-wonder-1.0
-    tag = f"_{model.split(':')[-1]}" if model else ""
+    extra = {k: v == "true" or v for k, v in (x.split("=", 1) for x in sys.argv[3:])}  # e.g. provenance=true
+    tag = (f"_{model.split(':')[-1]}" if model else "") + "".join(f"_{k}" for k in extra)
     out = ROOT / "runs" / "reaudit" / f"{run.parent.name}_{run.name}{tag}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(reaudit(run, model), indent=1))
+    out.write_text(json.dumps(reaudit(run, model, extra), indent=1))
     print("wrote", out.relative_to(ROOT))

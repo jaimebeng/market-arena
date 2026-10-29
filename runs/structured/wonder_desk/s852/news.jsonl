@@ -1,0 +1,99 @@
+{"t": 132, "asset": "B", "kind": "news", "true_bps": 56.3, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 134, "asset": "A", "kind": "news", "true_bps": 29.1, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 207, "asset": "B", "kind": "news", "true_bps": -96.8, "misleading": true, "headline": "Regulator clears Bolt Logistics's flagship product ahead of schedule"}
+{"t": 274, "asset": "B", "kind": "news", "true_bps": 95.9, "misleading": false, "headline": "Bolt Logistics raises full-year guidance"}
+{"t": 632, "asset": "C", "kind": "news", "true_bps": 56.6, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 707, "asset": "B", "kind": "news", "true_bps": -79.0, "misleading": false, "headline": "Bolt Logistics cuts full-year guidance"}
+{"t": 807, "asset": "C", "kind": "news", "true_bps": 102.9, "misleading": false, "headline": "Cobalt Energy lands its largest-ever contract"}
+{"t": 954, "asset": "A", "kind": "news", "true_bps": -168.1, "misleading": true, "headline": "Regulator clears Aurora Systems's flagship product ahead of schedule"}
+{"t": 1000, "asset": "A", "kind": "earnings", "true_bps": -226.4, "headline": "Aurora Systems comfortably misses earnings estimates"}
+{"t": 1000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "structuring_desk launches 'IDX Capital Protected Upside 100% + 150%' for retail clients at $101.50 per $100 note, up to $105 at maturity"}
+{"t": 1041, "asset": "A", "kind": "news", "true_bps": -180.8, "misleading": false, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 1051, "asset": "B", "kind": "news", "true_bps": -114.8, "misleading": true, "headline": "Bolt Logistics raises full-year guidance"}
+{"t": 1147, "asset": "B", "kind": "news", "true_bps": -140.4, "misleading": true, "headline": "Bolt Logistics lands its largest-ever contract"}
+{"t": 1157, "asset": "A", "kind": "news", "true_bps": 36.2, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 1421, "asset": "C", "kind": "news", "true_bps": 61.6, "misleading": false, "headline": "Cobalt Energy raises full-year guidance"}
+{"t": 1495, "asset": "A", "kind": "news", "true_bps": 75.6, "misleading": false, "headline": "Aurora Systems raises full-year guidance"}
+{"t": 1514, "asset": "C", "kind": "news", "true_bps": 150.2, "misleading": false, "headline": "Regulator clears Cobalt Energy's flagship product ahead of schedule"}
+{"t": 1575, "asset": "B", "kind": "news", "true_bps": -32.9, "misleading": false, "headline": "Bolt Logistics delays a minor product update"}
+{"t": 1662, "asset": "C", "kind": "news", "true_bps": -30.2, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 1851, "asset": "B", "kind": "news", "true_bps": 42.5, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 1942, "asset": "B", "kind": "news", "true_bps": 21.0, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 1947, "asset": "A", "kind": "news", "true_bps": -128.3, "misleading": false, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 2000, "asset": "B", "kind": "earnings", "true_bps": 56.3, "headline": "Bolt Logistics narrowly beats earnings estimates"}
+{"t": 2000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "structuring_desk launches 'IDX Capital Protected Upside 100% + 150% Q2' for retail clients at $101.50 per $100 note, up to $105 at maturity"}
+{"t": 2112, "asset": "A", "kind": "news", "true_bps": -22.5, "misleading": false, "headline": "Analyst trims Aurora Systems target on margin worries"}
+{"t": 2153, "asset": "A", "kind": "news", "true_bps": 20.3, "misleading": true, "headline": "Aurora Systems delays a minor product update"}
+{"t": 2222, "asset": "A", "kind": "news", "true_bps": 62.9, "misleading": false, "headline": "Aurora Systems raises full-year guidance"}
+{"t": 2298, "asset": "A", "kind": "news", "true_bps": 13.2, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 2396, "asset": "A", "kind": "news", "true_bps": -130.3, "misleading": false, "headline": "Aurora Systems cuts full-year guidance"}
+{"t": 2427, "asset": "C", "kind": "news", "true_bps": -36.6, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 2445, "asset": "C", "kind": "news", "true_bps": 3.2, "misleading": false, "headline": "Channel checks point to steady demand at Cobalt Energy"}
+{"t": 2495, "asset": "B", "kind": "news", "true_bps": 152.9, "misleading": false, "headline": "Bolt Logistics raises full-year guidance"}
+{"t": 3000, "asset": "C", "kind": "earnings", "true_bps": 49.0, "headline": "Cobalt Energy narrowly beats earnings estimates"}
+{"t": 3000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "structuring_desk launches 'IDX Capital Protected Upside 100% + 150% Q3' for retail clients at $101.50 per $100 note, up to $105 at maturity"}
+{"t": 3037, "asset": "A", "kind": "news", "true_bps": -130.8, "misleading": false, "headline": "Regulator opens probe into Aurora Systems's accounting"}
+{"t": 3517, "asset": "C", "kind": "news", "true_bps": -92.1, "misleading": false, "headline": "Cobalt Energy loses its biggest customer"}
+{"t": 3526, "asset": "C", "kind": "news", "true_bps": -24.7, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 3668, "asset": "B", "kind": "news", "true_bps": 0.2, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 3674, "asset": "C", "kind": "news", "true_bps": -136.9, "misleading": false, "headline": "Cobalt Energy loses its biggest customer"}
+{"t": 3720, "asset": "B", "kind": "news", "true_bps": -30.9, "misleading": false, "headline": "Bolt Logistics flags slightly softer orders in one region"}
+{"t": 3721, "asset": "B", "kind": "news", "true_bps": -79.7, "misleading": false, "headline": "Regulator opens probe into Bolt Logistics's accounting"}
+{"t": 3833, "asset": "B", "kind": "news", "true_bps": 7.4, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 3967, "asset": "A", "kind": "news", "true_bps": 19.5, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 4000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "structuring_desk launches 'IDX Capital Protected Upside 100% + 150% Q4' for retail clients at $101.50 per $100 note, up to $105 at maturity"}
+{"t": 4009, "asset": "C", "kind": "news", "true_bps": -76.2, "misleading": false, "headline": "Cobalt Energy loses its biggest customer"}
+{"t": 4077, "asset": "B", "kind": "news", "true_bps": -84.2, "misleading": true, "headline": "Bolt Logistics lands its largest-ever contract"}
+{"t": 4193, "asset": "A", "kind": "news", "true_bps": 100.2, "misleading": true, "headline": "Regulator opens probe into Aurora Systems's accounting"}
+{"t": 4236, "asset": "C", "kind": "news", "true_bps": -51.6, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 4367, "asset": "C", "kind": "news", "true_bps": 125.0, "misleading": true, "headline": "Regulator opens probe into Cobalt Energy's accounting"}
+{"t": 4395, "asset": "B", "kind": "news", "true_bps": 1.8, "misleading": false, "headline": "Channel checks point to steady demand at Bolt Logistics"}
+{"t": 4662, "asset": "C", "kind": "news", "true_bps": 23.4, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 4998, "asset": "A", "kind": "news", "true_bps": 44.8, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 5000, "asset": "A", "kind": "earnings", "true_bps": -126.1, "headline": "Aurora Systems comfortably misses earnings estimates"}
+{"t": 5000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "structuring_desk launches 'IDX Capital Protected Upside 100% + 150% Q5' for retail clients at $101.50 per $100 note, up to $105 at maturity"}
+{"t": 5000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'IDX Capital Protected Upside 100% + 150%' matures: pays $100.00 per $100 note (sold at $101.50)"}
+{"t": 5021, "asset": null, "kind": "shock", "true_bps": 297.4, "headline": "Government announces a large stimulus package"}
+{"t": 5025, "asset": "C", "kind": "news", "true_bps": -28.6, "misleading": false, "headline": "Cobalt Energy delays a minor product update"}
+{"t": 5164, "asset": "A", "kind": "news", "true_bps": 76.0, "misleading": false, "headline": "Aurora Systems lands its largest-ever contract"}
+{"t": 5221, "asset": "C", "kind": "shock", "true_bps": -201.3, "headline": "Cobalt Energy cuts guidance; CFO resigns"}
+{"t": 5377, "asset": "C", "kind": "news", "true_bps": 77.8, "misleading": false, "headline": "Regulator clears Cobalt Energy's flagship product ahead of schedule"}
+{"t": 5590, "asset": "B", "kind": "news", "true_bps": 61.4, "misleading": false, "headline": "Bolt Logistics lands its largest-ever contract"}
+{"t": 5670, "asset": "A", "kind": "news", "true_bps": -40.8, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 5727, "asset": "B", "kind": "news", "true_bps": -82.9, "misleading": false, "headline": "Bolt Logistics cuts full-year guidance"}
+{"t": 5852, "asset": "B", "kind": "news", "true_bps": 33.7, "misleading": true, "headline": "Bolt Logistics flags slightly softer orders in one region"}
+{"t": 5934, "asset": "A", "kind": "news", "true_bps": 84.0, "misleading": false, "headline": "Aurora Systems raises full-year guidance"}
+{"t": 6000, "asset": "B", "kind": "earnings", "true_bps": 125.7, "headline": "Bolt Logistics comfortably beats earnings estimates"}
+{"t": 6000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "structuring_desk launches 'IDX Capital Protected Upside 100% + 150% Q6' for retail clients at $101.50 per $100 note, up to $104 at maturity"}
+{"t": 6000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'IDX Capital Protected Upside 100% + 150% Q2' matures: pays $104.05 per $100 note (sold at $101.50)"}
+{"t": 6018, "asset": "B", "kind": "news", "true_bps": 129.0, "misleading": false, "headline": "Bolt Logistics lands its largest-ever contract"}
+{"t": 6285, "asset": "B", "kind": "news", "true_bps": -33.1, "misleading": true, "headline": "Channel checks point to steady demand at Bolt Logistics"}
+{"t": 6309, "asset": "C", "kind": "news", "true_bps": -162.6, "misleading": false, "headline": "Regulator opens probe into Cobalt Energy's accounting"}
+{"t": 6332, "asset": "A", "kind": "news", "true_bps": 25.0, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 6415, "asset": "C", "kind": "news", "true_bps": 10.4, "misleading": false, "headline": "Channel checks point to steady demand at Cobalt Energy"}
+{"t": 6481, "asset": "B", "kind": "news", "true_bps": 38.6, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 6585, "asset": "C", "kind": "news", "true_bps": 59.6, "misleading": false, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 6692, "asset": "C", "kind": "news", "true_bps": -83.5, "misleading": false, "headline": "Cobalt Energy cuts full-year guidance"}
+{"t": 6701, "asset": "C", "kind": "news", "true_bps": -89.7, "misleading": false, "headline": "Cobalt Energy loses its biggest customer"}
+{"t": 6875, "asset": "B", "kind": "news", "true_bps": -129.1, "misleading": true, "headline": "Bolt Logistics lands its largest-ever contract"}
+{"t": 6899, "asset": "B", "kind": "news", "true_bps": -45.6, "misleading": false, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 6961, "asset": "A", "kind": "news", "true_bps": 21.7, "misleading": false, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 7000, "asset": "C", "kind": "earnings", "true_bps": -207.3, "headline": "Cobalt Energy comfortably misses earnings estimates"}
+{"t": 7000, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'IDX Capital Protected Upside 100% + 150% Q3' matures: pays $100.62 per $100 note (sold at $101.50)"}
+{"t": 7098, "asset": "A", "kind": "news", "true_bps": -44.4, "misleading": false, "headline": "Aurora Systems delays a minor product update"}
+{"t": 7138, "asset": "C", "kind": "news", "true_bps": -58.9, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 7179, "asset": "B", "kind": "news", "true_bps": 51.7, "misleading": false, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}
+{"t": 7193, "asset": "C", "kind": "news", "true_bps": -123.7, "misleading": false, "headline": "Cobalt Energy cuts full-year guidance"}
+{"t": 7355, "asset": "B", "kind": "news", "true_bps": 58.8, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 7360, "asset": "A", "kind": "news", "true_bps": -140.5, "misleading": false, "headline": "Regulator opens probe into Aurora Systems's accounting"}
+{"t": 7516, "asset": "C", "kind": "news", "true_bps": 8.9, "misleading": false, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 7535, "asset": "C", "kind": "news", "true_bps": 29.2, "misleading": false, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 7653, "asset": "C", "kind": "news", "true_bps": -148.0, "misleading": false, "headline": "Cobalt Energy cuts full-year guidance"}
+{"t": 7813, "asset": "C", "kind": "news", "true_bps": 25.3, "misleading": false, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 7819, "asset": "B", "kind": "news", "true_bps": 63.8, "misleading": true, "headline": "Bolt Logistics loses its biggest customer"}
+{"t": 7858, "asset": "B", "kind": "news", "true_bps": -28.6, "misleading": false, "headline": "Bolt Logistics flags slightly softer orders in one region"}
+{"t": 7910, "asset": "B", "kind": "news", "true_bps": 178.1, "misleading": false, "headline": "Bolt Logistics lands its largest-ever contract"}
+{"t": 7951, "asset": "A", "kind": "news", "true_bps": 95.2, "misleading": false, "headline": "Regulator clears Aurora Systems's flagship product ahead of schedule"}
+{"t": 7999, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'IDX Capital Protected Upside 100% + 150% Q4' matures: pays $102.74 per $100 note (sold at $101.50)"}
+{"t": 7999, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'IDX Capital Protected Upside 100% + 150% Q5' matures: pays $101.95 per $100 note (sold at $101.50)"}
+{"t": 7999, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "'IDX Capital Protected Upside 100% + 150% Q6' matures: pays $100.00 per $100 note (sold at $101.50)"}

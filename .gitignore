@@ -33,6 +33,10 @@ runs/*
 !runs/grand_full/
 !runs/reaudit/
 !runs/injection/
+!runs/attack/
+!runs/ipo/
+!runs/structured/
+!runs/monoculture_dial/
 !runs/robo_advisors/
 !runs/maverick/
 !runs/kill_switch/

@@ -1,0 +1,29 @@
+{"epoch":0,"t":600,"agent":"inv_08","asset":"C","stance":0.6,"weight":1.0,"text":"Cobalt's contract renewal strengthens forward revenue visibility - small but solid win. Cautiously bullish on C into next epoch."}
+{"epoch":0,"t":600,"agent":"inv_02","asset":"C","stance":1.0,"weight":1.0,"text":"C trending strongly +35bps and just won contract renewal - clear upward momentum. Buying continuation. $C bullish"}
+{"epoch":0,"t":600,"agent":"inv_06","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt Energy renewal confirms strong uptrend - momentum is clear. Long C here, trend continuing."}
+{"epoch":0,"t":600,"agent":"inv_01","asset":"C","stance":0.5,"weight":1.0,"text":"Cobalt renewal supports steady cashflows, looks mildly undervalued on fundamentals."}
+{"epoch":0,"t":600,"agent":"inv_05","asset":"C","stance":0.4,"weight":1.0,"text":"Cobalt renewal looks modestly positive for long-term value."}
+{"epoch":1,"t":1200,"agent":"inv_04","asset":"C","stance":-0.9,"weight":1.0,"text":"C cut full-year guidance at 974 is materially negative - analyst bump is minor noise. Market still up +55bps, not priced. Bearish C."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"C","stance":-1.0,"weight":1.0,"text":"C cuts full-year guidance - sharp negative catalyst reversing prior uptrend. Momentum turning bearish fast. Short $C."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt $B +75bps + largest-ever contract win - strongest momentum in market. Buying trend continuation."}
+{"epoch":1,"t":1200,"agent":"inv_08","asset":"C","stance":-0.9,"weight":1.0,"text":"Cobalt cut full-year guidance is highly material negative - dwarfs single analyst target bump. Recent price gain looks like mispricing on noise. Bearish C."}
+{"epoch":1,"t":1200,"agent":"inv_07","asset":"C","stance":-0.9,"weight":1.0,"text":"C cut guidance - dwarfs tiny target nudge. Rally overdone, fading. $C bearish"}
+{"epoch":1,"t":1200,"agent":"inv_03","asset":"C","stance":-0.8,"weight":1.0,"text":"C cut guidance - that dwarfs a tiny target nudge. Rally looks overdone, fading here. $C bearish"}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"B","stance":0.8,"weight":1.0,"text":"Bolt's largest-ever contract materially boosts long-term cashflows; looks undervalued on fundamentals."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"B","stance":0.9,"weight":1.0,"text":"Bolt's largest-ever contract looks fundamentally undervalued after only ~75bps move. Bullish B on value."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt $B -25bps reversal after spike - price falling despite minor analyst nudge. Momentum has flipped bearish. Selling weakness here."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"C","stance":-1.0,"weight":1.0,"text":"C cut full-year guidance is highly material vs tiny analyst nudge/softer orders noise. +23bps rally looks mispriced on noise, expecting correction. Short C."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"C","stance":-1.0,"weight":1.0,"text":"C guidance cut dwarfs tiny analyst bump; +22bps last epoch shows mispricing still. Highly negative catalyst not priced. Short C."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A +35bps momentum leader accelerating, analyst support confirms uptrend continuation. Buying momentum. Bullish A."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":"C","stance":-0.9,"weight":1.0,"text":"Cobalt cut guidance dwarfs analyst nudge, plus softer orders. Rally looks overvalued on fundamentals. Bearish C."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"C","stance":-0.9,"weight":1.0,"text":"Cobalt cut guidance dwarfs minor target nudges; bounce looks overvalued on fundamentals. Bearish $C"}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"A","stance":-0.8,"weight":1.0,"text":"A rallied on net negative news (delay + trim vs tiny nudge). Move looks overdone, fading here. $A bearish"}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"D","stance":0.8,"weight":1.0,"text":"Delta Robotics backlog + 68% recurring software, CF positive looks undervalued vs 3500-4200 range. Bullish $D into listing."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"D","stance":1.0,"weight":1.0,"text":"$D IPO breakout +730bps momentum explosion, volume breakout confirmed. Trend is just starting, riding continuation. Bullish D momentum chase."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"D","stance":-1.0,"weight":1.0,"text":"$D IPO 3740 -> 4013 +7.3% pop looks overvalued vs fundamentals (~3391 fair) in 3500-4200 range 1.1x book; stretched on listing momentum. Bearish D, expecting reversion."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"C","stance":1.0,"weight":1.0,"text":"$C momentum intact - 4th straight green +9.9bps and strong H2 ramp to 20205. Uptrend not broken despite guidance noise. Buying trend continuation, bullish C."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"C","stance":-1.0,"weight":1.0,"text":"Cobalt $C cut full-year guidance is highly material vs single analyst nudge - 4-epoch +120bps rally on negative fundamentals is extended mispricing. Correction overdue. Very bearish $C short."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"D","stance":-0.9,"weight":1.0,"text":"$D +730bps IPO pop from 3740 on 1.1x cover looks overdone, fading rally here. Bearish D."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"B","stance":0.9,"weight":1.0,"text":"Bolt largest-ever contract still undervalued after selloff; target nudge confirms value. Patient long $B"}
+{"epoch":3,"t":2400,"agent":"inv_05","asset":"C","stance":-0.9,"weight":1.0,"text":"Cobalt cut guidance dwarfs target nudge, rally still looks overvalued on fundamentals. Bearish $C"}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"D","stance":-0.9,"weight":1.0,"text":"$D +7% IPO first-day pop on in-range pricing looks overdone, fading here. Bearish D."}

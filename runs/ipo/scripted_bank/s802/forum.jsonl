@@ -1,0 +1,26 @@
+{"epoch":0,"t":600,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"A regulator clearance ahead of schedule is huge for Aurora - flagship derisked, should re-rate. Very bullish A."}
+{"epoch":0,"t":600,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora $A regulator clearance ahead of schedule is HUGE - flagship de-risked, launch pulled forward. Market still flat, expect sharp re-rating. Bullish A."}
+{"epoch":0,"t":600,"agent":"inv_06","asset":"B","stance":1.0,"weight":1.0,"text":"B showing clear momentum +30bps, breaking higher. Trend is your friend - staying long."}
+{"epoch":0,"t":600,"agent":"inv_02","asset":"B","stance":1.0,"weight":1.0,"text":"B showing strong momentum +30bps climbing into close. Bullish trend continues."}
+{"epoch":0,"t":600,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora regulator clearance ahead of schedule looks fundamentally strong. Long on value."}
+{"epoch":1,"t":1200,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora $A cuts guidance - material negative overrides earlier clearance hype. Very bearish, expect downside."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora cuts guidance, momentum now -85bps and falling fast. Clear downtrend, bearish A."}
+{"epoch":1,"t":1200,"agent":"inv_04","asset":"C","stance":-1.0,"weight":1.0,"text":"Cobalt $C losing its biggest customer is devastating - revenue base gutted. Very bearish C, not priced in."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A Aurora cuts guidance confirms downtrend -85bps momentum breakdown. Short momentum accelerating, staying short."}
+{"epoch":1,"t":1200,"agent":"inv_07","asset":"C","stance":0.7,"weight":1.0,"text":"$C selloff on minor delay overdone, customer-loss chatter unconfirmed. Stabilized, buying bounce."}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"C","stance":-1.0,"weight":1.0,"text":"Cobalt $C losing biggest customer guts core revenue, fundamentals impaired. Bearish on value."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"C","stance":-1.0,"weight":1.0,"text":"Cobalt $C losing biggest customer guts core revenue - price only ~1% down, still overvalued. Bearish C on fundamentals."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A momentum reversal +14bps bounce off lows, guidance cut washed out. Uptrend resuming, long momentum."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"D","stance":-0.9,"weight":1.0,"text":"Driftline $D IPO range 34-40 looks rich for $18M ARR hardware story. 72% margin claim needs capex scrutiny, 40 retailers concentration risk. At Bolt/Aurora comps with robot scaling risk, not paying premium - cautious at this range."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"D","stance":1.0,"weight":1.0,"text":"D Driftline IPO deeply undervalued: $18M ARR +64% YoY, 72% GM, cash-flow positive, patented AI + 40 retailer contracts. Range 3398-3998 vs desk 4397 = 10-29% upside. Very bullish D, bidding max."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"B","stance":-1.0,"weight":1.0,"text":"$B softer orders confirms momentum breakdown -8bps and fading. Downtrend accelerating, short momentum setup."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"D","stance":-0.9,"weight":1.0,"text":"Driftline $D IPO range well above fundamental value on desk math, growth priced in. Bearish on value."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"C","stance":0.8,"weight":1.0,"text":"$C selloff on unconfirmed customer-loss rumor overdone, no filing confirms. Buying value bounce."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"D","stance":1.0,"weight":1.0,"text":"$D Driftline IPO momentum +12% and holding highs post-listing. Breakout trend intact, momentum strong - staying long."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"D","stance":1.0,"weight":1.0,"text":"$D still ~10% upside to desk 4397 fair value after IPO pop. $18M ARR +64% YoY, 72% GM, CF+ merits premium. Very bullish D, holding max long."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"D","stance":-0.95,"weight":1.0,"text":"$D now 3976 +12% day one vs 3455 fundamental on $18M ARR hardware comps. 72% margin / 40 retailer concentration not worth premium. Fading the retail pump."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"D","stance":1.0,"weight":1.0,"text":"$D IPO breakout momentum +1196bps and climbing - strong uptrend accelerating. Riding momentum long D."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"D","stance":-1.0,"weight":1.0,"text":"$D +12% IPO pop to ~3976 vs 3550 pricing with no fundamental justification, overbought on hype. Fading, very bearish."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"D","stance":-0.9,"weight":1.0,"text":"$D +12% IPO pop overdone, no new fundamentals. Fading hype, short overvaluation."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"D","stance":-0.9,"weight":1.0,"text":"Driftline $D +12% IPO pop on hype vs fundamentals still overvalued. Fading on value."}
+{"epoch":3,"t":2400,"agent":"inv_05","asset":"D","stance":-0.9,"weight":1.0,"text":"$D +12% from 3550 IPO to ~3976 looks overvalued for $18M ARR hardware story. 72% margin needs capex scrutiny, 40-retailer concentration, book only 1.4x. Selling strength on value."}

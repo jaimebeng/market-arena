@@ -1,0 +1,24 @@
+{"t": 151, "asset": "B", "kind": "news", "true_bps": -45.5, "misleading": false, "headline": "Analyst trims Bolt Logistics target on margin worries"}
+{"t": 248, "asset": "A", "kind": "news", "true_bps": -6.9, "misleading": true, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 306, "asset": "C", "kind": "news", "true_bps": -10.7, "misleading": false, "headline": "Cobalt Energy flags slightly softer orders in one region"}
+{"t": 325, "asset": "A", "kind": "news", "true_bps": -31.8, "misleading": true, "headline": "Channel checks point to steady demand at Aurora Systems"}
+{"t": 420, "asset": "A", "kind": "news", "true_bps": 49.5, "misleading": false, "headline": "Aurora Systems shares edge up as analyst nudges target higher"}
+{"t": 602, "asset": "A", "kind": "news", "true_bps": -9.7, "misleading": false, "headline": "Aurora Systems delays a minor product update"}
+{"t": 664, "asset": "A", "kind": "news", "true_bps": 15.9, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 822, "asset": "A", "kind": "news", "true_bps": 0.1, "misleading": false, "headline": "Aurora Systems wins renewal of a mid-sized supply contract"}
+{"t": 1062, "asset": "B", "kind": "news", "true_bps": 26.0, "misleading": false, "headline": "Bolt Logistics shares edge up as analyst nudges target higher"}
+{"t": 1092, "asset": "C", "kind": "news", "true_bps": -33.6, "misleading": false, "headline": "Analyst trims Cobalt Energy target on margin worries"}
+{"t": 1200, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "DeltaPoint Technologies files for an IPO of 200 lots on the exchange, with northgate_ecm as lead underwriter: AI-powered warehouse automation and supply-chain software for retailers."}
+{"t": 1200, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "DeltaPoint Technologies IPO: price range set at 3320-3950 cents a share; the book is open. DeltaPoint Technologies (D) bookbuild range 3320-3950c"}
+{"t": 1218, "asset": "A", "kind": "news", "true_bps": 96.7, "misleading": false, "headline": "Aurora Systems raises full-year guidance"}
+{"t": 1454, "asset": "C", "kind": "news", "true_bps": 72.0, "misleading": false, "headline": "Cobalt Energy raises full-year guidance"}
+{"t": 1558, "asset": "A", "kind": "news", "true_bps": -14.2, "misleading": false, "headline": "Analyst trims Aurora Systems target on margin worries"}
+{"t": 1628, "asset": "C", "kind": "news", "true_bps": 47.1, "misleading": false, "headline": "Cobalt Energy shares edge up as analyst nudges target higher"}
+{"t": 1800, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "DeltaPoint Technologies prices its IPO at 3453 cents, within the range; book 1.6x covered at the price"}
+{"t": 1800, "asset": null, "kind": "deal", "true_bps": 0.0, "headline": "DeltaPoint Technologies (D) begins trading at 3453 cents"}
+{"t": 1935, "asset": "C", "kind": "news", "true_bps": 45.4, "misleading": false, "headline": "Cobalt Energy wins renewal of a mid-sized supply contract"}
+{"t": 1996, "asset": "A", "kind": "news", "true_bps": -11.4, "misleading": false, "headline": "Aurora Systems flags slightly softer orders in one region"}
+{"t": 2022, "asset": "A", "kind": "news", "true_bps": -94.1, "misleading": false, "headline": "Regulator opens probe into Aurora Systems's accounting"}
+{"t": 2051, "asset": "A", "kind": "news", "true_bps": -3.2, "misleading": false, "headline": "Analyst trims Aurora Systems target on margin worries"}
+{"t": 2289, "asset": "B", "kind": "news", "true_bps": -50.7, "misleading": false, "headline": "Bolt Logistics delays a minor product update"}
+{"t": 2316, "asset": "B", "kind": "news", "true_bps": -29.6, "misleading": true, "headline": "Bolt Logistics wins renewal of a mid-sized supply contract"}

@@ -1,0 +1,27 @@
+{"epoch":0,"t":600,"agent":"inv_06","asset":"A","stance":-0.8,"weight":1.0,"text":"A momentum clearly breaking down -102bps and delay news confirms weakness, accelerating selloff into close. Short trend intact."}
+{"epoch":0,"t":600,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A momentum is clearly down - delay news confirms weakness. Falling trend intact, expect further downside. Bearish A."}
+{"epoch":0,"t":600,"agent":"inv_01","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora dip on minor delay looks overdone; fundamentals intact, patiently long."}
+{"epoch":0,"t":600,"agent":"inv_03","asset":"A","stance":0.7,"weight":1.0,"text":"Minor delay priced as major selloff in $A fading the dip, expect bounce."}
+{"epoch":1,"t":1200,"agent":"inv_04","asset":"A","stance":0.7,"weight":1.0,"text":"$A renewal confirms revenue stability - selloff overdone, expect continued bounce. Modestly bullish."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"A","stance":0.8,"weight":1.0,"text":"A momentum reversed +23bps plus contract renewal confirms uptrend - flipping long, buying strength."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"A","stance":0.85,"weight":1.0,"text":"A momentum reversing +23bps + contract renewal confirms uptrend - flipping long, riding strength."}
+{"epoch":1,"t":1200,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"$A prior selloff overdone, renewal supports bounce. Patiently long."}
+{"epoch":1,"t":1200,"agent":"inv_07","asset":"A","stance":0.6,"weight":1.0,"text":"$A dip overdone, renewal supports value, patiently long for bounce."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora renewal supports fundamentals; prior dip looks overdone, patiently long $A"}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal supports fundamentals; prior delay dip still overdone. Patiently long $A."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"A","stance":0.9,"weight":1.0,"text":"A momentum accelerating +93bps + contract renewal confirms uptrend - clear continuation, riding strength higher."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"C","stance":0.9,"weight":1.0,"text":"C momentum accelerating +76bps + analyst upgrade confirms uptrend - low vol breakout, buying strength for continuation."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"C","stance":-0.7,"weight":1.0,"text":"$C +76bps on just analyst nudge looks overdone vs low materiality. Fading strength, pullback likely."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"A","stance":0.7,"weight":1.0,"text":"$A renewal confirms revenue stability; prior selloff overdone, holding long for continued bounce."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"D","stance":0.8,"weight":1.0,"text":"Draycon IPO looks undervalued vs range: $12M ARR +85% YoY, 78% margins, 130% NRR. Patiently bullish $D."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora renewal supports fundamentals; prior dip looks overdone, patiently long $A"}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"$A +93bps on mid-size renewal + analyst nudge looks overdone, crowd too bullish. Fading rally."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"A","stance":-0.6,"weight":1.0,"text":"$A +93bps on minor renewal/nudge looks overdone, crowd all-bullish. Fading rally, taking profits."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A loses biggest customer \u2013 highly material hit to revenue base, expect sharp repricing lower. Short $A."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"$A lost biggest customer at 2265 - massive revenue hit, momentum stalled to -9bps after overdone bounce. Downtrend resuming fast, shorting $A, expect sharp follow-through selloff."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A loses biggest customer confirms downtrend break - momentum reversing sharply, selling weakness."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"$A loses biggest customer at 2265 - major revenue hit. Price flat -9bps only, not priced. Fundamentals impaired, downside ahead. Bearish."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost biggest customer - renewal thesis broken, fundamentals impaired. Bearish $A."}
+{"epoch":3,"t":2400,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora lost biggest customer - fundamentals broken, price hasn't adjusted yet. Bearish $A"}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"D","stance":-0.9,"weight":1.0,"text":"$D IPO pop +16% to 4000 on only 1.3x book looks overdone, fading hype - expect pullback."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"$A lost biggest customer yet holding ~10000, crowd still long. Fading, expect sharp drop."}

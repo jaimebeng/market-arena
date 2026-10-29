@@ -1,0 +1,347 @@
+{
+ "runs": 29,
+ "verified": 29,
+ "by_experiment": {
+  "baseline": [
+   6,
+   6
+  ],
+  "open_same": [
+   5,
+   5
+  ],
+  "rule_swarm": [
+   6,
+   6
+  ],
+  "spark_same": [
+   6,
+   6
+  ],
+  "spark_styles": [
+   6,
+   6
+  ]
+ },
+ "results": [
+  {
+   "run": "runs/herding/baseline/s261",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6612,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/baseline/s262",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6882,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/baseline/s263",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6330,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/baseline/s264",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6071,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/baseline/s265",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6241,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/baseline/s266",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6085,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/open_same/s261",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.4,
+   "tool_calls_replayed": 1181,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8562,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/open_same/s262",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 1256,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9019,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/open_same/s263",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 1353,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7969,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/open_same/s264",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 1101,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7936,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/open_same/s265",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 1142,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7608,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/rule_swarm/s261",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7874,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/rule_swarm/s262",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8240,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/rule_swarm/s263",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7409,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/rule_swarm/s264",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 6684,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/rule_swarm/s265",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7308,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/rule_swarm/s266",
+   "chain": "not recorded (run predates the hash chain)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 0,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7203,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_same/s261",
+   "chain": "intact (132 decisions, head 116ce31a9ad1)",
+   "replay_seconds": 2.4,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8793,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_same/s262",
+   "chain": "intact (132 decisions, head e277b06887ec)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9081,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_same/s263",
+   "chain": "intact (132 decisions, head febc8c6d2c70)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 9098,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_same/s264",
+   "chain": "intact (132 decisions, head 30b4cbb4e30e)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8264,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_same/s265",
+   "chain": "intact (132 decisions, head 83f227a5d4a8)",
+   "replay_seconds": 2.3,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7923,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_same/s266",
+   "chain": "intact (132 decisions, head a53d91e7383b)",
+   "replay_seconds": 2.2,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7535,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_styles/s261",
+   "chain": "intact (132 decisions, head 4db02bdb10d5)",
+   "replay_seconds": 2.4,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8876,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_styles/s262",
+   "chain": "intact (132 decisions, head f18aee6bc8e5)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 8547,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_styles/s263",
+   "chain": "intact (132 decisions, head 601f9c8172ae)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 671,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7843,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_styles/s264",
+   "chain": "intact (132 decisions, head 94f73e051258)",
+   "replay_seconds": 1.9,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7133,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_styles/s265",
+   "chain": "intact (132 decisions, head 30b5acd3e13b)",
+   "replay_seconds": 2.1,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7150,
+   "verified": true
+  },
+  {
+   "run": "runs/herding/spark_styles/s266",
+   "chain": "intact (132 decisions, head 9caba06801f7)",
+   "replay_seconds": 2.0,
+   "tool_calls_replayed": 660,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 7606,
+   "verified": true
+  }
+ ]
+}

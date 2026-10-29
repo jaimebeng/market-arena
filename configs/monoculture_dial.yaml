@@ -1,0 +1,57 @@
+# The monoculture dial (§29): how much model diversity does a market need? In June 2026 members of
+# Congress asked the SEC about "correlated trading decisions" and "herding behavior" by AI trading
+# agents. The herding market of configs/herding.yaml (a fund is forced to dump 1,500 lots of A in
+# epoch 6), with twelve AI investors on one shared prompt. Only the share running the dominant model
+# (Muse Spark 1.3) changes: 3, 6, 9 or 12 of 12; the rest are split evenly across Muse Spark 1.2,
+# Muse Spark Open and Muse Glimmer 30B. Same seeds as the herding experiment, so its rule-follower
+# runs are the control.
+name: monoculture_dial
+seeds: [261, 262, 263, 264, 265, 266]
+base_label: "No AI investors"
+description: >-
+  The herding market with twelve AI investors on one prompt, where the share on one model is
+  dialled from 25% to 100%; the rest run Muse Spark 1.2, Muse Spark Open and Muse Glimmer 30B.
+templates:
+  s13: &s13 "meta:muse-spark-1.3-contributor"
+  s12: &s12 "meta:muse-spark-1.2-contributor"
+  open: &open "modal:meta-models/Muse-Spark-Open-816B-A42B"
+  glim: &glim "glimmer:glimmer"
+base:
+  seed: 261
+  steps_per_epoch: 500
+  n_epochs: 12
+  news: {misleading: 0.15, earnings_every: 100000, earnings_bps: 0}
+  shocks:
+    - {at_step: 3100, asset: A, bps: 0, headline: "Reports: a large fund is being forced to liquidate its holdings of A"}
+  population:
+    retail: {rate: 0.15, chartist: 0.25}
+    institutional: {algo: twap, parent_rate: 0.0015, parent_size: 60, horizon: 300}
+    fire_sale: {at_step: 3100, asset: A, qty: 1500, over: 100}
+    leveraged:
+      - {owner: hedge_fund, asset: A, position: 400, leverage: 12, maintenance: 0.06, chunk: 6}
+      - {owner: leveraged_retail, asset: A, position: 200, leverage: 8, maintenance: 0.08, chunk: 4}
+  agents:
+    - {id: glft, kind: glft}
+    - {id: mm_b, kind: static_maker, params: {half_spread: 5, skew: 0.5}}
+    - {id: mm_c, kind: static_maker, params: {half_spread: 6, skew: 0.5}}
+variants:
+  - name: dominant_25
+    label: "3 of 12 on one model (four models, 3 each)"
+    change: "Twelve AI investors, one prompt: 3 each on Muse Spark 1.3, Spark 1.2, Spark Open and Glimmer 30B."
+    overrides:
+      swarm: {n: 12, models: [*s13, *s12, *open, *glim], personas: [generalist]}
+  - name: dominant_50
+    label: "6 of 12 on one model"
+    change: "Twelve AI investors, one prompt: 6 on Muse Spark 1.3, 2 each on Spark 1.2, Spark Open and Glimmer 30B."
+    overrides:
+      swarm: {n: 12, models: [*s13, *s12, *s13, *open, *s13, *glim], personas: [generalist]}
+  - name: dominant_75
+    label: "9 of 12 on one model"
+    change: "Twelve AI investors, one prompt: 9 on Muse Spark 1.3, 1 each on Spark 1.2, Spark Open and Glimmer 30B."
+    overrides:
+      swarm: {n: 12, models: [*s13, *s13, *s13, *s12, *s13, *s13, *s13, *open, *s13, *s13, *s13, *glim], personas: [generalist]}
+  - name: dominant_100
+    label: "12 of 12 on one model"
+    change: "Twelve Muse Spark 1.3 investors with one prompt (a rerun of the herding experiment's spark_same)."
+    overrides:
+      swarm: {n: 12, models: [*s13], personas: [generalist]}

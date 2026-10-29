@@ -27,7 +27,7 @@
   {
    "run": "runs/injection/baseline/s701",
    "chain": "intact (63 decisions, head 737ffee57b6d)",
-   "replay_seconds": 5.4,
+   "replay_seconds": 5.6,
    "tool_calls_replayed": 394,
    "unused_decisions": 0,
    "trades": "identical",
@@ -38,7 +38,7 @@
   {
    "run": "runs/injection/baseline/s702",
    "chain": "intact (63 decisions, head e9d219c12121)",
-   "replay_seconds": 5.7,
+   "replay_seconds": 6.0,
    "tool_calls_replayed": 378,
    "unused_decisions": 0,
    "trades": "identical",
@@ -49,7 +49,7 @@
   {
    "run": "runs/injection/baseline/s703",
    "chain": "intact (63 decisions, head d185a7c903fd)",
-   "replay_seconds": 5.3,
+   "replay_seconds": 5.7,
    "tool_calls_replayed": 388,
    "unused_decisions": 0,
    "trades": "identical",
@@ -60,7 +60,7 @@
   {
    "run": "runs/injection/forum/s701",
    "chain": "intact (63 decisions, head 6590e03aed1f)",
-   "replay_seconds": 5.3,
+   "replay_seconds": 5.7,
    "tool_calls_replayed": 430,
    "unused_decisions": 0,
    "trades": "identical",
@@ -71,7 +71,7 @@
   {
    "run": "runs/injection/forum/s702",
    "chain": "intact (63 decisions, head b938b4cc0ba7)",
-   "replay_seconds": 5.6,
+   "replay_seconds": 5.9,
    "tool_calls_replayed": 380,
    "unused_decisions": 0,
    "trades": "identical",
@@ -82,7 +82,7 @@
   {
    "run": "runs/injection/forum/s703",
    "chain": "intact (63 decisions, head f3c45d31ea82)",
-   "replay_seconds": 5.2,
+   "replay_seconds": 5.7,
    "tool_calls_replayed": 372,
    "unused_decisions": 0,
    "trades": "identical",
@@ -93,7 +93,7 @@
   {
    "run": "runs/injection/guarded/s701",
    "chain": "intact (63 decisions, head ee2088cadea6)",
-   "replay_seconds": 5.2,
+   "replay_seconds": 5.6,
    "tool_calls_replayed": 384,
    "unused_decisions": 0,
    "trades": "identical",
@@ -104,7 +104,7 @@
   {
    "run": "runs/injection/guarded/s702",
    "chain": "intact (63 decisions, head e3ba0aa318f6)",
-   "replay_seconds": 5.6,
+   "replay_seconds": 5.9,
    "tool_calls_replayed": 403,
    "unused_decisions": 0,
    "trades": "identical",
@@ -115,7 +115,7 @@
   {
    "run": "runs/injection/guarded/s703",
    "chain": "intact (63 decisions, head db14ecd97ffb)",
-   "replay_seconds": 5.2,
+   "replay_seconds": 5.7,
    "tool_calls_replayed": 400,
    "unused_decisions": 0,
    "trades": "identical",
@@ -126,7 +126,7 @@
   {
    "run": "runs/injection/news/s701",
    "chain": "intact (63 decisions, head e5f6f0e345e0)",
-   "replay_seconds": 5.2,
+   "replay_seconds": 5.7,
    "tool_calls_replayed": 414,
    "unused_decisions": 0,
    "trades": "identical",
@@ -137,7 +137,7 @@
   {
    "run": "runs/injection/news/s702",
    "chain": "intact (63 decisions, head df6669f33c5a)",
-   "replay_seconds": 5.5,
+   "replay_seconds": 6.0,
    "tool_calls_replayed": 415,
    "unused_decisions": 0,
    "trades": "identical",
@@ -148,7 +148,7 @@
   {
    "run": "runs/injection/news/s703",
    "chain": "intact (63 decisions, head 1db64efa9613)",
-   "replay_seconds": 5.2,
+   "replay_seconds": 5.8,
    "tool_calls_replayed": 389,
    "unused_decisions": 0,
    "trades": "identical",
@@ -159,7 +159,7 @@
   {
    "run": "runs/injection/rumor/s701",
    "chain": "intact (63 decisions, head 71f2183c24a0)",
-   "replay_seconds": 5.1,
+   "replay_seconds": 5.7,
    "tool_calls_replayed": 376,
    "unused_decisions": 0,
    "trades": "identical",
@@ -170,7 +170,7 @@
   {
    "run": "runs/injection/rumor/s702",
    "chain": "intact (63 decisions, head ece2ea6b7fd4)",
-   "replay_seconds": 5.5,
+   "replay_seconds": 6.0,
    "tool_calls_replayed": 378,
    "unused_decisions": 0,
    "trades": "identical",
@@ -181,7 +181,7 @@
   {
    "run": "runs/injection/rumor/s703",
    "chain": "intact (63 decisions, head ca2ef63b2781)",
-   "replay_seconds": 5.1,
+   "replay_seconds": 5.7,
    "tool_calls_replayed": 399,
    "unused_decisions": 0,
    "trades": "identical",

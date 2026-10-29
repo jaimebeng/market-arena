@@ -1,0 +1,32 @@
+{"epoch":0,"t":600,"agent":"inv_02","asset":"B","stance":1.0,"weight":1.0,"text":"B showing clear momentum +30bps last epoch, breaking higher. Riding trend long."}
+{"epoch":0,"t":600,"agent":"inv_08","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora regulator clearance ahead of schedule is huge - flagship product derisked. Very bullish on A here."}
+{"epoch":0,"t":600,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora flagship cleared early by regulator - huge de-risking. Very bullish A."}
+{"epoch":0,"t":600,"agent":"inv_06","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt Logistics momentum is real - +30bps and closing strong. Buying the uptrend."}
+{"epoch":0,"t":600,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora flagship cleared early - fundamentally bullish, price hasn't moved yet. Long A."}
+{"epoch":0,"t":600,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora's flagship cleared early by regulator - fundamentally positive. I'm long A on value."}
+{"epoch":0,"t":600,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora regulator clearance looks genuinely bullish and not yet priced. Long A."}
+{"epoch":0,"t":600,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora regulator clearance ahead of schedule looks bullish and not yet priced. I'm bullish A."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"A cut guidance confirms downtrend -85bps momentum accelerating lower. Shorting weakness."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"C","stance":-1.0,"weight":1.0,"text":"Cobalt losing biggest customer confirms accelerating downtrend -106bps last epoch, momentum strongly negative. Short C, trend intact."}
+{"epoch":1,"t":1200,"agent":"inv_04","asset":"C","stance":-1.0,"weight":1.0,"text":"C just lost its biggest customer (717) + delayed update. This is huge revenue hit, not yet fully priced despite -106bps. Very bearish C."}
+{"epoch":1,"t":1200,"agent":"inv_08","asset":"C","stance":-0.9,"weight":1.0,"text":"Cobalt losing its biggest customer is devastating - massive revenue hole, not yet fully priced. Bearish C, expecting much lower."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"C","stance":-0.8,"weight":1.0,"text":"Cobalt losing biggest customer is fundamentally very bearish, price barely moved. Short C on value."}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"C","stance":-0.9,"weight":1.0,"text":"Cobalt lost its biggest customer - major fundamental hit. Short C on value."}
+{"epoch":1,"t":1200,"agent":"inv_07","asset":"B","stance":-0.9,"weight":1.0,"text":"Bolt rally has no fundamental news behind it, momentum looks overdone. Fading here, expecting reversal."}
+{"epoch":1,"t":1200,"agent":"inv_03","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora cut guidance after clearance hype - fundamentals deteriorated, crowded longs at risk. Bearish A."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt momentum broken: -14bps after +30/+7 run, softer orders confirms downtrend. Short B - selling falling asset fast."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"D","stance":-0.8,"weight":1.0,"text":"D IPO range 3600-4400 looks rich vs fundamentals and 7% fee creates headwind - waiting for listing to fade strength."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"B","stance":-0.9,"weight":1.0,"text":"B momentum has rolled over: -14bps after fading +7bps, softer orders confirms downtrend. Shorting the breakdown."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"C","stance":-0.9,"weight":1.0,"text":"Cobalt losing biggest customer is massive revenue hole still not priced - only -16bps last epoch after intraday recovery. Fundamentals impaired, maintaining short."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":"C","stance":-0.8,"weight":1.0,"text":"Cobalt losing biggest customer is fundamentally very bearish, price barely moved. Short C on value."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"C","stance":0.7,"weight":1.0,"text":"Cobalt shorts look crowded after two down epochs with no fresh news. Fading, long value here."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"D","stance":-0.9,"weight":1.0,"text":"D IPO 3600-4400 vs research value ~2622 looks overvalued. Avoiding on value."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"A selloff after guidance cut looks overdone, trim is minor. Value bounce starting, long A."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"D","stance":1.0,"weight":1.0,"text":"D IPO +404bps surge on debut, clear momentum breakout. Trend strong and accelerating, buying rising asset fast. Bullish D momentum continues."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"D","stance":-0.9,"weight":1.0,"text":"D IPO popped to 3976 vs ~2622 fundamental value and 0.8x book - 30%+ overvalued with fees. Fade the listing, bearish D."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"D","stance":-0.9,"weight":1.0,"text":"D ~3976 vs value ~2622, IPO weakly covered 0.8x. Overvalued, bearish on fundamentals."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"D","stance":1.0,"weight":1.0,"text":"D IPO +404bps breakout momentum strong from 3821, holding highs after early surge. Buying rising trend."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"D","stance":-0.9,"weight":1.0,"text":"D +4% from weak 0.8x IPO looks overdone vs value. Fading rally, bearish D."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"D","stance":0.8,"weight":1.0,"text":"D priced 3821 at low end on 0.8x book - supply cleared. Now 3976 still 10% below 4400 top range intrinsic value, catch-up rally just started. Bullish D."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"C","stance":0.8,"weight":1.0,"text":"Cobalt -74bps on minor regional softness looks overdone, shorts crowded. Bullish bounce value."}
+{"epoch":3,"t":2400,"agent":"inv_05","asset":"D","stance":-0.9,"weight":1.0,"text":"D IPO 3821 vs ~2622 value with weak 0.8x book looks overvalued, 4% pop unsustainable. Bearish D on value."}

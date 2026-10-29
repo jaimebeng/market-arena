@@ -6,6 +6,12 @@
       "runtimeExecutable": "wsl",
       "runtimeArgs": ["-d", "ubuntu", "--", "bash", "-lc", "cd ~/Documents/metahackathon/web && npm run dev -- --host --port 5173"],
       "port": 5173
+    },
+    {
+      "name": "public-api",
+      "runtimeExecutable": "wsl",
+      "runtimeArgs": ["-d", "ubuntu", "--", "bash", "-lc", "cd ~/Documents/metahackathon && .venv/bin/uvicorn market_arena.server.public:app --host 0.0.0.0 --port 8001"],
+      "port": 8001
     }
   ]
 }

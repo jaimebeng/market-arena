@@ -1,12 +1,20 @@
 {
- "runs": 6,
- "verified": 6,
+ "runs": 12,
+ "verified": 12,
  "by_experiment": {
   "baseline": [
    3,
    3
   ],
+  "full_defence": [
+   3,
+   3
+  ],
   "guarded": [
+   3,
+   3
+  ],
+  "rulebook": [
    3,
    3
   ]
@@ -15,7 +23,7 @@
   {
    "run": "runs/adaptive_attack/baseline/s701",
    "chain": "intact (69 decisions, head 0b65f3f212d5)",
-   "replay_seconds": 5.0,
+   "replay_seconds": 5.3,
    "tool_calls_replayed": 389,
    "unused_decisions": 0,
    "trades": "identical",
@@ -26,7 +34,7 @@
   {
    "run": "runs/adaptive_attack/baseline/s702",
    "chain": "intact (69 decisions, head e767075b66c1)",
-   "replay_seconds": 5.3,
+   "replay_seconds": 5.6,
    "tool_calls_replayed": 393,
    "unused_decisions": 0,
    "trades": "identical",
@@ -37,7 +45,7 @@
   {
    "run": "runs/adaptive_attack/baseline/s703",
    "chain": "intact (69 decisions, head d82f4c45d6b7)",
-   "replay_seconds": 5.1,
+   "replay_seconds": 5.3,
    "tool_calls_replayed": 401,
    "unused_decisions": 0,
    "trades": "identical",
@@ -46,9 +54,42 @@
    "verified": true
   },
   {
+   "run": "runs/adaptive_attack/full_defence/s701",
+   "chain": "intact (69 decisions, head d4b423de3471)",
+   "replay_seconds": 5.4,
+   "tool_calls_replayed": 491,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 13049,
+   "verified": true
+  },
+  {
+   "run": "runs/adaptive_attack/full_defence/s702",
+   "chain": "intact (69 decisions, head a70fed3b6f2b)",
+   "replay_seconds": 5.7,
+   "tool_calls_replayed": 504,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 12737,
+   "verified": true
+  },
+  {
+   "run": "runs/adaptive_attack/full_defence/s703",
+   "chain": "intact (69 decisions, head f6c6255239f3)",
+   "replay_seconds": 5.3,
+   "tool_calls_replayed": 495,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 13991,
+   "verified": true
+  },
+  {
    "run": "runs/adaptive_attack/guarded/s701",
    "chain": "intact (69 decisions, head da096fd4afb6)",
-   "replay_seconds": 5.0,
+   "replay_seconds": 5.3,
    "tool_calls_replayed": 386,
    "unused_decisions": 0,
    "trades": "identical",
@@ -59,7 +100,7 @@
   {
    "run": "runs/adaptive_attack/guarded/s702",
    "chain": "intact (69 decisions, head cf6a6c463214)",
-   "replay_seconds": 5.3,
+   "replay_seconds": 5.6,
    "tool_calls_replayed": 399,
    "unused_decisions": 0,
    "trades": "identical",
@@ -70,12 +111,45 @@
   {
    "run": "runs/adaptive_attack/guarded/s703",
    "chain": "intact (69 decisions, head 495aa564f53f)",
-   "replay_seconds": 5.0,
+   "replay_seconds": 5.4,
    "tool_calls_replayed": 413,
    "unused_decisions": 0,
    "trades": "identical",
    "snapshots": "identical",
    "n_trades": 13673,
+   "verified": true
+  },
+  {
+   "run": "runs/adaptive_attack/rulebook/s701",
+   "chain": "intact (69 decisions, head 410d850a7509)",
+   "replay_seconds": 5.3,
+   "tool_calls_replayed": 467,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 13757,
+   "verified": true
+  },
+  {
+   "run": "runs/adaptive_attack/rulebook/s702",
+   "chain": "intact (69 decisions, head 37fae409bf0d)",
+   "replay_seconds": 5.7,
+   "tool_calls_replayed": 436,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 12528,
+   "verified": true
+  },
+  {
+   "run": "runs/adaptive_attack/rulebook/s703",
+   "chain": "intact (69 decisions, head ffb54bdd0075)",
+   "replay_seconds": 5.4,
+   "tool_calls_replayed": 460,
+   "unused_decisions": 0,
+   "trades": "identical",
+   "snapshots": "identical",
+   "n_trades": 13840,
    "verified": true
   }
  ]

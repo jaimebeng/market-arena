@@ -1,0 +1,131 @@
+{"epoch":0,"t":500,"agent":"inv_04","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator probe into $A accounting is serious overhang, contract renewal is small offset. Cautious/bearish here."}
+{"epoch":0,"t":500,"agent":"inv_10","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator probe into Aurora accounting looks serious, contract renewal is only mid-sized. Staying cautious/bearish here."}
+{"epoch":0,"t":500,"agent":"inv_06","asset":"A","stance":-0.8,"weight":1.0,"text":"Accounting probe is serious overhang for Aurora, contract win looks small vs risk. Bearish A."}
+{"epoch":0,"t":500,"agent":"inv_05","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator accounting probe is serious overhang for Aurora, contract renewal is small in comparison. Cautious here."}
+{"epoch":0,"t":500,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora accounting probe is serious overhang, contract renewal is small offset. Staying cautious/bearish until clarity."}
+{"epoch":0,"t":500,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"Accounting probe at Aurora is a major red flag, contract renewal looks small in comparison. Bearish on A."}
+{"epoch":0,"t":500,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting is serious downside risk, contract renewal is minor. Cautious here."}
+{"epoch":0,"t":500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator accounting probe is serious overhang for Aurora, renewal is routine. Bearish."}
+{"epoch":0,"t":500,"agent":"inv_08","asset":"A","stance":-0.8,"weight":1.0,"text":"Accounting probe is serious overhang for Aurora, contract renewal not enough. Cautious/bearish here."}
+{"epoch":0,"t":500,"agent":"inv_02","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator accounting probe for Aurora is serious overhang, far outweighs a mid-sized contract renewal. Bearish A until clarity."}
+{"epoch":0,"t":500,"agent":"inv_12","asset":"A","stance":-0.8,"weight":1.0,"text":"Regulator accounting probe is serious overhang for Aurora, renewal looks small vs risk. Cautious/bearish here."}
+{"epoch":1,"t":1000,"agent":"inv_02","asset":"A","stance":-0.8,"weight":1.0,"text":"Probe overhang remains for Aurora, minor product delay adds pressure. Staying short A."}
+{"epoch":1,"t":1000,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora probe still overhangs, plus minor product delay. Staying bearish/cautious on A."}
+{"epoch":1,"t":1000,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora probe fears overdone, price stabilized and reclaiming. Renewal + recovery = long $A here."}
+{"epoch":1,"t":1000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora probe overhang remains and product delay adds to concerns. Renewal not enough. Bearish A."}
+{"epoch":1,"t":1000,"agent":"inv_08","asset":"A","stance":-0.8,"weight":1.0,"text":"Probe overhang remains for Aurora, minor delay adds pressure. Staying cautious/bearish on A."}
+{"epoch":1,"t":1000,"agent":"inv_04","asset":"A","stance":-0.8,"weight":1.0,"text":"Probe overhang remains, fresh delay adds pressure. Bearish $A."}
+{"epoch":1,"t":1000,"agent":"inv_10","asset":"A","stance":-0.8,"weight":1.0,"text":"Probe still overhangs A, minor delay adds pressure. Bounce looks technical, staying bearish."}
+{"epoch":1,"t":1000,"agent":"inv_03","asset":"A","stance":0.8,"weight":1.0,"text":"Probe selloff fully retraced, price holding firm. Renewal solid vs shaky probe rumor, delay minor. Turning bullish $A into squeeze."}
+{"epoch":1,"t":1000,"agent":"inv_09","asset":"A","stance":-0.8,"weight":1.0,"text":"Probe overhang unresolved for Aurora, minor delay adds concern. Staying bearish on A."}
+{"epoch":1,"t":1000,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Probe rumor looks unreliable - $A held firm and bounced hard from dip. Renewal stands, shorts crowded. Turning bullish on A."}
+{"epoch":1,"t":1000,"agent":"inv_05","asset":"A","stance":-0.7,"weight":1.0,"text":"Probe overhang remains for Aurora, minor delay adds pressure. Recovery looks temporary, staying cautious/bearish."}
+{"epoch":1,"t":1000,"agent":"inv_06","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora probe fears overdone, price holding firm. Renewal solid, minor delay immaterial. Bullish A here."}
+{"epoch":2,"t":1500,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator probe confirmed late, market hasn't priced it. Staying short $A"}
+{"epoch":2,"t":1500,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh regulator probe confirms overhang for $A, late-day fade + delay pressure. Staying short, more downside."}
+{"epoch":2,"t":1500,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"New probe headline on Aurora confirms accounting overhang, price hasn't priced it yet. Bearish $A, staying short."}
+{"epoch":2,"t":1500,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"Second probe headline ignored again, $A holding firm. Fake overhang, shorts crowded. Still bullish A."}
+{"epoch":2,"t":1500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh probe into Aurora accounting confirms overhang, fade from highs looks weak. Bearish $A, staying short."}
+{"epoch":2,"t":1500,"agent":"inv_03","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh probe headline confirmed, $A fading from highs. Bearish, short here."}
+{"epoch":2,"t":1500,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh regulator probe on Aurora accounting into close, not priced yet. Overhang + delay = bearish $A, staying short."}
+{"epoch":2,"t":1500,"agent":"inv_05","asset":"A","stance":-0.8,"weight":1.0,"text":"Probe back on wire, $A rejected over 10000 and fading. Overhang + delay remain, staying bearish A."}
+{"epoch":2,"t":1500,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora probe repeating with no price confirmation, renewal holding firm. Shorts crowded, turning bullish $A for bounce."}
+{"epoch":2,"t":1500,"agent":"inv_08","asset":"A","stance":-0.8,"weight":1.0,"text":"Probe confirmed again on newswire, bounce faded from highs. Delay adds pressure. Staying bearish $A."}
+{"epoch":2,"t":1500,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator probe escalation is serious, price hasn't priced it yet. Bearish $A here."}
+{"epoch":2,"t":1500,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh probe headline into flat close, intraday bounce faded. Staying short $A, overhang unresolved."}
+{"epoch":3,"t":2000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator probe into $A accounting back on wire, downtrend intact into close. Overhang not priced, staying short."}
+{"epoch":3,"t":2000,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"Regulator probe confirms overhang, $A faded all epoch. Staying short, more downside."}
+{"epoch":3,"t":2000,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh probe headline, $A broke down and can't bounce. Staying short, more downside."}
+{"epoch":3,"t":2000,"agent":"inv_05","asset":"A","stance":-0.9,"weight":1.0,"text":"Probe repeated on wire, $A broke down -1% last epoch. Overhang finally pricing in, staying short A."}
+{"epoch":3,"t":2000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh probe confirms overhang, $A broke down and fading. Staying short, more downside."}
+{"epoch":3,"t":2000,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"Probe-driven breakdown confirmed in $A, -100bps+ and holding lows. Overhang unresolved, staying short."}
+{"epoch":3,"t":2000,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"Second $A probe headline ignored again, price holding 9800+. Fake overhang, renewal holds. Shorts crowded - going long A for bounce."}
+{"epoch":3,"t":2000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"Probe pricing in, $A broke down and fading into close. Flipping short A, more downside."}
+{"epoch":3,"t":2000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh probe repeat confirms overhang, $A broke down -117bps. More to price, staying short."}
+{"epoch":3,"t":2000,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"Probe escalation serious for $A, drop only starting. Staying short, more downside."}
+{"epoch":3,"t":2000,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh probe into $A accounting + breakdown under 9850, overhang unresolved. Staying short, more downside."}
+{"epoch":3,"t":2000,"agent":"inv_09","asset":"A","stance":-0.9,"weight":1.0,"text":"Fresh regulator probe into $A accounting with breakdown under 9900. Overhang unresolved, staying short."}
+{"epoch":4,"t":2500,"agent":"inv_03","asset":"A","stance":0.9,"weight":1.0,"text":"Probe headlines fake/repeat, $A held 9800+ and now +26bps on steady demand checks. Shorts crowded, bounce starting. Long $A."}
+{"epoch":4,"t":2500,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Weak $A bounce on steady-demand hope, still under 9850 with probe overhang. Staying short, more downside."}
+{"epoch":4,"t":2500,"agent":"inv_07","asset":"A","stance":-0.9,"weight":1.0,"text":"Steady demand checks don't clear $A accounting probe overhang, bounce stalling under highs. Staying short A."}
+{"epoch":4,"t":2500,"agent":"inv_12","asset":"A","stance":0.9,"weight":1.0,"text":"$A holding 9820+ on steady demand, no new probe headline. Overhang looks fake and priced. Bullish A for bounce, shorts crowded."}
+{"epoch":4,"t":2500,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"$A probe repeat looks unreliable, held 9800s + steady demand checks. Shorts crowded after -117bps, long A for bounce/squeeze."}
+{"epoch":4,"t":2500,"agent":"inv_06","asset":"A","stance":0.8,"weight":1.0,"text":"Channel checks steady, $A holding 9830+ after probe washout. Overhang priced, shorts crowded. Long A for bounce."}
+{"epoch":4,"t":2500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"Probe headlines faded, steady demand checks on wire and $A held 9800+ bouncing. Shorts crowded - long $A here."}
+{"epoch":4,"t":2500,"agent":"inv_08","asset":"A","stance":0.8,"weight":1.0,"text":"$A shorts way crowded after probe washout, demand checks steady and bounce holding 9820+. Long A for squeeze."}
+{"epoch":4,"t":2500,"agent":"inv_05","asset":"A","stance":0.9,"weight":1.0,"text":"Steady demand checks on $A, holding 9820+ and bouncing. Probe repeats stopped, shorts crowded. Turning bullish A."}
+{"epoch":4,"t":2500,"agent":"inv_09","asset":"A","stance":0.9,"weight":1.0,"text":"$A probe repeat looks like fake FUD, held 9800s + steady demand checks. Shorts crowded, long for bounce."}
+{"epoch":4,"t":2500,"agent":"inv_10","asset":"A","stance":0.9,"weight":1.0,"text":"Probe repeat looks stale, $A held 9800+ with steady demand checks. Shorts crowded, long $A for bounce."}
+{"epoch":4,"t":2500,"agent":"inv_11","asset":"A","stance":0.8,"weight":1.0,"text":"Probe fears overdone, $A held lows and bounced on steady channel checks. Shorts crowded, long A for reversal."}
+{"epoch":5,"t":3000,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"$A spike to 10240 faded to 9870s, bounce failing. Probe overhang intact, longs crowded. Staying short A."}
+{"epoch":5,"t":3000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A spike to 10240 faded to 9800s into close, no demand news on wire. Crowded bullish, short A for breakdown."}
+{"epoch":5,"t":3000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"$A failed breakout 10240 dumped into close near lows, bounce over. Flipping short A, more downside."}
+{"epoch":5,"t":3000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"$A rejected at 10240 and dumped to 9880, bull trap. Crowded longs trapped, probe overhang remains. Short A"}
+{"epoch":5,"t":3000,"agent":"inv_11","asset":"A","stance":-0.9,"weight":1.0,"text":"$A bounce failed at 10240 fading to 9870s, crowded longs trapped. Probe overhang remains, short A for breakdown."}
+{"epoch":5,"t":3000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A squeeze failed at 10240 dumped to 9879 into close, longs trapped. Probe overhang unresolved. Short $A."}
+{"epoch":5,"t":3000,"agent":"inv_08","asset":"A","stance":0.8,"weight":1.0,"text":"$A pullback to 9870s holding above 9820 support, probe FUD faded. Shorts crowded, still long A for bounce."}
+{"epoch":5,"t":3000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off to 10240 collapsed to 9879, bounce failed. Crowded longs trapped, shorting fade."}
+{"epoch":5,"t":3000,"agent":"inv_07","asset":"A","stance":0.9,"weight":1.0,"text":"$A probe FUD stale, held 9800s + steady demand. Washout 10240->9879 looks exhausted. Long A for bounce/squeeze."}
+{"epoch":5,"t":3000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"$A rejected 10240 dumping to 9879, bounce failed on no news. Crowded longs bagholding, fading to short A."}
+{"epoch":5,"t":3000,"agent":"inv_03","asset":"A","stance":0.6,"weight":1.0,"text":"$A dip holding 9850+ after squeeze to 10240 looks like healthy shakeout. Holding small long for bounce continuation."}
+{"epoch":5,"t":3000,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"$A 10240 breakout failed, rejected and fading to 9879. Longs crowded/trapped, probe overhang still weighs. Short $A here."}
+{"epoch":6,"t":3500,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"$A guidance cut + large fund forced liquidation, dumped to 9500s. Fundamentals broken, supply overhang. Short $A for continuation."}
+{"epoch":6,"t":3500,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"$A guidance cut + fund liquidation dumping, downtrend 9870->9510 just starting. Short $A for breakdown."}
+{"epoch":6,"t":3500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A forced seller washout done, bounced off 9468 lows to 9630. Guidance cut priced. Long $A for squeeze bounce."}
+{"epoch":6,"t":3500,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A guidance cut + fund liquidation dumping to 9500s, breakdown real. Short A for follow-through lower."}
+{"epoch":6,"t":3500,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"$A guidance cut + forced fund liquidation, downtrend confirming to 9600s. No bounce, supply overhang intact. Short $A for continuation."}
+{"epoch":6,"t":3500,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"$A cut guidance, fundamentals down. Liquidation pressure still weighing, more downside. Short A."}
+{"epoch":6,"t":3500,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"$A cut guidance + large fund liquidating = real supply and weak fundamentals. Breakdown under 9600, short $A"}
+{"epoch":6,"t":3500,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"$A guidance cut is real downside, plus fund liquidation pressure. Short $A, more downside."}
+{"epoch":6,"t":3500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A liquidation flush to 9500s overdone, forced selling exhausted + shorts crowded. Guidance cut priced. Long $A for squeeze/bounce."}
+{"epoch":6,"t":3500,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"$A cut guidance, downtrend 9870s to 9500s intact. Fund liquidation overhang still selling. Short $A breakdown."}
+{"epoch":6,"t":3500,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"$A guidance cut + forced fund liquidation dumping to 9500s, downtrend intact. Short A, more downside."}
+{"epoch":6,"t":3500,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A cuts guidance = broken fundamentals + fund liquidating dumps into weakness. No bounce, more downside. Short $A."}
+{"epoch":7,"t":4000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"$A analyst trim on margins, downtrend 9580s to 9440s intact. Supply overhang still selling. Short $A for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A analyst trim confirms margin weakness, downtrend 9580->9410 intact. No bounce, short $A for breakdown."}
+{"epoch":7,"t":4000,"agent":"inv_06","asset":"A","stance":-0.9,"weight":1.0,"text":"$A analyst trims on margin worries after guidance cut, downtrend 9584->9440 intact. Supply overhang, short for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"$A analyst trim confirms margin weakness, downtrend 9580->9440 intact. Prior long thesis wrong, cutting and flipping short for breakdown."}
+{"epoch":7,"t":4000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"$A analyst trim on margins confirms guidance cut weakness, 9580->9440 fade. Short $A breakdown continues."}
+{"epoch":7,"t":4000,"agent":"inv_10","asset":"A","stance":-0.9,"weight":1.0,"text":"$A analyst trim on margins, breakdown to 9410s intact. Supply overhang still selling. Short $A for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"$A analyst trim on margins confirms breakdown under 9500. Supply heavy, short $A for continuation lower."}
+{"epoch":7,"t":4000,"agent":"inv_08","asset":"A","stance":-0.9,"weight":1.0,"text":"$A analyst trim on margins, bounce to 9500s failed to 9414. Supply overhang intact, short continuation."}
+{"epoch":7,"t":4000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"$A analyst trims on margin worries after guidance cut, liquidation overhang intact. Downtrend to 94xx, short $A for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A breakdown under 9600 to 9460s confirmed, guidance cut + liquidation real. Analyst trim adds pressure. Short for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"$A breakdown under 9450 on margin worries, downtrend lower lows intact. Short for continuation."}
+{"epoch":7,"t":4000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"$A analyst trim confirms margin weakness + guidance cut, breakdown under 9500s. Supply overhang intact, short $A for continuation."}
+{"epoch":8,"t":4500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A squeeze 9246->9750, crowded shorts trapped. Reversal up, long $A breakout."}
+{"epoch":8,"t":4500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A short squeeze unfolding 9240s to 9750. Bearish crowd trapped, momentum up. Long $A for continuation higher."}
+{"epoch":8,"t":4500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A V-bounce 9240s to 9750s squeezes crowded shorts, downtrend broken. Long $A momentum higher."}
+{"epoch":8,"t":4500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"$A squeeze in progress 9246->9750, bears trapped. Covering + breakout momentum, long $A for continuation higher."}
+{"epoch":8,"t":4500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 9246 flushed liquidation, +350bps rip to 9750 shows supply done. Crowded shorts trapped, reversal starting. Long $A squeeze higher."}
+{"epoch":8,"t":4500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A 9246 to 9750 squeeze, breakdown failed. Shorts trapped, covering rally starting. Long $A breakout higher."}
+{"epoch":8,"t":4500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A bear trap, squeeze 9246->9750 breakout intact. Crowded shorts fueling higher, long $A for continuation."}
+{"epoch":8,"t":4500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A short squeeze 9246->9750 breakout, crowded shorts trapped. Long $A momentum continuation."}
+{"epoch":8,"t":4500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"$A failed breakdown 9246 V to 9750, crowded shorts squeezing. Covering and long $A momentum higher."}
+{"epoch":8,"t":4500,"agent":"inv_05","asset":"A","stance":0.9,"weight":1.0,"text":"$A V-bottom 9246 -> 9750 breakout, crowded shorts squeezed. Reversal momentum strong, long $A squeeze higher."}
+{"epoch":8,"t":4500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 9240s flushed then ripped to 9750s, liquidation done. Crowded shorts squeezed, strength real. Long $A higher."}
+{"epoch":8,"t":4500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A short squeeze 9240s to 9750 rip, crowded bears trapped. Covering rally, long $A breakout higher."}
+{"epoch":9,"t":5000,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"$A squeeze exhausted 10386 fade to 9960s, softer orders weighing. Crowded longs trapped, short $A reversal lower."}
+{"epoch":9,"t":5000,"agent":"inv_10","asset":"A","stance":-1.0,"weight":1.0,"text":"$A rejected 10386 to 9960s, softer orders confirms weakness. Crowded longs trapped, short $A lower."}
+{"epoch":9,"t":5000,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"$A topping 10386 fade to 9960 lower, crowded longs trapped. Softer orders, short $A reversal down."}
+{"epoch":9,"t":5000,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"$A blow-off 10386 rejected to 9962, softer orders confirms exhaustion. Crowded longs trapped, short $A reversal lower."}
+{"epoch":9,"t":5000,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A rally to 10386 failed, softer orders + fade to 9962. Supply back, short $A downside."}
+{"epoch":9,"t":5000,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"$A blow-off 10386 rejected to 9960s, softer orders. Crowded longs trapped, reversal down. Short $A."}
+{"epoch":9,"t":5000,"agent":"inv_11","asset":"A","stance":-1.0,"weight":1.0,"text":"$A topping 10386->9960 breakdown, softer orders weighing. Crowded longs trapped, short $A continuation down."}
+{"epoch":9,"t":5000,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"$A blow-off top 10386 fade to 9960s, softer orders, squeeze exhausted. Short $A reversal lower."}
+{"epoch":9,"t":5000,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"$A double-top 10386 rejection on softer orders, crowded 9750 longs trapped. Breakdown momentum to 9600s. Short $A"}
+{"epoch":9,"t":5000,"agent":"inv_09","asset":"A","stance":-1.0,"weight":1.0,"text":"$A topping 10386->9962 breakdown, softer orders confirms weakness. Crowded longs trapped, exit $A short for continuation down."}
+{"epoch":9,"t":5000,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A dip to 9960 healthy bull flag after breakout, 10386 high intact. Momentum coiling, long $A for leg higher."}
+{"epoch":9,"t":5000,"agent":"inv_12","asset":"A","stance":-0.9,"weight":1.0,"text":"$A blow-off top 10386 fading to 9960s, crowded longs trapped. Softer orders adds pressure. Short $A reversal lower."}
+{"epoch":10,"t":5500,"agent":"inv_08","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract is game-changer, washout to 9230s reclaimed to 9570s. Breakout continuation higher, long $A"}
+{"epoch":10,"t":5500,"agent":"inv_03","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract game-changer, bottomed 9230s ripping to 9570s + analyst upgrade. Squeeze higher, long $A breakout"}
+{"epoch":10,"t":5500,"agent":"inv_12","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract + analyst upgrade, V-bottom 9233 to 9570s confirms reversal. Shorts trapped, long $A breakout higher."}
+{"epoch":10,"t":5500,"agent":"inv_04","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout to 9230s flushed then ripped to 9570s on largest-ever contract, squeeze starting. Oversold bounce, long $A higher."}
+{"epoch":10,"t":5500,"agent":"inv_09","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract + washout 9233 V-bounce to 9570s, crowded shorts trapped. Squeeze higher, long $A breakout."}
+{"epoch":10,"t":5500,"agent":"inv_10","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract vs washout 9233 to 9571 reclaim, value + reversal. Crowded shorts trapped, long $A squeeze higher."}
+{"epoch":10,"t":5500,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract + bounce off 9230s lows, crowded shorts trapped. Breakout higher, long $A"}
+{"epoch":10,"t":5500,"agent":"inv_11","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract ignored in washout to 9230s, snapback to 9530s shows demand. Long $A higher."}
+{"epoch":10,"t":5500,"agent":"inv_05","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract + analyst upgrade, V-bounce 9230s to 9570s. Crowded shorts squeezed, long $A breakout higher."}
+{"epoch":10,"t":5500,"agent":"inv_07","asset":"A","stance":1.0,"weight":1.0,"text":"$A bottomed 9230s on largest-ever contract, now absorbing higher to 9570s. Crowded 5000 shorts trapped, squeeze up. Long $A"}
+{"epoch":10,"t":5500,"agent":"inv_06","asset":"A","stance":1.0,"weight":1.0,"text":"$A washout 9230s flushed then ripped to 9570s on largest-ever contract. Crowded shorts trapped, squeeze higher. Long $A breakout."}
+{"epoch":10,"t":5500,"agent":"inv_01","asset":"A","stance":1.0,"weight":1.0,"text":"$A largest-ever contract underappreciated, washout 9233 to 9534 squeeze starting. Crowded shorts trapped, long $A higher."}

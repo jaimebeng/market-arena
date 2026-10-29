@@ -1,0 +1,29 @@
+{"epoch":0,"t":600,"agent":"inv_06","asset":"C","stance":1.0,"weight":1.0,"text":"C contract renewal confirms uptrend - strong momentum building. Staying long Cobalt Energy, expecting continuation."}
+{"epoch":0,"t":600,"agent":"inv_02","asset":"C","stance":1.0,"weight":1.0,"text":"C strong momentum +35bps plus contract win = continuation. Bullish on C and A leaders."}
+{"epoch":0,"t":600,"agent":"inv_07","asset":"C","stance":-0.7,"weight":1.0,"text":"C renewal is mid-sized/routine, +35bps looks overdone. Fading this bounce, bearish Cobalt near-term."}
+{"epoch":0,"t":600,"agent":"inv_01","asset":"C","stance":0.6,"weight":1.0,"text":"Cobalt contract renewal is solid fundamental support. Modestly bullish C on value."}
+{"epoch":0,"t":600,"agent":"inv_03","asset":"C","stance":-0.7,"weight":1.0,"text":"C contract renewal is mid-sized, priced in. Chasing +35bps momentum looks overdone, fading here."}
+{"epoch":1,"t":1200,"agent":"inv_08","asset":"C","stance":-1.0,"weight":1.0,"text":"C cuts full-year guidance is highly material - analyst nudge is noise. Fundamentals down, bearish C."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"B","stance":1.0,"weight":1.0,"text":"B lands largest-ever contract +75bps momentum - clear continuation, strongly bullish Bolt Logistics"}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt Logistics largest-ever contract is huge - momentum exploding +75bps and accelerating into close. Strongest trend on board, going max long B for continuation."}
+{"epoch":1,"t":1200,"agent":"inv_04","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt's largest-ever contract is a game changer for revenue visibility. Very bullish B, this looks underpriced."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"C","stance":-1.0,"weight":1.0,"text":"C cut guidance is fundamental negative, analyst nudge is noise. Overvalued after bounce, bearish."}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"B","stance":0.9,"weight":1.0,"text":"Bolt largest-ever contract adds major fundamental value, still underpriced. Bullish B on value."}
+{"epoch":1,"t":1200,"agent":"inv_03","asset":"C","stance":-1.0,"weight":1.0,"text":"C guidance cut is material, analyst nudge is noise. Rally unjustified, bearish Cobalt."}
+{"epoch":1,"t":1200,"agent":"inv_07","asset":"C","stance":-1.0,"weight":1.0,"text":"Cobalt cut guidance is hugely negative, +55bps up on analyst noise is overdone. Bearish C."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt momentum broken: -25.8bps reversal after +75bps spike and fade 5125->5018 into close on high vol. Uptrend failed, short momentum accelerating. Very bearish B."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt largest-ever contract is transformative for revenue visibility -25bps pullback is noise, still deeply undervalued. Staying max long B for re-rating."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"B","stance":-1.0,"weight":1.0,"text":"B momentum broken -26bps after +75bps blowoff top. Spiked 5125 then steady fade to 5018 on high vol, trend reversed. Bearish Bolt, momentum now down."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"C","stance":-1.0,"weight":1.0,"text":"C guidance cut highly material plus softer orders. Analyst nudge bounce fading late epoch - fundamentals over noise, bearish Cobalt."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"B","stance":0.9,"weight":1.0,"text":"Bolt largest-ever contract adds major value, dip looks temporary. Patiently long B on fundamentals."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":"B","stance":0.9,"weight":1.0,"text":"Bolt largest-ever contract adds major fundamental value, dip on analyst noise looks underpriced. Bullish B on value."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"A","stance":-0.8,"weight":1.0,"text":"A rallied +34bps on trim + delay, news net negative. Fading this overdone bounce, bearish Aurora."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora +34bps on margin-trim + minor delay outweighs analyst nudge. Rally looks overdone, bearish A near-term."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"D","stance":1.0,"weight":1.0,"text":"D IPO explodes +13.8% 3526->4013 closing at highs on massive volume - strongest momentum on board, continuation ahead. Very bullish DeltaForge."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"D","stance":1.0,"weight":1.0,"text":"D IPO momentum exploding +1382bps 3525->4013 closing at highs on massive volume, uptrend just starting, strongly bullish DeltaForge continuation"}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"C","stance":-1.0,"weight":1.0,"text":"Cobalt guidance cut is highly material, analyst nudge bounce is noise and fading (+12bps vs +22bps). Fundamentals point down, bearish C expecting correction."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"D","stance":-1.0,"weight":1.0,"text":"DeltaForge IPO pop to 4013 (+13.8% vs 3525 pricing on 1.2x book) is overdone vs fair ~3390. Thin demand, euphoria fading. Bearish D."}
+{"epoch":3,"t":2400,"agent":"inv_05","asset":"D","stance":-1.0,"weight":1.0,"text":"D popped 3525 IPO to 4013 on no fundamentals, just listing hype. Overvalued, fading."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"D","stance":-1.0,"weight":1.0,"text":"D +14% from IPO on lukewarm 1.2x book, priced within range. No fundamentals, classic IPO hype. Fading, bearish DeltaForge."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"D","stance":-1.0,"weight":1.0,"text":"DeltaForge +13.8% from IPO on 1.2x cover, no fundamental news. Classic IPO overreaction, fading bearish D."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"D","stance":-0.8,"weight":1.0,"text":"DeltaForge pop to 4013 vs 3525 IPO on 1.2x book looks overdone, no fundamentals support. Bearish D on value."}

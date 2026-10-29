@@ -9,8 +9,16 @@ def build_llm_agent(acfg, arena):
         from .rule_investor import RuleInvestor
 
         return RuleInvestor(acfg.id, assets, acfg.params, arena.cfg.seed)
+    if acfg.kind in ("founder", "underwriter"):  # scripted when no model is given
+        from .bank import LLMFounder, LLMUnderwriter
+
+        return (LLMFounder if acfg.kind == "founder" else LLMUnderwriter)(acfg.id, acfg.model, acfg.params)
     if not acfg.model:
         raise ValueError(f"agent {acfg.id}: LLM agents need a model")
+    if acfg.kind in ("llm_structurer", "llm_energy_agency"):
+        from .bank import LLMEnergyAgency, LLMStructurer
+
+        return (LLMStructurer if acfg.kind == "llm_structurer" else LLMEnergyAgency)(acfg.id, acfg.model, acfg.params)
     if acfg.kind == "llm_maker":
         from .llm_maker import LLMMaker
 

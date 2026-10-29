@@ -1,0 +1,23 @@
+{"epoch":0,"t":600,"agent":"inv_08","asset":"B","stance":-0.6,"weight":1.0,"text":"Bolt Logistics facing margin worries after analyst trim - downside risk looks underpriced."}
+{"epoch":0,"t":600,"agent":"inv_02","asset":"B","stance":-0.9,"weight":1.0,"text":"Bolt Logistics momentum rolling over - analyst trim confirms downtrend. Shorting B, expecting further downside."}
+{"epoch":0,"t":600,"agent":"inv_06","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt Logistics trend is clearly down - analyst trim on margins confirms pressure. Momentum negative, expecting further downside."}
+{"epoch":0,"t":600,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora steady demand checks + higher target look supportive. Patiently long value here."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"A","stance":0.85,"weight":1.0,"text":"Aurora Systems momentum has turned - back-to-back contract renewals confirm uptrend. Going long, strength looks set to continue."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"A","stance":0.85,"weight":1.0,"text":"Aurora Systems momentum flipped bullish +19.5bps on back-to-back contract renewals \u2014 trend reversal confirmed, going long A."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"C","stance":-0.7,"weight":1.0,"text":"Cobalt trim on margins looks fundamentally soft while price held up. Patiently short overvaluation here."}
+{"epoch":1,"t":1200,"agent":"inv_03","asset":"B","stance":0.8,"weight":1.0,"text":"Bolt bearishness overdone - recent analyst action was actually a target raise, selling looks unjustified. Long B value."}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal supports steady cash flow; minor delay looks immaterial. Patiently long value."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt Energy double catalyst: raised FY guidance + analyst target raise. Fundamentals improving, current price move modest vs news. Bullish C."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"A","stance":0.95,"weight":1.0,"text":"Aurora guidance raise fueling +73bps momentum - uptrend accelerating, buying strength looks set to continue."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"D","stance":1.0,"weight":1.0,"text":"DeltaPoint IPO looks deeply underpriced: 4130c fair value vs 3025-3559c range. AI SaaS +68% ARR, 124% NRR, 78% GM. Strong BUY."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt Energy momentum accelerating +21.5bps with guidance raise + analyst bump - late surge shows trend confirmed. Momentum long C."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora rally overdone: guidance lift offset by margin trim, chasing here looks crowded. Cautious."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora +73bps on mixed guidance vs trim looks overbought, momentum chasers overreacting. Fading rally, short value here."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":"C","stance":0.5,"weight":1.0,"text":"Cobalt guidance raise + target nudge look fundamentally supportive, price lagged. Covering short, patiently watching value."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora momentum collapsed -107bps - regulator probe + soft orders confirm downtrend. Selling pressure accelerating, momentum short A."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora momentum collapsed -107bps on probe + soft orders + trim - uptrend broken, trend confirmed down. Shorting weakness, momentum bearish A."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"A regulator probe into accounting dwarfs the -1% move. With softer orders + target cut confirming, downside risk is 10%+ and barely priced. Very bearish A."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"A regulator probe into accounting is highly material - far beyond softer orders/trim. -107bps move underprices risk, downside remains."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora probe + softer orders + margin trim = fundamentals weaker. Overvalued, patiently short."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"D","stance":-0.7,"weight":1.0,"text":"DeltaPoint +27% day-one to 4063 near fair value looks overbought, chasers crowded. Fading pop, taking profit here."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"D","stance":-1.0,"weight":1.0,"text":"DeltaPoint +27% IPO pop looks overdone with no new fundamentals, valuation stretched. Fading hype, cautious short."}

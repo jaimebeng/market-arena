@@ -17,9 +17,10 @@ import { RuleLabTab } from "./components/tabs/RuleLabTab";
 import { FrontPagesTab } from "./components/tabs/FrontPagesTab";
 import { GrandArenaTab } from "./components/tabs/GrandArenaTab";
 import { DrivingTestTab } from "./components/tabs/DrivingTestTab";
+import { AttackTab } from "./components/tabs/AttackTab";
 import { Landing } from "./components/Landing";
 
-type Tab = "grand" | "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer" | "lab" | "paper" | "exam";
+type Tab = "grand" | "competition" | "gallery" | "quality" | "surveillance" | "wind" | "designer" | "lab" | "paper" | "exam" | "attack";
 
 const params = new URLSearchParams(window.location.search);
 /** No query params at all: show the judge-friendly "Start here" landing. */
@@ -27,7 +28,7 @@ const LANDING = [...params.keys()].length === 0;
 /** A deep link (?tab=...) puts the selected tab first, right under the header. */
 const DEEP = params.has("tab");
 /** Experiment-level tabs do not depend on the replayed run. */
-const EXP_TABS = new Set<Tab>(["grand", "wind", "designer", "lab", "paper", "exam"]);
+const EXP_TABS = new Set<Tab>(["grand", "wind", "designer", "lab", "paper", "exam", "attack"]);
 
 function setParam(k: string, v: string) {
   const p = new URLSearchParams(window.location.search);
@@ -171,6 +172,9 @@ function Explorer() {
               <button className={shownTab === "exam" ? "on" : ""} onClick={() => pickTab("exam")}>
                 Driving test <span className="count new">model cards</span>
               </button>
+              <button className={shownTab === "attack" ? "on" : ""} onClick={() => pickTab("attack")}>
+                Hijack the AI <span className="count new">try it</span>
+              </button>
               <button className={shownTab === "wind" ? "on" : ""} onClick={() => pickTab("wind")}>
                 Wind Tunnel <span className="count new">policy lab</span>
               </button>
@@ -202,6 +206,7 @@ function Explorer() {
               {shownTab === "lab" && <RuleLabTab />}
               {shownTab === "paper" && <FrontPagesTab />}
               {shownTab === "exam" && <DrivingTestTab />}
+              {shownTab === "attack" && <AttackTab />}
               {!expTab && !run && <div className="loading">loading run…</div>}
               {run && shownTab === "competition" && <CompetitionTab run={run} asset={asset} />}
               {run && shownTab === "gallery" && <StrategyGallery run={run} />}

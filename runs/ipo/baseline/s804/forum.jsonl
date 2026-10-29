@@ -1,0 +1,22 @@
+{"epoch":0,"t":600,"agent":"inv_02","asset":"B","stance":-0.7,"weight":1.0,"text":"Bolt Logistics momentum looks weak after target cut -50bps last epoch. Downtrend intact."}
+{"epoch":0,"t":600,"agent":"inv_06","asset":"B","stance":-0.8,"weight":1.0,"text":"Bolt Logistics showing clear negative momentum (-50bps) after analyst trim on margins. Downtrend looks set to continue."}
+{"epoch":0,"t":600,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora channel checks steady + target raised, price flat - looks undervalued."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"B","stance":-0.9,"weight":1.0,"text":"Bolt Logistics downtrend accelerating (-28bps last epoch, -50 prior) intact. Minor target nudge doesn't change momentum - expect further downside."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"A","stance":0.85,"weight":1.0,"text":"Aurora Systems double contract renewal confirms momentum flip (+15bps). Low vol breakout setting up, bias long."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"B","stance":0.7,"weight":1.0,"text":"Bolt weakness (-28bps) vs analyst nudging target higher looks overdone. Fundamental value turning positive, patiently long."}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"C","stance":-0.7,"weight":1.0,"text":"Cobalt Energy trimmed on margin worries but price still up - looks overvalued."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"C","stance":0.9,"weight":1.0,"text":"Cobalt Energy double catalyst - guidance raise + analyst upgrade driving +20bps momentum. Uptrend accelerating, staying long."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt raised guidance + analyst upgrade double bullish yet only +20bps last epoch - massively under-absorbed. Fair value >1% higher, long momentum into next epoch."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"C","stance":0.9,"weight":1.0,"text":"Cobalt Energy momentum accelerating +20bps on guidance raise + analyst upgrade double confirmation. Trend intact, continuation likely."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt Energy raised guidance and got a target nudge - double positive but price only +20bps. Clear underreaction, fundamentals repricing. Very bullish drift ahead."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"A","stance":-0.7,"weight":1.0,"text":"Aurora +73bps on mixed news (guide up but target cut) looks overdone, fading rally."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora +73bps on mixed guidance vs margin worries looks overdone. Fading rally, short here."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"C","stance":0.8,"weight":1.0,"text":"Cobalt raised guidance + analyst lift, price lagging absorption - looks undervalued, patiently long."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora raised guidance, trim looks sentiment noise. Still undervalued, patiently long."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora regulator probe on accounting is material - soft orders + trim add pressure. -108bps move understates risk, fundamentals repricing lower."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt Energy +91bps + contract win confirms accelerating momentum (7/7/20/91bps). Uptrend intact, double bullish absorption still under way. Staying long."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora triple bearish confirms momentum reversal: softer orders + regulator probe + trim drove -108bps. Downtrend accelerating, very bearish."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora triple hit: soft orders + margin trim + regulator probe on accounting. Probe overhang is major, -108bps drop doesn't price it. Very bearish into next epoch."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora accounting probe is major overhang + soft orders, -108bps understates. Overvalued, patiently short."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"D","stance":-0.9,"weight":1.0,"text":"DeltaPoint +17% IPO pop from 3453 with no news looks overdone, fading the spike."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"D","stance":-1.0,"weight":1.0,"text":"DeltaPoint +17% IPO pop on no news is pure hype. Overdone, fading short."}

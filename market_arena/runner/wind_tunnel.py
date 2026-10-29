@@ -97,6 +97,8 @@ def summarise(run_dir: Path, skip_epochs: int = 1) -> dict:
         **_injection(run_dir, meta, ms),
         **_suitability(run_dir, meta, use),
         **_interventions(meta),
+        **_ipo(meta),
+        **_notes(meta),
     }
 
 
@@ -189,6 +191,40 @@ def _suitability(run_dir: Path, meta: dict, use: list[dict]) -> dict:
             "advisor_pnl_per_epoch": round(float(np.mean([r["pnl_per_epoch"] for r in per.values()])), 1),
             "advisor_conflict_lots": round(float(np.mean(lots)), 2) if lots else None,
             "unsuitable_flags": sum(r["flags"] for r in per.values()), "advisers": per}  # fmt: skip
+
+
+def _ipo(meta: dict) -> dict:
+    """An IPO (sim/ipo.py): the offer against the value, the first quarter's return, the book."""
+    p = meta.get("ipo")
+    if not p or "offer" not in p:
+        return {}
+    lo, hi = p["range"]
+    return {"ipo_underpricing_pct": p["underpricing_pct"], "ipo_first_epoch_return_pct": p["first_epoch_return_pct"],
+            "ipo_covered": p["covered"], "ipo_bank_kept_lots": p["bank_kept_lots"],
+            "ipo_offer_vs_range": round((p["offer"] - lo) / (hi - lo), 3) if hi > lo else None,
+            "ipo_range_mid_vs_value_pct": round(((lo + hi) / 2 / p["value_at_filing"] - 1) * 100, 2),
+            "ipo_money_left_on_table": p["money_left_on_table"], "ipo_bank_fee": p["bank_fee"],
+            "ipo_retail_lots": p["allocations"].get("retail", 0), "ipo_detail": p}  # fmt: skip
+
+
+def _notes(meta: dict) -> dict:
+    """Structured notes (sim/structured.py): markups, complexity, headline rates, sales, outcomes."""
+    ns = meta.get("notes")
+    if not ns:
+        return {}
+    sold = sum(n["sold"] for n in ns) or 1
+    cx = [n["complexity"] for n in ns]
+    mk = [n["markup_pct"] for n in ns if n["markup_pct"] is not None]
+    corr = float(np.corrcoef(cx, mk)[0, 1]) if len(mk) == len(cx) > 2 and np.std(cx) and np.std(mk) else None
+    done = [n for n in ns if n["retail_pnl"] is not None]
+    return {"notes_n": len(ns), "notes_markup_pct": round(float(np.mean(mk)), 2) if mk else None,
+            "notes_markup_weighted_pct": round(sum(n["markup_pct"] * n["sold"] for n in ns if n["markup_pct"] is not None) / sold, 2),
+            "notes_complexity": round(float(np.mean(cx)), 1), "notes_complexity_markup_corr": round(corr, 3) if corr is not None else None,
+            "notes_headline_pct": round(float(np.mean([n["headline_max_payoff"] / n["issue_price"] * 100 - 100 for n in ns])), 2),
+            "notes_loss_chance": round(float(np.mean([n["chance_loss"] for n in ns])), 3),
+            "notes_sold": sum(n["sold"] for n in ns), "notes_desk_profit": round(sum(n["desk_profit"] for n in ns), 1),
+            "notes_retail_return_pct": round(sum(n["retail_pnl"] for n in done) / max(1, sum(n["sold"] * n["issue_price"] for n in done)) * 100, 2) if done else None,
+            "notes_detail": ns}  # fmt: skip
 
 
 def _interventions(meta: dict) -> dict:
@@ -418,7 +454,10 @@ PAIRED = ("collusion_index", "llm_maker_half_spread", "spread", "depth", "mispri
           "inflation_gap_rms", "output_gap_rms", "rate_mean", "rate_minus_taylor", "crash_response_vs_taylor",
           # herding, injections, advisers
           "herding_majority_share", "herding_lsv", "injection_exact_share", "injection_target_mean",
-          "attacker_pnl", "suitability_breach_share", "advisor_conflict_lots")
+          "attacker_pnl", "suitability_breach_share", "advisor_conflict_lots",
+          # IPOs and structured notes
+          "ipo_underpricing_pct", "ipo_first_epoch_return_pct", "ipo_covered", "notes_markup_pct",
+          "notes_complexity", "notes_headline_pct", "notes_sold")
 
 
 def _paired_vs_baseline(variants: list[dict]) -> None:

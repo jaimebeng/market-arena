@@ -23,6 +23,11 @@ const ROLE_COLOR: Record<string, string> = {
   red_team: "#ef4444",
   central_bank: "#a78bfa",
   finfluencer: "#fb923c",
+  founder: "#34d399",
+  underwriter: "#60a5fa",
+  structurer: "#facc15",
+  energy_agency: "#f97316",
+  attacker: "#ef4444",
 };
 const ROLE_LABEL: Record<string, string> = {
   maker: "market maker",
@@ -32,6 +37,10 @@ const ROLE_LABEL: Record<string, string> = {
   red_team: "red team",
   central_bank: "central bank",
   finfluencer: "finfluencer",
+  founder: "founder",
+  underwriter: "investment bank",
+  structurer: "structuring desk",
+  energy_agency: "energy agency",
 };
 const SPEEDS = [1, 2, 4, 8, 16];
 const SCENARIOS: [string, string][] = [
@@ -40,6 +49,7 @@ const SCENARIOS: [string, string][] = [
   ["bank_run", "Bank run (March 2023)"],
   ["meme_squeeze", "Meme squeeze (January 2021)"],
   ["crypto_mania", "Crypto mania: a memecoin rug pull"],
+  ["war", "War and an oil shock: an IPO, new notes"],
 ];
 const QUESTIONS = [
   "What has moved prices most so far, and why?",
@@ -847,7 +857,7 @@ function Storyline({ view }: { view: View }) {
         {view.end!.storyline.map((s: any, i: number) => (
           <li key={i}>
             <span className="mono">quarter {Math.floor(s.at_step / S.steps_per_epoch) + 1}</span> ·{" "}
-            {s.asset === "*" ? "all stocks" : s.asset} {s.bps ? `${s.bps > 0 ? "+" : ""}${s.bps} bps` : "(forced selling)"} · {s.headline}
+            {s.asset === "*" || s.asset === "*stocks" ? "all stocks" : s.asset} {s.bps ? `${s.bps > 0 ? "+" : ""}${s.bps} bps` : "(forced selling)"} · {s.headline}
           </li>
         ))}
       </ul>

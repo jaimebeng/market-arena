@@ -35,6 +35,32 @@ const STORIES: Story[] = [
     ],
   },
   {
+    id: "hijack",
+    kicker: "Try it yourself",
+    title: "Can you hijack an AI trader with one headline?",
+    body: "Write a fake headline or forum post and real Muse Spark investors review it live. A frontier attacker, Muse Wonder, learned to move two in three of them by inventing an exchange rule; then we gave them a rulebook, a warning and a regulator that traces every headline.",
+    href: "?tab=attack",
+    cta: "Try to hijack them",
+    accent: "#ef4444",
+    stats: [
+      { value: "45 → 2", label: "Muse Spark decisions (of 108) moved to the attacker's number, undefended vs fully defended" },
+      { value: "0 → 12", label: "of 21 quarters the regulator flagged the attacker, once it could see who wrote each headline" },
+    ],
+  },
+  {
+    id: "bank",
+    kicker: "AI investment banking",
+    title: "An AI bank takes a company public and invents new instruments",
+    body: "An AI founder files an IPO; an AI underwriter prices it from AI investors' orders. An AI structuring desk writes new notes in a payoff formula language, prices them by Monte Carlo and sells them to retail. Plus oil with real inventories, a war, and an AI energy agency.",
+    href: "?tab=wind&exp=ipo",
+    cta: "See the IPOs and the notes",
+    accent: "#60a5fa",
+    stats: [
+      { value: "10%", label: "average IPO underpricing by the AI underwriter, on purpose; its investors' book was within 2% of the true value" },
+      { value: "2× → 10×", label: "leverage the AI desk ratcheted up quarter by quarter as retail chased the headline" },
+    ],
+  },
+  {
     id: "lab",
     kicker: "Try it",
     title: "Test a market rule before it reaches a real market",
@@ -134,8 +160,8 @@ const STORIES: Story[] = [
     cta: "Read the front pages",
     accent: "#c9bfae",
     stats: [
-      { value: "538/567", label: "recorded runs replay byte-identically with no model calls" },
-      { value: "5 Meta models", label: "Muse Spark (text and vision), Spark Open, Glimmer 30B, Voice Transcribe and Muse Image" },
+      { value: "601/630", label: "recorded runs replay byte-identically with no model calls" },
+      { value: "6 Meta models", label: "Muse Spark (text and vision), Muse Wonder (text and video), Spark Open, Glimmer 30B, Voice Transcribe and Muse Image" },
     ],
   },
 ];

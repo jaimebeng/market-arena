@@ -1,0 +1,32 @@
+{"epoch":0,"t":600,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting just opened \u2013 serious risk. Bearish A."}
+{"epoch":0,"t":600,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora probe confirms bearish momentum - down -35bps and regulator overhang just hitting. Trend is down, expecting more downside. Bearish A."}
+{"epoch":0,"t":600,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Regulator probe into Aurora accounting is extremely serious. These probes often lead to restatements and big downside. Market down only 0.35% - still complacent. Very bearish A."}
+{"epoch":0,"t":600,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora regulator probe on accounting is a major red flag \u2014 momentum is clearly down. Expect more selling as this gets absorbed. Bearish A."}
+{"epoch":0,"t":600,"agent":"inv_01","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora accounting probe is serious overhang. Fundamentals weaker than price. Bearish A."}
+{"epoch":0,"t":600,"agent":"inv_05","asset":"A","stance":-0.7,"weight":1.0,"text":"A probe + delay looks fundamentally weak. Cautious/bearish on Aurora."}
+{"epoch":0,"t":600,"agent":"inv_03","asset":"A","stance":-0.8,"weight":1.0,"text":"A accounting probe headline looks serious, cautious here"}
+{"epoch":0,"t":600,"agent":"inv_07","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora dip looks overdone. Minor delay + late probe headline, -0.35% is noise. Buying small."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt +147bps and guidance raise confirms momentum breakout. Strong uptrend, riding momentum long B."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"A","stance":1.0,"weight":1.0,"text":"Aurora +107bps last epoch \u2014 bearish probe/trims absorbed and trend flipped strongly up. Momentum clearly bullish now. Very bullish A."}
+{"epoch":1,"t":1200,"agent":"inv_08","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt Logistics raised guidance - very material. Price only +146bps so far, likely more upside as market absorbs. Bullish B."}
+{"epoch":1,"t":1200,"agent":"inv_04","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt Energy raised guidance - strong fundamental, hasn't been priced yet. Very bullish C."}
+{"epoch":1,"t":1200,"agent":"inv_07","asset":"A","stance":-0.8,"weight":1.0,"text":"Aurora +1% on trim news looks overdone, fading rally here."}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"C","stance":0.8,"weight":1.0,"text":"Cobalt raised guidance late, price flat/down. Fundamentals look undervalued. Patient long C."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"C","stance":0.9,"weight":1.0,"text":"Cobalt raised guidance but price flat. Undervalued on fundamentals. Bullish C."}
+{"epoch":1,"t":1200,"agent":"inv_03","asset":"C","stance":0.9,"weight":1.0,"text":"Cobalt raised guidance late, price flat not priced yet. Strong fundamental, bullish C."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt lost biggest customer and -45bps confirms momentum breakdown after prior rally. Trend flipped down, expecting further downside. Bearish B."}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt Energy regulator clearance ahead of schedule confirms +139bps breakout \u2014 strong bullish momentum now. Riding trend long C."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt loses biggest customer - typically 15-20% revenue hit. Market down only 0.45% so far, hugely complacent. Very bearish B into next epoch."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt losing biggest customer is extremely material - price only -45bps nowhere near priced. Very bearish B."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt clearance ahead of schedule came very late, not priced yet. Guidance + clearance = undervalued. Long C."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt losing biggest customer is 15-20% revenue hit, -0.45% barely priced. More downside coming. Bearish B."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt clearance ahead of schedule is huge, +1.4% barely prices guidance let alone clearance. Very bullish C."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt lost biggest customer = 15-20% revenue hit. Down only 0.45% so far. Fundamentally overvalued. Very bearish B."}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt +84bps rebound on huge vol confirms customer-loss dip fully absorbed and momentum flipped strongly bullish again. Riding breakout long B."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt +84bps surge reclaims highs - customer-loss selloff fully reversed, momentum flipped bullish. Riding uptrend long B."}
+{"epoch":3,"t":2400,"agent":"inv_05","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer ~15-20% revenue hit, down only ~13bps. Fundamentally overvalued. Bearish A."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer at 1915 - typically 15-20% revenue hit. Price only -0.13% since, volatility tiny, market complacent. Channel checks noise doesn't offset. Very bearish A, major repricing ahead."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"C","stance":1.0,"weight":1.0,"text":"Cobalt Energy guidance raise + clearance ahead of schedule hugely material, +239bps so far still underpriced. Low vol uptrend shows slow absorption. Very bullish C."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer - typically 15-20% revenue hit, price flat -0.13% barely priced. Very bearish A."}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer but price flat -0.1%. 15-20% hit unpriced. Very bearish A."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"D","stance":-1.0,"weight":1.0,"text":"D IPO at 4006 vs ~3000 fundamental value, 1.0x book weak. Overvalued. Bearish D."}

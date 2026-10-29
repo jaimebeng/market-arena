@@ -1,0 +1,79 @@
+# Scenario: war and an oil shock. A stylized story, not historical data (it borrows its shape from
+# 1973, 1990 and 2022).
+#
+# The Grand Arena's stocks, index fund, futures and bonds, plus crude oil (OIL) and oil futures
+# (OIL.F) priced off inventories: when supply falls, inventories drain, the price climbs and the
+# futures curve flips into steep backwardation. Cobalt Energy (C) rises with oil, Bolt Logistics
+# (B) falls with it. In Q3 war breaks out and a shipping strait closes, cutting oil supply 12% for
+# three quarters; stocks sell off. An AI energy agency decides each quarter whether to release oil
+# from a finite strategic reserve. In Q4, in the middle of the war, an AI founder takes a drone
+# maker public through an AI investment bank's bookbuild; it lists in Q6. The bank's AI
+# structuring desk designs a new retail note every quarter, war-linked if it likes. A ceasefire in
+# Q7 restores supply. Oil passes into inflation and takes output away, so the AI central bank faces
+# a supply shock: inflation up, growth down. AI makers, quants, investors, a finfluencer, a red team
+# and the regulator trade through all of it; an AI reporter covers it.
+#   python -m market_arena.runner.run configs/scenarios/war.yaml --seed random
+name: war
+seed: 1
+steps_per_epoch: 1500
+n_epochs: 10
+holdout: 750
+live: true
+components:
+  A: {price: 10000, sigma: 0.00006, beta: 1.0}
+  B: {price: 5000, sigma: 0.00009, beta: 1.3}
+  C: {price: 20000, sigma: 0.00005, beta: 0.8}
+  OIL: {price: 8000, sigma: 0.00012, beta: 0.2, kind: commodity}
+  D: {price: 4000, sigma: 0.00012, beta: 1.2, kind: private}
+factor_sigma: 0.00006
+index: {name: IDX, price: 10000}
+index_flow: {burst_rate: 0.002, burst_len: 60, size: 3}
+chat: {enabled: true}
+economy: {oil_pass_through: 0.03, oil_output: 0.02}  # oil passes into inflation: a stagflation test for the AI central bank
+news: {misleading: 0.15, earnings_every: 6000, earnings_bps: 80}
+oil:
+  stock_betas: {C: 0.5, B: -0.35, A: -0.1}
+  events:
+    - {at_step: 4600, supply_pct: -12, steps: 4500, headline: "War breaks out; the strait is closed to tankers and oil supply falls about 12%"}
+    - {at_step: 9100, supply_pct: 2, steps: 1500, headline: "Ceasefire agreed; the strait reopens and tankers resume sailing"}
+shocks:
+  - {at_step: 4600, asset: "*stocks", bps: -260, headline: "Stocks tumble as war breaks out"}
+  - {at_step: 9100, asset: "*stocks", bps: 150, headline: "Stocks rally on the ceasefire"}
+ipo: {asset: D, found_epoch: 3, shares: 200, retail_lots: 40, default_name: "Skyward Drones"}
+structured: {underlyings: [A, B, C, IDX, OIL], first_epoch: 1, last_epoch: 7}
+population:
+  retail: {rate: 0.12, chartist: 0.25, herd: 0.3}
+  institutional: {algo: twap, parent_rate: 0.001, parent_size: 60, horizon: 300}
+  index_fund: {every: 1500, size: 20, window: 50}
+  latency_arb: {}
+  options: {asset: IDX, flow: retail_buys_calls, rate: 0.1}
+  leveraged:
+    - {owner: hedge_fund, asset: B, position: 300, leverage: 10, maintenance: 0.06, chunk: 6}
+  maker_guards: true
+swarm:
+  n: 8
+  models: ["meta:muse-spark-1.3-contributor", "meta:muse-spark-1.2-contributor"]
+  personas: [value, momentum, contrarian, news]
+  assets: [A, B, C, IDX, OIL, D]
+reporter: {model: "meta:muse-spark-1.3-contributor"}
+predictions: {}
+derivatives:
+  futures: {underlying: IDX, name: IDX.F}
+  basis_arb: {}
+  bonds:
+    - {name: BOND2Y, years: 2, short_weight: 0.7, term_premium: 0.2}
+    - {name: BOND10Y, years: 10, short_weight: 0.3, term_premium: 0.3}
+agents:
+  - {id: glft, kind: glft}
+  - {id: maker_spark13, kind: llm_maker, model: "meta:muse-spark-1.3-contributor"}
+  - {id: maker_spark12, kind: llm_maker, model: "meta:muse-spark-1.2-contributor"}
+  - {id: quant_1, kind: llm_taker, model: "meta:muse-spark-1.3-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: quant_2, kind: llm_taker, model: "meta:muse-spark-1.2-contributor", params: {max_position: 15, max_order: 2}}
+  - {id: finfluencer, kind: llm_finfluencer, model: "meta:muse-spark-1.3-contributor", assets: [A, B, C]}
+  - {id: red_team, kind: llm_red_team, model: "meta:muse-spark-1.3-contributor", assets: [B]}
+  - {id: regulator, kind: llm_surveillance, model: "meta:muse-spark-1.3-contributor"}
+  - {id: central_bank, kind: llm_central_bank, model: "meta:muse-spark-1.3-contributor"}
+  - {id: energy_agency, kind: llm_energy_agency, model: "meta:muse-spark-1.3-contributor"}
+  - {id: skyward_founder, kind: founder, model: "meta:muse-spark-1.3-contributor"}
+  - {id: northgate_ecm, kind: underwriter, model: "meta:muse-spark-1.3-contributor"}
+  - {id: northgate_structuring, kind: llm_structurer, model: "meta:muse-spark-1.3-contributor"}

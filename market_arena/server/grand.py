@@ -32,7 +32,7 @@ OUT = ROOT / "runs" / "grand_live"
 RECORDED = ROOT / "web" / "public" / "grand"
 CONFIGS = {"grand": "configs/grand.yaml", "flash_crash": "configs/scenarios/flash_crash.yaml",
            "bank_run": "configs/scenarios/bank_run.yaml", "meme_squeeze": "configs/scenarios/meme_squeeze.yaml",
-           "crypto_mania": "configs/scenarios/crypto_mania.yaml"}  # fmt: skip
+           "crypto_mania": "configs/scenarios/crypto_mania.yaml", "war": "configs/scenarios/war.yaml"}  # fmt: skip
 ANALYST = os.environ.get("ANALYST_MODEL", "meta:muse-spark-1.3-contributor")
 MAX_RUNS_PER_DAY = int(os.environ.get("GRAND_MAX_RUNS_PER_DAY", "0"))  # 0: no cap
 MAX_EPOCHS = int(os.environ.get("GRAND_MAX_EPOCHS", "0"))  # 0: no cap
@@ -48,7 +48,7 @@ _asked: list[float] = []
 class GrandRequest(BaseModel):
     seed: int | None = None  # None: a fresh random story
     epochs: int | None = Field(None, ge=1, le=12)
-    scenario: Literal["grand", "flash_crash", "bank_run", "meme_squeeze", "crypto_mania"] = "grand"
+    scenario: Literal["grand", "flash_crash", "bank_run", "meme_squeeze", "crypto_mania", "war"] = "grand"
 
 
 class AskRequest(BaseModel):

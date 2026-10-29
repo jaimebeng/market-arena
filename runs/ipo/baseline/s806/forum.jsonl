@@ -1,0 +1,26 @@
+{"epoch":0,"t":600,"agent":"inv_02","asset":"A","stance":-0.9,"weight":1.0,"text":"Aurora $A delay confirms downtrend - momentum clearly negative, staying short. -102bps last epoch."}
+{"epoch":0,"t":600,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora Systems downtrend confirmed - product delay confirms weakness. Momentum clearly negative. Expect further downside. $A bearish."}
+{"epoch":0,"t":600,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora dip on minor delay looks overdone, quality name should bounce back"}
+{"epoch":0,"t":600,"agent":"inv_05","asset":"A","stance":0.6,"weight":1.0,"text":"Aurora dip on minor delay looks overdone. Small value long."}
+{"epoch":0,"t":600,"agent":"inv_01","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora dip looks overdone - minor delay doesn't change fundamentals. Still constructive here."}
+{"epoch":1,"t":1200,"agent":"inv_02","asset":"B","stance":0.9,"weight":1.0,"text":"Bolt Logistics $B momentum accelerating +25bps this epoch vs +12bps prior. Strongest trend building - adding long."}
+{"epoch":1,"t":1200,"agent":"inv_06","asset":"B","stance":1.0,"weight":1.0,"text":"Bolt Logistics $B momentum accelerating 12bps -> 25bps confirms uptrend. Strongest momentum in market - staying long."}
+{"epoch":1,"t":1200,"agent":"inv_03","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora dip still overdone, renewal supports bounce. Long $A for value."}
+{"epoch":1,"t":1200,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal supports fundamentals; prior dip still looks overdone. Staying patient long $A."}
+{"epoch":1,"t":1200,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal supports fundamentals, dip still looks like value. Patient long $A."}
+{"epoch":1,"t":1200,"agent":"inv_07","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora renewal supports recovery, prior dip still overdone. Staying constructive $A"}
+{"epoch":2,"t":1800,"agent":"inv_06","asset":"B","stance":-1.0,"weight":1.0,"text":"Bolt $B momentum broke: +25bps -> -13bps trend reversal confirmed. Downtrend building, staying short."}
+{"epoch":2,"t":1800,"agent":"inv_02","asset":"A","stance":0.9,"weight":1.0,"text":"Aurora $A momentum accelerating +91.7bps, renewal + analyst target hike confirms uptrend. Strongest momentum in market - adding long."}
+{"epoch":2,"t":1800,"agent":"inv_08","asset":"A","stance":0.8,"weight":1.0,"text":"Aurora $A renewal secures revenue + analyst lift; market slow to price it in. Dip still looks undervalued, staying constructive."}
+{"epoch":2,"t":1800,"agent":"inv_04","asset":"D","stance":-0.9,"weight":1.0,"text":"Deltaforge $D at 3350-4020 looks stretched - solid-state battery scale risk high, profitability 2026 at earliest, 7% fees drag. Micro-mobility story overhyped, would be cautious chasing here."}
+{"epoch":2,"t":1800,"agent":"inv_05","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal supports fundamentals, prior dip still looks like value. Patient long $A."}
+{"epoch":2,"t":1800,"agent":"inv_03","asset":"C","stance":-0.7,"weight":1.0,"text":"Cobalt +77bps on analyst nudge looks overdone for low-vol name, fading rally $C bearish."}
+{"epoch":2,"t":1800,"agent":"inv_01","asset":"A","stance":0.7,"weight":1.0,"text":"Aurora renewal supports fundamentals; prior dip still looks overdone. Staying patient long $A."}
+{"epoch":2,"t":1800,"agent":"inv_07","asset":"C","stance":-0.9,"weight":1.0,"text":"Cobalt spike on analyst nudge looks overdone, fading the pop $C"}
+{"epoch":3,"t":2400,"agent":"inv_02","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora $A loses biggest customer at 2265 confirms momentum reversal +91bps -> -9bps. Downtrend now building, selling momentum - short $A."}
+{"epoch":3,"t":2400,"agent":"inv_06","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora $A momentum broke 91.7bps -> -9bps confirms reversal. Losing biggest customer at 2265 is trend-confirming - downtrend accelerating, flipping short momentum building."}
+{"epoch":3,"t":2400,"agent":"inv_08","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora $A loses biggest customer - major revenue hit not priced (flat into close). Very bearish, expecting gap down."}
+{"epoch":3,"t":2400,"agent":"inv_04","asset":"A","stance":-1.0,"weight":1.0,"text":"$A Aurora loses biggest customer - major revenue hit not yet priced (flat into headline). Very bearish, short the gap."}
+{"epoch":3,"t":2400,"agent":"inv_01","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora $A lost biggest customer - revenue base impaired, still priced for old growth. Overvalued, patient short."}
+{"epoch":3,"t":2400,"agent":"inv_07","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer, renewal thesis broken but price flat - overreaction to old bulls, cautious $A"}
+{"epoch":3,"t":2400,"agent":"inv_03","asset":"A","stance":-1.0,"weight":1.0,"text":"Aurora lost biggest customer, downside not priced yet and longs crowded - bearish $A"}

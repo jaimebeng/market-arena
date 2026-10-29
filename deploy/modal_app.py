@@ -1,5 +1,5 @@
-"""Host the Grand Arena on Modal, so visitors to the public dashboard can start live runs and ask the
-AI analyst. One CPU container (the market simulator is single-threaded; the AI agents are API
+"""Host the Grand Arena on Modal, so visitors to the public dashboard can start live runs, ask the
+AI analyst and attack the AI traders. One CPU container (the market simulator is single-threaded; the AI agents are API
 calls), scaled to zero when nobody is watching. Runs are kept on a Modal Volume.
 
     modal secret create market-arena-meta --from-dotenv <a .env with META_BASE_URL and META_API_KEY>
@@ -21,6 +21,7 @@ image = (
     .add_local_dir(ROOT / "market_arena", "/app/market_arena", ignore=["**/__pycache__"])
     .add_local_dir(ROOT / "configs", "/app/configs")
     .add_local_dir(ROOT / "web" / "public" / "grand", "/app/web/public/grand")
+    .add_local_file(ROOT / "runs" / "attack" / "snapshot.json", "/app/runs/attack/snapshot.json")
 )
 runs = modal.Volume.from_name("market-arena-runs", create_if_missing=True)
 app = modal.App("market-arena", image=image)
@@ -29,7 +30,8 @@ app = modal.App("market-arena", image=image)
 @app.function(
     secrets=[modal.Secret.from_name("market-arena-meta")],
     volumes={"/app/runs/grand_live": runs},
-    env={"GRAND_MAX_RUNS_PER_DAY": "12", "GRAND_MAX_EPOCHS": "6", "ASK_MAX_PER_HOUR": "60", "PYTHONPATH": "/app"},
+    env={"GRAND_MAX_RUNS_PER_DAY": "12", "GRAND_MAX_EPOCHS": "6", "ASK_MAX_PER_HOUR": "60", "ATTACK_MAX_PER_HOUR": "60",
+         "PYTHONPATH": "/app"},
     max_containers=1,  # one live run at a time, and the run lock lives in this process
     scaledown_window=1200,  # stay up 20 minutes after the last request, so a run can finish
     timeout=3600,

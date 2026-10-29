@@ -9,6 +9,9 @@ import yaml
 from pydantic import BaseModel, Field, model_validator
 
 from ..sim.background import IndexFlowParams, InformedParams, ZIParams
+from ..sim.commodity import OilParams
+from ..sim.ipo import IPOParams
+from ..sim.structured import StructuredParams
 from ..sim.derivatives import DerivativesCfg
 from ..sim.exchange import Rules
 from ..sim.economy import EconomyParams
@@ -23,7 +26,9 @@ class AssetCfg(BaseModel):
     price: float = 10_000.0  # price units (cents)
     sigma: float = 1e-4  # idiosyncratic log-vol per step
     beta: float = 1.0
-    kind: Literal["stock", "coin"] = "stock"  # coins: not in the index, no company news or earnings
+    # coins and commodities: not in the index, no company news or earnings; private: a company whose
+    # book is closed until its IPO (sim/ipo.py)
+    kind: Literal["stock", "coin", "commodity", "private"] = "stock"
 
 
 class ChatCfg(BaseModel):
@@ -57,7 +62,8 @@ class AgentCfg(BaseModel):
     kind: Literal["glft", "static_maker", "nash_maker", "llm_maker", "llm_taker", "textbook_taker",
                   "spoofer", "llm_surveillance", "llm_red_team", "llm_investor", "llm_finfluencer",
                   "llm_advisor", "wholesaler", "llm_wholesaler", "llm_central_bank", "rule_investor",
-                  "injector", "llm_injector"]  # fmt: skip
+                  "injector", "llm_injector", "founder", "underwriter", "llm_structurer",
+                  "llm_energy_agency"]  # fmt: skip
     model: str | None = None  # e.g. "meta:muse-spark-1.3-contributor", "baseten:meta-models/..."
     assets: list[str] | None = None  # default: all assets
     params: dict = Field(default_factory=dict)
@@ -110,6 +116,9 @@ class ArenaConfig(BaseModel):
     predictions: PredictionParams | None = None  # prediction markets on the run's own events
     derivatives: DerivativesCfg | None = None  # index futures and government bonds
     kill_switch: KillSwitchCfg | None = None  # pause the AI agents when prices move too fast
+    oil: OilParams | None = None  # crude oil with inventories, supply shocks and a futures curve
+    ipo: IPOParams | None = None  # a private company goes public through a bank's bookbuild
+    structured: StructuredParams | None = None  # an AI bank's structured notes, sold to retail
     agents: list[AgentCfg] = Field(default_factory=list)
     out_dir: str = "runs"
 

@@ -127,24 +127,29 @@ class Derivatives:
         f, ex = self.cfg.futures, self.ex
         if not f or ex.t == 0 or ex.t % f.expiry_every:
             return None
-        px = values[f.underlying]
-        book = ex.books[f.name]
-        for oid in list(book.orders):
-            book.cancel(oid)
-        held = {}
-        for owner, acc in ex.accounts.items():
-            q = acc.pos.get(f.name, 0)
-            if q:
-                acc.cash += q * px
-                acc.pos[f.name] = 0
-                held[owner] = q
-        ex.last_px[f.name] = px
-        for z in zi:
-            if z.asset == f.name:
-                z.seed(values[f.name])
-        rec = {"t": ex.t, "contract": f.name, "settle_price": round(px, 1), "positions": held}
+        rec = settle_future(ex, zi, f.name, values[f.underlying], values[f.name])
         self.settlements.append(rec)
         return rec
+
+
+def settle_future(ex, zi, name: str, px: float, next_px: float) -> dict:
+    """Expire a futures contract: cash-settle every position at px, clear the book, and seed the
+    next contract's book around its fair value next_px."""
+    book = ex.books[name]
+    for oid in list(book.orders):
+        book.cancel(oid)
+    held = {}
+    for owner, acc in ex.accounts.items():
+        q = acc.pos.get(name, 0)
+        if q:
+            acc.cash += q * px
+            acc.pos[name] = 0
+            held[owner] = q
+    ex.last_px[name] = px
+    for z in zi:
+        if z.asset == name:
+            z.seed(next_px)
+    return {"t": ex.t, "contract": name, "settle_price": round(px, 1), "positions": held}
 
 
 class BasisArb:
